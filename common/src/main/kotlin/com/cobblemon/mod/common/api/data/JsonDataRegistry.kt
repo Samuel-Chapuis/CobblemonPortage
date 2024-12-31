@@ -9,14 +9,17 @@
 package com.cobblemon.mod.common.api.data
 
 import com.cobblemon.mod.common.Cobblemon
+import com.cobblemon.mod.common.util.endsWith
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import net.minecraft.resource.ResourceManager
-import net.minecraft.util.Identifier
+import java.io.File
+import java.util.concurrent.ExecutionException
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.packs.resources.ResourceManager
 
 /**
  * A [DataRegistry] that consumes JSON files.
- * Every deserialized instance is attached to an [Identifier].
+ * Every deserialized instance is attached to an [ResourceLocation].
  * For example a file under data/mymod/[resourcePath]/entry.json would be backed by the identifier modid:entry.
  *
  * @param T The type of the data consumed by this registry.
@@ -42,7 +45,24 @@ interface JsonDataRegistry<T> : DataRegistry {
     val resourcePath: String
 
     override fun reload(manager: ResourceManager) {
-        this.reload(Cobblemon.implementation.reloadJsonRegistry(this, manager))
+        val data = hashMapOf<ResourceLocation, T>()
+        manager.listResources(resourcePath) { path -> path.endsWith(JSON_EXTENSION) }.forEach { (identifier, resource) ->
+            if (identifier.namespace == "pixelmon") {
+                return@forEach
+            }
+
+            resource.open().use { stream ->
+                stream.bufferedReader().use { reader ->
+                    val resolvedIdentifier = ResourceLocation.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
+                    try {
+                        data[resolvedIdentifier] = gson.fromJson(reader, typeToken.type)
+                    } catch (exception: Exception) {
+                        throw ExecutionException("Error loading JSON for data: $identifier", exception)
+                    }
+                }
+            }
+        }
+        reload(data)
     }
 
     /**
@@ -50,7 +70,7 @@ interface JsonDataRegistry<T> : DataRegistry {
      *
      * @param data A map of the data associating an instance to the respective identifier from the [ResourceManager].
      */
-    fun reload(data: Map<Identifier, T>)
+    fun reload(data: Map<ResourceLocation, T>)
 
     companion object {
         const val JSON_EXTENSION = ".json"

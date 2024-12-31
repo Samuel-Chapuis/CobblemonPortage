@@ -15,8 +15,8 @@ import com.cobblemon.mod.common.api.moves.animations.UsersProvider
 import com.cobblemon.mod.common.api.scheduling.delayedFuture
 import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
+import net.minecraft.core.registries.Registries
 import java.util.concurrent.CompletableFuture
-import net.minecraft.registry.RegistryKeys
 
 /**
  * An action effect keyframe that plays a positioned sound for all matching entities.
@@ -35,16 +35,16 @@ class EntitySoundActionEffectKeyframe : ConditionalActionEffectKeyframe(), Entit
             .flatMap { prov -> prov.entities.filter { test(context, it, isUser = prov is UsersProvider) } }
 
         val soundIdentifier = try {
-            sound?.asExpressionLike()?.resolveString(context.runtime)?.takeIf { it != "0.0" } ?: sound
+            sound?.asExpressionLike()?.resolveString(context.runtime)?.takeIf { it != "0" } ?: sound
         } catch (e: Exception) {
             sound
         }?.asIdentifierDefaultingNamespace() ?: return skip()
 
         entities.forEach { entity ->
-            val soundEvent = entity.world.registryManager.get(RegistryKeys.SOUND_EVENT).get(soundIdentifier) ?: return skip()
+            val soundEvent = entity.level().registryAccess().registryOrThrow(Registries.SOUND_EVENT).get(soundIdentifier) ?: return skip()
             entity.playSound(soundEvent, 1f, 1f)
         }
 
-        return delayedFuture(seconds = delay.resolveFloat(context.runtime), serverThread = true)
+        return delayedFuture(seconds = delay.resolveFloat(context.runtime))
     }
 }

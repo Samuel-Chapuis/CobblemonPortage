@@ -8,27 +8,40 @@
 
 package com.cobblemon.mod.common.pokemon
 
-import com.bedrockk.molang.runtime.struct.VariableStruct
-import com.bedrockk.molang.runtime.value.DoubleValue
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonNetwork.sendPacketToPlayers
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.abilities.Abilities
 import com.cobblemon.mod.common.api.abilities.Ability
 import com.cobblemon.mod.common.api.abilities.AbilityPool
+import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
+import com.cobblemon.mod.common.api.battles.model.actor.EntityBackedBattleActor
 import com.cobblemon.mod.common.api.data.ShowdownIdentifiable
+import com.cobblemon.mod.common.api.entity.PokemonSender
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.CobblemonEvents.FRIENDSHIP_UPDATED
 import com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_FAINTED
 import com.cobblemon.mod.common.api.events.pokemon.*
-import com.cobblemon.mod.common.api.moves.*
+import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent
+import com.cobblemon.mod.common.api.molang.MoLangFunctions.addPokemonFunctions
+import com.cobblemon.mod.common.api.molang.ObjectValue
+import com.cobblemon.mod.common.api.moves.BenchedMove
+import com.cobblemon.mod.common.api.moves.BenchedMoves
+import com.cobblemon.mod.common.api.moves.Move
+import com.cobblemon.mod.common.api.moves.MoveSet
+import com.cobblemon.mod.common.api.moves.MoveTemplate
+import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokemon.Natures
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonPropertyExtractor
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.aspect.AspectProvider
-import com.cobblemon.mod.common.api.pokemon.evolution.*
+import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
+import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionController
+import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionDisplay
+import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionProxy
+import com.cobblemon.mod.common.api.pokemon.evolution.PreEvolution
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroup
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceSource
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature
@@ -45,70 +58,111 @@ import com.cobblemon.mod.common.api.reactive.Observable
 import com.cobblemon.mod.common.api.reactive.SettableObservable
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.api.scheduling.afterOnServer
-import com.cobblemon.mod.common.api.storage.InvalidSpeciesException
 import com.cobblemon.mod.common.api.storage.StoreCoordinates
+import com.cobblemon.mod.common.api.storage.party.NPCPartyStore
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore
 import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.api.types.tera.TeraTypes
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon
+import com.cobblemon.mod.common.battles.ShowdownInterpreter
 import com.cobblemon.mod.common.config.CobblemonConfig
+import com.cobblemon.mod.common.datafixer.CobblemonSchemas
+import com.cobblemon.mod.common.datafixer.CobblemonTypeReferences
+import com.cobblemon.mod.common.entity.PlatformType
+import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.entity.pokemon.effects.IllusionEffect
 import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket
+import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.*
 import com.cobblemon.mod.common.net.serverhandling.storage.SendOutPokemonHandler.SEND_OUT_DURATION
+import com.cobblemon.mod.common.net.serverhandling.storage.SendOutPokemonHandler.THROW_DURATION
 import com.cobblemon.mod.common.pokeball.PokeBall
-import com.cobblemon.mod.common.pokemon.activestate.*
+import com.cobblemon.mod.common.pokemon.activestate.ActivePokemonState
+import com.cobblemon.mod.common.pokemon.activestate.InactivePokemonState
+import com.cobblemon.mod.common.pokemon.activestate.PokemonState
+import com.cobblemon.mod.common.pokemon.activestate.SentOutState
+import com.cobblemon.mod.common.pokemon.activestate.ShoulderedState
 import com.cobblemon.mod.common.pokemon.evolution.CobblemonEvolutionProxy
+import com.cobblemon.mod.common.pokemon.evolution.controller.ClientEvolutionController
+import com.cobblemon.mod.common.pokemon.evolution.controller.ServerEvolutionController
 import com.cobblemon.mod.common.pokemon.evolution.progress.DamageTakenEvolutionProgress
 import com.cobblemon.mod.common.pokemon.evolution.progress.RecoilEvolutionProgress
 import com.cobblemon.mod.common.pokemon.feature.SeasonFeatureHandler
-import com.cobblemon.mod.common.pokemon.misc.GimmighoulStashHandler
+import com.cobblemon.mod.common.pokemon.feature.StashHandler
+import com.cobblemon.mod.common.pokemon.properties.BattleCloneProperty
 import com.cobblemon.mod.common.pokemon.properties.UncatchableProperty
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
 import com.cobblemon.mod.common.pokemon.status.PersistentStatusContainer
-import com.cobblemon.mod.common.util.*
-import com.google.gson.JsonArray
+import com.cobblemon.mod.common.util.DataKeys
+import com.cobblemon.mod.common.util.cobblemonResource
+import com.cobblemon.mod.common.util.codec.internal.ClientPokemonP1
+import com.cobblemon.mod.common.util.codec.internal.ClientPokemonP2
+import com.cobblemon.mod.common.util.codec.internal.ClientPokemonP3
+import com.cobblemon.mod.common.util.codec.internal.PokemonP1
+import com.cobblemon.mod.common.util.codec.internal.PokemonP2
+import com.cobblemon.mod.common.util.codec.internal.PokemonP3
+import com.cobblemon.mod.common.util.lang
+import com.cobblemon.mod.common.util.playSoundServer
+import com.cobblemon.mod.common.util.server
+import com.cobblemon.mod.common.util.setPositionSafely
+import com.cobblemon.mod.common.util.toBlockPos
 import com.google.gson.JsonObject
-import com.google.gson.JsonPrimitive
-import com.mojang.serialization.Dynamic
+import com.mojang.datafixers.util.Pair
+import com.mojang.serialization.Codec
+import com.mojang.serialization.DataResult
+import com.mojang.serialization.DynamicOps
 import com.mojang.serialization.JsonOps
-import net.minecraft.block.*
-import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtElement.COMPOUND_TYPE
-import net.minecraft.nbt.NbtList
-import net.minecraft.nbt.NbtOps
-import net.minecraft.nbt.NbtString
-import net.minecraft.registry.tag.FluidTags
-import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.server.world.ServerWorld
-import net.minecraft.text.MutableText
-import net.minecraft.text.Text
-import net.minecraft.text.TextContent
-import net.minecraft.util.Hand
-import net.minecraft.util.Identifier
-import net.minecraft.util.InvalidIdentifierException
-import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.MathHelper.ceil
-import net.minecraft.util.math.MathHelper.clamp
-import net.minecraft.util.math.Vec3d
-import net.minecraft.world.World
-import java.util.*
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import java.util.UUID
 import java.util.concurrent.CompletableFuture
 import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 import kotlin.random.Random
+import net.minecraft.core.BlockPos
+import net.minecraft.core.RegistryAccess
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.NbtOps
+import net.minecraft.nbt.StringTag
+import net.minecraft.network.RegistryFriendlyByteBuf
+import net.minecraft.network.chat.MutableComponent
+import net.minecraft.network.chat.contents.PlainTextContents
+import net.minecraft.network.codec.ByteBufCodecs
+import net.minecraft.network.codec.StreamCodec
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerPlayer
+import net.minecraft.tags.FluidTags
+import net.minecraft.util.Mth.ceil
+import net.minecraft.util.Mth.clamp
+import net.minecraft.util.StringRepresentable
+import net.minecraft.world.InteractionHand
+import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.CactusBlock
+import net.minecraft.world.level.block.CampfireBlock
+import net.minecraft.world.level.block.FireBlock
+import net.minecraft.world.level.block.MagmaBlock
+import net.minecraft.world.level.block.SweetBerryBushBlock
+import net.minecraft.world.level.block.WitherRoseBlock
+import net.minecraft.world.phys.Vec3
+import kotlin.math.*
+import net.minecraft.util.Mth
 
-enum class OriginalTrainerType
-{
-    NONE, PLAYER, NPC
+enum class OriginalTrainerType : StringRepresentable {
+    NONE, PLAYER, NPC;
+
+    override fun getSerializedName() = this.name
+    companion object {
+        @JvmStatic
+        val CODEC: Codec<OriginalTrainerType> = StringRepresentable.fromEnum(OriginalTrainerType::values)
+    }
 }
 
 open class Pokemon : ShowdownIdentifiable {
@@ -118,14 +172,14 @@ open class Pokemon : ShowdownIdentifiable {
             if (PokemonSpecies.getByIdentifier(value.resourceIdentifier) == null) {
                 throw IllegalArgumentException("Cannot set a species that isn't registered")
             }
-            val quotient = clamp(currentHealth / hp.toFloat(), 0F, 1F)
+            val quotient = clamp(currentHealth / maxHealth.toFloat(), 0F, 1F)
             field = value
             if (!isClient) {
                 val newFeatures = SpeciesFeatures.getFeaturesFor(species).mapNotNull { it.invoke(this) }
                 features.clear()
                 features.addAll(newFeatures)
+                evolutionProxy.current().clear()
             }
-            this.evolutionProxy.current().clear()
             updateAspects()
             updateForm()
             checkGender()
@@ -139,7 +193,7 @@ open class Pokemon : ShowdownIdentifiable {
             val old = field
             // Species updates already update HP but just a form change may require it
             // Moved to before the field was set else it won't actually do the hp calc proper <3
-            val quotient = clamp(currentHealth / hp.toFloat(), 0F, 1F)
+            val quotient = clamp(currentHealth / maxHealth.toFloat(), 0F, 1F)
             field = value
             this.sanitizeFormChangeMoves(old)
             // Evo proxy is already cleared on species update but the form may be changed by itself, this is fine and no unnecessary packets will be sent out
@@ -152,11 +206,13 @@ open class Pokemon : ShowdownIdentifiable {
         }
 
     // Need to happen before currentHealth init due to the calc
-    val ivs = IVs.createRandomIVs()
-    val evs = EVs.createEmpty()
+    var ivs = IVs.createRandomIVs()
+        internal set
+    var evs = EVs.createEmpty()
+        internal set
 
     fun setIV(stat : Stat, value : Int) {
-        val quotient = clamp(currentHealth / hp.toFloat(), 0F, 1F)
+        val quotient = clamp(currentHealth / maxHealth.toFloat(), 0F, 1F)
         ivs[stat] = value
         if(stat == Stats.HP) {
             updateHP(quotient)
@@ -165,7 +221,7 @@ open class Pokemon : ShowdownIdentifiable {
     }
 
     fun setEV(stat: Stat, value : Int) {
-        val quotient = clamp(currentHealth / hp.toFloat(), 0F, 1F)
+        val quotient = clamp(currentHealth / maxHealth.toFloat(), 0F, 1F)
         evs[stat] = value
         if(stat == Stats.HP) {
             updateHP(quotient)
@@ -173,18 +229,18 @@ open class Pokemon : ShowdownIdentifiable {
         _evs.emit(evs)
     }
 
-    var nickname: MutableText? = null
+    var nickname: MutableComponent? = null
         set(value) {
             field = value
             _nickname.emit(value)
         }
 
-    fun getDisplayName(): MutableText = nickname?.copy()?.takeIf { it.content != TextContent.EMPTY } ?: species.translatedName.copy()
+    fun getDisplayName(): MutableComponent = nickname?.copy()?.takeIf { it.contents != PlainTextContents.EMPTY } ?: species.translatedName.copy()
 
     var level = 1
         set(value) {
             val boundedValue = clamp(value, 1, Cobblemon.config.maxPokemonLevel)
-            val hpRatio = (currentHealth / hp.toFloat()).coerceIn(0F, 1F)
+            val hpRatio = (currentHealth / maxHealth.toFloat()).coerceIn(0F, 1F)
             /*
              * When people set the level programmatically the experience value will become incorrect.
              * Specifically check for when there's a mismatch and update the experience.
@@ -195,10 +251,10 @@ open class Pokemon : ShowdownIdentifiable {
             }
 //            _level.emit(value)
 
-            currentHealth = ceil(hpRatio * hp).coerceIn(0..hp)
+            currentHealth = ceil(hpRatio * maxHealth).coerceIn(0..maxHealth)
         }
 
-    var currentHealth = this.hp
+    var currentHealth = this.maxHealth
         set(value) {
             if (value == field) {
                 return
@@ -208,7 +264,7 @@ open class Pokemon : ShowdownIdentifiable {
                 entity?.health = 0F
                 status = null
             }
-            field = max(min(hp, value), 0)
+            field = max(min(maxHealth, value), 0)
             _currentHealth.emit(field)
 
             // If the Pokémon is fainted, give it a timer for it to wake back up
@@ -225,22 +281,23 @@ open class Pokemon : ShowdownIdentifiable {
             }
             this.healTimer = Cobblemon.config.healTimer
         }
+
     var gender = Gender.GENDERLESS
         set(value) {
+            if (!isClient && value !in species.possibleGenders) {
+                return
+            }
             field = value
-            if (!isClient) {
-                checkGender()
-            }
-            if (field == value) {
-                updateAspects()
-                _gender.emit(value)
-            }
+            updateAspects()
+            _gender.emit(value)
         }
+
     var status: PersistentStatusContainer? = null
         set(value) {
             field = value
             this._status.emit(value?.status)
         }
+
     var experience = 0
         internal set(value) {
             field = value
@@ -258,7 +315,7 @@ open class Pokemon : ShowdownIdentifiable {
     var friendship = this.form.baseFriendship
         private set(value) {
             // Don't check on client, that way we don't need to actually sync the config value it doesn't affect anything
-            if (!this.isClient && !this.isPossibleFriendship(value)) {
+            if (!this.isPossibleFriendship(value)) {
                 return
             }
             FRIENDSHIP_UPDATED.post(FriendshipUpdatedEvent(this, value)) {
@@ -269,8 +326,10 @@ open class Pokemon : ShowdownIdentifiable {
 
     var state: PokemonState = InactivePokemonState()
         set(value) {
-            field = value
-            _state.emit(value)
+            if (field != value) {
+                field = value
+                _state.emit(value)
+            }
         }
 
     val entity: PokemonEntity?
@@ -354,7 +413,7 @@ open class Pokemon : ShowdownIdentifiable {
         }
 
     var originalTrainerType: OriginalTrainerType = OriginalTrainerType.NONE
-        private set
+        internal set
 
     /**
      * Either:
@@ -363,7 +422,7 @@ open class Pokemon : ShowdownIdentifiable {
      * - Null
      */
     var originalTrainer: String? = null
-        private set
+        internal set
 
     /**
      * The cached Display Name of the Original Trainer
@@ -380,7 +439,8 @@ open class Pokemon : ShowdownIdentifiable {
      * swap in moves they've used before at any time, while holding onto the remaining PP
      * that they had last.
      */
-    val benchedMoves = BenchedMoves()
+    var benchedMoves = BenchedMoves()
+        internal set
 
     var ability: Ability = Abilities.DUMMY.create(false)
         // Keep internal for DTO & sync packet
@@ -391,8 +451,11 @@ open class Pokemon : ShowdownIdentifiable {
             field = value
         }
 
-    val hp: Int
+    val maxHealth: Int
         get() = getStat(Stats.HP)
+    @Deprecated("Use maxHealth instead", ReplaceWith("maxHealth"), level = DeprecationLevel.WARNING)
+    val hp: Int
+        get() = maxHealth
     val attack: Int
         get() = getStat(Stats.ATTACK)
     val defence: Int
@@ -411,8 +474,30 @@ open class Pokemon : ShowdownIdentifiable {
     var features = mutableListOf<SpeciesFeature>()
 
     fun asRenderablePokemon() = RenderablePokemon(species, aspects)
-    var aspects = setOf<String>()
+
+    /**
+     * A set of aspects that were not calculated and must always be a part of the Pokémon's aspect list. This is the
+     * appropriate way to force an aspect onto a Pokémon. Updating this set will recalculate [aspects] and sync these
+     * to the client, as well as any form updates that may be necessary. The forced aspects are persisted to both JSON
+     * and NBT.
+     */
+    var forcedAspects = setOf<String>()
         set(value) {
+            field = value
+            updateAspects()
+        }
+
+    /**
+     * This is a list of simple flag-based discriminators that can contribute to making a Pokémon unique. This set
+     * in particular is the master list of aspects for this [Pokemon], and is made up of both [forcedAspects] (a set
+     * which is decisive and not the result of any calculations) and a collection of aspects that were calculated from
+     * [AspectProvider]s.
+     *
+     * You should NOT be setting this directly because this property only exists to essentially cache the results of
+     * [AspectProvider]s. If you want to force an aspect, update [forcedAspects].
+     */
+    var aspects = setOf<String>()
+        private set(value) {
             if (field != value) {
                 field = value
                 if (!isClient) {
@@ -422,6 +507,7 @@ open class Pokemon : ShowdownIdentifiable {
             }
         }
 
+    /** If you're not a Cobblemon dev you should probably leave this right alone. */
     internal var isClient = false
     val storeCoordinates = SettableObservable<StoreCoordinates<*>?>(null)
 
@@ -432,25 +518,35 @@ open class Pokemon : ShowdownIdentifiable {
 
     val preEvolution: PreEvolution? get() = this.form.preEvolution
 
-    // Lazy due to leaking this
     /**
      * Provides the sided [EvolutionController]s, these operations can be done safely with a simple side check.
      * This can be done beforehand or using [EvolutionProxy.isClient].
      */
-    val evolutionProxy: EvolutionProxy<EvolutionDisplay, Evolution> by lazy { CobblemonEvolutionProxy(this, this.isClient) }
+    var evolutionProxy: EvolutionProxy<EvolutionDisplay, Evolution, ClientEvolutionController.Intermediate, ServerEvolutionController.Intermediate> = CobblemonEvolutionProxy(this.self())
+        private set
 
     val customProperties = mutableListOf<CustomPokemonProperty>()
 
-    var persistentData: NbtCompound = NbtCompound()
-        private set
+    /**
+     * Arbitrary data compound. Be aware that updating this is not enough for a Pokémon to be recognized as dirty
+     * and in need of saving. Emit to [anyChangeObservable] if you are making a change otherwise you'll see reversions.
+     */
+    var persistentData: CompoundTag =
+        CompoundTag()
+        internal set
 
     /**
      * The [ItemStack] this Pokémon is holding.
      */
-    private var heldItem: ItemStack = ItemStack.EMPTY
+    internal var heldItem: ItemStack = ItemStack.EMPTY
 
     init {
-        storeCoordinates.subscribe { if (it != null && it.store !is PCStore && this.tetheringId != null) afterOnServer(ticks = 1) { this.tetheringId = null } }
+        storeCoordinates.subscribe { if (it != null && it.store !is PCStore && this.tetheringId != null) afterOnServer(seconds = 0.05F) { this.tetheringId = null } }
+        storeCoordinates.subscribe {
+            it?.store?.getObservingPlayers()?.forEach {
+                CobblemonEvents.POKEMON_GAINED.post(PokemonGainedEvent(it.uuid, this))
+            }
+        }
     }
 
     open fun getStat(stat: Stat) = Cobblemon.statProvider.getStatForPokemon(this, stat)
@@ -468,18 +564,19 @@ open class Pokemon : ShowdownIdentifiable {
         return this.form.showdownId()
     }
 
-    fun sendOut(level: ServerWorld, position: Vec3d, illusion: IllusionEffect?, mutation: (PokemonEntity) -> Unit = {}): PokemonEntity? {
+    fun sendOut(level: ServerLevel, position: Vec3, illusion: IllusionEffect?, mutation: (PokemonEntity) -> Unit = {}): PokemonEntity? {
         CobblemonEvents.POKEMON_SENT_PRE.postThen(PokemonSentPreEvent(this, level, position)) {
             SeasonFeatureHandler.updateSeason(this, level, position.toBlockPos())
             val entity = PokemonEntity(level, this)
             illusion?.start(entity)
-            val sentOut = entity.setPositionSafely(position)
+            val adjustedPosition = entity.getAjustedSendoutPosition(position)
+            val sentOut = entity.setPositionSafely(adjustedPosition)
             //If sendout failed, fall back
             if (!sentOut) {
-                entity.setPos(position.x, position.y, position.z)
+                entity.setPos(adjustedPosition.x, adjustedPosition.y, adjustedPosition.z)
             }
             mutation(entity)
-            level.spawnEntity(entity)
+            level.addFreshEntity(entity)
             state = SentOutState(entity)
             return entity
         }
@@ -488,41 +585,115 @@ open class Pokemon : ShowdownIdentifiable {
 
     fun sendOutWithAnimation(
         source: LivingEntity,
-        level: ServerWorld,
-        position: Vec3d,
+        level: ServerLevel,
+        position: Vec3,
         battleId: UUID? = null,
         doCry: Boolean = true,
         illusion: IllusionEffect? = null,
         mutation: (PokemonEntity) -> Unit = {},
     ): CompletableFuture<PokemonEntity> {
+
+
         // Handle special case of shouldered Cobblemon
         if (this.state is ShoulderedState) {
-            return sendOutFromShoulder(source as ServerPlayerEntity, level, position, battleId, doCry, illusion, mutation)
+            return sendOutFromShoulder(source as ServerPlayer, level, position, battleId, doCry, illusion, mutation)
         }
 
         // Proceed as normal for non-shouldered Cobblemon
         val future = CompletableFuture<PokemonEntity>()
-        sendOut(level, position, illusion) {
-            getOwnerPlayer()?.let{
-                it.swingHand(Hand.MAIN_HAND, true)
-                level.playSoundServer(it.pos, CobblemonSounds.POKE_BALL_THROW, volume = 0.6F)
-            }
-            it.phasingTargetId = source.id
-            it.beamMode = 1
-            it.battleId = battleId
-
-            it.after(seconds = SEND_OUT_DURATION) {
-                it.phasingTargetId = -1
-                it.beamMode = 0
-                future.complete(it)
-                CobblemonEvents.POKEMON_SENT_POST.post(PokemonSentPostEvent(this, it))
-                if (doCry) {
-                    it.cry()
-                }
-            }
-
-            mutation(it)
+        val preamble = if (source is PokemonSender) {
+            source.sendingOut(this)
+        } else {
+            CompletableFuture.completedFuture(Unit)
         }
+
+        preamble.thenApply {
+            sendOut(level, position, illusion) {
+                val owner = getOwnerEntity()
+                if (owner is LivingEntity) {
+                    owner.swing(InteractionHand.MAIN_HAND, true)
+                    val spawnDirection: Vec3
+                    var spawnYaw: Double
+                    if (battleId != null) {
+                        // Look for an opposing opponent to face
+                        val battle = Cobblemon.battleRegistry.getBattle(battleId)
+                        val activeBattlePokemon = battle?.activePokemon?.firstOrNull { activePokemon -> activePokemon.battlePokemon?.originalPokemon?.uuid == it.pokemon.uuid }
+                        val opposingActiveBattlePokemon = (activeBattlePokemon?.getOppositeOpponent() as ActiveBattlePokemon?)
+                        var opposingEntityPos = opposingActiveBattlePokemon?.battlePokemon?.entity?.position()
+                        if (opposingEntityPos == null) {
+                            // Can't find the opposing pokemon, it probably doesn't exist yet. Try to calculate the opponent's sendout position
+                            val opposingEntityBattleActor = battle?.actors?.first { battleActor ->
+                                battleActor is EntityBackedBattleActor<*> && battleActor.entity != null && battleActor.entity?.uuid !== owner.uuid
+                            } as EntityBackedBattleActor<*>
+                            if (activeBattlePokemon != null) {
+                                opposingEntityPos = ShowdownInterpreter.getSendoutPosition(battle, activeBattlePokemon, opposingEntityBattleActor as BattleActor)
+                            }
+                            if (opposingEntityPos == null) {
+                                // Sendout calculation failed, fallback to using the opposing actor's position
+                                opposingEntityPos = opposingEntityBattleActor.initialPos
+                            }
+                        }
+                        spawnDirection = opposingEntityPos?.subtract(it.position()) ?: position.subtract(owner.position())
+                        val battleYaw = (atan2(spawnDirection.z, spawnDirection.x) * 180.0 / PI) - 90.0
+                        spawnYaw = battleYaw
+                    } else {
+                        // Non-battle send out, face the trainer
+                        spawnDirection = position.subtract(owner.position())
+                        spawnYaw = atan2(spawnDirection.z, spawnDirection.x) * 180.0 / PI + 102.5
+                    }
+
+                    // In some edge cases, I suspect we are producing NaN's here. This actually leads into a really big problem.
+                    // Why? Because on tick, LivingEntity tries to bring rotations back within one loop around 0-360 using while loops.
+                    // NaN resists arithmetic, so the while loops run forever and the server thread will hang trying to normalize
+                    // this angle. Better to catch it here and correct it. Y'know. If this is actually the problem. I believe!
+                    if (!spawnYaw.isFinite()) {
+                        spawnYaw = 0.0
+                    }
+                    it.entityData.set(PokemonEntity.SPAWN_DIRECTION, Mth.wrapDegrees(spawnYaw.toFloat()))
+                }
+                if (owner != null) {
+                    level.playSoundServer(owner.position(), CobblemonSounds.POKE_BALL_THROW, volume = 0.6F)
+                }
+                it.ownerUUID = getOwnerUUID()
+                it.phasingTargetId = source.id
+                it.beamMode = 1
+                it.battleId = battleId
+
+                if (it.battleId == null) {
+                   it.platform = PlatformType.NONE
+                }
+
+                it.after(seconds = THROW_DURATION) {
+                    it.phasingTargetId = -1
+                }
+
+                it.after(seconds = SEND_OUT_DURATION) {
+
+                    // Allow recall animation to override sendout animation
+                    if(it.beamMode == 3) {
+                        future.complete(it)
+                        return@after
+                    }
+
+                    it.phasingTargetId = -1
+                    it.beamMode = 0
+                    future.complete(it)
+                    CobblemonEvents.POKEMON_SENT_POST.post(PokemonSentPostEvent(this, it))
+                    if (doCry) {
+                        it.cry()
+                    }
+
+                    if (illusion != null) {
+                        if (illusion.mock.shiny == true) SpawnSnowstormEntityParticlePacket(cobblemonResource("shiny_ring"), it.id, listOf("shiny_particles", "middle")).sendToPlayersAround(it.x, it.y, it.z, 64.0, it.level().dimension())
+                    } else {
+                        if (shiny) SpawnSnowstormEntityParticlePacket(cobblemonResource("shiny_ring"), it.id, listOf("shiny_particles", "middle")).sendToPlayersAround(it.x, it.y, it.z, 64.0, it.level().dimension())
+                    }
+                }
+
+                mutation(it)
+            }
+        }
+
         return future
     }
 
@@ -530,9 +701,9 @@ open class Pokemon : ShowdownIdentifiable {
      * Send out the Pokémon from the player's shoulder.
      */
     fun sendOutFromShoulder(
-        player: ServerPlayerEntity,
-        level: ServerWorld,
-        targetPosition: Vec3d,
+        player: ServerPlayer,
+        level: ServerLevel,
+        targetPosition: Vec3,
         battleId: UUID? = null,
         doCry: Boolean = true,
         illusion: IllusionEffect? = null,
@@ -542,12 +713,16 @@ open class Pokemon : ShowdownIdentifiable {
 
         // get the current position of the cobblemon on the players shoulder
         val isLeftShoulder = (state as ShoulderedState).isLeftShoulder
-        val arbitraryXOffset = player.width * 0.3 + this.form.hitbox.width * 0.3
+        val arbitraryXOffset = player.bbWidth * 0.3 + this.form.hitbox.width * 0.3
         val shoulderHorizontalOffset = if (isLeftShoulder) arbitraryXOffset else -arbitraryXOffset
-        val rotation = player.yaw
-        val approxShoulderMonHight = player.height.toDouble() - this.form.hitbox.height * 0.4
-        val rotatedOffset = Vec3d(shoulderHorizontalOffset, approxShoulderMonHight, 0.0).rotateY(-rotation * (Math.PI.toFloat() / 180f))
-        val currentPosition = player.pos.add(rotatedOffset)
+        val rotation = player.yRot
+        val approxShoulderMonHight = player.bbHeight.toDouble() - this.form.hitbox.height * 0.4
+        val rotatedOffset = Vec3(
+            shoulderHorizontalOffset,
+            approxShoulderMonHight,
+            0.0
+        ).yRot(-rotation * (Math.PI.toFloat() / 180f))
+        val currentPosition = player.position().add(rotatedOffset)
 
         recall()
         sendOut(level, currentPosition, illusion) {
@@ -555,7 +730,7 @@ open class Pokemon : ShowdownIdentifiable {
             level.playSoundServer(currentPosition, CobblemonSounds.PC_DROP, volume = 0.6F)
 
             // Make the Cobblemon walk to the target Position with haste
-            it.moveControl.moveTo(targetPosition.x, targetPosition.y, targetPosition.z, 1.2)
+            it.moveControl.setWantedPosition(targetPosition.x, targetPosition.y, targetPosition.z, 1.2)
             it.battleId = battleId
 
             afterOnServer(seconds = SEND_OUT_DURATION) {
@@ -570,7 +745,6 @@ open class Pokemon : ShowdownIdentifiable {
         }
         return future
     }
-
 
     fun recall() {
         CobblemonEvents.POKEMON_RECALLED.post(PokemonRecalledEvent(this, this.entity))
@@ -588,19 +762,21 @@ open class Pokemon : ShowdownIdentifiable {
     }
 
     fun heal() {
-        this.currentHealth = hp
-        this.moveSet.heal()
-        this.status = null
-        this.faintedTimer = -1
-        this.healTimer = -1
-        val entity = entity
-        entity?.heal(entity.maxHealth - entity.health)
+        CobblemonEvents.POKEMON_HEALED.postThen(PokemonHealedEvent(this)) { event ->
+            this.currentHealth = maxHealth
+            this.moveSet.heal()
+            this.status = null
+            this.faintedTimer = -1
+            this.healTimer = -1
+            val entity = entity
+            entity?.heal(entity.maxHealth - entity.health)
+        }
     }
 
-    fun isFullHealth() = this.currentHealth == this.hp
+    fun isFullHealth() = this.currentHealth == this.maxHealth
 
     fun didSleep() {
-        this.currentHealth = min((currentHealth + (hp / 2)), hp)
+        this.currentHealth = min((currentHealth + (maxHealth / 2)), maxHealth)
         this.status = null
         this.faintedTimer = -1
         this.healTimer = -1
@@ -615,12 +791,12 @@ open class Pokemon : ShowdownIdentifiable {
      *
      * @return If this Pokémon can be healed.
      */
-    fun canBeHealed() = this.hp != this.currentHealth || this.status != null || this.moveSet.any { move -> move.currentPp != move.maxPp }
+    fun canBeHealed() = this.maxHealth != this.currentHealth || this.status != null || this.moveSet.any { move -> move.currentPp != move.maxPp }
 
     fun isFainted() = currentHealth <= 0
 
     private fun updateHP(quotient: Float) {
-        currentHealth = (hp * quotient).roundToInt()
+        currentHealth = (maxHealth * quotient).roundToInt()
     }
 
     fun applyStatus(status: PersistentStatus) {
@@ -634,17 +810,17 @@ open class Pokemon : ShowdownIdentifiable {
         return ElementalTypes.FIRE in types || !form.behaviour.moving.swim.hurtByLava
     }
 
-    fun isPositionSafe(world: World, pos: Vec3d): Boolean {
+    fun isPositionSafe(world: Level, pos: Vec3): Boolean {
         return isPositionSafe(world, pos.toBlockPos())
     }
 
-    fun isPositionSafe(world: World, pos1: BlockPos): Boolean {
+    fun isPositionSafe(world: Level, pos1: BlockPos): Boolean {
         // To make sure a location is safe, both the block the Pokemon is standing ON,
         // and the block it's standing IN need to be safe. pos2 represents the other position in that set.
         val pos2: BlockPos = if (world.getBlockState(pos1).isSolid) {
-            pos1.up()
+            pos1.above()
         } else {
-            pos1.down()
+            pos1.below()
         }
 
         val positions = arrayOf(pos1, pos2)
@@ -665,7 +841,7 @@ open class Pokemon : ShowdownIdentifiable {
                     if (block is FireBlock ||
                         block is MagmaBlock ||
                         block is CampfireBlock ||
-                        world.getBlockState(pos).fluidState.isIn(FluidTags.LAVA)
+                        world.getBlockState(pos).fluidState.`is`(FluidTags.LAVA)
                     ) {
                         isSafe = false
                     }
@@ -717,6 +893,13 @@ open class Pokemon : ShowdownIdentifiable {
     fun isUncatchable() = UncatchableProperty.uncatchable().matches(this)
 
     /**
+     * A utility method that checks if this Pokémon has the [BattleCloneProperty.isBattleClone] property.
+     *
+     * @return If the Pokémon is a battle clone.
+     */
+    fun isBattleClone() = BattleCloneProperty.isBattleClone().matches(this)
+
+    /**
      * Returns a copy of the held item.
      * In order to change the [ItemStack] use [swapHeldItem].
      *
@@ -751,12 +934,12 @@ open class Pokemon : ShowdownIdentifiable {
         CobblemonEvents.HELD_ITEM_PRE.postThen(HeldItemEvent.Pre(this, stack, existing, decrement), ifSucceeded = { event ->
             val giving = event.receiving.copy().apply { count = 1 }
             if (event.decrement) {
-                event.receiving.decrement(1)
+                event.receiving.shrink(1)
             }
             this.heldItem = giving
             this._heldItem.emit(giving)
             CobblemonEvents.HELD_ITEM_POST.post(HeldItemEvent.Post(this, this.heldItem(), event.returning.copy(), event.decrement)) {
-                GimmighoulStashHandler.giveHeldItem(it)
+                StashHandler.giveHeldItem(it)
             }
             return event.returning
         })
@@ -770,314 +953,144 @@ open class Pokemon : ShowdownIdentifiable {
      */
     fun removeHeldItem(): ItemStack = this.swapHeldItem(ItemStack.EMPTY)
 
-    fun saveToNBT(nbt: NbtCompound): NbtCompound {
-        nbt.putString(DataKeys.POKEMON_LAST_SAVED_VERSION, Cobblemon.VERSION)
-        nbt.putUuid(DataKeys.POKEMON_UUID, uuid)
-        nbt.putString(DataKeys.POKEMON_SPECIES_IDENTIFIER, species.resourceIdentifier.toString())
-        nickname?.let { nbt.putString(DataKeys.POKEMON_NICKNAME, Text.Serializer.toJson(it)) }
-        nbt.putString(DataKeys.POKEMON_FORM_ID, form.formOnlyShowdownId())
-        nbt.putInt(DataKeys.POKEMON_EXPERIENCE, experience)
-        nbt.putShort(DataKeys.POKEMON_LEVEL, level.toShort())
-        nbt.putShort(DataKeys.POKEMON_FRIENDSHIP, friendship.toShort())
-        nbt.putString(DataKeys.POKEMON_GENDER, gender.name)
-        nbt.putShort(DataKeys.POKEMON_HEALTH, currentHealth.toShort())
-        nbt.put(DataKeys.POKEMON_IVS, ivs.saveToNBT(NbtCompound()))
-        nbt.put(DataKeys.POKEMON_EVS, evs.saveToNBT(NbtCompound()))
-        nbt.put(DataKeys.POKEMON_MOVESET, moveSet.getNBT())
-        nbt.putFloat(DataKeys.POKEMON_SCALE_MODIFIER, scaleModifier)
-        nbt.putBoolean(DataKeys.POKEMON_SHINY, shiny)
-        val abilityNBT = ability.saveToNBT(NbtCompound())
-        nbt.put(DataKeys.POKEMON_ABILITY, abilityNBT)
-        state.writeToNBT(NbtCompound())?.let { nbt.put(DataKeys.POKEMON_STATE, it) }
-        status?.saveToNBT(NbtCompound())?.let { nbt.put(DataKeys.POKEMON_STATUS, it) }
-        nbt.putString(DataKeys.POKEMON_CAUGHT_BALL, caughtBall.name.toString())
-        nbt.putInt(DataKeys.POKEMON_FAINTED_TIMER, faintedTimer)
-        nbt.putInt(DataKeys.POKEMON_HEALING_TIMER, healTimer)
-        nbt.put(DataKeys.BENCHED_MOVES, benchedMoves.saveToNBT(NbtList()))
-        nbt.put(DataKeys.POKEMON_EVOLUTIONS, this.evolutionProxy.saveToNBT())
-        val propertyList = customProperties.map { it.asString() }.map { NbtString.of(it) }
-        nbt.put(DataKeys.POKEMON_DATA, NbtList().also { it.addAll(propertyList) })
-        nbt.putString(DataKeys.POKEMON_NATURE, nature.name.toString())
-        mintedNature?.let { nbt.putString(DataKeys.POKEMON_MINTED_NATURE, it.name.toString()) }
-        features.forEach { it.saveToNBT(nbt) }
-        if (!this.heldItem.isEmpty) {
-            nbt.put(DataKeys.HELD_ITEM, this.heldItem.writeNbt(NbtCompound()))
-        }
-        nbt.put(DataKeys.POKEMON_PERSISTENT_DATA, persistentData)
-        if (tetheringId != null) {
-            nbt.putUuid(DataKeys.TETHERING_ID, tetheringId)
-        }
-        nbt.putString(DataKeys.POKEMON_TERA_TYPE, teraType.id.toString())
-        nbt.putInt(DataKeys.POKEMON_DMAX_LEVEL, dmaxLevel)
-        nbt.putBoolean(DataKeys.POKEMON_GMAX_FACTOR, gmaxFactor)
-        nbt.putBoolean(DataKeys.POKEMON_TRADEABLE, tradeable)
-
-        if (originalTrainer != null) {
-            nbt.putString(DataKeys.POKEMON_ORIGINAL_TRAINER, originalTrainer)
-        }
-        nbt.putString(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE, originalTrainerType.name)
-        return nbt
+    fun saveToNBT(registryAccess: RegistryAccess, nbt: CompoundTag = CompoundTag()): CompoundTag {
+        return this.saveTo(registryAccess.createSerializationContext(NbtOps.INSTANCE), nbt).orThrow as CompoundTag
     }
 
-    fun loadFromNBT(nbt: NbtCompound): Pokemon {
-        val version = nbt.getString(DataKeys.POKEMON_LAST_SAVED_VERSION).takeIf { it.isNotBlank() } ?: "1.1.1"
-        uuid = nbt.getUuid(DataKeys.POKEMON_UUID)
-        try {
-            val rawID = nbt.getString(DataKeys.POKEMON_SPECIES_IDENTIFIER).replace("pokemonCobblemon", "cobblemon")
-            species = PokemonSpecies.getByIdentifier(Identifier(rawID))
-                ?: throw InvalidSpeciesException(Identifier(rawID))
-        } catch (e: InvalidIdentifierException) {
-            throw IllegalStateException("Failed to read a species identifier from NBT")
-        }
-        nickname = nbt.getString(DataKeys.POKEMON_NICKNAME).takeIf { it.isNotBlank() }?.let { Text.Serializer.fromJson(it) }
-        form = species.forms.find { it.formOnlyShowdownId() == nbt.getString(DataKeys.POKEMON_FORM_ID) } ?: species.standardForm
-        level = nbt.getShort(DataKeys.POKEMON_LEVEL).toInt()
-        experience = nbt.getInt(DataKeys.POKEMON_EXPERIENCE).takeIf { experienceGroup.getLevel(it) == level } ?: experienceGroup.getExperience(level)
-        friendship = nbt.getShort(DataKeys.POKEMON_FRIENDSHIP).toInt().coerceIn(0, if (this.isClient) Int.MAX_VALUE else Cobblemon.config.maxPokemonFriendship)
-        gender = Gender.valueOf(nbt.getString(DataKeys.POKEMON_GENDER).takeIf { it.isNotBlank() } ?: Gender.MALE.name)
-        currentHealth = nbt.getShort(DataKeys.POKEMON_HEALTH).toInt()
-        ivs.loadFromNBT(nbt.getCompound(DataKeys.POKEMON_IVS))
-        evs.loadFromNBT(nbt.getCompound(DataKeys.POKEMON_EVS))
-        moveSet.loadFromNBT(nbt)
-        scaleModifier = nbt.getFloat(DataKeys.POKEMON_SCALE_MODIFIER)
-        if (nbt.contains(DataKeys.POKEMON_ABILITY, COMPOUND_TYPE.toInt())) {
-            this.ability.loadFromNBT(nbt.getCompound(DataKeys.POKEMON_ABILITY))
-        }
-        shiny = nbt.getBoolean(DataKeys.POKEMON_SHINY)
-        if (nbt.contains(DataKeys.POKEMON_STATE)) {
-            val stateNBT = nbt.getCompound(DataKeys.POKEMON_STATE)
-            val type = stateNBT.getString(DataKeys.POKEMON_STATE_TYPE)
-            val clazz = PokemonState.states[type]
-            state = clazz?.getDeclaredConstructor()?.newInstance()?.readFromNBT(stateNBT) ?: InactivePokemonState()
-        }
-        if (nbt.contains(DataKeys.POKEMON_STATUS)) {
-            val statusNBT = nbt.getCompound(DataKeys.POKEMON_STATUS)
-            status = PersistentStatusContainer.loadFromNBT(statusNBT)
-        }
-        faintedTimer = nbt.getInt(DataKeys.POKEMON_FAINTED_TIMER)
-        healTimer = nbt.getInt(DataKeys.POKEMON_HEALING_TIMER)
-        val ballName = nbt.getString(DataKeys.POKEMON_CAUGHT_BALL)
-        caughtBall = PokeBalls.getPokeBall(Identifier(ballName)) ?: PokeBalls.POKE_BALL
-        benchedMoves.loadFromNBT(nbt.getList(DataKeys.BENCHED_MOVES, COMPOUND_TYPE.toInt()))
-        val propertiesList = nbt.getList(DataKeys.POKEMON_DATA, NbtString.STRING_TYPE.toInt())
-        val properties = PokemonProperties.parse(propertiesList.joinToString(separator = " ") { it.asString() }, " ")
-        this.customProperties.clear()
-        this.customProperties.addAll(properties.customProperties)
-        SpeciesFeatures.getFeaturesFor(species).forEach {
-            val feature = it(nbt) ?: return@forEach
-            features.removeIf { it.name == feature.name }
-            features.add(feature)
-        }
-        this.nature = nbt.getString(DataKeys.POKEMON_NATURE).takeIf { it.isNotBlank() }?.let { Natures.getNature(Identifier(it))!! } ?: Natures.getRandomNature()
-        if (nbt.contains(DataKeys.POKEMON_MINTED_NATURE)) {
-            this.mintedNature = nbt.getString(DataKeys.POKEMON_MINTED_NATURE).takeIf { it.isNotBlank() }?.let { Natures.getNature(Identifier(it)) }
-        }
-        updateAspects()
-        updateForm() // If saved with an incorrect form, readjust on load
-        nbt.get(DataKeys.POKEMON_EVOLUTIONS)?.let { tag -> this.evolutionProxy.loadFromNBT(tag) }
-        if (nbt.contains(DataKeys.HELD_ITEM)) {
-            this.heldItem = ItemStack.fromNbt(nbt.getCompound(DataKeys.HELD_ITEM))
-        }
-        this.persistentData = nbt.getCompound(DataKeys.POKEMON_PERSISTENT_DATA)
-        tetheringId = if (nbt.containsUuid(DataKeys.TETHERING_ID)) nbt.getUuid(DataKeys.TETHERING_ID) else null
-        TeraTypes.get(nbt.getString(DataKeys.POKEMON_TERA_TYPE).asIdentifierDefaultingNamespace())?.let {
-            this.teraType = it
-        }
-        this.dmaxLevel = nbt.getInt(DataKeys.POKEMON_DMAX_LEVEL)
-        this.gmaxFactor = nbt.getBoolean(DataKeys.POKEMON_GMAX_FACTOR)
-        this.tradeable = if (nbt.contains(DataKeys.POKEMON_TRADEABLE)) nbt.getBoolean(DataKeys.POKEMON_TRADEABLE) else true
-        originalTrainerType = OriginalTrainerType.valueOf(nbt.getString(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE).ifEmpty { OriginalTrainerType.NONE.name })
-        originalTrainer = if (nbt.contains(DataKeys.POKEMON_ORIGINAL_TRAINER)) nbt.getString(DataKeys.POKEMON_ORIGINAL_TRAINER) else null
-        refreshOriginalTrainer()
-
+    fun loadFromNBT(registryAccess: RegistryAccess, nbt: CompoundTag): Pokemon {
+        this.loadFrom(registryAccess.createSerializationContext(NbtOps.INSTANCE), nbt)
         return this
     }
 
-    fun saveToJSON(json: JsonObject): JsonObject {
-        json.addProperty(DataKeys.POKEMON_LAST_SAVED_VERSION, Cobblemon.VERSION)
-        json.addProperty(DataKeys.POKEMON_UUID, uuid.toString())
-        json.addProperty(DataKeys.POKEMON_SPECIES_IDENTIFIER, species.resourceIdentifier.toString())
-        nickname?.let { json.add(DataKeys.POKEMON_NICKNAME, Text.Serializer.toJsonTree(it)) }
-        json.addProperty(DataKeys.POKEMON_FORM_ID, form.formOnlyShowdownId())
-        json.addProperty(DataKeys.POKEMON_EXPERIENCE, experience)
-        json.addProperty(DataKeys.POKEMON_LEVEL, level)
-        json.addProperty(DataKeys.POKEMON_FRIENDSHIP, friendship)
-        json.addProperty(DataKeys.POKEMON_HEALTH, currentHealth)
-        json.addProperty(DataKeys.POKEMON_GENDER, gender.name)
-        json.add(DataKeys.POKEMON_IVS, ivs.saveToJSON(JsonObject()))
-        json.add(DataKeys.POKEMON_EVS, evs.saveToJSON(JsonObject()))
-        json.add(DataKeys.POKEMON_MOVESET, moveSet.saveToJSON(JsonObject()))
-        json.addProperty(DataKeys.POKEMON_SCALE_MODIFIER, scaleModifier)
-        json.add(DataKeys.POKEMON_ABILITY, ability.saveToJSON(JsonObject()))
-        json.addProperty(DataKeys.POKEMON_SHINY, shiny)
-        state.writeToJSON(JsonObject())?.let { json.add(DataKeys.POKEMON_STATE, it) }
-        status?.saveToJSON(JsonObject())?.let { json.add(DataKeys.POKEMON_STATUS, it) }
-        json.addProperty(DataKeys.POKEMON_CAUGHT_BALL, caughtBall.name.toString())
-        json.add(DataKeys.BENCHED_MOVES, benchedMoves.saveToJSON(JsonArray()))
-        json.addProperty(DataKeys.POKEMON_FAINTED_TIMER, faintedTimer)
-        json.addProperty(DataKeys.POKEMON_HEALING_TIMER, healTimer)
-        json.add(DataKeys.POKEMON_EVOLUTIONS, this.evolutionProxy.saveToJson())
-        val propertyList = customProperties.map { it.asString() }.map { JsonPrimitive(it) }
-        json.add(DataKeys.POKEMON_DATA, JsonArray().also { propertyList.forEach(it::add) })
-        json.addProperty(DataKeys.POKEMON_NATURE, nature.name.toString())
-        mintedNature?.let { json.addProperty(DataKeys.POKEMON_MINTED_NATURE, it.name.toString()) }
-        features.forEach { it.saveToJSON(json) }
-        if (!this.heldItem.isEmpty) {
-            ItemStack.CODEC.encodeStart(JsonOps.INSTANCE, this.heldItem).result().ifPresent { json.add(DataKeys.HELD_ITEM, it) }
-        }
-        json.add(DataKeys.POKEMON_PERSISTENT_DATA, Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, this.persistentData))
-        val tetheringId = tetheringId
-        if (tetheringId != null) {
-            json.addProperty(DataKeys.TETHERING_ID, tetheringId.toString())
-        }
-        json.addProperty(DataKeys.POKEMON_TERA_TYPE, teraType.id.toString())
-        json.addProperty(DataKeys.POKEMON_DMAX_LEVEL, dmaxLevel)
-        json.addProperty(DataKeys.POKEMON_GMAX_FACTOR, gmaxFactor)
-        json.addProperty(DataKeys.POKEMON_TRADEABLE, tradeable)
-        json.addProperty(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE, originalTrainerType.name)
-        if (originalTrainer != null) json.addProperty(DataKeys.POKEMON_ORIGINAL_TRAINER, originalTrainer)
-        return json
+    fun saveToJSON(registryAccess: RegistryAccess, json: JsonObject = JsonObject()): JsonObject {
+        val ops = registryAccess.createSerializationContext(JsonOps.INSTANCE)
+        return this.saveTo(ops, json).orThrow as JsonObject
     }
 
-    fun loadFromJSON(json: JsonObject): Pokemon {
-        val version = json.get(DataKeys.POKEMON_LAST_SAVED_VERSION)?.asString ?: "1.1.1"
-        uuid = UUID.fromString(json.get(DataKeys.POKEMON_UUID).asString)
-        try {
-            val rawID = json.get(DataKeys.POKEMON_SPECIES_IDENTIFIER).asString.replace("pokemonCobblemon", "cobblemon")
-            species = PokemonSpecies.getByIdentifier(Identifier(rawID))
-                ?: throw InvalidSpeciesException(Identifier(rawID))
-        } catch (e: InvalidIdentifierException) {
-            throw IllegalStateException("Failed to deserialize a species identifier")
-        }
-        nickname = if (version == "1.4.0") {
-            try {
-                json.get(DataKeys.POKEMON_NICKNAME)?.asString?.takeIf { it.isNotBlank() }?.let { Text.Serializer.fromJson(it) }
-            } catch (e: UnsupportedOperationException) {
-                json.get(DataKeys.POKEMON_NICKNAME)?.let { Text.Serializer.fromJson(it) }
-            }
-        } else {
-            json.get(DataKeys.POKEMON_NICKNAME)?.let { Text.Serializer.fromJson(it) }
-        }
-        form = species.forms.find { it.formOnlyShowdownId() == json.get(DataKeys.POKEMON_FORM_ID).asString } ?: species.standardForm
-        level = json.get(DataKeys.POKEMON_LEVEL).asInt
-        experience = json.get(DataKeys.POKEMON_EXPERIENCE).asInt.takeIf { experienceGroup.getLevel(it) == level } ?: experienceGroup.getExperience(level)
-        friendship = json.get(DataKeys.POKEMON_FRIENDSHIP).asInt.coerceIn(0, if (this.isClient) Int.MAX_VALUE else Cobblemon.config.maxPokemonFriendship)
-        currentHealth = json.get(DataKeys.POKEMON_HEALTH).asInt
-        gender = Gender.valueOf(json.get(DataKeys.POKEMON_GENDER)?.asString ?: "male")
-        ivs.loadFromJSON(json.getAsJsonObject(DataKeys.POKEMON_IVS))
-        evs.loadFromJSON(json.getAsJsonObject(DataKeys.POKEMON_EVS))
-        moveSet.loadFromJSON(json.get(DataKeys.POKEMON_MOVESET).asJsonObject)
-        scaleModifier = json.get(DataKeys.POKEMON_SCALE_MODIFIER).asFloat
-        if (json.has(DataKeys.POKEMON_ABILITY) && json.get(DataKeys.POKEMON_ABILITY).isJsonObject) {
-            this.ability.loadFromJSON(json.getAsJsonObject(DataKeys.POKEMON_ABILITY))
-        }
-        shiny = json.get(DataKeys.POKEMON_SHINY).asBoolean
-        if (json.has(DataKeys.POKEMON_STATE)) {
-            val stateJson = json.get(DataKeys.POKEMON_STATE).asJsonObject
-            val type = stateJson.get(DataKeys.POKEMON_STATE_TYPE)?.asString
-            val clazz = type?.let { PokemonState.states[it] }
-            state = clazz?.getDeclaredConstructor()?.newInstance()?.readFromJSON(stateJson) ?: InactivePokemonState()
-        }
-        if (json.has(DataKeys.POKEMON_STATUS)) {
-            val statusJson = json.get(DataKeys.POKEMON_STATUS).asJsonObject
-            status = PersistentStatusContainer.loadFromJSON(statusJson)
-        }
-        val ballName = json.get(DataKeys.POKEMON_CAUGHT_BALL).asString
-        caughtBall = PokeBalls.getPokeBall(Identifier(ballName)) ?: PokeBalls.POKE_BALL
-        benchedMoves.loadFromJSON(json.get(DataKeys.BENCHED_MOVES)?.asJsonArray ?: JsonArray())
-        faintedTimer = json.get(DataKeys.POKEMON_FAINTED_TIMER).asInt
-        healTimer = json.get(DataKeys.POKEMON_HEALING_TIMER).asInt
-        val propertyList = json.getAsJsonArray(DataKeys.POKEMON_DATA)?.map { it.asString } ?: emptyList()
-        val properties = PokemonProperties.parse(propertyList.joinToString(" "), " ")
-        this.customProperties.clear()
-        this.customProperties.addAll(properties.customProperties)
-        SpeciesFeatures.getFeaturesFor(species).forEach {
-            val feature = it(json) ?: return@forEach
-            features.removeIf { it.name == feature.name }
-            features.add(feature)
-        }
-        this.nature = json.get(DataKeys.POKEMON_NATURE).asString?.let { Natures.getNature(Identifier(it))!! } ?: Natures.getRandomNature()
-        if (json.has(DataKeys.POKEMON_MINTED_NATURE)) {
-            this.mintedNature = json.get(DataKeys.POKEMON_MINTED_NATURE).asString?.let { Natures.getNature(Identifier(it)) }
-        }
-        updateAspects()
-        updateForm() // If saved with an incorrect form, readjust on load
-        json.get(DataKeys.POKEMON_EVOLUTIONS)?.let { this.evolutionProxy.loadFromJson(it) }
-        if (json.has(DataKeys.HELD_ITEM)) {
-            ItemStack.CODEC.decode(JsonOps.INSTANCE, json.get(DataKeys.HELD_ITEM)).result().ifPresent {
-                this.heldItem = it.first
-            }
-        }
-        // This cast should be fine as we gave it a NbtCompound
-        if (json.has(DataKeys.POKEMON_PERSISTENT_DATA)) {
-            this.persistentData = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, json.get(DataKeys.POKEMON_PERSISTENT_DATA)) as NbtCompound
-        }
-        if (json.has(DataKeys.TETHERING_ID)) {
-            this.tetheringId = UUID.fromString(json.get(DataKeys.TETHERING_ID).asString)
-        }
-        if (json.has(DataKeys.POKEMON_TERA_TYPE)) {
-            TeraTypes.get(json.get(DataKeys.POKEMON_TERA_TYPE).asString.asIdentifierDefaultingNamespace())?.let {
-                this.teraType = it
-            }
-        } else {
-            this.teraType = TeraTypes.forElementalType(this.form.types.toList().random())
-        }
-        if (json.has(DataKeys.POKEMON_DMAX_LEVEL)) {
-            this.dmaxLevel = json.get(DataKeys.POKEMON_DMAX_LEVEL).asInt
-        }
-        if (json.has(DataKeys.POKEMON_GMAX_FACTOR)) {
-            this.gmaxFactor = json.get(DataKeys.POKEMON_GMAX_FACTOR).asBoolean
-        }
-        if (json.has(DataKeys.POKEMON_TRADEABLE)) {
-            this.tradeable = json.get(DataKeys.POKEMON_TRADEABLE).asBoolean
-        }
-        if (json.has(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE)) {
-            this.originalTrainerType = OriginalTrainerType.valueOf(json.get(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE).asString)
-        }
-        if (json.has(DataKeys.POKEMON_ORIGINAL_TRAINER)) {
-            this.originalTrainer = json.get(DataKeys.POKEMON_ORIGINAL_TRAINER).asString
-        }
-        refreshOriginalTrainer()
+    fun loadFromJSON(registryAccess: RegistryAccess, json: JsonObject): Pokemon {
+        val ops = registryAccess.createSerializationContext(JsonOps.INSTANCE)
+        this.loadFrom(ops, json)
         return this
     }
 
-    fun clone(useJSON: Boolean = true, newUUID: Boolean = true): Pokemon {
-        val pokemon = if (useJSON) {
-            Pokemon().loadFromJSON(saveToJSON(JsonObject()).also { it.remove(DataKeys.POKEMON_EVOLUTIONS) })
-        } else {
-            Pokemon().loadFromNBT(saveToNBT(NbtCompound()).also { it.remove(DataKeys.POKEMON_EVOLUTIONS) })
-        }
+    open fun <T> saveTo(ops: DynamicOps<T>, prefix: T = ops.empty()): DataResult<T> {
+        return CODEC.encode(this, ops, prefix)
+    }
+
+    open fun <T> loadFrom(ops: DynamicOps<T>, data: T): DataResult<Pair<Pokemon, T>> {
+        return CODEC.decode(ops, data).ifSuccess { this.copyFrom(it.first) }
+    }
+
+    /**
+     * Clones the provided pokemon into a completely new instance.
+     *
+     * @param registryAccess Registry Access used for serialization context. WILL BECOME REQUIRED IN 1.7, currently falls back to server registry access
+     * @param newUUID Whether or not the pokemon should receive a new UUID or not, which will completely untie it from the original
+     *
+     * @return The cloned pokemon
+     */
+    fun clone(newUUID: Boolean = true, registryAccess: RegistryAccess? = null): Pokemon {
+        // NBT is faster, ops type doesn't really matter
+        var ops = (registryAccess ?: server()?.registryAccess() ?: throw IllegalStateException("No registry access for cloning available"))
+            .createSerializationContext(NbtOps.INSTANCE)
+        val encoded = CODEC.encodeStart(ops, this).orThrow
+        val result = CODEC.decode(ops, encoded).orThrow.first
+        result.isClient = this.isClient
         if (newUUID) {
-            pokemon.uuid = UUID.randomUUID()
+            result.uuid = UUID.randomUUID()
+            result.tetheringId = null
         }
-        return pokemon
+        return result
     }
 
-    fun getOwnerPlayer() : ServerPlayerEntity? {
-        storeCoordinates.get().let {
+    open fun copyFrom(other: Pokemon): Pokemon {
+        this.isClient = other.isClient
+        this.uuid = other.uuid
+        // This is done beforehand so the ability is legalized by species/form change
+        this.ability = other.ability
+        this.species = other.species
+        this.form = other.form
+        this.nickname = other.nickname
+        this.level = other.level
+        this.experience = other.experience
+        this.setFriendship(other.friendship)
+        // Applied before current health for calcs to take place
+        other.ivs.doWithoutEmitting {
+            this.ivs.forEach {
+                other.ivs[it.key] = it.value
+            }
+        }
+        other.evs.doWithoutEmitting {
+            this.evs.forEach {
+                other.evs[it.key] = it.value
+            }
+        }
+        this.currentHealth = other.currentHealth
+        this.gender = other.gender
+        this.moveSet.copyFrom(other.moveSet)
+        this.benchedMoves.copyFrom(other.benchedMoves)
+        this.scaleModifier = other.scaleModifier
+        this.shiny = other.shiny
+        this.state = other.state
+        this.status = other.status
+        this.caughtBall = other.caughtBall
+        this.faintedTimer = other.faintedTimer
+        this.healTimer = other.healTimer
+        (this.evolutionProxy as? CobblemonEvolutionProxy)?.overrideController(other.evolutionProxy.current().asIntermediate().create(this))
+        this.customProperties.clear()
+        this.customProperties += other.customProperties
+        this.nature = other.nature
+        this.mintedNature = other.mintedNature
+        this.heldItem = other.heldItem
+        this.persistentData = other.persistentData
+        this.tetheringId = other.tetheringId
+        this.teraType = other.teraType
+        this.dmaxLevel = other.dmaxLevel
+        this.gmaxFactor = other.gmaxFactor
+        this.tradeable = other.tradeable
+        this.originalTrainerType = other.originalTrainerType
+        this.originalTrainer = other.originalTrainer
+        this.forcedAspects = other.forcedAspects
+        this.refreshOriginalTrainer()
+        this.initialize()
+        return this
+    }
+
+    fun getOwnerEntity(): LivingEntity? {
+        return storeCoordinates.get()?.let {
             if (isPlayerOwned()) {
-                return server()?.playerManager?.getPlayer(it!!.store.uuid)
+                server()?.playerList?.getPlayer(it.store.uuid)
+            } else if (isNPCOwned()) {
+                (it.store as NPCPartyStore).npc
+            } else {
+                null
+            }
+        }
+    }
+
+    fun getOwnerPlayer(): ServerPlayer? {
+        return getOwnerEntity() as? ServerPlayer
+    }
+
+    fun getOwnerNPC(): NPCEntity? {
+        return getOwnerEntity() as? NPCEntity
+    }
+
+    fun getOwnerUUID(): UUID? {
+        storeCoordinates.get()?.let {
+            return when (it.store) {
+                is PlayerPartyStore -> it.store.playerUUID
+                is NPCPartyStore -> it.store.npc.uuid
+                is PCStore -> it.store.uuid
+                else -> null
             }
         }
         return null
     }
 
-    fun getOwnerUUID() : UUID? {
-        storeCoordinates.get().let {
-            if (!isPlayerOwned()) {
-                return@let
-            }
-
-            if (it!!.store is PlayerPartyStore) {
-                return (it.store as PlayerPartyStore).playerUUID
-            }
-            return it.store.uuid
-        }
-        return null
-    }
-
-    fun belongsTo(player: PlayerEntity) = storeCoordinates.get()?.let { it.store.uuid == player.uuid } == true
+    fun belongsTo(player: Player) = storeCoordinates.get()?.let { it.store.uuid == player.uuid } == true
     fun isPlayerOwned() = storeCoordinates.get()?.let { it.store is PlayerPartyStore || it.store is PCStore } == true
+    fun isNPCOwned() = storeCoordinates.get()?.let { it.store is NPCPartyStore } == true
     fun isWild() = storeCoordinates.get() == null
 
     /**
@@ -1091,7 +1104,7 @@ open class Pokemon : ShowdownIdentifiable {
      */
     fun setFriendship(value: Int, coerceSafe: Boolean = true): Boolean {
         val sanitizedAmount = if (coerceSafe) value.absoluteValue.coerceAtMost(Cobblemon.config.maxPokemonFriendship) else value.absoluteValue
-        if (!this.isClient && !this.isPossibleFriendship(sanitizedAmount)) {
+        if (!this.isPossibleFriendship(sanitizedAmount)) {
             return false
         }
         this.friendship = sanitizedAmount
@@ -1169,7 +1182,7 @@ open class Pokemon : ShowdownIdentifiable {
         {
             OriginalTrainerType.PLAYER -> {
                 UUID.fromString(originalTrainer)?.let { uuid ->
-                    server()?.userCache?.getByUuid(uuid)?.orElse(null)?.name?.let {
+                    server()?.profileCache?.get(uuid)?.orElse(null)?.name?.let {
                         originalTrainerName = it
                     }
                 }
@@ -1193,13 +1206,18 @@ open class Pokemon : ShowdownIdentifiable {
     val allAccessibleMoves: Set<MoveTemplate>
         get() = form.moves.getLevelUpMovesUpTo(level) + benchedMoves.map { it.moveTemplate } + form.moves.evolutionMoves
 
+    val relearnableMoves: Iterable<MoveTemplate>
+        get() = allAccessibleMoves.filter { accessibleMove -> moveSet.none { it.template == accessibleMove } }
+
     fun updateAspects() {
         /*
          * We don't want to run this for client representations of Pokémon as they won't always have the same
          * aspect providers, and we want the server side to entirely manage them anyway.
          */
         if (!isClient) {
-            aspects = AspectProvider.providers.flatMap { it.provide(this) }.toSet()
+            aspects = AspectProvider.providers.flatMap { it.provide(this) }.toSet() + forcedAspects
+        } else {
+            aspects = forcedAspects
         }
     }
 
@@ -1215,13 +1233,9 @@ open class Pokemon : ShowdownIdentifiable {
         // Force the setter to initialize it
         species = species
         checkGender()
-        // This should only be a thing once we have moveset control in properties until then a creation should require a moveset init.
-        /*
-        if (pokemon.moveSet.none { it != null }) {
-            pokemon.initializeMoveset()
+        if (moveSet.getMoves().isEmpty()) {
+            initializeMoveset()
         }
-         */
-        initializeMoveset()
         return this
     }
 
@@ -1340,7 +1354,7 @@ open class Pokemon : ShowdownIdentifiable {
         if (this.isClient || ability.forced || ability.template == Abilities.DUMMY) {
             return ability
         }
-        val found = this.form.abilities.firstOrNull { potential -> potential.template == ability.template }
+        val found = this.form.abilities.firstOrNull { potential -> potential.template == ability.template && potential.priority == ability.priority }
             ?: return ability.apply { this.forced = true }
         val index = this.form.abilities.mapping[found.priority]
             ?.indexOf(found)
@@ -1391,14 +1405,14 @@ open class Pokemon : ShowdownIdentifiable {
         }
     }
 
-    fun addExperienceWithPlayer(player: ServerPlayerEntity, source: ExperienceSource, xp: Int): AddExperienceResult {
+    fun addExperienceWithPlayer(player: ServerPlayer, source: ExperienceSource, xp: Int): AddExperienceResult {
         val result = addExperience(source, xp)
         if (result.experienceAdded <= 0) {
             return result
         }
-        player.sendMessage(lang("experience.gained", getDisplayName(), xp), true)
+        player.sendSystemMessage(lang("experience.gained", getDisplayName(), xp), true)
         if (result.oldLevel != result.newLevel) {
-            player.sendMessage(lang("experience.level_up", getDisplayName(), result.newLevel))
+            player.sendSystemMessage(lang("experience.level_up", getDisplayName(), result.newLevel))
             val repeats = result.newLevel - result.oldLevel
             // Someone can technically trigger a "delevel"
             if (repeats >= 1) {
@@ -1407,7 +1421,7 @@ open class Pokemon : ShowdownIdentifiable {
                 }
             }
             result.newMoves.forEach {
-                player.sendMessage(lang("experience.learned_move", getDisplayName(), it.displayName))
+                player.sendSystemMessage(lang("experience.learned_move", getDisplayName(), it.displayName))
             }
         }
         return result
@@ -1483,37 +1497,55 @@ open class Pokemon : ShowdownIdentifiable {
     fun levelUp(source: ExperienceSource) = addExperience(source, getExperienceToNextLevel())
 
     /**
-     * Exchanges an existing move set move with a benched or otherwise accessible move that is not in the move set.
+     * Exchanges an existing move set move with an empty moveslot, benched or otherwise accessible move that is not in the move set.
      *
      * PP is transferred onto the new move using the % of PP that the original move had and applying it to the new one.
+     * If the current moveslot is null, 0 PP is given to the new move.
      *
      * @return true if it succeeded, false if it failed to exchange the moves. Failure can occur if the oldMove is not
      * a move set move.
      */
-    fun exchangeMove(oldMove: MoveTemplate, newMove: MoveTemplate): Boolean {
-        val benchedNewMove = benchedMoves.find { it.moveTemplate == newMove } ?: BenchedMove(newMove, 0)
+    fun exchangeMove(oldMove: MoveTemplate?, newMove: MoveTemplate?): Boolean {
+        if(oldMove == null && newMove == null) return false
 
-        if (moveSet.hasSpace()) {
-            benchedMoves.remove(newMove)
-            val move = newMove.create()
-            move.raisedPpStages = benchedNewMove.ppRaisedStages
-            move.currentPp = move.maxPp
-            moveSet.add(move)
-            return true
-        }
-
-        val currentMove = moveSet.find { it.template == oldMove } ?: return false
-        val currentPPRatio = currentMove.let { it.currentPp / it.maxPp.toFloat() }
-        benchedMoves.doThenEmit {
-            benchedMoves.remove(newMove)
+        if (newMove == null) {
+            // Forget a move
+            if (moveSet.getMoves().size <= 1) return false
+            val currentMove = moveSet.find { it.template == oldMove } ?: return false
             benchedMoves.add(BenchedMove(currentMove.template, currentMove.raisedPpStages))
+            var index = moveSet.getMovesWithNulls().indexOf(currentMove)
+            moveSet.setMove(index, null)
+            // Push the remaining moves up so the nulls are at the end of the list
+            while(index < 3 && moveSet[index + 1] != null) {
+                moveSet.swapMove(index, index+1)
+                index++
+            }
+        } else {
+            val benchedNewMove = benchedMoves.find { it.moveTemplate == newMove } ?: BenchedMove(newMove, 0)
+            if (oldMove == null) {
+                // Placing a move into a empty move slot
+                if (moveSet.hasSpace()) {
+                    val move = benchedNewMove.moveTemplate.create()
+                    move.raisedPpStages = benchedNewMove.ppRaisedStages
+                    move.currentPp = 0 // Avoids allowing infinite power points by forgetting and then remembering a move
+                    moveSet.add(move)
+                    benchedMoves.remove(newMove)
+                    return true
+                }
+            } else {
+                // Exchanging one move for another
+                val currentMove = moveSet.find { it.template == oldMove } ?: return false
+                val currentPPRatio = currentMove.let { it.currentPp / it.maxPp.toFloat() }
+                benchedMoves.doThenEmit {
+                    benchedMoves.remove(newMove)
+                    benchedMoves.add(BenchedMove(currentMove.template, currentMove.raisedPpStages))
+                }
+                val move = newMove.create()
+                move.raisedPpStages = benchedNewMove.ppRaisedStages
+                move.currentPp = (currentPPRatio * move.maxPp).toInt()
+                moveSet.setMove(moveSet.indexOf(currentMove), move)
+            }
         }
-
-        val move = newMove.create()
-        move.raisedPpStages = benchedNewMove.ppRaisedStages
-        move.currentPp = (currentPPRatio * move.maxPp).toInt()
-        moveSet.setMove(moveSet.indexOf(currentMove), move)
-
         return true
     }
 
@@ -1538,6 +1570,9 @@ open class Pokemon : ShowdownIdentifiable {
     private val observables = mutableListOf<Observable<*>>()
     val anyChangeObservable = SimpleObservable<Pokemon>()
 
+    val struct = ObjectValue<Pokemon>(this)
+        .addPokemonFunctions(this)
+
     fun markFeatureDirty(feature: SpeciesFeature) {
         _features.emit(feature)
     }
@@ -1546,18 +1581,12 @@ open class Pokemon : ShowdownIdentifiable {
     /** Returns an [Observable] that emits Unit whenever any change is made to this Pokémon. The change itself is not included. */
     fun getChangeObservable(): Observable<Pokemon> = anyChangeObservable
 
-    fun writeVariables(struct: VariableStruct) {
-        struct.setDirectly("level", DoubleValue(level.toDouble()))
-        struct.setDirectly("max_hp", DoubleValue(hp.toDouble()))
-        struct.setDirectly("current_hp", DoubleValue(currentHealth.toDouble()))
-        struct.setDirectly("friendship", DoubleValue(friendship.toDouble()))
-        struct.setDirectly("shiny", DoubleValue(shiny))
-        for (stat in Stats.PERMANENT) {
-            struct.setDirectly("ev_${stat.showdownId}", DoubleValue(evs.getOrDefault(stat).toDouble()))
-            struct.setDirectly("iv_${stat.showdownId}", DoubleValue(ivs.getOrDefault(stat).toDouble()))
-            struct.setDirectly("stat_${stat.showdownId}", DoubleValue(getStat(stat).toDouble()))
-        }
-    }
+    /**
+     * Used for when 'this' would be called in leaking context.
+     *
+     * @return The current [Pokemon] instance.
+     */
+    open fun self(): Pokemon = this
 
     private fun findAndLearnFormChangeMoves() {
         this.form.moves.formChangeMoves.forEach { move ->
@@ -1587,13 +1616,12 @@ open class Pokemon : ShowdownIdentifiable {
                 this.moveSet.setMove(0, Move(benchedMove.moveTemplate, benchedMove.ppRaisedStages))
                 return
             }
-            this.initializeMoveset()
         }
     }
 
     private val _form = registerObservable(SimpleObservable<FormData>()) { FormUpdatePacket({ this }, it) }
     private val _species = registerObservable(SimpleObservable<Species>()) { SpeciesUpdatePacket({ this }, it) }
-    private val _nickname = registerObservable(SimpleObservable<MutableText?>()) { NicknameUpdatePacket({ this }, it) }
+    private val _nickname = registerObservable(SimpleObservable<MutableComponent?>()) { NicknameUpdatePacket({ this }, it) }
     private val _experience = registerObservable(SimpleObservable<Int>()) { ExperienceUpdatePacket({ this }, it) }
     private val _friendship = registerObservable(SimpleObservable<Int>()) { FriendshipUpdatePacket({ this }, it) }
     private val _currentHealth = registerObservable(SimpleObservable<Int>()) { HealthUpdatePacket({ this }, it) }
@@ -1601,11 +1629,11 @@ open class Pokemon : ShowdownIdentifiable {
     private val _tradeable = registerObservable(SimpleObservable<Boolean>()) { TradeableUpdatePacket({ this }, it) }
     private val _nature = registerObservable(SimpleObservable<Nature>()) { NatureUpdatePacket({ this }, it, false) }
     private val _mintedNature = registerObservable(SimpleObservable<Nature?>()) { NatureUpdatePacket({ this }, it, true) }
-    private val _moveSet = registerObservable(moveSet.observable) { MoveSetUpdatePacket({ this }, moveSet) }
+    private val _moveSet = registerObservable(moveSet.observable) { MoveSetUpdatePacket({ this }, it) }
     private val _state = registerObservable(SimpleObservable<PokemonState>()) { PokemonStateUpdatePacket({ this }, it) }
     private val _status = registerObservable(SimpleObservable<PersistentStatus?>()) { StatusUpdatePacket({ this }, it) }
     private val _caughtBall = registerObservable(SimpleObservable<PokeBall>()) { CaughtBallUpdatePacket({ this }, it) }
-    private val _benchedMoves = registerObservable(benchedMoves.observable) { BenchedMovesUpdatePacket({ this }, it) }
+    private val _benchedMoves = registerObservable(benchedMoves.observable) { BenchedMovesUpdatePacket({ this }, BenchedMoves().also {copy -> copy.copyFrom(it)}) }
     private val _ivs = registerObservable(ivs.observable) { IVsUpdatePacket({ this }, it as IVs) }
     private val _evs = registerObservable(evs.observable) { EVsUpdatePacket({ this }, it as EVs) }
     private val _aspects = registerObservable(SimpleObservable<Set<String>>()) { AspectsUpdatePacket({ this }, it) }
@@ -1634,12 +1662,63 @@ open class Pokemon : ShowdownIdentifiable {
         var LEVEL_UP_FRIENDSHIP_CALCULATOR = FriendshipMutationCalculator.SWORD_AND_SHIELD_LEVEL_UP
         internal val SHEDINJA = cobblemonResource("shedinja")
 
-        fun loadFromNBT(compound: NbtCompound): Pokemon {
-            return Pokemon().loadFromNBT(compound)
+        fun loadFromNBT(registryAccess: RegistryAccess, compound: CompoundTag): Pokemon {
+            return this.loadFrom(registryAccess.createSerializationContext(NbtOps.INSTANCE), compound).orThrow.first
         }
 
-        fun loadFromJSON(json: JsonObject): Pokemon {
-            return Pokemon().loadFromJSON(json)
+        fun loadFromJSON(registryAccess: RegistryAccess, json: JsonObject): Pokemon {
+            return this.loadFrom(registryAccess.createSerializationContext(JsonOps.INSTANCE), json).orThrow.first
         }
+
+        private fun <T> loadFrom(ops: DynamicOps<T>, data: T): DataResult<Pair<Pokemon, T>> {
+            return CODEC.decode(ops, data)
+        }
+
+        private val ROOT_CODEC: Codec<Pokemon> = RecordCodecBuilder.create { instance ->
+            instance.group(
+                PokemonP1.CODEC.forGetter(PokemonP1::from),
+                PokemonP2.CODEC.forGetter(PokemonP2::from),
+                PokemonP3.CODEC.forGetter(PokemonP3::from)
+            ).apply(instance) { p1, p2, p3->
+                val pokemon = Pokemon()
+                pokemon.isClient = false
+                p1.into(pokemon)
+                p2.into(pokemon)
+                p3.into(pokemon)
+                pokemon.initialize()
+            }
+        }
+
+        /**
+         * A [Codec] for [Pokemon] intended for server side use.
+         */
+        @JvmStatic
+        val CODEC: Codec<Pokemon> = CobblemonSchemas.wrapCodec(ROOT_CODEC, CobblemonTypeReferences.POKEMON)
+
+        /**
+         * A [Codec] for [Pokemon] intended for client use.
+         */
+        @JvmStatic
+        val CLIENT_CODEC: Codec<Pokemon> = RecordCodecBuilder.create { instance ->
+            instance.group(
+                ClientPokemonP1.CODEC.forGetter(ClientPokemonP1::from),
+                ClientPokemonP2.CODEC.forGetter(ClientPokemonP2::from),
+                ClientPokemonP3.CODEC.forGetter(ClientPokemonP3::from)
+            ).apply(instance) { p1, p2, p3->
+                val pokemon = Pokemon()
+                pokemon.isClient = true
+                p1.into(pokemon)
+                p2.into(pokemon)
+                p3.into(pokemon)
+                pokemon.initialize()
+            }
+        }
+
+        /**
+         * A [Codec] for [Pokemon] intended for S2C use.
+         */
+        @JvmStatic
+        val S2C_CODEC: StreamCodec<RegistryFriendlyByteBuf, Pokemon> = ByteBufCodecs.fromCodecWithRegistries(CLIENT_CODEC)
+
     }
 }

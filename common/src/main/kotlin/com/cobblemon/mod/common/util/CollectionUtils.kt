@@ -12,8 +12,8 @@ import com.cobblemon.mod.common.api.pokemon.stats.Stat
 import com.cobblemon.mod.common.pokemon.EVs
 import com.cobblemon.mod.common.pokemon.IVs
 import com.cobblemon.mod.common.pokemon.PokemonStats
-import net.minecraft.nbt.NbtElement
-import net.minecraft.nbt.NbtList
+import net.minecraft.nbt.ListTag
+import net.minecraft.nbt.Tag
 import kotlin.math.max
 import kotlin.random.Random
 
@@ -29,10 +29,11 @@ fun evsOf(vararg entries: Pair<Stat, Int>): PokemonStats {
     return stats
 }
 
-fun <T> Iterable<T>.weightedSelection(weightFunction: (T) -> Number): T? {
+@JvmOverloads
+fun <T> Iterable<T>.weightedSelection(random: Random = Random.Default, weightFunction: (T) -> Number): T? {
     var weightSum = 0F
     forEach { weightSum += max(0F, weightFunction(it).toFloat()) }
-    val chosenSum = Random.Default.nextFloat() * weightSum
+    val chosenSum = random.nextFloat() * weightSum
     weightSum = 0F
     forEach {
         val weight = weightFunction(it).toFloat()
@@ -54,8 +55,8 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
     this[index2] = t1
 }
 
-fun Collection<NbtElement>.toNbtList(): NbtList {
-    val nbtList = NbtList()
+fun Collection<Tag>.toNbtList(): ListTag {
+    val nbtList = ListTag()
     this.forEach(nbtList::add)
     return nbtList
 }

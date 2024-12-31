@@ -9,12 +9,11 @@
 package com.cobblemon.mod.common.client.gui.summary.widgets
 
 import com.cobblemon.mod.common.client.gui.drawProfilePokemon
-import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonFloatingState
+import com.cobblemon.mod.common.client.render.models.blockbench.FloatingState
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.cobblemon.mod.common.util.math.fromEulerXYZDegrees
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.gui.DrawContext
-import net.minecraft.text.Text
+import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.network.chat.Component
 import org.joml.Quaternionf
 import org.joml.Vector3f
 
@@ -24,27 +23,28 @@ class ModelWidget(
     var pokemon: RenderablePokemon,
     val baseScale: Float = 2.7F,
     var rotationY: Float = 35F,
-    var offsetY: Double = 0.0
-): SoundlessWidget(pX, pY, pWidth, pHeight, Text.literal("Summary - ModelWidget")) {
+    var offsetY: Double = 0.0,
+    val playCryOnClick: Boolean = false,
+): SoundlessWidget(pX, pY, pWidth, pHeight, Component.literal("Summary - ModelWidget")) {
 
     companion object {
         var render = true
     }
 
-    var state = PokemonFloatingState()
+    var state = FloatingState()
     val rotVec = Vector3f(13F, rotationY, 0F)
 
-    override fun renderButton(context: DrawContext, pMouseX: Int, pMouseY: Int, partialTicks: Float) {
+    override fun renderWidget(context: GuiGraphics, pMouseX: Int, pMouseY: Int, partialTicks: Float) {
         if (!render) {
             return
         }
-        hovered = pMouseX >= x && pMouseY >= y && pMouseX < x + width && pMouseY < y + height
+        isHovered = pMouseX >= x && pMouseY >= y && pMouseX < x + width && pMouseY < y + height
         renderPKM(context, partialTicks)
     }
 
-    private fun renderPKM(context: DrawContext, partialTicks: Float) {
-        val matrices = context.matrices
-        matrices.push()
+    private fun renderPKM(context: GuiGraphics, partialTicks: Float) {
+        val matrices = context.pose()
+        matrices.pushPose()
 
         context.enableScissor(
             x,
@@ -55,7 +55,7 @@ class ModelWidget(
 
         matrices.translate(x + width * 0.5, y.toDouble() + offsetY, 0.0)
         matrices.scale(baseScale, baseScale, baseScale)
-        matrices.push()
+        matrices.pushPose()
 
         drawProfilePokemon(
             renderablePokemon = pokemon,
@@ -65,12 +65,21 @@ class ModelWidget(
             partialTicks = partialTicks
         )
 
-        matrices.pop()
+        matrices.popPose()
         context.disableScissor()
 
-        matrices.pop()
+        matrices.popPose()
     }
 
-    override fun onClick(pMouseX: Double, pMouseY: Double) {
+    override fun mouseClicked(pMouseX: Double, pMouseY: Double, pButton: Int): Boolean {
+        if (this.isHovered) playCry()
+        return super.mouseClicked(pMouseX, pMouseY, pButton)
+    }
+
+    private fun playCry() {
+        if (playCryOnClick) {
+            state.activeAnimations.clear()
+            state.addFirstAnimation(setOf("cry"))
+        }
     }
 }

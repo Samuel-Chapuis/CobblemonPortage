@@ -17,9 +17,9 @@ import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.battleLang
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.text.Text
+import net.minecraft.world.item.Item
+import net.minecraft.world.item.ItemStack
+import net.minecraft.network.chat.Component
 import java.util.function.Function
 
 /**
@@ -75,6 +75,21 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
         return original
     }
 
+    fun showdownId(itemStack: ItemStack): String? {
+        if (remaps.containsKey(itemStack.item)) {
+            return remaps[itemStack.item]
+        }
+
+        for (remap in stackRemaps) {
+            val id = remap.apply(itemStack)
+            if (id != null) {
+                return id
+            }
+        }
+
+        return this.showdownIdOf(itemStack.item)
+    }
+
     override fun handleStartInstruction(pokemon: BattlePokemon, battle: PokemonBattle, battleMessage: BattleMessage) {
         val itemID = battleMessage.effectAt(1)?.id ?: return
         val consumeHeldItems = this.shouldConsumeItem(pokemon, battle, itemID)
@@ -91,7 +106,7 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
             battle.broadcastChatMessage(battleLang("item.$itemID", battlerName))
             return
         }
-        val sourceName = battleMessage.battlePokemonFromOptional(battle)?.getName() ?: Text.of("UNKNOWN")
+        val sourceName = battleMessage.battlePokemonFromOptional(battle)?.getName() ?: Component.literal("UNKNOWN")
         val itemName = this.nameOf(itemID)
         val effectId = effect.id
         val text = when (effectId) {
@@ -134,13 +149,15 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
             if (consumeHeldItems) this.take(pokemon, itemID)
             return
         }
-        val sourceName = battleMessage.battlePokemonFromOptional(battle)?.getName() ?: Text.of("UNKNOWN")
+        val sourceName = battleMessage.battlePokemonFromOptional(battle)?.getName() ?: Component.literal("UNKNOWN")
         val effect = battleMessage.effect()
         val text = when {
             effect?.id != null -> battleLang("enditem.${effect.id}", battlerName, itemName, sourceName)
             else -> when (itemID) {
-                "boosterenergy", "electricseed", "grassyseed", "mistyseed", "psychicseed", "roomservice" -> battleLang("enditem.generic", battlerName, itemName)
-                else -> battleLang("enditem.$itemID", battlerName)
+                "boosterenergy", "electricseed", "grassyseed", "mistyseed", "psychicseed", "roomservice", "blunderpolicy", "weaknesspolicy", "absorbbulb",
+                    -> battleLang("enditem.generic", battlerName, itemName)   // TODO this cannot scale like this
+                else
+                    -> battleLang("enditem.$itemID", battlerName)
             }
         }
         if (consumeHeldItems) this.take(pokemon, itemID)
@@ -154,7 +171,7 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
             battle.isPvN -> CobblemonItemTags.CONSUMED_IN_NPC_BATTLE
             else -> CobblemonItemTags.CONSUMED_IN_WILD_BATTLE
         }
-        return pokemon.effectedPokemon.heldItem().isIn(tag)
+        return pokemon.effectedPokemon.heldItem().`is`(tag)
     }
 
     /**

@@ -8,13 +8,18 @@
 
 package com.cobblemon.mod.common.pokeball
 
+import com.bedrockk.molang.runtime.struct.QueryStruct
+import com.bedrockk.molang.runtime.value.DoubleValue
+import com.bedrockk.molang.runtime.value.StringValue
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokeball.catching.CaptureEffect
 import com.cobblemon.mod.common.api.pokeball.catching.CatchRateModifier
 import com.cobblemon.mod.common.item.PokeBallItem
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.item.ItemStack
-import net.minecraft.util.Identifier
+import com.cobblemon.mod.common.util.codec.CodecUtils
+import com.mojang.serialization.Codec
+import net.minecraft.world.item.ItemStack
+import net.minecraft.resources.ResourceLocation
 
 /**
  * Base poke ball object
@@ -28,24 +33,41 @@ import net.minecraft.util.Identifier
  * @property model3d The identifier for the resource this Pokéball will use for the 3d model.
  */
 open class PokeBall(
-    val name: Identifier,
+    val name: ResourceLocation,
     val catchRateModifier: CatchRateModifier = CatchRateModifier.DUMMY,
     val effects: List<CaptureEffect> = listOf(),
     val waterDragValue: Float,
-    val model2d: Identifier,
-    val model3d: Identifier,
+    val model2d: ResourceLocation,
+    val model3d: ResourceLocation,
     val throwPower: Float,
     val ancient: Boolean
 ) {
+    val struct = QueryStruct(hashMapOf())
+        .addFunction("name") { StringValue(name.toString()) }
+        .addFunction("water_drag_value") { DoubleValue(waterDragValue) }
+        .addFunction("throw_power") { DoubleValue(throwPower) }
+        .addFunction("is_ancient") { DoubleValue(ancient) }
+//        .addFunction("item") {  } // requires a registry which is hard
 
     // This gets attached during item registry
     internal lateinit var item: PokeBallItem
 
     fun item(): PokeBallItem = this.item
 
-    fun stack(count: Int = 1): ItemStack = ItemStack(this.item(), count)
+    fun stack(count: Int = 1): ItemStack =
+        ItemStack(this.item(), count)
 
     @Deprecated("This is a temporary solution for the safari ball dilemma", ReplaceWith("target.currentHealth"))
-    internal fun hpForCalculation(target: Pokemon): Int = if (this.name == PokeBalls.SAFARI_BALL.name) target.hp else target.currentHealth
+    internal fun hpForCalculation(target: Pokemon): Int = if (this.name == PokeBalls.SAFARI_BALL.name) target.maxHealth else target.currentHealth
+
+    companion object {
+
+        @JvmStatic
+        val BY_IDENTIFIER_CODEC: Codec<PokeBall> = CodecUtils.createByIdentifierCodec(
+            PokeBalls::getPokeBall,
+            PokeBall::name
+        ) { identifier -> "No PokeBall for ID $identifier" }
+
+    }
 
 }

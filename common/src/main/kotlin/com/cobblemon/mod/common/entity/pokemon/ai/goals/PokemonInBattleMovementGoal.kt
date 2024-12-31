@@ -9,17 +9,24 @@
 package com.cobblemon.mod.common.entity.pokemon.ai.goals
 
 import com.cobblemon.mod.common.battles.BattleRegistry
+import com.cobblemon.mod.common.entity.PlatformType
 import com.cobblemon.mod.common.entity.PoseType
+import com.cobblemon.mod.common.entity.pokemon.PokemonBehaviourFlag
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
-import net.minecraft.entity.ai.goal.Goal
+import net.minecraft.world.entity.ai.goal.Goal
+import net.minecraft.world.phys.Vec3
 
 class PokemonInBattleMovementGoal(val entity: PokemonEntity, val range: Int) : Goal() {
-    override fun canStart(): Boolean {
-        return entity.isBattling && getClosestPokemonEntity() != null && entity.getCurrentPoseType() != PoseType.SLEEP
+
+    var battlePos : Vec3? = null
+    var hasMovedToPos = false
+    override fun canUse(): Boolean {
+        return entity.isBattling && entity.getCurrentPoseType() != PoseType.SLEEP
     }
 
     override fun start() {
         super.start()
+        battlePos = entity.position()
         entity.navigation.stop()
     }
 
@@ -34,7 +41,23 @@ class PokemonInBattleMovementGoal(val entity: PokemonEntity, val range: Int) : G
     override fun tick() {
         val closestPokemonEntity = getClosestPokemonEntity()
         if (closestPokemonEntity != null) {
-            entity.lookControl.lookAt(closestPokemonEntity.x, closestPokemonEntity.eyeY, closestPokemonEntity.z)
+            entity.lookControl.setLookAt(closestPokemonEntity.x, closestPokemonEntity.eyeY, closestPokemonEntity.z)
+        }
+
+        if (entity.exposedForm.behaviour.moving.fly.canFly) {
+            // Flyer logic
+            if (!hasMovedToPos) {
+                entity.navigation.moveTo(battlePos!!.x, battlePos!!.y, battlePos!!.z, 1.0)
+                hasMovedToPos = true
+            }
+            if (entity.ticksLived > 1 && !entity.getBehaviourFlag(PokemonBehaviourFlag.FLYING) && entity.navigation.isAirborne(entity.level(), entity.blockPosition())) {
+                // Let flyers fly in battle if they're in the air
+                entity.setBehaviourFlag(PokemonBehaviourFlag.FLYING, true)
+            }
+        }
+        if (entity.platform != PlatformType.NONE && entity.onGround()) {
+            // If the pokemon is on a non-fluid surface, remove the platform.
+            entity.platform = PlatformType.NONE
         }
     }
 }

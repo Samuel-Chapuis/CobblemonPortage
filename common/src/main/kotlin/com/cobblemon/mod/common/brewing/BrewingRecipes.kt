@@ -12,14 +12,14 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.brewing.ingredient.CobblemonIngredient
 import com.cobblemon.mod.common.brewing.ingredient.CobblemonItemIngredient
 import com.cobblemon.mod.common.brewing.ingredient.CobblemonPotionIngredient
-import net.minecraft.item.Item
-import net.minecraft.potion.Potions
+import net.minecraft.world.item.Item
+import net.minecraft.world.item.alchemy.Potions
 
 object BrewingRecipes {
 
-    val recipes: List<Triple<CobblemonIngredient, CobblemonIngredient, Item>> by lazy {
+    val recipes: List<Triple<CobblemonIngredient, Item, Item>> by lazy {
         listOf(
-            Triple(CobblemonPotionIngredient(Potions.WATER), CobblemonItemIngredient(CobblemonItems.MEDICINAL_LEEK), CobblemonItems.MEDICINAL_BREW),
+            Triple(CobblemonPotionIngredient(Potions.WATER), CobblemonItems.MEDICINAL_LEEK, CobblemonItems.MEDICINAL_BREW),
             convert(CobblemonItems.MEDICINAL_BREW, CobblemonItems.LEPPA_BERRY, CobblemonItems.ETHER),
             convert(CobblemonItems.MEDICINAL_BREW, CobblemonItems.HOPO_BERRY, CobblemonItems.ELIXIR),
             convert(CobblemonItems.MEDICINAL_BREW, CobblemonItems.ORAN_BERRY, CobblemonItems.POTION),
@@ -44,12 +44,14 @@ object BrewingRecipes {
             convert(CobblemonItems.SUPER_POTION, CobblemonItems.AGUAV_BERRY, CobblemonItems.HYPER_POTION),
             convert(CobblemonItems.SUPER_POTION, CobblemonItems.IAPAPA_BERRY, CobblemonItems.HYPER_POTION),
             convert(CobblemonItems.HYPER_POTION, CobblemonItems.VIVICHOKE, CobblemonItems.MAX_POTION),
-            convert(CobblemonItems.MAX_POTION, CobblemonItems.LUM_BERRY, CobblemonItems.FULL_RESTORE)
+            convert(CobblemonItems.MAX_POTION, CobblemonItems.LUM_BERRY, CobblemonItems.FULL_RESTORE),
+
+            convert(CobblemonItems.POTION, CobblemonItems.PETAYA_BERRY, CobblemonItems.THROAT_SPRAY)
         )
     }
     
-    private fun convert(input: Item, ingredient: Item, output: Item): Triple<CobblemonIngredient, CobblemonIngredient, Item> {
-        return Triple(CobblemonItemIngredient(input), CobblemonItemIngredient(ingredient), output)
+    private fun convert(input: Item, ingredient: Item, output: Item): Triple<CobblemonIngredient, Item, Item> {
+        return Triple(CobblemonItemIngredient(input), ingredient, output)
     }
 
 }

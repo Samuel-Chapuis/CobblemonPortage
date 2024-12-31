@@ -13,11 +13,12 @@ import com.cobblemon.mod.common.api.spawning.CobblemonSpawnRules
 import com.cobblemon.mod.common.api.spawning.SpawnerManager
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
 import com.cobblemon.mod.common.api.spawning.influence.PlayerLevelRangeInfluence
+import com.cobblemon.mod.common.api.spawning.influence.PlayerLevelRangeInfluence.Companion.TYPICAL_VARIATION
 import com.cobblemon.mod.common.api.spawning.influence.RestrictedSpawnBlocksInfluence
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import com.cobblemon.mod.common.api.spawning.rules.SpawnRule
 import com.cobblemon.mod.common.util.mutableLazy
-import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.level.ServerPlayer
 
 /**
  * Responsible for creating [PlayerSpawner]s with whatever appropriate settings. You can
@@ -39,14 +40,14 @@ object PlayerSpawnerFactory {
      * [PlayerLevelRangeInfluence] adjusts the level range of Pokémon that can spawn based on the player's level.
      * [RestrictedSpawnBlocksInfluence] prevents Pokémon from spawning on certain blocks.
      */
-    var influenceBuilders = mutableListOf<(player: ServerPlayerEntity) -> SpawningInfluence?>({
+    var influenceBuilders = mutableListOf<(player: ServerPlayer) -> SpawningInfluence?>({
         PlayerLevelRangeInfluence(
             it,
-            variation = 5
+            variation = TYPICAL_VARIATION
         )
     }, { RestrictedSpawnBlocksInfluence() })
 
-    fun create(spawnerManager: SpawnerManager, player: ServerPlayerEntity): PlayerSpawner {
+    fun create(spawnerManager: SpawnerManager, player: ServerPlayer): PlayerSpawner {
         val influences = influenceBuilders.mapNotNull { it(player) }
         return PlayerSpawner(player, spawns, spawnerManager).also {
             it.influences.addAll(influences)

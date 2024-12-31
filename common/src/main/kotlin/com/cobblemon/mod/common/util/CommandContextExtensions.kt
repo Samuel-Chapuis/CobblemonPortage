@@ -9,7 +9,11 @@
 package com.cobblemon.mod.common.util
 
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.command.argument.EntityArgumentType
-import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.arguments.EntityArgument
+import net.minecraft.commands.arguments.ResourceLocationArgument
 
-fun CommandContext<ServerCommandSource>.player(argumentName: String = "player") = EntityArgumentType.getPlayer(this, argumentName)
+fun CommandContext<CommandSourceStack>.player(argumentName: String = "player") = EntityArgument.getPlayer(this, argumentName)
+fun CommandContext<CommandSourceStack>.string(argumentName: String) = this.getArgument(argumentName, String::class.java)
+fun CommandContext<CommandSourceStack>.uuid(argumentName: String) = this.getArgument(argumentName, String::class.java).asUUID
+fun CommandContext<CommandSourceStack>.resourceLocation(argumentName: String) = ResourceLocationArgument.getId(this, argumentName)

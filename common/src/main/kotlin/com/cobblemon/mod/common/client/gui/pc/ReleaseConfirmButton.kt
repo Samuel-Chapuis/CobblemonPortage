@@ -11,21 +11,21 @@ package com.cobblemon.mod.common.client.gui.pc
 import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.api.text.bold
 import com.cobblemon.mod.common.client.CobblemonResources
+import com.cobblemon.mod.common.client.gui.CobblemonRenderable
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
-import net.minecraft.client.gui.DrawContext
-import net.minecraft.client.gui.widget.ButtonWidget
-import net.minecraft.client.sound.SoundManager
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.text.Text
+import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.components.Button
+import net.minecraft.client.sounds.SoundManager
+import net.minecraft.network.chat.Component
 
 class ReleaseConfirmButton(
     x: Int, y: Int,
     private val parent: StorageWidget,
     private val subKey: String,
-    onPress: PressAction
-) : ButtonWidget(x, y, WIDTH, HEIGHT, Text.literal("ReleaseConfirm"), onPress, DEFAULT_NARRATION_SUPPLIER) {
+    onPress: OnPress
+) : Button(x, y, WIDTH, HEIGHT, Component.literal("ReleaseConfirm"), onPress, DEFAULT_NARRATION), CobblemonRenderable {
 
     companion object {
         private const val WIDTH = 30
@@ -34,10 +34,10 @@ class ReleaseConfirmButton(
         private val buttonResource = cobblemonResource("textures/gui/pc/pc_release_button_confirm.png")
     }
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         if (parent.canDeleteSelected() && parent.displayConfirmRelease) {
             blitk(
-                matrixStack = context.matrices,
+                matrixStack = context.pose(),
                 texture = buttonResource,
                 x = x,
                 y = y,

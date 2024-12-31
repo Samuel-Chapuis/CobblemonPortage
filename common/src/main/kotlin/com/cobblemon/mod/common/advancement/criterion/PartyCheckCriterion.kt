@@ -10,45 +10,41 @@ package com.cobblemon.mod.common.advancement.criterion
 
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
-import com.cobblemon.mod.common.util.party
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import net.minecraft.predicate.entity.LootContextPredicate
-import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.advancements.critereon.ContextAwarePredicate
+import net.minecraft.advancements.critereon.EntityPredicate
+import net.minecraft.server.level.ServerPlayer
+import net.minecraft.resources.ResourceLocation
+import java.util.Optional
 
-class PartyCheckCriterion(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<PartyCheckContext>(id, entity){
-    val party = mutableListOf<Identifier>()
-    override fun toJson(json: JsonObject) {
-        json.add("party", JsonArray(party.size).also {
-            party.forEach { pokemon -> it.add(pokemon.toString()) }
-        })
+class PartyCheckCriterion(
+    playerCtx: Optional<ContextAwarePredicate>,
+    val party: List<ResourceLocation>,
+): SimpleCriterionCondition<PlayerPartyStore>(playerCtx) {
+
+    companion object {
+        val CODEC: Codec<PartyCheckCriterion> = RecordCodecBuilder.create { it.group(
+            EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(PartyCheckCriterion::playerCtx),
+            ResourceLocation.CODEC.listOf().optionalFieldOf("party", listOf()).forGetter(PartyCheckCriterion::party)
+        ).apply(it, ::PartyCheckCriterion) }
     }
 
-    override fun fromJson(json: JsonObject) {
-        party.clear()
-        json.getAsJsonArray("party").forEach { element ->
-            party.add(element.asString.asIdentifierDefaultingNamespace())
-        }
-    }
-
-    override fun matches(player: ServerPlayerEntity, context: PartyCheckContext): Boolean {
-        val playerParty = player.party()
-        val matches = mutableListOf<Identifier>()
+    override fun matches(player: ServerPlayer, context: PlayerPartyStore): Boolean {
+        val matches = mutableListOf<ResourceLocation>()
         party.forEach {
-            if (it == "any".asIdentifierDefaultingNamespace()) {
+            if (it == "any".asIdentifierDefaultingNamespace("minecraft") || it == "any".asIdentifierDefaultingNamespace()) {
                 matches.add(it)
             }
         }
-        val partyCount = playerParty.count()
+        val partyCount = context.count()
         if (matches.containsAll(party) && party.size == partyCount && matches.size == partyCount) return true
-        playerParty.iterator().forEach {
+        matches.clear()
+        context.iterator().forEach {
             if (party.contains(it.species.resourceIdentifier)) {
                 matches.add(it.species.resourceIdentifier)
             }
         }
-        return matches.containsAll(party) && matches.size == partyCount
+        return matches.containsAll(party) && matches.size == party.size
     }
 }
-
-open class PartyCheckContext(val party : PlayerPartyStore)

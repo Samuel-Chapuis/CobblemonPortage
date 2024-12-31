@@ -16,16 +16,18 @@ import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionDisplay
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.SingleUpdatePacket
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.evolution.CobblemonEvolutionDisplay
-import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.network.PacketByteBuf
+import com.cobblemon.mod.common.util.*
+import io.netty.buffer.ByteBuf
+import net.minecraft.core.RegistryAccess
+import net.minecraft.network.RegistryFriendlyByteBuf
 
 class AddEvolutionPacket(pokemon: () -> Pokemon, value: EvolutionDisplay) : SingleUpdatePacket<EvolutionDisplay, AddEvolutionPacket>(pokemon, value) {
 
     override val id = ID
 
-    constructor(pokemon: Pokemon, value: Evolution) : this({ pokemon }, value.convertToDisplay(pokemon))
+    constructor(pokemon: Pokemon, value: Evolution, registryAccess: RegistryAccess) : this({ pokemon }, value.convertToDisplay(pokemon, registryAccess))
 
-    override fun encodeValue(buffer: PacketByteBuf) {
+    override fun encodeValue(buffer: RegistryFriendlyByteBuf) {
         this.value.encode(buffer)
     }
 
@@ -37,10 +39,10 @@ class AddEvolutionPacket(pokemon: () -> Pokemon, value: EvolutionDisplay) : Sing
 
         val ID = cobblemonResource("add_evolution")
 
-        fun decode(buffer: PacketByteBuf) = AddEvolutionPacket(decodePokemon(buffer), decodeDisplay(buffer))
+        fun decode(buffer: RegistryFriendlyByteBuf) = AddEvolutionPacket(decodePokemon(buffer), decodeDisplay(buffer))
 
-        internal fun Evolution.convertToDisplay(pokemon: Pokemon): EvolutionDisplay {
-            val result = pokemon.clone()
+        internal fun Evolution.convertToDisplay(pokemon: Pokemon, registryAccess: RegistryAccess): EvolutionDisplay {
+            val result = pokemon.clone(registryAccess = registryAccess)
             this.result.apply(result)
             val expectedDisplay = CobblemonEvolutionDisplay(this.id, result)
             val event = EvolutionDisplayEvent(result, expectedDisplay, this)
@@ -48,18 +50,18 @@ class AddEvolutionPacket(pokemon: () -> Pokemon, value: EvolutionDisplay) : Sing
             return event.display
         }
 
-        internal fun EvolutionDisplay.encode(buffer: PacketByteBuf) {
+        internal fun EvolutionDisplay.encode(buffer: RegistryFriendlyByteBuf) {
             buffer.writeString(this.id)
             buffer.writeIdentifier(this.species.resourceIdentifier)
             buffer.writeCollection(this.aspects) { pb, value -> pb.writeString(value) }
         }
 
-        internal fun decodeDisplay(buffer: PacketByteBuf): EvolutionDisplay {
+        internal fun decodeDisplay(buffer: RegistryFriendlyByteBuf): EvolutionDisplay {
             val id = buffer.readString()
             val speciesIdentifier = buffer.readIdentifier()
             val species = PokemonSpecies.getByIdentifier(speciesIdentifier)
                 ?: throw IllegalArgumentException("Cannot resolve species from $speciesIdentifier")
-            val aspects = buffer.readList(PacketByteBuf::readString).toSet()
+            val aspects = buffer.readList(ByteBuf::readString).toSet()
             return CobblemonEvolutionDisplay(id, species, aspects)
         }
     }

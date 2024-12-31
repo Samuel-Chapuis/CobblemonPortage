@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:farmland",
+	{
+      "id": "#c:farmland",
+      "required": false
+    },
+    {
+      "id": "#c:farmlands",
+      "required": false
+    }
+  ]
+}

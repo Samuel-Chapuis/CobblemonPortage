@@ -12,10 +12,14 @@ import com.cobblemon.mod.common.api.entity.pokemon.*
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonPropertyExtractor
 import com.cobblemon.mod.common.api.scheduling.afterOnServer
+import com.cobblemon.mod.common.entity.pokemon.PokemonBehaviourFlag
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
+import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.DataKeys
-import net.minecraft.nbt.NbtCompound
+import com.cobblemon.mod.common.util.cobblemonResource
+import net.minecraft.core.HolderLookup
+import net.minecraft.nbt.CompoundTag
 import java.util.concurrent.CompletableFuture
 
 /**
@@ -42,22 +46,29 @@ class IllusionEffect(
 
     override fun revert(entity: PokemonEntity, future: CompletableFuture<PokemonEntity>) {
         entity.effects.mockEffect = null
+
+        if (!entity.exposedForm.behaviour.moving.fly.canFly && entity.getBehaviourFlag(PokemonBehaviourFlag.FLYING)) {
+            // Transitioning from a flying form to a non-flying form.
+            // If we were flying, need to turn the behavior flag off or the pokemon will continue to float in the air.
+            entity.setBehaviourFlag(PokemonBehaviourFlag.FLYING, false)
+        }
         afterOnServer(seconds = 1.0F) {
             entity.cry()
+            if (entity.pokemon.shiny) SpawnSnowstormEntityParticlePacket(cobblemonResource("shiny_ring"), entity.id, listOf("shiny_particles", "middle")).sendToPlayersAround(entity.x, entity.y, entity.z, 64.0, entity.level().dimension())
             future.complete(entity)
         }
     }
 
-    override fun saveToNbt(): NbtCompound {
-        val nbt = NbtCompound()
+    override fun saveToNbt(registryLookup: HolderLookup.Provider): CompoundTag {
+        val nbt = CompoundTag()
         nbt.putString(DataKeys.ENTITY_EFFECT_ID, ID)
-        nbt.put(DataKeys.POKEMON_ENTITY_MOCK, mock.saveToNBT())
+        nbt.put(DataKeys.POKEMON_ENTITY_MOCK, mock.saveToNBT(registryLookup))
         nbt.putFloat(DataKeys.POKEMON_ENTITY_SCALE, scale)
         return nbt
     }
 
-    override fun loadFromNBT(nbt: NbtCompound) {
-        if (nbt.contains(DataKeys.POKEMON_ENTITY_MOCK)) this.mock = PokemonProperties().loadFromNBT(nbt.getCompound(DataKeys.POKEMON_ENTITY_MOCK))
+    override fun loadFromNBT(nbt: CompoundTag, registryLookup: HolderLookup.Provider) {
+        if (nbt.contains(DataKeys.POKEMON_ENTITY_MOCK)) this.mock = PokemonProperties().loadFromNBT(nbt.getCompound(DataKeys.POKEMON_ENTITY_MOCK), registryLookup)
         if (nbt.contains(DataKeys.POKEMON_ENTITY_SCALE)) this.scale = nbt.getFloat(DataKeys.POKEMON_ENTITY_SCALE)
     }
 
