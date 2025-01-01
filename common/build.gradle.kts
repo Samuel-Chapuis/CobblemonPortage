@@ -24,7 +24,7 @@ plugins {
 }
 
 architectury {
-    common("forge", "fabric")
+    common("forge")
 }
 
 repositories {
