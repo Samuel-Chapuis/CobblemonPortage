@@ -29,7 +29,7 @@ object CobblemonItemGroups {
     // See https://docs.google.com/spreadsheets/d/1QgaIlW-S9A-Blqhc-5G7OO3igaQdEAiYQqVEPnEBFmc/edit#gid=978365418 for what goes what
 
     private val ALL = arrayListOf<ItemGroupHolder>()
-    private val INJECTORS = hashMapOf<ResourceKey<CreativeModeTab>, (injector: Injector) -> Unit>()
+    private val INJECTORS = hashMapOf<RegistryKey<CreativeModeTab>, (injector: Injector) -> Unit>()
 
     @JvmStatic val BLOCKS_KEY = this.create("blocks", this::blockEntries) {
         ItemStack( CobblemonItems.PC)
@@ -61,35 +61,35 @@ object CobblemonItemGroups {
     @JvmStatic val HELD_ITEMS get() = BuiltInRegistries.CREATIVE_MODE_TAB.get(HELD_ITEMS_KEY)
     @JvmStatic val EVOLUTION_ITEMS get() = BuiltInRegistries.CREATIVE_MODE_TAB.get(EVOLUTION_ITEMS_KEY)
 
-    @JvmStatic val BUILDING_BLOCKS_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("building_blocks")), this::blocksInjections)
-    @JvmStatic val FOOD_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("food_and_drinks")), this::foodInjections)
-    @JvmStatic val TOOLS_AND_UTILITIES_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("tools_and_utilities")), this::toolsAndUtilitiesInjections)
-    @JvmStatic val INGREDIENTS_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("ingredients")), this::ingredientsInjections)
+    @JvmStatic val BUILDING_BLOCKS_INJECTIONS = this.inject(RegistryKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("building_blocks")), this::blocksInjections)
+    @JvmStatic val FOOD_INJECTIONS = this.inject(RegistryKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("food_and_drinks")), this::foodInjections)
+    @JvmStatic val TOOLS_AND_UTILITIES_INJECTIONS = this.inject(RegistryKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("tools_and_utilities")), this::toolsAndUtilitiesInjections)
+    @JvmStatic val INGREDIENTS_INJECTIONS = this.inject(RegistryKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("ingredients")), this::ingredientsInjections)
 
     fun register(consumer: (holder: ItemGroupHolder) -> CreativeModeTab) {
         ALL.forEach(consumer::invoke)
     }
 
-    fun inject(tabKey: ResourceKey<CreativeModeTab>, injector: Injector) {
+    fun inject(tabKey: RegistryKey<CreativeModeTab>, injector: Injector) {
         INJECTORS[tabKey]?.invoke(injector)
     }
 
-    fun injectorKeys(): Collection<ResourceKey<CreativeModeTab>> = this.INJECTORS.keys
+    fun injectorKeys(): Collection<RegistryKey<CreativeModeTab>> = this.INJECTORS.keys
 
     data class ItemGroupHolder(
-        val key: ResourceKey<CreativeModeTab>,
+        val key: RegistryKey<CreativeModeTab>,
         val displayIconProvider: () -> ItemStack,
         val entryCollector: DisplayItemsGenerator,
         val displayName: Component = Component.translatable("itemGroup.${key.location().namespace}.${key.location().path}")
     )
 
-    private fun create(name: String, entryCollector: DisplayItemsGenerator, displayIconProvider: () -> ItemStack): ResourceKey<CreativeModeTab> {
-        val key = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), cobblemonResource(name))
+    private fun create(name: String, entryCollector: DisplayItemsGenerator, displayIconProvider: () -> ItemStack): RegistryKey<CreativeModeTab> {
+        val key = RegistryKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), cobblemonResource(name))
         this.ALL += ItemGroupHolder(key, displayIconProvider, entryCollector)
         return key
     }
 
-    private fun inject(key: ResourceKey<CreativeModeTab>, consumer: (injector: Injector) -> Unit): (injector: Injector) -> Unit {
+    private fun inject(key: RegistryKey<CreativeModeTab>, consumer: (injector: Injector) -> Unit): (injector: Injector) -> Unit {
         this.INJECTORS[key] = consumer
         return consumer
     }

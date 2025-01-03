@@ -29,6 +29,6 @@ object CobblemonOreConfiguredFeatures {
     val ORE_THUNDER_STONE = of("thunder_stone")
     val ORE_WATER_STONE = of("water_stone")
 
-    private fun of(id: String): ResourceKey<ConfiguredFeature<*, *>> = FeatureUtils.createKey("${Cobblemon.MODID}:ore/$id")
+    private fun of(id: String): RegistryKey<ConfiguredFeature<*, *>> = FeatureUtils.createKey("${Cobblemon.MODID}:ore/$id")
 
 }

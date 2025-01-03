@@ -23,7 +23,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList
 
 object CobblemonStructures {
-    private val EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(Registries.PROCESSOR_LIST, Identifier.fromNamespaceAndPath("minecraft", "empty"))
+    private val EMPTY_PROCESSOR_LIST_KEY = RegistryKey.create(Registries.PROCESSOR_LIST, Identifier.fromNamespaceAndPath("minecraft", "empty"))
     private const val pokecenterWeight = 35
     private const val berryFarmWeight = 1
     private const val longPathWeight = 10
@@ -47,7 +47,7 @@ object CobblemonStructures {
         templatePoolRegistry: Registry<StructureTemplatePool>,
         processorListRegistry: Registry<StructureProcessorList>
     ) {
-        val cropToBerryProcessorList = CobblemonStructureProcessorLists.CROP_TO_BERRY//ResourceKey.create(ResourceKeys.PROCESSOR_LIST, CobblemonProcessorTypes.RANDOM_POOLED_STATES_KEY)
+        val cropToBerryProcessorList = CobblemonStructureProcessorLists.CROP_TO_BERRY//RegistryKey.create(RegistryKeys.PROCESSOR_LIST, CobblemonProcessorTypes.RANDOM_POOLED_STATES_KEY)
 
         addBuildingToPool(
             templatePoolRegistry,
@@ -264,7 +264,7 @@ object CobblemonStructures {
         nbtPieceRL: Identifier,
         weight: Int,
         projection: StructureTemplatePool.Projection,
-        processorListKey: ResourceKey<StructureProcessorList>
+        processorListKey: RegistryKey<StructureProcessorList>
     ) {
         addBuildingToPool(
             templatePoolRegistry,
@@ -286,7 +286,7 @@ object CobblemonStructures {
         nbtPieceRL: Identifier,
         weight: Int,
         projection: StructureTemplatePool.Projection,
-        processorListKey: ResourceKey<StructureProcessorList>,
+        processorListKey: RegistryKey<StructureProcessorList>,
         shouldUseLegacySingePoolElement: Boolean = false
     ) {
         if (processorListRegistry.getHolder(processorListKey).isEmpty) {

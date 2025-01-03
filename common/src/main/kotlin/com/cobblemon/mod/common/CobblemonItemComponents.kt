@@ -19,7 +19,7 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 
-object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>, ResourceKey<Registry<DataComponentType<*>>>, DataComponentType<*>>() {
+object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>, RegistryKey<Registry<DataComponentType<*>>>, DataComponentType<*>>() {
 
      val POKEMON_ITEM: DataComponentType<PokemonItemComponent> = create("pokemon_item", DataComponentType.builder<PokemonItemComponent>()
         .persistent(PokemonItemComponent.CODEC)

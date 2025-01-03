@@ -27,11 +27,11 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.world.entity.MobCategory
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier
 
-object CobblemonEntities : PlatformRegistry<Registry<EntityType<*>>, ResourceKey<Registry<EntityType<*>>>, EntityType<*>>() {
+object CobblemonEntities : PlatformRegistry<Registry<EntityType<*>>, RegistryKey<Registry<EntityType<*>>>, EntityType<*>>() {
 
 
     override val registry: Registry<EntityType<*>> = BuiltInRegistries.ENTITY_TYPE
-    override val resourceKey: ResourceKey<Registry<EntityType<*>>> = Registries.ENTITY_TYPE
+    override val resourceKey: RegistryKey<Registry<EntityType<*>>> = Registries.ENTITY_TYPE
     
     @JvmField
     val POKEMON_KEY = cobblemonResource("pokemon")

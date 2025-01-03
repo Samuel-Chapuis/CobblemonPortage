@@ -50,5 +50,5 @@ object CobblemonPlacedFeatures {
         Cobblemon.implementation.addFeatureToWorldGen(BERRY_GROVE, GenerationStep.Decoration.VEGETAL_DECORATION, BiomeTags.IS_OVERWORLD)
     }
 
-    private fun of(id: String): ResourceKey<PlacedFeature> = ResourceKey.create(Registries.PLACED_FEATURE, cobblemonResource(id))
+    private fun of(id: String): RegistryKey<PlacedFeature> = RegistryKey.create(Registries.PLACED_FEATURE, cobblemonResource(id))
 }

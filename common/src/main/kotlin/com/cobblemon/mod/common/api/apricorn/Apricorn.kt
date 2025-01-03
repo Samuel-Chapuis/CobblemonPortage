@@ -87,7 +87,7 @@ enum class Apricorn : StringRepresentable {
         YELLOW ->  MapColor.COLOR_YELLOW
     }
 
-    fun configuredFeature(): ResourceKey<ConfiguredFeature<*, *>> = when(this) {
+    fun configuredFeature(): RegistryKey<ConfiguredFeature<*, *>> = when(this) {
         BLACK -> CobblemonConfiguredFeatures.BLACK_APRICORN_TREE_KEY
         BLUE -> CobblemonConfiguredFeatures.BLUE_APRICORN_TREE_KEY
         GREEN -> CobblemonConfiguredFeatures.GREEN_APRICORN_TREE_KEY

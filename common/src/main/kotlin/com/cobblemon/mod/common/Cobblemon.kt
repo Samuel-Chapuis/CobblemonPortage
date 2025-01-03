@@ -404,7 +404,7 @@ object Cobblemon {
         PokedexHandler.registerListeners()
     }
 
-    fun getLevel(dimension: ResourceKey<Level>): Level? {
+    fun getLevel(dimension: RegistryKey<Level>): Level? {
         return if (isDedicatedServer) {
             server()?.getLevel(dimension)
         } else {

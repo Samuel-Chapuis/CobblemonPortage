@@ -25,10 +25,10 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.registry.RegistryKey
 
-object CobblemonBlockEntities : PlatformRegistry<Registry<BlockEntityType<*>>, ResourceKey<Registry<BlockEntityType<*>>>, BlockEntityType<*>>() {
+object CobblemonBlockEntities : PlatformRegistry<Registry<BlockEntityType<*>>, RegistryKey<Registry<BlockEntityType<*>>>, BlockEntityType<*>>() {
 
     override val registry: Registry<BlockEntityType<*>> = BuiltInRegistries.BLOCK_ENTITY_TYPE
-    override val resourceKey: ResourceKey<Registry<BlockEntityType<*>>> = Registries.BLOCK_ENTITY_TYPE
+    override val resourceKey: RegistryKey<Registry<BlockEntityType<*>>> = Registries.BLOCK_ENTITY_TYPE
 
     @JvmField
     val HEALING_MACHINE: BlockEntityType<HealingMachineBlockEntity> = this.create("healing_machine", BlockEntityType.Builder.of(::HealingMachineBlockEntity, CobblemonBlocks.HEALING_MACHINE).build(null))

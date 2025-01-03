@@ -15,10 +15,10 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.registry.RegistryKey
 import net.minecraft.world.level.levelgen.feature.Feature
 
-object CobblemonFeatures : PlatformRegistry<Registry<Feature<*>>, ResourceKey<Registry<Feature<*>>>, Feature<*>>() {
+object CobblemonFeatures : PlatformRegistry<Registry<Feature<*>>, RegistryKey<Registry<Feature<*>>>, Feature<*>>() {
 
     override val registry: Registry<Feature<*>> = BuiltInRegistries.FEATURE
-    override val resourceKey: ResourceKey<Registry<Feature<*>>> = Registries.FEATURE
+    override val resourceKey: RegistryKey<Registry<Feature<*>>> = Registries.FEATURE
 
     @JvmField
     val APRICORN_TREE_FEATURE = create("apricorn_tree", ApricornTreeFeature())

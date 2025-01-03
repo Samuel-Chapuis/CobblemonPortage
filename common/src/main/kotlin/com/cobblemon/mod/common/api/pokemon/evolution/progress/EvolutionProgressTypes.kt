@@ -22,7 +22,7 @@ import kotlin.jvm.Throws
 object EvolutionProgressTypes {
 
     private val REGISTRY: Registry<EvolutionProgressType<*>> = MappedRegistry(
-        ResourceKey.createRegistryKey(cobblemonResource("evolution_progress")), Lifecycle.stable()
+        RegistryKey.createRegistryKey(cobblemonResource("evolution_progress")), Lifecycle.stable()
     )
 
     @JvmStatic

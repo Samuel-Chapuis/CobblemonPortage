@@ -12,10 +12,10 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.server.MinecraftServer
 
 object CobblemonStructureProcessorListOverrides {
-    val ResourceKey = Registries.PROCESSOR_LIST
+    val RegistryKey = Registries.PROCESSOR_LIST
 
     fun register(server: MinecraftServer) {
-        //val registry = server.registryManager.get(ResourceKey)
+        //val registry = server.registryManager.get(RegistryKey)
         // registerFarmOverrides(registry)
     }
 

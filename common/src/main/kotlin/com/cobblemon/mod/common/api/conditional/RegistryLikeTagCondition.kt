@@ -26,13 +26,13 @@ open class RegistryLikeTagCondition<T : Any>(val tag: TagKey<T>) : RegistryLikeC
     companion object {
         const val PREFIX = "#"
         fun <T : Any> resolver(
-            ResourceKey: ResourceKey<Registry<T>>,
+            RegistryKey: RegistryKey<Registry<T>>,
             constructor: (TagKey<T>) -> RegistryLikeTagCondition<T>
         ): (JsonElement) -> RegistryLikeTagCondition<T>? = {
             val firstSymbol = it.asString.substring(0, 1)
             if (firstSymbol == PREFIX) {
                 val identifier = Identifier.parse(it.asString.substring(1))
-                constructor(TagKey.create(ResourceKey, identifier))
+                constructor(TagKey.create(RegistryKey, identifier))
             } else {
                 null
             }
@@ -46,7 +46,7 @@ open class RegistryLikeTagCondition<T : Any>(val tag: TagKey<T>) : RegistryLikeC
 //            return false
 //        }
 
-        return registry.getResourceKey(t)
+        return registry.getRegistryKey(t)
             .flatMap(registry::getHolder)
             .map { entry -> entry.`is`(tag) }
             .orElse(false)

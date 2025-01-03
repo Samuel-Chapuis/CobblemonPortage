@@ -105,7 +105,7 @@ object LootInjector {
         return LootPool.lootPool()
             .add(
                 NestedLootTable
-                    .lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, resulting))
+                    .lootTableReference(RegistryKey.create(Registries.LOOT_TABLE, resulting))
                     .setWeight(1)
             )
             .setBonusRolls(UniformGenerator.between(0F, 1F))

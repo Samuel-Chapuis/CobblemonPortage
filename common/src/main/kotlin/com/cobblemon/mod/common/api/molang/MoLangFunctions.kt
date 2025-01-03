@@ -874,7 +874,7 @@ object MoLangFunctions {
 
             map.put("get_world") { params ->
                 val world = server.getLevel(
-                    ResourceKey.create(
+                    RegistryKey.create(
                         Registries.DIMENSION,
                         params.getString(0).asIdentifierDefaultingNamespace(namespace = "minecraft")
                     )
@@ -1099,7 +1099,7 @@ object MoLangFunctions {
         }
     }
 
-    fun <T> Holder<T>.asMoLangValue(key: ResourceKey<Registry<T>>): ObjectValue<Holder<T>> {
+    fun <T> Holder<T>.asMoLangValue(key: RegistryKey<Registry<T>>): ObjectValue<Holder<T>> {
         val value = ObjectValue(
             obj = this,
             stringify = { it.unwrapKey().get().location().toString() }

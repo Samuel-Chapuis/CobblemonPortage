@@ -16,13 +16,13 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.registry.RegistryKey
 
-object CobblemonEntitySubPredicates : PlatformRegistry<Registry<MapCodec<out EntitySubPredicate>>, ResourceKey<Registry<MapCodec<out EntitySubPredicate>>>, MapCodec<out EntitySubPredicate>>() {
+object CobblemonEntitySubPredicates : PlatformRegistry<Registry<MapCodec<out EntitySubPredicate>>, RegistryKey<Registry<MapCodec<out EntitySubPredicate>>>, MapCodec<out EntitySubPredicate>>() {
 
     @JvmStatic
     val POKE_POBBER = this.create("poke_bobber", FishingBobberPredicate.CODEC)
 
     override val registry: Registry<MapCodec<out EntitySubPredicate>> = BuiltInRegistries.ENTITY_SUB_PREDICATE_TYPE
 
-    override val resourceKey: ResourceKey<Registry<MapCodec<out EntitySubPredicate>>> = Registries.ENTITY_SUB_PREDICATE_TYPE
+    override val resourceKey: RegistryKey<Registry<MapCodec<out EntitySubPredicate>>> = Registries.ENTITY_SUB_PREDICATE_TYPE
 
 }

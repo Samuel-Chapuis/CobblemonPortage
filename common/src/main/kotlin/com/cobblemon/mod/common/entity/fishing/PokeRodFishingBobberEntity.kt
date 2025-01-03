@@ -823,6 +823,6 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
         val POKEBOBBER_BAIT = SynchedEntityData.defineId(PokeRodFishingBobberEntity::class.java, EntityDataSerializers.ITEM_STACK)
         val HOOK_ENTITY_ID = SynchedEntityData.defineId(PokeRodFishingBobberEntity::class.java, EntityDataSerializers.INT)
         private val CAUGHT_FISH = SynchedEntityData.defineId(PokeRodFishingBobberEntity::class.java, EntityDataSerializers.BOOLEAN)
-        private val LOOT_TABLE_ID = ResourceKey.create(Registries.LOOT_TABLE, cobblemonResource("fishing/pokerod"))
+        private val LOOT_TABLE_ID = RegistryKey.create(Registries.LOOT_TABLE, cobblemonResource("fishing/pokerod"))
     }
 }

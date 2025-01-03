@@ -20,12 +20,12 @@ import java.lang.reflect.Type
  * [TagKey]s are just [Identifier]s attached to a certain registry.
  *
  * @param T The type of the [Registry] this [TagKey] belongs to.
- * @property key The [ResourceKey] used to create new [TagKey]s.
+ * @property key The [RegistryKey] used to create new [TagKey]s.
  *
  * @author Licious
  * @since July 2nd, 2022
  */
-class TagKeyAdapter<T>(private val key: ResourceKey<Registry<T>>) : JsonDeserializer<TagKey<T>>, JsonSerializer<TagKey<T>> {
+class TagKeyAdapter<T>(private val key: RegistryKey<Registry<T>>) : JsonDeserializer<TagKey<T>>, JsonSerializer<TagKey<T>> {
 
     override fun deserialize(element: JsonElement, type: Type, ctx: JsonDeserializationContext): TagKey<T> {
         val identifier = Identifier.parse(element.asString)

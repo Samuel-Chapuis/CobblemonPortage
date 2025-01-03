@@ -71,7 +71,7 @@ interface NetworkPacket<T: NetworkPacket<T>> : CustomPacketPayload, Encodable {
      * @param worldKey
      * @param exclusionCondition
      */
-    fun sendToPlayersAround(x: Double, y: Double, z: Double, distance: Double, worldKey: ResourceKey<Level>, exclusionCondition: (ServerPlayer) -> Boolean = { false }) {
+    fun sendToPlayersAround(x: Double, y: Double, z: Double, distance: Double, worldKey: RegistryKey<Level>, exclusionCondition: (ServerPlayer) -> Boolean = { false }) {
         val server = server() ?: return
         server.playerList.players.filter { player ->
             if (exclusionCondition.invoke(player))

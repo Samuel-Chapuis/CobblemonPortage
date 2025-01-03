@@ -90,14 +90,14 @@ object CobblemonOrePlacedFeatures {
         }
     }
 
-    private fun of(id: String, validBiomes: TagKey<Biome>): ResourceKey<PlacedFeature> {
-        val feature = ResourceKey.create(Registries.PLACED_FEATURE, cobblemonResource("ore/$id"))
+    private fun of(id: String, validBiomes: TagKey<Biome>): RegistryKey<PlacedFeature> {
+        val feature = RegistryKey.create(Registries.PLACED_FEATURE, cobblemonResource("ore/$id"))
         features += FeatureHolder(feature, validBiomes)
         return feature
     }
 
     private data class FeatureHolder(
-        val feature: ResourceKey<PlacedFeature>,
+        val feature: RegistryKey<PlacedFeature>,
         val validBiomes: TagKey<Biome>
     )
 

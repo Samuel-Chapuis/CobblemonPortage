@@ -14,5 +14,5 @@ import net.minecraft.registry.RegistryKey
 
 object CobblemonStructureProcessorLists {
     @JvmField
-    val CROP_TO_BERRY = ResourceKey.create(Registries.PROCESSOR_LIST, cobblemonResource("crop_to_berry"))
+    val CROP_TO_BERRY = RegistryKey.create(Registries.PROCESSOR_LIST, cobblemonResource("crop_to_berry"))
 }

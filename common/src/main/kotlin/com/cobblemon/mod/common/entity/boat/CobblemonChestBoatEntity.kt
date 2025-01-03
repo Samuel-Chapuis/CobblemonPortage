@@ -41,7 +41,7 @@ class CobblemonChestBoatEntity(entityType: EntityType<CobblemonChestBoatEntity>,
     }
 
     private var inventory = this.emptyInventory()
-    private var lootTableId: ResourceKey<LootTable>? = null
+    private var lootTableId: RegistryKey<LootTable>? = null
     private var lootTableSeed = 0L
 
     override fun openCustomInventoryScreen(player: Player) {
@@ -100,7 +100,7 @@ class CobblemonChestBoatEntity(entityType: EntityType<CobblemonChestBoatEntity>,
 
     override fun getLootTable() = lootTableId
 
-    override fun setLootTable(lootTable: ResourceKey<LootTable>?) {
+    override fun setLootTable(lootTable: RegistryKey<LootTable>?) {
         this.lootTableId = lootTable
     }
 

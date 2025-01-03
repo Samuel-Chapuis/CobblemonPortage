@@ -19,9 +19,9 @@ import net.minecraft.sounds.SoundEvent
 import net.minecraft.world.entity.ai.village.poi.PoiType
 import net.minecraft.world.entity.npc.VillagerProfession
 
-object CobblemonVillagerProfessions: PlatformRegistry<Registry<VillagerProfession>, ResourceKey<Registry<VillagerProfession>>, VillagerProfession>() {
+object CobblemonVillagerProfessions: PlatformRegistry<Registry<VillagerProfession>, RegistryKey<Registry<VillagerProfession>>, VillagerProfession>() {
     override val registry: Registry<VillagerProfession> = BuiltInRegistries.VILLAGER_PROFESSION
-    override val resourceKey: ResourceKey<Registry<VillagerProfession>> = Registries.VILLAGER_PROFESSION
+    override val resourceKey: RegistryKey<Registry<VillagerProfession>> = Registries.VILLAGER_PROFESSION
 
     @JvmField
     val NURSE = profession(CobblemonVillagerPoiTypes.NURSE_KEY, CobblemonSounds.VILLAGER_WORK_NURSE)
@@ -37,7 +37,7 @@ object CobblemonVillagerProfessions: PlatformRegistry<Registry<VillagerProfessio
         else -> null
     }
 
-    private fun profession(resourceKey: ResourceKey<PoiType>, soundEvent: SoundEvent?): VillagerProfession =
+    private fun profession(resourceKey: RegistryKey<PoiType>, soundEvent: SoundEvent?): VillagerProfession =
         create(resourceKey.location().path, VillagerProfession(
             resourceKey.location().toString(),
             { holder: Holder<PoiType> -> holder.`is`(resourceKey) },

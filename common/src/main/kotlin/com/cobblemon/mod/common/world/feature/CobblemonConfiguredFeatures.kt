@@ -41,6 +41,6 @@ object CobblemonConfiguredFeatures {
     @JvmField
     val BERRY_GROVE_KEY = of("berry_groves")
 
-    private fun of(id: String): ResourceKey<ConfiguredFeature<*, *>> = ResourceKey.create(Registries.CONFIGURED_FEATURE, cobblemonResource(id))
+    private fun of(id: String): RegistryKey<ConfiguredFeature<*, *>> = RegistryKey.create(Registries.CONFIGURED_FEATURE, cobblemonResource(id))
 
 }

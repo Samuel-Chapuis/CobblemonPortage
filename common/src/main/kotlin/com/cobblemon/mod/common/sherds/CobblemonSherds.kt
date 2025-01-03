@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.entity.DecoratedPotPattern
 @Suppress("Unused")
 object CobblemonSherds {
     val allSherds = mutableListOf<CobblemonSherd>()
-    val sherdToPattern = mutableMapOf<Item, ResourceKey<DecoratedPotPattern>>()
+    val sherdToPattern = mutableMapOf<Item, RegistryKey<DecoratedPotPattern>>()
 
     val BYGONE_SHERD = addSherd(cobblemonResource("bygone_pottery_pattern"), CobblemonItems.BYGONE_SHERD)
 
@@ -37,7 +37,7 @@ object CobblemonSherds {
 
     fun addSherd(patternId: Identifier, item: Item): CobblemonSherd {
         val sherd = CobblemonSherd(patternId, item)
-        val resourceKey = ResourceKey.create(Registries.DECORATED_POT_PATTERN, patternId)
+        val resourceKey = RegistryKey.create(Registries.DECORATED_POT_PATTERN, patternId)
         sherdToPattern[item] = resourceKey
         allSherds.add(sherd)
         return sherd
@@ -45,7 +45,7 @@ object CobblemonSherds {
     fun registerSherds() {
         val registry = BuiltInRegistries.DECORATED_POT_PATTERN
         for (sherd in allSherds) {
-            val regKey = ResourceKey.create(Registries.DECORATED_POT_PATTERN, sherd.patternId)
+            val regKey = RegistryKey.create(Registries.DECORATED_POT_PATTERN, sherd.patternId)
             Registry.register(
                 registry,
                 regKey,

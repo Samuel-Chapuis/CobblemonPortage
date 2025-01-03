@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier
  * @author Licious
  * @since February 11th, 2023
  */
-abstract class PlatformRegistry<R : Registry<T>, K : ResourceKey<R>, T> {
+abstract class PlatformRegistry<R : Registry<T>, K : RegistryKey<R>, T> {
 
     /**
      * The vanilla [Registry].
@@ -34,7 +34,7 @@ abstract class PlatformRegistry<R : Registry<T>, K : ResourceKey<R>, T> {
     abstract val registry: R
 
     /**
-     * The vanilla [ResourceKey].
+     * The vanilla [RegistryKey].
      */
     abstract val resourceKey: K
 

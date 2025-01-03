@@ -50,9 +50,9 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 
 @Suppress("unused", "SameParameterValue")
-object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, Item>() {
+object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<Item>>, Item>() {
     override val registry: Registry<Item> = BuiltInRegistries.ITEM
-    override val resourceKey: ResourceKey<Registry<Item>> = Registries.ITEM
+    override val resourceKey: RegistryKey<Registry<Item>> = Registries.ITEM
 
     @JvmField
     val NPC_EDITOR = create("npc_editor", CobblemonItem(Item.Properties().stacksTo(1)))

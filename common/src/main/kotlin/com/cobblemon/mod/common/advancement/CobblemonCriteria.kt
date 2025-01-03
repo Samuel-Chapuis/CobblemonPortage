@@ -22,7 +22,7 @@ import net.minecraft.registry.RegistryKey
  * @author Licious
  * @since October 26th, 2022
  */
-object CobblemonCriteria : PlatformRegistry<Registry<CriterionTrigger<*>>, ResourceKey<Registry<CriterionTrigger<*>>>, CriterionTrigger<*>>(){
+object CobblemonCriteria : PlatformRegistry<Registry<CriterionTrigger<*>>, RegistryKey<Registry<CriterionTrigger<*>>>, CriterionTrigger<*>>(){
     val PICK_STARTER = this.create("pick_starter", SimpleCriterionTrigger(PokemonCriterion.CODEC))
 
     val CATCH_POKEMON = this.create("catch_pokemon", SimpleCriterionTrigger(CaughtPokemonCriterion.CODEC))
