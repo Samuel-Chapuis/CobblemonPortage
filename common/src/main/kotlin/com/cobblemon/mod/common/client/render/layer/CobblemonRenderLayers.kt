@@ -43,7 +43,7 @@ object CobblemonRenderLayers {
         )
     }
 
-    val ENTITY_TRANSLUCENT: BiFunction<ResourceLocation, Boolean, RenderType> = Util.memoize { texture: ResourceLocation, affectsOutline: kotlin.Boolean ->
+    val ENTITY_TRANSLUCENT: BiFunction<Identifier, Boolean, RenderType> = Util.memoize { texture: Identifier, affectsOutline: kotlin.Boolean ->
         var multiPhaseParameters: RenderType.CompositeState =
             RenderType.CompositeState.builder()
                 .setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_SHADER)
@@ -65,7 +65,7 @@ object CobblemonRenderLayers {
         )
     };
 
-    val ENTITY_CUTOUT: Function<ResourceLocation, RenderType> = Util.memoize { texture: ResourceLocation ->
+    val ENTITY_CUTOUT: Function<Identifier, RenderType> = Util.memoize { texture: Identifier ->
         val multiPhaseParameters =
             RenderType.CompositeState.builder()
                 .setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER)

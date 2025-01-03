@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier
 class SpawnPokemonPacket(
     private val ownerId: UUID?,
     private val scaleModifier: Float,
-    private val speciesId: ResourceLocation,
+    private val speciesId: Identifier,
     private val gender: Gender,
     private val shiny: Boolean,
     private val formName: String,
@@ -40,14 +40,14 @@ class SpawnPokemonPacket(
     private val poseType: PoseType,
     private val unbattlable: Boolean,
     private val hideLabel: Boolean,
-    private val caughtBall: ResourceLocation,
+    private val caughtBall: Identifier,
     private val spawnYaw: Float,
     private val friendship: Int,
     private val freezeFrame: Float,
     vanillaSpawnPacket: ClientboundAddEntityPacket
 ) : SpawnExtraDataEntityPacket<SpawnPokemonPacket, PokemonEntity>(vanillaSpawnPacket) {
 
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     constructor(entity: PokemonEntity, vanillaSpawnPacket: ClientboundAddEntityPacket) : this(
         entity.ownerUUID,

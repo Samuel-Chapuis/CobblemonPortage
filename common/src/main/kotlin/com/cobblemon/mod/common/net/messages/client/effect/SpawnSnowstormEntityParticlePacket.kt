@@ -24,7 +24,7 @@ import net.minecraft.util.Identifier
  * @since January 21st, 2024
  */
 class SpawnSnowstormEntityParticlePacket(
-    val effectId: ResourceLocation,
+    val effectId: Identifier,
     val sourceEntityId: Int,
     val sourceLocators: List<String> = listOf("root"),
     val targetedEntityId: Int? = null,

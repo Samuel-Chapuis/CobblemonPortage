@@ -17,13 +17,13 @@ import net.minecraft.util.StringRepresentable
 import net.minecraft.world.item.ItemStack
 
 class Fossil(
-    identifier: ResourceLocation,
+    identifier: Identifier,
     val result: PokemonProperties,
     val fossils: List<NbtItemPredicate>
 ): StringRepresentable {
 
     @Transient
-    var identifier: ResourceLocation = identifier
+    var identifier: Identifier = identifier
         internal set
 
     override fun getSerializedName(): String {

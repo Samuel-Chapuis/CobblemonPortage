@@ -103,7 +103,7 @@ class BedrockParticleKeyframe(
 
 class BedrockSoundKeyframe(
     seconds: Float,
-    val sound: ResourceLocation
+    val sound: Identifier
 ): BedrockEffectKeyframe(seconds) {
     override fun run(entity: Entity?, state: PosableState) {
         val soundEvent = SoundEvent.createVariableRangeEvent(sound) // Means we don't need to setup a sound registry entry for every single thing

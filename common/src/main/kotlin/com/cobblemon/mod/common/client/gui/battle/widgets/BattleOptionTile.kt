@@ -26,7 +26,7 @@ class BattleOptionTile(
     val battleGUI: BattleGUI,
     val x: Int,
     val y: Int,
-    val resource: ResourceLocation,
+    val resource: Identifier,
     val text: MutableComponent,
     val onClick: () -> Unit
 ) : CobblemonRenderable, GuiEventListener, NarratableEntry {

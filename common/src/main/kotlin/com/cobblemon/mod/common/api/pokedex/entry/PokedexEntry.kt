@@ -16,8 +16,8 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.util.Identifier
 
 class PokedexEntry(
-    val id: ResourceLocation,
-    val speciesId: ResourceLocation,
+    val id: Identifier,
+    val speciesId: Identifier,
     val displayAspects: MutableSet<String> = mutableSetOf(),
     val conditionAspects: MutableSet<String> = mutableSetOf(),
     val forms: MutableList<PokedexForm> = mutableListOf(),

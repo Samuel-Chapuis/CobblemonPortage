@@ -43,7 +43,7 @@ class PlayerDataJsonBackend: JsonBackedPlayerDataStoreBackend<GeneralPlayerData>
         .setPrettyPrinting()
         .disableHtmlEscaping()
         .registerTypeAdapter(PlayerDataExtension::class.java, PlayerDataExtensionAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .create()
 
     override val classToken = TypeToken.get(GeneralPlayerData::class.java)

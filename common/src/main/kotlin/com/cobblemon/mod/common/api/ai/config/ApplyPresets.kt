@@ -23,7 +23,7 @@ import net.minecraft.world.entity.LivingEntity
 
 class ApplyPresets : BrainConfig {
     val condition = "true".asExpressionLike()
-    val presets = mutableListOf<ResourceLocation>()
+    val presets = mutableListOf<Identifier>()
     override fun configure(entity: LivingEntity, brainConfigurationContext: BrainConfigurationContext) {
         val runtime = MoLangRuntime().setup()
         runtime.withQueryValue("entity", (entity as? PosableEntity)?.struct ?: QueryStruct(hashMapOf()))

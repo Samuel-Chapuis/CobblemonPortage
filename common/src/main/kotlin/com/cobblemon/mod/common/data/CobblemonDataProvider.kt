@@ -122,7 +122,7 @@ object CobblemonDataProvider : DataProvider {
         return registry
     }
 
-    override fun fromIdentifier(registryIdentifier: ResourceLocation): DataRegistry? = this.registries.find { it.id == registryIdentifier }
+    override fun fromIdentifier(registryIdentifier: Identifier): DataRegistry? = this.registries.find { it.id == registryIdentifier }
 
     override fun sync(player: ServerPlayer) {
         if (!player.connection.connection.isMemoryConnection) {

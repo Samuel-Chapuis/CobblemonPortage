@@ -103,7 +103,7 @@ object CobblemonBakingOverrides {
         cobblemonModel("surprise_mulch", "none")
     )
 
-    fun registerOverride(modelLocation: ResourceLocation, modelIdentifier: ModelResourceLocation): BakingOverride {
+    fun registerOverride(modelLocation: Identifier, modelIdentifier: ModelIdentifier): BakingOverride {
         val result = BakingOverride(modelLocation, modelIdentifier)
         models.add(result)
         return result

@@ -19,13 +19,13 @@ import net.minecraft.util.Identifier
 import org.joml.Vector4f
 
 data class PokemonItemComponent(
-    val species: ResourceLocation,
+    val species: Identifier,
     val aspects: Set<String>,
     val tint: Vector4f? = null
 ) {
     companion object {
         val CODEC: Codec<PokemonItemComponent> = RecordCodecBuilder.create { builder -> builder.group(
-            ResourceLocation.CODEC.fieldOf("species").forGetter(PokemonItemComponent::species),
+            Identifier.CODEC.fieldOf("species").forGetter(PokemonItemComponent::species),
             Codec.STRING.listOf().fieldOf("aspects").forGetter { it.aspects.toList() },
             Codec.FLOAT.listOf().optionalFieldOf("tint").forGetter { Optional.ofNullable(it.tint?.let { listOf(it.x, it.y, it.z, it.w) }) }
         ).apply(builder) { species, aspects, tint -> PokemonItemComponent(species, aspects.toSet(), tint.getOrNull()?.let { Vector4f(it[0], it[1], it[2], it[3]) } ) } }

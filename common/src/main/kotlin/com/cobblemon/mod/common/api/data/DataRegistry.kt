@@ -23,9 +23,9 @@ import net.minecraft.server.packs.resources.ResourceManager
 interface DataRegistry {
 
     /**
-     * The unique [ResourceLocation] of this registry.
+     * The unique [Identifier] of this registry.
      */
-    val id: ResourceLocation
+    val id: Identifier
 
     /**
      * The expected [PackType].

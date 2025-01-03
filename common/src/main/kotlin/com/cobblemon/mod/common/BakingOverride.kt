@@ -20,8 +20,8 @@ import net.minecraft.util.Identifier
  * @param modelIdentifier The identifier that the BakedModel will be registered to
  */
 data class BakingOverride(
-    val modelLocation: ResourceLocation,
-    val modelIdentifier: ModelResourceLocation
+    val modelLocation: Identifier,
+    val modelIdentifier: ModelIdentifier
 ) {
     fun getModel(): BakedModel {
         return MinecraftClient.getInstance().modelManager.getModel(modelIdentifier)

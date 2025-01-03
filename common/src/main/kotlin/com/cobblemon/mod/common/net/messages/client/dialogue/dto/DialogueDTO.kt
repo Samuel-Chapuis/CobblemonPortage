@@ -27,7 +27,7 @@ import net.minecraft.util.Identifier
 
 class DialogueDTO : Encodable, Decodable {
     lateinit var dialogueId: UUID
-    lateinit var background: ResourceLocation
+    lateinit var background: Identifier
     var speakers: Map<String, DialogueSpeakerDTO>? = null
     lateinit var currentPageDTO: DialoguePageDTO
     lateinit var dialogueInput: DialogueInputDTO

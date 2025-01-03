@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier
 /**
  * Checks if a resource exists at this location
  */
-fun ResourceLocation.exists(): Boolean {
+fun Identifier.exists(): Boolean {
     return Minecraft.getInstance().resourceManager.getResource(this).isPresent
 }
 

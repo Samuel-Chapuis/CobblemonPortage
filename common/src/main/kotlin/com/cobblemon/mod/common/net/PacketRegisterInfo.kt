@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier
  * @since June 7th, 2024
  */
 class PacketRegisterInfo<T : NetworkPacket<T>>(
-    val id: ResourceLocation,
+    val id: Identifier,
     val decoder: (RegistryFriendlyByteBuf) -> T,
     val handler: PacketHandler<T>,
     codec: StreamCodec<RegistryFriendlyByteBuf, T>? = null

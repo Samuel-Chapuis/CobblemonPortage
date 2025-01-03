@@ -34,7 +34,7 @@ data class ClientGeneralPlayerData(
     var starterSelected: Boolean = false,
     var starterUUID: UUID? = null,
     var showChallengeLabel: Boolean = true,
-    val battleTheme: ResourceLocation? = null
+    val battleTheme: Identifier? = null
 ) : ClientInstancedPlayerData {
 
     override fun encode(buf: RegistryFriendlyByteBuf) {

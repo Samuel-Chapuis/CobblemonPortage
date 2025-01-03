@@ -54,9 +54,9 @@ import java.util.function.Function
  */
 abstract class VaryingModelRepository<T : PosableModel> {
     abstract val poserClass: Class<T>
-    val posers = mutableMapOf<ResourceLocation, (Bone) -> T>()
-    val variations = mutableMapOf<ResourceLocation, VaryingRenderableResolver<T>>()
-    val texturedModels = mutableMapOf<ResourceLocation, (isForLivingEntityRenderer: Boolean) -> Bone>()
+    val posers = mutableMapOf<Identifier, (Bone) -> T>()
+    val variations = mutableMapOf<Identifier, VaryingRenderableResolver<T>>()
+    val texturedModels = mutableMapOf<Identifier, (isForLivingEntityRenderer: Boolean) -> Bone>()
 
     abstract val title: String
     abstract val type: String
@@ -64,7 +64,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
     abstract val poserDirectories: List<String>
     abstract val modelDirectories: List<String>
     abstract val animationDirectories: List<String>
-    abstract val fallback: ResourceLocation
+    abstract val fallback: Identifier
     /** When using the living entity renderer in Java Edition, a root joint 24F (1.5) Y offset is necessary. I've no fucking idea why. */
     abstract val isForLivingEntityRenderer: Boolean
 
@@ -159,7 +159,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
                 .forEach { (identifier, resource) ->
                     resource.open().use { stream ->
                         val json = String(stream.readAllBytes(), StandardCharsets.UTF_8)
-                        val resolvedIdentifier = ResourceLocation.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
+                        val resolvedIdentifier = Identifier.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
                         posers[resolvedIdentifier] = loadJsonPoser(resolvedIdentifier.path, json)
                     }
                 }
@@ -172,7 +172,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
 
     fun registerVariations(resourceManager: ResourceManager) {
         var variationCount = 0
-        val nameToModelVariationSets = mutableMapOf<ResourceLocation, MutableList<ModelVariationSet>>()
+        val nameToModelVariationSets = mutableMapOf<Identifier, MutableList<ModelVariationSet>>()
         for (directory in variationDirectories) {
             resourceManager
                 .listResources(directory) { path -> path.endsWith(".json") }
@@ -222,7 +222,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
         registerVariations(resourceManager)
     }
 
-    fun getPoser(name: ResourceLocation, state: PosableState): T {
+    fun getPoser(name: Identifier, state: PosableState): T {
         try {
             val poser = this.variations[name]?.getPoser(state)
             if (poser != null) {
@@ -234,7 +234,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
         return this.variations[fallback]!!.getPoser(state)
     }
 
-    fun getTexture(name: ResourceLocation, state: PosableState): ResourceLocation {
+    fun getTexture(name: Identifier, state: PosableState): Identifier {
         try {
             val texture = this.variations[name]?.getTexture(state)
             if (texture != null) {
@@ -244,7 +244,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
         return this.variations[fallback]!!.getTexture(state)
     }
 
-    fun getTextureNoSubstitute(name: ResourceLocation, state: PosableState): ResourceLocation? {
+    fun getTextureNoSubstitute(name: Identifier, state: PosableState): Identifier? {
         try {
             val texture = this.variations[name]?.getTexture(state)
             if (texture != null && texture.exists()) {
@@ -254,7 +254,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
         return null
     }
 
-    fun getLayers(name: ResourceLocation, state: PosableState): Iterable<ModelLayer> {
+    fun getLayers(name: Identifier, state: PosableState): Iterable<ModelLayer> {
         try {
             val layers = this.variations[name]?.getLayers(state)
             if (layers != null) {
@@ -264,7 +264,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
         return this.variations[fallback]!!.getLayers(state)
     }
 
-    fun getSprite(name: ResourceLocation, state: PosableState, type: SpriteType): ResourceLocation? {
+    fun getSprite(name: Identifier, state: PosableState, type: SpriteType): Identifier? {
         try {
             return this.variations[name]?.getSprite(state, type)
         } catch (_: IllegalStateException) {}
@@ -272,7 +272,7 @@ abstract class VaryingModelRepository<T : PosableModel> {
     }
 
     companion object {
-        fun registerFactory(id: String, factory: BiFunction<ResourceLocation, Resource, Pair<ResourceLocation, Function<Boolean, Bone>>>) {
+        fun registerFactory(id: String, factory: BiFunction<Identifier, Resource, Pair<Identifier, Function<Boolean, Bone>>>) {
             MODEL_FACTORIES[id] = factory
         }
 
@@ -280,11 +280,11 @@ abstract class VaryingModelRepository<T : PosableModel> {
             Needs to be java function to work with non kotlin sidemods.
             - Waterpicker
          */
-        private var MODEL_FACTORIES = mutableMapOf<String, BiFunction<ResourceLocation, Resource, Pair<ResourceLocation, Function<Boolean, Bone>>>>().also {
-            it[".geo.json"] = BiFunction<ResourceLocation, Resource, Pair<ResourceLocation, Function<Boolean, Bone>>> { identifier: ResourceLocation, resource: Resource ->
+        private var MODEL_FACTORIES = mutableMapOf<String, BiFunction<Identifier, Resource, Pair<Identifier, Function<Boolean, Bone>>>>().also {
+            it[".geo.json"] = BiFunction<Identifier, Resource, Pair<Identifier, Function<Boolean, Bone>>> { identifier: Identifier, resource: Resource ->
                 resource.open().use { stream ->
                     val json = String(stream.readAllBytes(), StandardCharsets.UTF_8)
-                    val resolvedIdentifier = ResourceLocation.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
+                    val resolvedIdentifier = Identifier.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
 
                     val texturedModel = TexturedModel.from(json)
                     val boneCreator: Function<Boolean, Bone> = Function { texturedModel.create(it).bakeRoot() }

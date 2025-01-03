@@ -59,7 +59,7 @@ fun drawProfilePokemon(
 )
 
 fun drawProfilePokemon(
-    species: ResourceLocation,
+    species: Identifier,
     matrixStack: PoseStack,
     rotation: Quaternionf,
     poseType: PoseType = PoseType.PROFILE,

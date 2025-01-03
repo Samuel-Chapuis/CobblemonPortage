@@ -28,7 +28,7 @@ object ShoulderEffectAdapter: JsonDeserializer<ShoulderEffect> {
         }
         val effect = ShoulderEffectRegistry.get(typeId) ?: run {
             try {
-                val effectId = ResourceLocation.parse(typeId.replace("-", "_").replace("slow_fall", "slow_falling"))
+                val effectId = Identifier.parse(typeId.replace("-", "_").replace("slow_fall", "slow_falling"))
                 val registry = BuiltInRegistries.MOB_EFFECT
                 val effect = registry.get(effectId)
                 if (effect != null) {

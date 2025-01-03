@@ -89,7 +89,7 @@ abstract class SpawningContext {
     val fluidRegistry: Registry<Fluid> by lazy { world.registryAccess().registryOrThrow(Registries.FLUID) }
     val enchantmentRegistry: Registry<Enchantment> by lazy { world.registryAccess().registryOrThrow(Registries.ENCHANTMENT) }
 
-    val biomeName: ResourceLocation
+    val biomeName: Identifier
         get() = this.biomeRegistry.getKey(biome)!!
 
     private var struct = QueryStruct(hashMapOf())
@@ -99,7 +99,7 @@ abstract class SpawningContext {
         val missingTags = mutableSetOf<TagKey<Structure>>()
         val foundTags = mutableSetOf<TagKey<Structure>>()
 
-        val foundIdentifiers = mutableSetOf<ResourceLocation>()
+        val foundIdentifiers = mutableSetOf<Identifier>()
 
         var loadedStructures = false
         val structures = mutableSetOf<Holder<Structure>>()
@@ -139,7 +139,7 @@ abstract class SpawningContext {
             return false
         }
 
-        fun check(structureAccess: StructureManager, pos: BlockPos, id: ResourceLocation): Boolean {
+        fun check(structureAccess: StructureManager, pos: BlockPos, id: Identifier): Boolean {
             if (!loadedStructures) {
                 loadStructures(structureAccess, pos)
             }

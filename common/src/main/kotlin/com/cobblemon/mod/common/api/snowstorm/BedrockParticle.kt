@@ -27,7 +27,7 @@ import net.minecraft.util.Identifier
  * @since January 4th, 2023
  */
 class BedrockParticle(
-    var texture: ResourceLocation = ResourceLocation.parse("minecraft:textures/particles/bubble.png"),
+    var texture: Identifier = Identifier.parse("minecraft:textures/particles/bubble.png"),
     var material: ParticleMaterial = ParticleMaterial.ALPHA,
     var uvMode: ParticleUVMode = StaticParticleUVMode(),
     var sizeX: Expression = NumberExpression(0.15),
@@ -93,7 +93,7 @@ class BedrockParticle(
 
         val CODEC: Codec<BedrockParticle> = RecordCodecBuilder.create { instance ->
             instance.group(
-                ResourceLocation.CODEC.fieldOf("texture").forGetter { it.texture },
+                Identifier.CODEC.fieldOf("texture").forGetter { it.texture },
                 PrimitiveCodec.STRING.fieldOf("material").forGetter { it.material.name },
                 ParticleUVMode.codec.fieldOf("uvMode").forGetter { it.uvMode },
                 EXPRESSION_SET_CODEC.fieldOf("expressionSet").forGetter {

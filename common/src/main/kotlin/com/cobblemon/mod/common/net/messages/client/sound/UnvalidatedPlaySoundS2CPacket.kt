@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier
  * @since December 29th, 2022
  */
 internal class UnvalidatedPlaySoundS2CPacket(
-    val sound: ResourceLocation,
+    val sound: Identifier,
     val category: SoundSource,
     val x: Double,
     val y: Double,

@@ -50,7 +50,7 @@ object SpawnLoader {
         .registerTypeAdapter(
             TypeToken.getParameterized(
                 Either::class.java,
-                ResourceLocation::class.java,
+                Identifier::class.java,
                 TypeToken.getParameterized(
                     TagKey::class.java,
                     Structure::class.java
@@ -59,7 +59,7 @@ object SpawnLoader {
             EitherIdentifierOrTagAdapter(Registries.STRUCTURE)
         )
         .registerTypeAdapter(RegisteredSpawningContext::class.java, RegisteredSpawningContextAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .registerTypeAdapter(SpawnDetail::class.java, SpawnDetailAdapter)
         .registerTypeAdapter(DropEntry::class.java, DropEntryAdapter)
         .registerTypeAdapter(SpawningCondition::class.java, SpawningConditionAdapter)

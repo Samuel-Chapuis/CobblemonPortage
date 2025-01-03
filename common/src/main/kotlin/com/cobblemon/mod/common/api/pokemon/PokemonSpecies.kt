@@ -86,7 +86,7 @@ object PokemonSpecies : JsonDataRegistry<Species> {
         .registerTypeAdapter(TypeToken.getParameterized(Set::class.java, Evolution::class.java).type, LazySetAdapter(Evolution::class))
         .registerTypeAdapter(IntRange::class.java, IntRangeAdapter)
         .registerTypeAdapter(PokemonProperties::class.java, pokemonPropertiesShortAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .registerTypeAdapter(TimeRange::class.java, IntRangesAdapter(TimeRange.timeRanges) { TimeRange(*it) })
         .registerTypeAdapter(ItemDropMethod::class.java, ItemDropMethod.adapter)
         .registerTypeAdapter(SleepDepth::class.java, SleepDepth.adapter)
@@ -109,7 +109,7 @@ object PokemonSpecies : JsonDataRegistry<Species> {
 
     override val observable = SimpleObservable<PokemonSpecies>()
 
-    private val speciesByIdentifier = hashMapOf<ResourceLocation, Species>()
+    private val speciesByIdentifier = hashMapOf<Identifier, Species>()
     private val speciesByDex = HashBasedTable.create<String, Int, Species>()
 
     val species: Collection<Species>
@@ -132,7 +132,7 @@ object PokemonSpecies : JsonDataRegistry<Species> {
     }
 
     /**
-     * Finds a species by the pathname of their [ResourceLocation].
+     * Finds a species by the pathname of their [Identifier].
      * This method exists for the convenience of finding Cobble default Pokémon.
      * This uses [getByIdentifier] using the [Cobblemon.MODID] as the namespace and the [name] as the path.
      *
@@ -150,12 +150,12 @@ object PokemonSpecies : JsonDataRegistry<Species> {
     fun getByPokedexNumber(ndex: Int, namespace: String = Cobblemon.MODID) = this.speciesByDex.get(namespace, ndex)
 
     /**
-     * Finds a [Species] by its unique [ResourceLocation].
+     * Finds a [Species] by its unique [Identifier].
      *
      * @param identifier The unique [Species.resourceIdentifier] of the [Species].
      * @return The [Species] if existing.
      */
-    fun getByIdentifier(identifier: ResourceLocation) = this.speciesByIdentifier[identifier]
+    fun getByIdentifier(identifier: Identifier) = this.speciesByIdentifier[identifier]
 
     /**
      * Counts the currently loaded species.
@@ -187,7 +187,7 @@ object PokemonSpecies : JsonDataRegistry<Species> {
      */
     fun random(): Species = this.implemented.random()
 
-    override fun reload(data: Map<ResourceLocation, Species>) {
+    override fun reload(data: Map<Identifier, Species>) {
         this.speciesByIdentifier.clear()
         this.implemented.clear()
         this.speciesByDex.clear()

@@ -13,16 +13,16 @@ import net.minecraft.core.Registry
 import net.minecraft.util.Identifier
 
 /**
- * A condition for some registry type which asserts that the entry must have the given [ResourceLocation].
+ * A condition for some registry type which asserts that the entry must have the given [Identifier].
  *
  * @author Hiroku
  * @since July 16th, 2022
  */
-open class RegistryLikeIdentifierCondition<T : Any>(val identifier: ResourceLocation) : RegistryLikeCondition<T> {
+open class RegistryLikeIdentifierCondition<T : Any>(val identifier: Identifier) : RegistryLikeCondition<T> {
     companion object {
         fun <T: Any> resolver(
-            constructor: (ResourceLocation) -> RegistryLikeIdentifierCondition<T>
-        ): (JsonElement) -> RegistryLikeIdentifierCondition<T>? = { constructor(ResourceLocation.parse(it.asString)) }
+            constructor: (Identifier) -> RegistryLikeIdentifierCondition<T>
+        ): (JsonElement) -> RegistryLikeIdentifierCondition<T>? = { constructor(Identifier.parse(it.asString)) }
     }
     override fun fits(t: T, registry: Registry<T>) = registry.getKey(t) == identifier
 }

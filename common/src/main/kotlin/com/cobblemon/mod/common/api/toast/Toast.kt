@@ -40,7 +40,7 @@ class Toast(
     title: Component,
     description: Component,
     icon: ItemStack,
-    frameTexture: ResourceLocation = VANILLA_FRAME,
+    frameTexture: Identifier = VANILLA_FRAME,
     progress: Float = -1F,
     progressColor: Int = VANILLA_PROGRESS_COLOR
 ) {
@@ -63,7 +63,7 @@ class Toast(
     /**
      * The texture of the frame.
      */
-    var frameTexture: ResourceLocation by Delegates.observable(frameTexture) { _, old, new -> if (old != new) this.launchUpdate() }
+    var frameTexture: Identifier by Delegates.observable(frameTexture) { _, old, new -> if (old != new) this.launchUpdate() }
 
     /**
      * The value of the progress bar, this accepts a value between 0.0F and 1.0F, any other value will not render a progress bar.
@@ -199,7 +199,7 @@ class Toast(
         /**
          * The default Minecraft toast frame texture.
          */
-        val VANILLA_FRAME = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/toasts.png")
+        val VANILLA_FRAME = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/toasts.png")
 
         const val VANILLA_PROGRESS_COLOR = -1675545
 

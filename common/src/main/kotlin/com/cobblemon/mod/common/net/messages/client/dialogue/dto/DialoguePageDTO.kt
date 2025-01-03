@@ -28,7 +28,7 @@ import net.minecraft.util.Identifier
 
 class DialoguePageDTO : Encodable, Decodable {
     var speaker: String? = null
-    lateinit var background: ResourceLocation
+    lateinit var background: Identifier
     var lines: MutableList<MutableComponent> = mutableListOf()
     // Later can include some face data probably
     var clientActions = mutableListOf<String>()

@@ -55,7 +55,7 @@ import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 
-class BerryBlock(private val berryIdentifier: ResourceLocation, settings: Properties) : BaseEntityBlock(settings), BonemealableBlock, Mulchable, ShearableBlock {
+class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) : BaseEntityBlock(settings), BonemealableBlock, Mulchable, ShearableBlock {
 
     private val lookupDirections = setOf(Direction.NORTH, Direction.EAST, Direction.WEST, Direction.SOUTH)
 
@@ -250,7 +250,7 @@ class BerryBlock(private val berryIdentifier: ResourceLocation, settings: Proper
 
     companion object {
         val CODEC: MapCodec<BerryBlock> = RecordCodecBuilder.mapCodec { it.group(
-            ResourceLocation.CODEC.fieldOf("berry").forGetter(BerryBlock::berryIdentifier),
+            Identifier.CODEC.fieldOf("berry").forGetter(BerryBlock::berryIdentifier),
             propertiesCodec()
         ).apply(it, ::BerryBlock) }
 

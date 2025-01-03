@@ -323,7 +323,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
 
     private fun isPlayerViewing(player: ServerPlayer): Boolean {
         val pastureLink = PastureLinkManager.getLinkByPlayer(player)
-        return pastureLink != null && pastureLink.pos == blockPos && pastureLink.dimension == ResourceLocation.tryParse(
+        return pastureLink != null && pastureLink.pos == blockPos && pastureLink.dimension == Identifier.tryParse(
             player.level().dimensionTypeRegistration().registeredName // todo (techdaan): confirm this is good
         )
     }

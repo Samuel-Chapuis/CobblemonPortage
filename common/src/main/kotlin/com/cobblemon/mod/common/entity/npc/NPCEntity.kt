@@ -375,7 +375,7 @@ class NPCEntity(world: Level) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
     }
 
     override fun load(nbt: CompoundTag) {
-        npc = NPCClasses.getByIdentifier(ResourceLocation.parse(nbt.getString(DataKeys.NPC_CLASS))) ?: NPCClasses.classes.first()
+        npc = NPCClasses.getByIdentifier(Identifier.parse(nbt.getString(DataKeys.NPC_CLASS))) ?: NPCClasses.classes.first()
         entityData.set(LEVEL, nbt.getInt(DataKeys.NPC_LEVEL).takeIf { it != 0 } ?: 1)
         super.load(nbt)
         data = MoLangFunctions.readMoValueFromNBT(nbt.getCompound(DataKeys.NPC_DATA)) as VariableStruct

@@ -48,7 +48,7 @@ object GlobalSpeciesFeatures : JsonDataRegistry<SpeciesFeatureProvider<*>> {
         .setPrettyPrinting()
         .registerTypeAdapter(SpeciesFeatureProvider::class.java, SpeciesFeatureProviderAdapter)
         .registerTypeAdapter(Vec3::class.java, Vec3dAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .create()
     override val typeToken: TypeToken<SpeciesFeatureProvider<*>> = TypeToken.get(SpeciesFeatureProvider::class.java)
     override val resourcePath: String = "global_species_features"
@@ -57,7 +57,7 @@ object GlobalSpeciesFeatures : JsonDataRegistry<SpeciesFeatureProvider<*>> {
         player.sendPacket(GlobalSpeciesFeatureSyncPacket(codeFeatures + resourceFeatures))
     }
 
-    override fun reload(data: Map<ResourceLocation, SpeciesFeatureProvider<*>>) {
+    override fun reload(data: Map<Identifier, SpeciesFeatureProvider<*>>) {
         resourceFeatures.keys.toList().forEach(this::unregister)
         data.forEach(this::registerFromAssets)
     }
@@ -91,7 +91,7 @@ object GlobalSpeciesFeatures : JsonDataRegistry<SpeciesFeatureProvider<*>> {
             override fun invoke(json: JsonObject) = providerLambda().apply { loadFromJSON(json) }
         })
     }
-    private fun registerFromAssets(identifier: ResourceLocation, provider: SpeciesFeatureProvider<*>) = register(identifier.path, provider, isCoded = false)
+    private fun registerFromAssets(identifier: Identifier, provider: SpeciesFeatureProvider<*>) = register(identifier.path, provider, isCoded = false)
 
     fun unregister(name: String) {
         var coded = true

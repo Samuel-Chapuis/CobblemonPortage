@@ -26,11 +26,11 @@ import net.minecraft.util.Identifier
 class ItemTagCondition(tag: TagKey<Item>) : RegistryLikeTagCondition<Item>(tag)
 
 /**
- * A [RegistryLikeCondition] that expects an [ResourceLocation] to match.
+ * A [RegistryLikeCondition] that expects an [Identifier] to match.
  *
  * @property identifier The identifier for the item being referenced.
  *
  * @author Licious
  * @since October 28th, 2022
  */
-class ItemIdentifierCondition(identifier: ResourceLocation) : RegistryLikeIdentifierCondition<Item>(identifier)
+class ItemIdentifierCondition(identifier: Identifier) : RegistryLikeIdentifierCondition<Item>(identifier)

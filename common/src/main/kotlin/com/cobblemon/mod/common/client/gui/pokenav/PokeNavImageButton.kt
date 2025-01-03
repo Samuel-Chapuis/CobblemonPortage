@@ -27,7 +27,7 @@ open class PokeNavImageButton(
     pX: Int, pY: Int,
     pWidth: Int, pHeight: Int,
     pXTexStart: Int, pYTexStart: Int, pYDiffText: Int,
-    private val resourceLocation: ResourceLocation, pTextureWidth: Int, pTextureHeight: Int,
+    private val resourceLocation: Identifier, pTextureWidth: Int, pTextureHeight: Int,
     onPress: OnPress,
     private val text: MutableComponent,
     private val canClick: () -> Boolean = { true }

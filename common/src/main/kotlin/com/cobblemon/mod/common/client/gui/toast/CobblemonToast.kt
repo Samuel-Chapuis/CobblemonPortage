@@ -27,7 +27,7 @@ class CobblemonToast(
     var icon: ItemStack,
     var title: Component,
     var description: Component,
-    var frameTexture: ResourceLocation,
+    var frameTexture: Identifier,
     var progress: Float,
     var progressColor: Int
 ) : Toast {

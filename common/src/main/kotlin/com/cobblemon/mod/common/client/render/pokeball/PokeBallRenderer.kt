@@ -27,7 +27,7 @@ import net.minecraft.util.Identifier
 class PokeBallRenderer(context: EntityRendererProvider.Context) : EntityRenderer<EmptyPokeBallEntity>(context) {
     val model = PosablePokeBallModel()
 
-    override fun getTextureLocation(pEntity: EmptyPokeBallEntity): ResourceLocation {
+    override fun getTextureLocation(pEntity: EmptyPokeBallEntity): Identifier {
         return PokeBallModelRepository.getTexture(pEntity.pokeBall.name, pEntity.delegate as EmptyPokeBallClientDelegate)
     }
 

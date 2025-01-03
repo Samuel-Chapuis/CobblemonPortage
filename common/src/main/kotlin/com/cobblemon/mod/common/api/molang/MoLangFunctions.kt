@@ -1105,11 +1105,11 @@ object MoLangFunctions {
             stringify = { it.unwrapKey().get().location().toString() }
         )
         value.functions.put("is_in") {
-            val tag = TagKey.create(key, ResourceLocation.parse(it.getString(0).replace("#", "")))
+            val tag = TagKey.create(key, Identifier.parse(it.getString(0).replace("#", "")))
             return@put DoubleValue(if (value.obj.`is`(tag)) 1.0 else 0.0)
         }
         value.functions.put("is_of") {
-            val identifier = ResourceLocation.parse(it.getString(0))
+            val identifier = Identifier.parse(it.getString(0))
             return@put DoubleValue(if (value.obj.`is`(identifier)) 1.0 else 0.0)
         }
         return value
@@ -1219,4 +1219,4 @@ object MoLangFunctions {
     }
 }
 
-fun Either<ResourceLocation, ExpressionLike>.runScript(runtime: MoLangRuntime) = map({ CobblemonScripts.run(it, runtime) }, { it.resolve(runtime) })
+fun Either<Identifier, ExpressionLike>.runScript(runtime: MoLangRuntime) = map({ CobblemonScripts.run(it, runtime) }, { it.resolve(runtime) })

@@ -162,12 +162,12 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
         private set
 
     @Transient
-    lateinit var resourceIdentifier: ResourceLocation
+    lateinit var resourceIdentifier: Identifier
 
     val types: Iterable<ElementalType>
         get() = secondaryType?.let { listOf(primaryType, it) } ?: listOf(primaryType)
 
-    var battleTheme: ResourceLocation = CobblemonSounds.PVW_BATTLE.location
+    var battleTheme: Identifier = CobblemonSounds.PVW_BATTLE.location
 
     var lightingData: LightingData? = null
         private set

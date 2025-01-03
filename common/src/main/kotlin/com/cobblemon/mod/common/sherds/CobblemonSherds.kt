@@ -35,7 +35,7 @@ object CobblemonSherds {
 
     val SUSPICIOUS_SHERD = addSherd(cobblemonResource("suspicious_pottery_pattern"), CobblemonItems.SUSPICIOUS_SHERD)
 
-    fun addSherd(patternId: ResourceLocation, item: Item): CobblemonSherd {
+    fun addSherd(patternId: Identifier, item: Item): CobblemonSherd {
         val sherd = CobblemonSherd(patternId, item)
         val resourceKey = ResourceKey.create(Registries.DECORATED_POT_PATTERN, patternId)
         sherdToPattern[item] = resourceKey

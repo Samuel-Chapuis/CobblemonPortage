@@ -18,20 +18,20 @@ import java.util.Optional
 
 class AspectCriterion(
     playerCtx: Optional<ContextAwarePredicate>,
-    val pokemon: ResourceLocation,
+    val pokemon: Identifier,
     val aspects: List<String>
-): SimpleCriterionCondition<MutableMap<ResourceLocation, MutableSet<String>>>(playerCtx) {
+): SimpleCriterionCondition<MutableMap<Identifier, MutableSet<String>>>(playerCtx) {
 
     companion object {
         val CODEC: Codec<AspectCriterion> = RecordCodecBuilder.create { it.group(
             //All three of these codecs used to use Codecs.createStrictOptionalFieldCodec, that no longer exists
             ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(AspectCriterion::playerCtx),
-            ResourceLocation.CODEC.optionalFieldOf("pokemon", cobblemonResource("pikachu")).forGetter(AspectCriterion::pokemon),
+            Identifier.CODEC.optionalFieldOf("pokemon", cobblemonResource("pikachu")).forGetter(AspectCriterion::pokemon),
             Codec.STRING.listOf().optionalFieldOf("aspects", listOf()).forGetter(AspectCriterion::aspects)
         ) .apply(it, ::AspectCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: MutableMap<ResourceLocation, MutableSet<String>>): Boolean {
+    override fun matches(player: ServerPlayer, context: MutableMap<Identifier, MutableSet<String>>): Boolean {
         val caughtAspects = context.getOrDefault(pokemon, mutableSetOf())
         return this.aspects.all { it in caughtAspects }
     }

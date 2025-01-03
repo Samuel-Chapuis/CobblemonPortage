@@ -656,7 +656,7 @@ class FossilMultiblockStructure (
             result.tankConnectorDirection = Direction.byName(nbt.getString(DataKeys.CONNECTOR_DIRECTION))
 
             if (nbt.contains(DataKeys.INSERTED_FOSSIL)) {
-                val id = ResourceLocation.parse(nbt.getString(DataKeys.INSERTED_FOSSIL))
+                val id = Identifier.parse(nbt.getString(DataKeys.INSERTED_FOSSIL))
                 val fossil = Fossils.getByIdentifier(id)
 
                 if (fossil != null) {

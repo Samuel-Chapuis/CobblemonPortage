@@ -16,7 +16,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.Identifier
 import java.util.Optional
 
-class EvolvePokemonContext(val species : ResourceLocation, val evolution : ResourceLocation, times: Int) : CountableContext(times)
+class EvolvePokemonContext(val species : Identifier, val evolution : Identifier, times: Int) : CountableContext(times)
 
 class EvolvePokemonCriterion(
     playerCtx: Optional<ContextAwarePredicate>,

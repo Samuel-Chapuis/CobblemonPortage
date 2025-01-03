@@ -23,7 +23,7 @@ class SpawnPokeballPacket(
     vanillaSpawnPacket: ClientboundAddEntityPacket
 ) : SpawnExtraDataEntityPacket<SpawnPokeballPacket, EmptyPokeBallEntity>(vanillaSpawnPacket) {
 
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     override fun encodeEntityData(buffer: RegistryFriendlyByteBuf) {
         buffer.writeIdentifier(this.pokeBall.name)

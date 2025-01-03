@@ -100,7 +100,7 @@ fun getDepletableRedGreen(
 
 fun drawScaledText(
     context: GuiGraphics,
-    font: ResourceLocation? = null,
+    font: Identifier? = null,
     text: MutableComponent,
     x: Number,
     y: Number,
@@ -174,7 +174,7 @@ fun drawScaledText(
 
 fun drawScaledTextJustifiedRight(
     context: GuiGraphics,
-    font: ResourceLocation? = null,
+    font: Identifier? = null,
     text: MutableComponent,
     x: Number,
     y: Number,
@@ -236,7 +236,7 @@ fun drawScaledTextJustifiedRight(
 fun renderBeaconBeam(
     matrixStack: PoseStack,
     buffer: MultiBufferSource,
-    textureLocation: ResourceLocation = CobblemonResources.PHASE_BEAM,
+    textureLocation: Identifier = CobblemonResources.PHASE_BEAM,
     partialTicks: Float,
     totalLevelTime: Long,
     yOffset: Float = 0F,

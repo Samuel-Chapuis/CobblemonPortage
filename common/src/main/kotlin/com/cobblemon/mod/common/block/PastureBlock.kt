@@ -274,7 +274,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
                 )
             )
 
-            PastureLinkManager.createLink(player.uuid, PastureLink(linkId, pcId, ResourceLocation.tryParse(world.dimensionTypeRegistration().registeredName)!!, getBasePosition(state, pos), perms))
+            PastureLinkManager.createLink(player.uuid, PastureLink(linkId, pcId, Identifier.tryParse(world.dimensionTypeRegistration().registeredName)!!, getBasePosition(state, pos), perms))
 
             world.playSoundServer(
                 position = pos.toVec3d(),

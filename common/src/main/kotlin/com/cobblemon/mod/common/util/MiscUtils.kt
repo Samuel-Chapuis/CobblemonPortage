@@ -29,12 +29,12 @@ import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.phys.shapes.VoxelShape
 import org.joml.Vector4f
 
-fun cobblemonResource(path: String) = ResourceLocation.fromNamespaceAndPath(Cobblemon.MODID, path)
+fun cobblemonResource(path: String) = Identifier.fromNamespaceAndPath(Cobblemon.MODID, path)
 fun cobblemonModel(path: String, variant: String) =
-    ModelResourceLocation(cobblemonResource(path), variant)
+    ModelIdentifier(cobblemonResource(path), variant)
 
 fun String.asTranslated() = Component.translatable(this)
-fun String.asResource() = ResourceLocation.parse(this)
+fun String.asResource() = Identifier.parse(this)
 fun String.asTranslated(vararg data: Any) = Component.translatable(this, *data)
 fun String.isInt() = this.toIntOrNull() != null
 fun String.isDouble() = this.toDoubleOrNull() != null

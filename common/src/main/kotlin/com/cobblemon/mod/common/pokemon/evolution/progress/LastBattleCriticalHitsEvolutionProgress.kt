@@ -25,7 +25,7 @@ class LastBattleCriticalHitsEvolutionProgress : EvolutionProgress<LastBattleCrit
 
     private var progress = Progress(0)
 
-    override fun id(): ResourceLocation = ID
+    override fun id(): Identifier = ID
 
     override fun currentProgress(): Progress = this.progress
 

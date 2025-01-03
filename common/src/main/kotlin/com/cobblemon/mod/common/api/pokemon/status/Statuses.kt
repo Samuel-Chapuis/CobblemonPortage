@@ -56,7 +56,7 @@ object Statuses {
         return status
     }
 
-    fun getStatus(name: ResourceLocation) = allStatuses.find { status -> status.name == name }
+    fun getStatus(name: Identifier) = allStatuses.find { status -> status.name == name }
     fun getStatus(showdownName: String) = allStatuses.find { it.showdownName == showdownName }
     fun getPersistentStatuses() = persistentStatuses
 }

@@ -31,7 +31,7 @@ class DefeatEvolutionProgress : EvolutionProgress<DefeatEvolutionProgress.Progre
 
     private var progress = Progress(PokemonProperties(), 0)
 
-    override fun id(): ResourceLocation = ID
+    override fun id(): Identifier = ID
 
     override fun currentProgress(): Progress = this.progress
 

@@ -146,7 +146,7 @@ fun MutableComponent.aqua() = also { it.style = it.style.withColor(ChatFormattin
 fun MutableComponent.lightPurple() = also { it.style = it.style.withColor(ChatFormatting.LIGHT_PURPLE) }
 fun MutableComponent.yellow() = also { it.style = it.style.withColor(ChatFormatting.YELLOW) }
 fun MutableComponent.white() = also { it.style = it.style.withColor(ChatFormatting.WHITE) }
-fun MutableComponent.font(identifier: ResourceLocation) = also { it.style = it.style.withFont(identifier) }
+fun MutableComponent.font(identifier: Identifier) = also { it.style = it.style.withFont(identifier) }
 
 fun String.text() = text(this)
 fun String.stripCodes(): String = this.replace("[&§][A-Ea-e0-9K-Ok-oRr]".toRegex(), "")

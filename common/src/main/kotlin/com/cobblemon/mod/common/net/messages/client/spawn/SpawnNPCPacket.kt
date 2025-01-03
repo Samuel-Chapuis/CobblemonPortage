@@ -30,7 +30,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.entity.Entity
 
 class SpawnNPCPacket(
-    private val npcClass: ResourceLocation,
+    private val npcClass: Identifier,
     private val aspects: Set<String>,
     private val level: Int,
     private val battleIds: Set<UUID>,
@@ -40,7 +40,7 @@ class SpawnNPCPacket(
     vanillaSpawnPacket: ClientboundAddEntityPacket
 ) : SpawnExtraDataEntityPacket<SpawnNPCPacket, NPCEntity>(vanillaSpawnPacket) {
 
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     constructor(entity: NPCEntity, vanillaSpawnPacket: ClientboundAddEntityPacket) : this(
         entity.npc.id,

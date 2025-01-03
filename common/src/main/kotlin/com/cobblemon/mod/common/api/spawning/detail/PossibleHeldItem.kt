@@ -26,7 +26,7 @@ class PossibleHeldItem(
     fun createStack(ctx: SpawningContext): ItemStack? {
         val itemRegistry = ctx.world.registryAccess().registryOrThrow(Registries.ITEM)
         val item = if (item.startsWith("#")) {
-            val tag = TagKey.create(Registries.ITEM, ResourceLocation.parse(item.substring(1)))
+            val tag = TagKey.create(Registries.ITEM, Identifier.parse(item.substring(1)))
 
             val opt = itemRegistry.getTag(tag)
             if (opt.isPresent && opt.get().size() > 0) {
@@ -37,7 +37,7 @@ class PossibleHeldItem(
                 null
             }
         } else {
-            itemRegistry.get(ResourceLocation.parse(item))?.takeIf { it != Items.AIR }
+            itemRegistry.get(Identifier.parse(item))?.takeIf { it != Items.AIR }
         } ?: return run {
             LOGGER.error("Unable to find matching spawn held item for ID: $item")
             null

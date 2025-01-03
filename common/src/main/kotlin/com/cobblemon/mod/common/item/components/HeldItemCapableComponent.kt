@@ -14,9 +14,9 @@ import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.util.Identifier
 
-data class HeldItemCapableComponent(val item: ResourceLocation) {
+data class HeldItemCapableComponent(val item: Identifier) {
     companion object {
-        val CODEC: Codec<HeldItemCapableComponent> = ResourceLocation.CODEC.xmap(
+        val CODEC: Codec<HeldItemCapableComponent> = Identifier.CODEC.xmap(
             { HeldItemCapableComponent(it) },
             { it.item }
         )

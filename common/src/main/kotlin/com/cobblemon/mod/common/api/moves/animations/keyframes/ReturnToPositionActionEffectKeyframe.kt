@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture
 class ReturnToPositionActionEffectKeyframe : ActionEffectKeyframe {
     val speed = 1F
     val timeout = "4".asExpressionLike()
-    val timeoutActionEffect: ResourceLocation? = null
+    val timeoutActionEffect: Identifier? = null
 
     override fun play(context: ActionEffectContext): CompletableFuture<Unit> {
         val user = context.findOneProvider<UsersProvider>()?.entities?.firstOrNull() as? PokemonEntity ?: return skip()

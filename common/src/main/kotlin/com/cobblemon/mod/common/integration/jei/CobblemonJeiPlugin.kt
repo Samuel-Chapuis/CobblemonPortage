@@ -26,7 +26,7 @@ class CobblemonJeiPlugin : IModPlugin {
             BerryMutationProvider()
         )
     }
-    override fun getPluginUid(): ResourceLocation {
+    override fun getPluginUid(): Identifier {
         return ID
     }
 

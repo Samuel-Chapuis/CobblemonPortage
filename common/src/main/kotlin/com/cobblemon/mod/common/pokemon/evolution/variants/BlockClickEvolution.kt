@@ -42,7 +42,7 @@ open class BlockClickEvolution(
         id = "id",
         result = PokemonProperties(),
         shedder = null,
-        requiredContext = BlockIdentifierCondition(ResourceLocation.fromNamespaceAndPath("minecraft", "dirt")),
+        requiredContext = BlockIdentifierCondition(Identifier.fromNamespaceAndPath("minecraft", "dirt")),
         optional = true,
         consumeHeldItem = true,
         requirements = mutableSetOf(),

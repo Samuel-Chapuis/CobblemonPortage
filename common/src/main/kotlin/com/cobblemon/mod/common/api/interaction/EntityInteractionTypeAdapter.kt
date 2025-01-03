@@ -24,6 +24,6 @@ import net.minecraft.util.Identifier
  */
 interface EntityInteractionTypeAdapter<T : EntityInteraction<*>> : JsonDeserializer<T>, JsonSerializer<T> {
 
-    fun registerInteraction(identifier: ResourceLocation, type: KClass<out T>)
+    fun registerInteraction(identifier: Identifier, type: KClass<out T>)
 
 }

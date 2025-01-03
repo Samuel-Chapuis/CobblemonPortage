@@ -25,7 +25,7 @@ object NPCInteractConfigurationAdapter : JsonDeserializer<NPCInteractConfigurati
         when (json) {
             is JsonPrimitive -> {
                 val config = json.asString
-                val resourceLocation = ResourceLocation.tryParse(config)
+                val resourceLocation = Identifier.tryParse(config)
                 return if (resourceLocation != null) {
                     ScriptNPCInteractionConfiguration().apply { script = resourceLocation }
                 } else {

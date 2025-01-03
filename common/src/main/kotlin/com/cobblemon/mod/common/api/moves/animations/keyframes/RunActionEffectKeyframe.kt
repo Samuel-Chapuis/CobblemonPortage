@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier
  * @since January 21st, 2024
  */
 class RunActionEffectKeyframe : ConditionalActionEffectKeyframe() {
-    val actionEffect: ResourceLocation? = null
+    val actionEffect: Identifier? = null
     val waitForActionEffect = true
     override fun playWhenTrue(context: ActionEffectContext): CompletableFuture<Unit> {
         return if (actionEffect != null) {

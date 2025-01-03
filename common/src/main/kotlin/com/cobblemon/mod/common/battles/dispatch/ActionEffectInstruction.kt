@@ -27,7 +27,7 @@ interface ActionEffectInstruction : InterpreterInstruction {
     var holds: MutableSet<String>
     //To expose via molang, so action effects can do different stuff in different instructions
     //e.g. "x is confused" vs "x hit itself in confusion"
-    val id: ResourceLocation
+    val id: Identifier
     override fun invoke(battle: PokemonBattle) {
         preActionEffect(battle)
         val runtime = MoLangRuntime()

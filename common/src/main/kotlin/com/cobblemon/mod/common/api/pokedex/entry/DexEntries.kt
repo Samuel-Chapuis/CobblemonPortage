@@ -30,15 +30,15 @@ object DexEntries : JsonDataRegistry<PokedexEntry> {
         .disableHtmlEscaping()
         .setPrettyPrinting()
         .registerTypeAdapter(ExpressionLike::class.java, ExpressionLikeAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .create()
 
     override val typeToken: TypeToken<PokedexEntry> = TypeToken.get(PokedexEntry::class.java)
     override val resourcePath = "dex_entries"
 
-    val entries = mutableMapOf<ResourceLocation, PokedexEntry>()
+    val entries = mutableMapOf<Identifier, PokedexEntry>()
 
-    override fun reload(data: Map<ResourceLocation, PokedexEntry>) {
+    override fun reload(data: Map<Identifier, PokedexEntry>) {
         data.forEach { _, entry ->
             entries[entry.id] = entry
             if (entry.forms.isEmpty()) {

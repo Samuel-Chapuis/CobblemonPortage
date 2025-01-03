@@ -33,7 +33,7 @@ sealed interface DialogueFaceProvider {
 
 class ArtificialDialogueFaceProvider(
     val modelType: String = "",
-    val identifier: ResourceLocation = cobblemonResource("bulbasaur"),
+    val identifier: Identifier = cobblemonResource("bulbasaur"),
     val aspects: Set<String> = setOf(),
     override val isLeftSide: Boolean = true
 ) : DialogueFaceProvider

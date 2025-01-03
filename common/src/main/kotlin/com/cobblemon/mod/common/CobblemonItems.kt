@@ -318,7 +318,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
     @JvmField val AUSPICIOUS_ARMOR = heldItem("auspicious_armor")
     @JvmField val MALICIOUS_ARMOR = heldItem("malicious_armor")
 
-    private val berries = mutableMapOf<ResourceLocation, BerryItem>()
+    private val berries = mutableMapOf<Identifier, BerryItem>()
     // Plants
     @JvmField val ORAN_BERRY = berryItem("oran", HealingBerryItem(CobblemonBlocks.ORAN_BERRY) { CobblemonMechanics.berries.oranRestoreAmount })
     @JvmField val CHERI_BERRY = berryItem("cheri", StatusCuringBerryItem(CobblemonBlocks.CHERI_BERRY, Statuses.PARALYSIS))
@@ -1244,7 +1244,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
 
     private fun candyItem(name: String, calculator: CandyItem.Calculator): CandyItem  = this.create(name, CandyItem(calculator))
 
-    private fun pokerodItem(pokeRodId: ResourceLocation): PokerodItem {
+    private fun pokerodItem(pokeRodId: Identifier): PokerodItem {
         val settings = Item.Properties().stacksTo(1).durability(256)
         val item = create(pokeRodId.path, PokerodItem(pokeRodId, settings))
         pokeRods.add(item)

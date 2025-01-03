@@ -29,7 +29,7 @@ class DialogueOptionWidget(
     y: Int,
     width: Int,
     height: Int,
-    val texture: ResourceLocation
+    val texture: Identifier
 ) : ParentWidget(x, y, width, height, text) {
     override fun renderWidget(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         blitk(

@@ -21,7 +21,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.util.Identifier
 
 class ClientPokedexManager(
-    override val speciesRecords: MutableMap<ResourceLocation, SpeciesDexRecord>,
+    override val speciesRecords: MutableMap<Identifier, SpeciesDexRecord>,
 ) : AbstractPokedexManager(), ClientInstancedPlayerData {
     override fun encode(buf: RegistryFriendlyByteBuf) {
         buf.writeMap(

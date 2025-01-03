@@ -28,7 +28,7 @@ object Dexes : JsonDataRegistry<PokedexDef> {
     override val observable = SimpleObservable<Dexes>()
 
     override val gson: Gson = GsonBuilder()
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .registerTypeAdapter(PokedexDef::class.java, CodecBackedAdapter(PokedexDef.CODEC))
         .disableHtmlEscaping()
         .setPrettyPrinting()
@@ -38,9 +38,9 @@ object Dexes : JsonDataRegistry<PokedexDef> {
     override val resourcePath = "dexes"
 
     //Maps a dex id to its PokedexDef
-    val dexEntryMap = linkedMapOf<ResourceLocation, PokedexDef>()
+    val dexEntryMap = linkedMapOf<Identifier, PokedexDef>()
 
-    override fun reload(data: Map<ResourceLocation, PokedexDef>) {
+    override fun reload(data: Map<Identifier, PokedexDef>) {
         dexEntryMap.clear()
         data.entries.sortedBy { it.value.sortOrder }.forEach { (id, def) -> dexEntryMap[id] = def }
         observable.emit(this)

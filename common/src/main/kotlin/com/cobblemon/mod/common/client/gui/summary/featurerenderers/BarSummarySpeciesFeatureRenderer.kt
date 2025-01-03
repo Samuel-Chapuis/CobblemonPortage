@@ -34,8 +34,8 @@ class BarSummarySpeciesFeatureRenderer(
     val min: Int,
     val max: Int,
     val colour: Vec3,
-    val underlay: ResourceLocation,
-    val overlay: ResourceLocation,
+    val underlay: Identifier,
+    val overlay: Identifier,
     val pokemon: Pokemon
 ) : SummarySpeciesFeatureRenderer<IntSpeciesFeature> {
     override fun render(GuiGraphics: GuiGraphics, x: Float, y: Float, pokemon: Pokemon, feature: IntSpeciesFeature) {

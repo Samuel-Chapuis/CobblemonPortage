@@ -28,7 +28,7 @@ import net.minecraft.util.Identifier
  * @since January 2nd, 2023
  */
 class BedrockParticleOptions(
-    var id: ResourceLocation = ResourceLocation.parse("effect"),
+    var id: Identifier = Identifier.parse("effect"),
     var emitter: BedrockParticleEmitter = BedrockParticleEmitter(),
     var particle: BedrockParticle = BedrockParticle(),
     var curves: MutableList<MoLangCurve> = mutableListOf(),
@@ -38,7 +38,7 @@ class BedrockParticleOptions(
     companion object {
         val CODEC: Codec<BedrockParticleOptions> = RecordCodecBuilder.create { instance ->
             instance.group(
-                ResourceLocation.CODEC.fieldOf("id").forGetter { it.id },
+                Identifier.CODEC.fieldOf("id").forGetter { it.id },
                 BedrockParticleEmitter.CODEC.fieldOf("emitter").forGetter { it.emitter },
                 BedrockParticle.CODEC.fieldOf("particle").forGetter { it.particle },
                 MoLangCurve.codec.listOf().fieldOf("curves").forGetter { it.curves },

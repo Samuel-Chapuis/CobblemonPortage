@@ -17,7 +17,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.Identifier
 import java.util.Optional
 
-class PokemonInteractContext(val type: ResourceLocation, val item: ResourceLocation)
+class PokemonInteractContext(val type: Identifier, val item: Identifier)
 
 class PokemonInteractCriterion(
     playerCtx: Optional<ContextAwarePredicate>,

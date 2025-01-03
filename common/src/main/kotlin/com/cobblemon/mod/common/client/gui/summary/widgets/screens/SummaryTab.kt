@@ -23,7 +23,7 @@ import net.minecraft.util.Identifier
 class SummaryTab(
     pX: Int, pY: Int,
     val label: MutableComponent? = null,
-    val icon: ResourceLocation? = null,
+    val icon: Identifier? = null,
     onPress: OnPress
 ): Button(pX, pY, 50, 13, label, onPress, DEFAULT_NARRATION), CobblemonRenderable {
     private var isActive = false

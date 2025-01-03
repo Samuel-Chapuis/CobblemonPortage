@@ -29,7 +29,7 @@ class OpenPasturePacket(val pcId: UUID, val pastureId: UUID, val limit: Int, val
         val pokemonId: UUID,
         val playerId: UUID,
         val displayName: Component,
-        val species: ResourceLocation,
+        val species: Identifier,
         val aspects: Set<String>,
         val heldItem: ItemStack,
         val level: Int,

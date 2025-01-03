@@ -28,7 +28,7 @@ import net.minecraft.server.level.ServerPlayer
  */
 class ScriptNPCInteractionConfiguration : NPCInteractConfiguration {
     override val type: String = "script"
-    var script: ResourceLocation = ResourceLocation.fromNamespaceAndPath("cobblemon", "scripts/test.molang")
+    var script: Identifier = Identifier.fromNamespaceAndPath("cobblemon", "scripts/test.molang")
 
     override fun encode(buffer: RegistryFriendlyByteBuf) {
         buffer.writeIdentifier(script)
@@ -53,7 +53,7 @@ class ScriptNPCInteractionConfiguration : NPCInteractConfiguration {
     }
 
     override fun readFromNBT(compoundTag: CompoundTag) {
-        script = ResourceLocation.parse(compoundTag.getString(DataKeys.NPC_INTERACT_SCRIPT))
+        script = Identifier.parse(compoundTag.getString(DataKeys.NPC_INTERACT_SCRIPT))
     }
 
     override fun isDifferentTo(other: NPCInteractConfiguration) = other !is ScriptNPCInteractionConfiguration || other.script != script

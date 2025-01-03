@@ -75,7 +75,7 @@ import net.minecraft.sounds.SoundEvent
  */
 class PokedexGUI private constructor(
     val type: PokedexType,
-    val initSpecies: ResourceLocation?,
+    val initSpecies: Identifier?,
     val blockPos: BlockPos?
 ): Screen(Component.translatable("cobblemon.ui.pokedex.title")), CobblemonRenderable {
     companion object {
@@ -102,7 +102,7 @@ class PokedexGUI private constructor(
         /**
          * Attempts to open this screen for a client.
          */
-        fun open(pokedex: ClientPokedexManager, type: PokedexType, species: ResourceLocation? = null, blockPos: BlockPos? = null) {
+        fun open(pokedex: ClientPokedexManager, type: PokedexType, species: Identifier? = null, blockPos: BlockPos? = null) {
             val mc = Minecraft.getInstance()
             val screen = PokedexGUI(type, species, blockPos)
             mc.setScreen(screen)
@@ -123,7 +123,7 @@ class PokedexGUI private constructor(
     private var selectedEntry: PokedexEntry? = null
     private var selectedForm: PokedexForm? = null
 
-    private var availableRegions = emptyList<ResourceLocation>()
+    private var availableRegions = emptyList<Identifier>()
     private var selectedRegionIndex = 0
 
     private lateinit var regionSelectWidgetUp: ScaledButton

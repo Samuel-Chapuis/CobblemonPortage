@@ -33,14 +33,14 @@ object CobblemonScripts : DataRegistry {
     override val type = PackType.SERVER_DATA
     override val observable = SimpleObservable<CobblemonScripts>()
 
-    val clientScripts = mutableMapOf<ResourceLocation, ExpressionLike>()
-    val scripts = mutableMapOf<ResourceLocation, ExpressionLike>()
+    val clientScripts = mutableMapOf<Identifier, ExpressionLike>()
+    val scripts = mutableMapOf<Identifier, ExpressionLike>()
 
     override fun reload(manager: ResourceManager) {
         manager.listResources("molang") { path -> path.endsWith(MOLANG_EXTENSION) }.forEach { (identifier, resource) ->
             resource.open().use { stream ->
                 stream.bufferedReader().use { reader ->
-                    val resolvedIdentifier = ResourceLocation.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
+                    val resolvedIdentifier = Identifier.fromNamespaceAndPath(identifier.namespace, File(identifier.path).nameWithoutExtension)
                     try {
                         val expression = reader.readText().asExpressionLike()
                         if (identifier.path.startsWith("molang/client/")) {
@@ -64,7 +64,7 @@ object CobblemonScripts : DataRegistry {
         player.sendPacket(ScriptRegistrySyncPacket(clientScripts.entries))
     }
 
-    fun run(identifier: ResourceLocation, runtime: MoLangRuntime): MoValue? {
+    fun run(identifier: Identifier, runtime: MoLangRuntime): MoValue? {
         return scripts[identifier]?.resolve(runtime, runtime.contextOrEmpty)
     }
 }

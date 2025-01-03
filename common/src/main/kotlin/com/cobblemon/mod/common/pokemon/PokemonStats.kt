@@ -119,6 +119,6 @@ abstract class PokemonStats : Iterable<Map.Entry<Stat, Int>> {
     fun getOrDefault(stat: Stat) = this[stat] ?: this.defaultValue
 
     // util to prevent unnecessary long identifiers, usually vanilla defaults to Minecraft but in our context defaulting to cobblemon makes more sense
-    private fun cleanStatIdentifier(identifier: ResourceLocation): String = identifier.toString().substringAfter("${Cobblemon.MODID}:")
+    private fun cleanStatIdentifier(identifier: Identifier): String = identifier.toString().substringAfter("${Cobblemon.MODID}:")
 
 }

@@ -23,9 +23,9 @@ import net.minecraft.util.Identifier
 interface TeraType : ShowdownIdentifiable {
 
     /**
-     * The [ResourceLocation] associated to this type.
+     * The [Identifier] associated to this type.
      */
-    val id: ResourceLocation
+    val id: Identifier
 
     /**
      * If this tera type can be selected naturally.

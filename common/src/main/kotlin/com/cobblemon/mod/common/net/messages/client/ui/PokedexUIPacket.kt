@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
  *
  * Handled by [PokedexUIPacketHandler].
  */
-class PokedexUIPacket(val type: PokedexType, val initSpecies: ResourceLocation? = null, val blockPos: BlockPos? = null): NetworkPacket<PokedexUIPacket> {
+class PokedexUIPacket(val type: PokedexType, val initSpecies: Identifier? = null, val blockPos: BlockPos? = null): NetworkPacket<PokedexUIPacket> {
 
     override val id = ID
 

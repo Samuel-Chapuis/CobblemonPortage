@@ -60,16 +60,16 @@ object CobblemonSpawnRules : JsonDataRegistry<SpawnRule> {
         SpawningContextSelector.register<ConditionalSpawningContextSelector>("conditional")
     }
 
-    val rules = mutableMapOf<ResourceLocation, SpawnRule>()
+    val rules = mutableMapOf<Identifier, SpawnRule>()
 
-    override fun reload(data: Map<ResourceLocation, SpawnRule>) {
+    override fun reload(data: Map<Identifier, SpawnRule>) {
         rules.clear()
         rules.putAll(data)
         data.forEach { (id, value) -> value.id = id }
         observable.emit(this)
     }
 
-    override val id: ResourceLocation = cobblemonResource("spawn_rules")
+    override val id: Identifier = cobblemonResource("spawn_rules")
     override val type: PackType = PackType.SERVER_DATA
     override val observable = SimpleObservable<CobblemonSpawnRules>()
 

@@ -26,8 +26,8 @@ data class GeneralPlayerData(
     var starterLocked: Boolean,
     var starterSelected: Boolean,
     var starterUUID: UUID?,
-    var keyItems: MutableSet<ResourceLocation>,
-    var battleTheme: ResourceLocation?,
+    var keyItems: MutableSet<Identifier>,
+    var battleTheme: Identifier?,
     val extraData: MutableMap<String, PlayerDataExtension>,
 ) : InstancedPlayerData {
     var advancementData: PlayerAdvancementData = PlayerAdvancementData()

@@ -166,8 +166,8 @@ class BattleConfigureGUI(
     class BattleTypeTile(
         val option: PlayerInteractOptionsPacket.Options,
         val battleFormat: BattleFormat,
-        val tileTexture: ResourceLocation?,
-        val overlayTexture: ResourceLocation?,
+        val tileTexture: Identifier?,
+        val overlayTexture: Identifier?,
         val title: MutableComponent,
         val subTitle: MutableComponent,
         val buttonText: MutableComponent,

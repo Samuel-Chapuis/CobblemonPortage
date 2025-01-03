@@ -95,9 +95,9 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
     private var chosenBucket = Cobblemon.bestSpawner.config.buckets[0] // default to first rarity bucket
     private val pokemonSpawnChance = 85 // chance a Pokemon will be fished up % out of 100
     private val castingSound = CobblemonSounds.FISHING_ROD_CAST
-    var pokeRodId: ResourceLocation? = null
+    var pokeRodId: Identifier? = null
     var lineColor: String = "000000" // default line color is black
-    var usedRod: ResourceLocation? = null
+    var usedRod: Identifier? = null
     var bobberBait: ItemStack = ItemStack.EMPTY
     var isCast = false
     var lastSpinAngle: Float = 0f
@@ -106,7 +106,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
     var lastBobberPos: Vec3? = null
     var rodStack: ItemStack? = null
 
-    constructor(thrower: Player, pokeRodId: ResourceLocation, bait: ItemStack, world: Level, luckOfTheSea: Int, lure: Int, rodItemStack: ItemStack) : this(CobblemonEntities.POKE_BOBBER, world) {
+    constructor(thrower: Player, pokeRodId: Identifier, bait: ItemStack, world: Level, luckOfTheSea: Int, lure: Int, rodItemStack: ItemStack) : this(CobblemonEntities.POKE_BOBBER, world) {
         owner = thrower
         rodStack = rodItemStack
         luckOfTheSeaLevel = luckOfTheSea
@@ -312,7 +312,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                     val l = h * 0.04f
 
                     // todo the fish trail that leads to the bobber
-                    particleCatchHandler(offsetX, offsetY, j, this, ResourceLocation.fromNamespaceAndPath("cobblemon", "fishing_wake"))
+                    particleCatchHandler(offsetX, offsetY, j, this, Identifier.fromNamespaceAndPath("cobblemon", "fishing_wake"))
                     // create tiny splash particles for fishing trail
                     //particleEntityHandler(this, Identifier.of("cobblemon","bob_splash"))
                 }
@@ -322,8 +322,8 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 level().playSound(null, this.blockPosition(), CobblemonSounds.FISHING_NOTIFICATION, SoundSource.BLOCKS, 1.0F, 1.0F)
 
                 // create tiny splash particle when there is a bite
-                particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon", "bob_splash"))
-                particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon", "fishing_bobber_big_ripple"))
+                particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon", "bob_splash"))
+                particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon", "fishing_bobber_big_ripple"))
 
                 val m = this.y + 0.5
                 serverWorld.sendParticles(ParticleTypes.BUBBLE, this.x, m, this.z, (1.0f + this.bbWidth * 20.0f).toInt(), this.bbWidth.toDouble(), 0.0, this.bbWidth.toDouble(), 0.2)
@@ -373,10 +373,10 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 if (blockState.`is`(Blocks.WATER)) {
                     val currentTime = serverWorld.gameTime
                     if (currentTime - lastRippleSpawnTime >= rippleCooldown) {
-                        particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon", "fishing_bobber_ripple"))
+                        particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon", "fishing_bobber_ripple"))
                         lastRippleSpawnTime = currentTime
                     }
-                    particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon", "fishing_surface_ripple"))
+                    particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon", "fishing_surface_ripple"))
                 }
             }
             if (this.waitCountdown <= 0) {
@@ -389,7 +389,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 level().playSound(null, this.blockPosition(), CobblemonSounds.FISHING_BOBBER_LAND, SoundSource.NEUTRAL, 1.0F, 1.0F)
 
                 // create tiny splash particle
-                particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon", "bob_splash"))
+                particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon", "bob_splash"))
 
                 isCast = true
             }
@@ -716,7 +716,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 spawnedPokemon = (entity as PokemonEntity)
 
                 // create accessory splash particle when you fish something up
-                particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon","accessory_fish_splash"))
+                particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon","accessory_fish_splash"))
 
                 if (player is ServerPlayer) {
                     var baitId = FishingBaits.getFromBaitItemStack(this.bobberBait)?.item
@@ -732,14 +732,14 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                     level().playSound(null, this.blockPosition(), CobblemonSounds.FISHING_SPLASH_SMALL, SoundSource.BLOCKS, 1.0F, 1.0F)
 
                     // create small splash particle for small pokemon
-                    particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon","small_fish_splash"))
+                    particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon","small_fish_splash"))
 
                     // Example of applying the new velocity
                     lobPokemonTowardsTarget(player, entity)
                 }
                 else { // it is a big lad and you cannot reel it in
                     // create big splash particle for large pokemon
-                    particleEntityHandler(this, ResourceLocation.fromNamespaceAndPath("cobblemon","big_fish_splash"))
+                    particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon","big_fish_splash"))
 
                     level().playSound(null, this.blockPosition(), CobblemonSounds.FISHING_SPLASH_BIG, SoundSource.BLOCKS, 1.0F, 1.0F)
 
@@ -802,12 +802,12 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
     }
 
     // Particle Stuff
-    private fun particleEntityHandler(entity: Entity, particle: ResourceLocation) {
+    private fun particleEntityHandler(entity: Entity, particle: Identifier) {
         val spawnSnowstormParticlePacket = SpawnSnowstormParticlePacket(particle, entity.position())
         spawnSnowstormParticlePacket.sendToPlayersAround(entity.x, entity.y, entity.z, 64.0, entity.level().dimension())
     }
 
-    private fun particleCatchHandler(x: Double, y: Double, z: Double, entity: Entity, particle: ResourceLocation) {
+    private fun particleCatchHandler(x: Double, y: Double, z: Double, entity: Entity, particle: Identifier) {
         var particlePosition = Vec3(x, y, z)
         val spawnSnowstormParticlePacket = SpawnSnowstormParticlePacket(particle, particlePosition)
         spawnSnowstormParticlePacket.sendToPlayersAround(entity.x, entity.y, entity.z, 64.0, entity.level().dimension())

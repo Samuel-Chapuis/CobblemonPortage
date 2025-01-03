@@ -20,24 +20,24 @@ import net.minecraft.util.Identifier
  * @since November 13th, 2023
  */
 class SpeciesFeatureAssignmentSyncPacket(
-    data: Map<ResourceLocation, MutableSet<String>>
-) : DataRegistrySyncPacket<Map.Entry<ResourceLocation, MutableSet<String>>, SpeciesFeatureAssignmentSyncPacket>(data.entries) {
+    data: Map<Identifier, MutableSet<String>>
+) : DataRegistrySyncPacket<Map.Entry<Identifier, MutableSet<String>>, SpeciesFeatureAssignmentSyncPacket>(data.entries) {
     override val id = ID
-    override fun decodeEntry(buffer: RegistryFriendlyByteBuf): Map.Entry<ResourceLocation, MutableSet<String>> {
+    override fun decodeEntry(buffer: RegistryFriendlyByteBuf): Map.Entry<Identifier, MutableSet<String>> {
         val key = buffer.readIdentifier()
         val assignments = buffer.readList { buffer.readString() }.toMutableSet()
-        return object : Map.Entry<ResourceLocation, MutableSet<String>> {
+        return object : Map.Entry<Identifier, MutableSet<String>> {
             override val key = key
             override val value = assignments
         }
     }
 
-    override fun encodeEntry(buffer: RegistryFriendlyByteBuf, entry: Map.Entry<ResourceLocation, MutableSet<String>>) {
+    override fun encodeEntry(buffer: RegistryFriendlyByteBuf, entry: Map.Entry<Identifier, MutableSet<String>>) {
         buffer.writeIdentifier(entry.key)
         buffer.writeCollection(entry.value) { _, value -> buffer.writeString(value) }
     }
 
-    override fun synchronizeDecoded(entries: Collection<Map.Entry<ResourceLocation, MutableSet<String>>>) {
+    override fun synchronizeDecoded(entries: Collection<Map.Entry<Identifier, MutableSet<String>>>) {
         SpeciesFeatureAssignments.loadOnClient(entries.associate { it.toPair() })
     }
 

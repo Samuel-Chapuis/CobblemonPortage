@@ -78,7 +78,7 @@ class PokedexScannerRenderer {
         val UNKNOWN_MARK = cobblemonResource("textures/gui/pokedex/scan/scan_unknown.png")
         val POINTER = cobblemonResource("textures/gui/pokedex/scan/pointer.png")
 
-        fun infoFrameResource(isLeft: Boolean, tier: Int): ResourceLocation = cobblemonResource("textures/gui/pokedex/scan/scan_info_frame_${if (isLeft) "left" else "right"}_$tier.png")
+        fun infoFrameResource(isLeft: Boolean, tier: Int): Identifier = cobblemonResource("textures/gui/pokedex/scan/scan_info_frame_${if (isLeft) "left" else "right"}_$tier.png")
     }
 
     fun renderInfoFrames(graphics: GuiGraphics, poseStack: PoseStack, usageContext: PokedexUsageContext, centerX: Int, centerY: Int, opacity: Float) {

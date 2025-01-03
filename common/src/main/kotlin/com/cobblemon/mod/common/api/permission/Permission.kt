@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier
 
 interface Permission {
 
-    val identifier: ResourceLocation
+    val identifier: Identifier
 
     val literal: String
 

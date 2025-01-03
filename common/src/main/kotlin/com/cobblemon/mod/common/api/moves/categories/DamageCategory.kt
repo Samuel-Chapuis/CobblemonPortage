@@ -23,6 +23,6 @@ class DamageCategory(
     val name: String,
     val displayName: Component,
     val textureXMultiplier: Int,
-    val resourceLocation: ResourceLocation = cobblemonResource("textures/gui/categories.png")
+    val resourceLocation: Identifier = cobblemonResource("textures/gui/categories.png")
 ) {
 }

@@ -27,7 +27,7 @@ class PlayPosableAnimationPacket(
     val animation: Set<String>,
     val expressions: List<String>
 ) : NetworkPacket<PlayPosableAnimationPacket> {
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     companion object {
         val ID = cobblemonResource("play_posable_animation")

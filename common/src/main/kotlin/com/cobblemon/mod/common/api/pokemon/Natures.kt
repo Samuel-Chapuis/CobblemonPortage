@@ -162,7 +162,7 @@ object Natures {
      * Gets a nature by registry name
      * @return a nature type or null
      */
-    fun getNature(name: ResourceLocation): Nature? {
+    fun getNature(name: Identifier): Nature? {
         return allNatures.find { nature -> nature.name == name }
     }
 
@@ -173,7 +173,7 @@ object Natures {
     fun getNature(identifier: String): Nature? {
         val nature = getNature(cobblemonResource(identifier))
         if(nature != null) return nature
-        return getNature(ResourceLocation.parse(identifier))
+        return getNature(Identifier.parse(identifier))
     }
 
     /**

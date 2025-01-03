@@ -25,7 +25,7 @@ import net.minecraft.util.Identifier
  * Handled by [ServerConfirmedRegisterHandler]
  */
 class ServerConfirmedRegisterPacket(
-    val species: ResourceLocation,
+    val species: Identifier,
     val newInformation: PokedexLearnedInformation
 ): NetworkPacket<ServerConfirmedRegisterPacket> {
     override val id = ID

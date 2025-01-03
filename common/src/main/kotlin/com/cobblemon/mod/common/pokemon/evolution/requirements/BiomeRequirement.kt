@@ -19,7 +19,7 @@ import net.minecraft.world.level.biome.Biome
 /**
  * A [EntityQueryRequirement] for when a [Pokemon] is expected to be in a certain [Biome].
  *
- * @property biomeCondition The [ResourceLocation] of the [Biome] the queried entity is expected to be in.
+ * @property biomeCondition The [Identifier] of the [Biome] the queried entity is expected to be in.
  * @author Licious
  * @since March 21st, 2022
  */

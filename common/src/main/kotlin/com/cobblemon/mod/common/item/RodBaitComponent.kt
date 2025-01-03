@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack
 class RodBaitComponent(val bait: FishingBait, val stack: ItemStack = ItemStack.EMPTY) {
     companion object {
         val CODEC: Codec<RodBaitComponent> = RecordCodecBuilder.create { builder -> builder.group(
-            ResourceLocation.CODEC.fieldOf("bait").forGetter { it.bait.item },
+            Identifier.CODEC.fieldOf("bait").forGetter { it.bait.item },
             ItemStack.CODEC.optionalFieldOf("stack", ItemStack.EMPTY).forGetter { it.stack }
         ).apply(builder) { bait, stack -> RodBaitComponent(FishingBaits.getFromIdentifier(bait) ?: FishingBait.BLANK_BAIT, stack) } }
 

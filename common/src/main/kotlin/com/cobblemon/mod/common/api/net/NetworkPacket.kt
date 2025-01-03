@@ -28,7 +28,7 @@ interface NetworkPacket<T: NetworkPacket<T>> : CustomPacketPayload, Encodable {
     /**
      *
      */
-    val id: ResourceLocation
+    val id: Identifier
 
     /**
      * TODO

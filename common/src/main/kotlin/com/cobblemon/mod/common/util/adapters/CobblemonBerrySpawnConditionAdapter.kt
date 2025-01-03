@@ -34,7 +34,7 @@ object CobblemonBerrySpawnConditionAdapter : SpawnConditionAdapter{
         this.register(PreferredBiomeCondition::class, PreferredBiomeCondition.ID)
         this.register(AllBiomeCondition::class, AllBiomeCondition.ID)
     }
-    override fun register(type: KClass<out BerrySpawnCondition>, identifier: ResourceLocation) {
+    override fun register(type: KClass<out BerrySpawnCondition>, identifier: Identifier) {
         val existing = this.types.put(identifier.toString(), type)
         if (existing != null) {
             Cobblemon.LOGGER.debug("Replaced {} under ID {} with {} in the {}", existing::class.qualifiedName, identifier.toString(), type.qualifiedName, this::class.qualifiedName)

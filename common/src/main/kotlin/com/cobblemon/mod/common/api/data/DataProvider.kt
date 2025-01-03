@@ -28,13 +28,13 @@ interface DataProvider {
     fun <T : DataRegistry> register(registry: T): T
 
     /**
-     * Attempts to find a [DataRegistry] with the given [ResourceLocation].
+     * Attempts to find a [DataRegistry] with the given [Identifier].
      * See [DataRegistry.id].
      *
-     * @param registryIdentifier The [ResourceLocation]
+     * @param registryIdentifier The [Identifier]
      * @return The [DataRegistry] if existing.
      */
-    fun fromIdentifier(registryIdentifier: ResourceLocation): DataRegistry?
+    fun fromIdentifier(registryIdentifier: Identifier): DataRegistry?
 
     /**
      * Syncs all of [DataRegistry]s in this provider to a player when requested from the server.

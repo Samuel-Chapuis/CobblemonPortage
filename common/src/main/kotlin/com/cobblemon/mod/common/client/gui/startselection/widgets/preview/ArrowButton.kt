@@ -21,7 +21,7 @@ class ArrowButton(
     pX: Int, pY: Int,
     pWidth: Int, pHeight: Int,
     right: Boolean,
-    private val texture: ResourceLocation = if (right) RIGHT_ARROW_BUTTON_RESOURCE else LEFT_ARROW_BUTTON_RESOURCE,
+    private val texture: Identifier = if (right) RIGHT_ARROW_BUTTON_RESOURCE else LEFT_ARROW_BUTTON_RESOURCE,
     onPress: OnPress
 ) : Button(pX, pY, pWidth, pHeight, Component.empty(), onPress, DEFAULT_NARRATION), CobblemonRenderable {
 

@@ -24,7 +24,7 @@ import net.minecraft.util.Identifier
  */
 class PokedexCosmeticVariation {
     var displayName: String = "cobblemon.pokedex.variation.cosmetic"
-    var icon: ResourceLocation = cobblemonResource("textures/gui/pokedex/variation/cosmetic.png")
+    var icon: Identifier = cobblemonResource("textures/gui/pokedex/variation/cosmetic.png")
     var aspects: Set<String> = emptySet()
 
     fun clone() = PokedexCosmeticVariation().also {
@@ -35,13 +35,13 @@ class PokedexCosmeticVariation {
 
     fun encode(buffer: RegistryFriendlyByteBuf) {
         buffer.writeString(displayName)
-        buffer.writeResourceLocation(icon)
+        buffer.writeIdentifier(icon)
         buffer.writeCollection(aspects) { _, aspect -> buffer.writeString(aspect) }
     }
 
     fun decode(buffer: RegistryFriendlyByteBuf) {
         displayName = buffer.readString()
-        icon = buffer.readResourceLocation()
+        icon = buffer.readIdentifier()
         aspects = buffer.readList { buffer.readString() }.toSet()
     }
 }

@@ -405,7 +405,7 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<
             stage, height, xzOffset, nextStage))
     }
 
-    private val berries = mutableMapOf<ResourceLocation, BerryBlock>()
+    private val berries = mutableMapOf<Identifier, BerryBlock>()
 
     val AGUAV_BERRY = this.berryBlock("aguav")
     val APICOT_BERRY = this.berryBlock("apicot")

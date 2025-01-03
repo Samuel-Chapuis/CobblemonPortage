@@ -17,7 +17,7 @@ import java.lang.reflect.Type
 
 /**
  * An adapter for [TagKey]s.
- * [TagKey]s are just [ResourceLocation]s attached to a certain registry.
+ * [TagKey]s are just [Identifier]s attached to a certain registry.
  *
  * @param T The type of the [Registry] this [TagKey] belongs to.
  * @property key The [ResourceKey] used to create new [TagKey]s.
@@ -28,7 +28,7 @@ import java.lang.reflect.Type
 class TagKeyAdapter<T>(private val key: ResourceKey<Registry<T>>) : JsonDeserializer<TagKey<T>>, JsonSerializer<TagKey<T>> {
 
     override fun deserialize(element: JsonElement, type: Type, ctx: JsonDeserializationContext): TagKey<T> {
-        val identifier = ResourceLocation.parse(element.asString)
+        val identifier = Identifier.parse(element.asString)
         return TagKey.create(this.key, identifier)
     }
 

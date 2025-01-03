@@ -45,14 +45,14 @@ object CobblemonFlows : DataRegistry {
 
     val runtime by lazy { MoLangRuntime().setup() } // Lazy for if someone adds to generalFunctions in MoLangFunctions
 
-    val clientFlows = hashMapOf<ResourceLocation, MutableList<ExpressionLike>>()
-    val flows = hashMapOf<ResourceLocation, MutableList<ExpressionLike>>()
+    val clientFlows = hashMapOf<Identifier, MutableList<ExpressionLike>>()
+    val flows = hashMapOf<Identifier, MutableList<ExpressionLike>>()
 
     override fun reload(manager: ResourceManager) {
         clientFlows.clear()
         flows.clear()
 
-        val unsortedFlows = mutableMapOf<ResourceLocation, MutableList<Pair<String, ExpressionLike>>>()
+        val unsortedFlows = mutableMapOf<Identifier, MutableList<Pair<String, ExpressionLike>>>()
         val folderBeforeNameRegex = ".*\\/([^\\/]+)\\/[^\\/]+\$".toRegex()
         manager.listResources("flows") { path -> path.endsWith(CobblemonScripts.MOLANG_EXTENSION) }.forEach { (identifier, resource) ->
             resource.openAsReader().use { stream ->
@@ -63,7 +63,7 @@ object CobblemonFlows : DataRegistry {
                         val event = folderBeforeNameRegex.find(identifier.path)?.groupValues?.get(1)
                             ?: throw IllegalArgumentException("Invalid flow path: $identifier. Should have a folder structure that includes the name of the event being flowed.")
 
-                        val flowKey = ResourceLocation.fromNamespaceAndPath(identifier.namespace, event)
+                        val flowKey = Identifier.fromNamespaceAndPath(identifier.namespace, event)
                         unsortedFlows.putIfAbsent(flowKey, mutableListOf())
                         unsortedFlows[flowKey]!!.add(identifier.path to expression)
                     } catch (exception: Exception) {
@@ -86,14 +86,14 @@ object CobblemonFlows : DataRegistry {
         observable.emit(this)
     }
 
-    fun run(eventResourceLocation: ResourceLocation, context: Map<String, MoValue>, cancelable: Cancelable? = null) {
+    fun run(eventIdentifier: Identifier, context: Map<String, MoValue>, cancelable: Cancelable? = null) {
         if (cancelable == null) {
             runtime.environment.query.functions.remove("cancel")
         } else {
             runtime.environment.query.addFunction("cancel") { cancelable }
         }
 
-        flows[eventResourceLocation]?.forEach {
+        flows[eventIdentifier]?.forEach {
             if (cancelable != null && cancelable.isCanceled) {
                 return
             }

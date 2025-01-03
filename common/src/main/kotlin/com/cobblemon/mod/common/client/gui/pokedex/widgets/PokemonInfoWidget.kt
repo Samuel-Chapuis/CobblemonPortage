@@ -667,7 +667,7 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
             .toTypedArray()
     }
 
-    fun getPlatformResource(): ResourceLocation? {
+    fun getPlatformResource(): Identifier? {
         val primaryType = type[0]
         if (primaryType != null) {
             return try {

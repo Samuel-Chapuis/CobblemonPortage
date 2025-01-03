@@ -24,7 +24,7 @@ class ScaledButton(
     var buttonY: Float,
     val buttonWidth: Number,
     val buttonHeight: Number,
-    var resource: ResourceLocation? = null,
+    var resource: Identifier? = null,
     val scale: Float = 0.5F,
     val silent: Boolean = false,
     val clickAction: Button.OnPress

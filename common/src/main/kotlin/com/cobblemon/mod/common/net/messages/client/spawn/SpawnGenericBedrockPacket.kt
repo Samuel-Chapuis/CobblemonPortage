@@ -25,7 +25,7 @@ import net.minecraft.world.entity.Entity
  * @since May 22nd, 2023
  */
 class SpawnGenericBedrockPacket(
-    val category: ResourceLocation,
+    val category: Identifier,
     val aspects: Set<String>,
     val poseType: PoseType,
     val scale: Float,
@@ -34,7 +34,7 @@ class SpawnGenericBedrockPacket(
     val startAge: Int,
     vanillaSpawnPacket: ClientboundAddEntityPacket
 ) : SpawnExtraDataEntityPacket<SpawnGenericBedrockPacket, GenericBedrockEntity>(vanillaSpawnPacket) {
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     override fun applyData(entity: GenericBedrockEntity) {
         entity.category = this.category

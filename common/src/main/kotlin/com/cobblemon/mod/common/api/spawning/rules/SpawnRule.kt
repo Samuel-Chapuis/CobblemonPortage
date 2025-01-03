@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
  */
 class SpawnRule {
 
-    lateinit var id: ResourceLocation
+    lateinit var id: Identifier
     val displayName: Component = "Spawn Rule".text()
     var enabled: Boolean = true
 //    val pool: String? = null Kinda difficult to see how this would get used in practice.

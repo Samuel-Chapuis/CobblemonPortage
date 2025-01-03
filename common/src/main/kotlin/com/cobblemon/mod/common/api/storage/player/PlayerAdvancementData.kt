@@ -37,8 +37,8 @@ class PlayerAdvancementData {
         private set
 
     private var totalTypeCaptureCounts = mutableMapOf<String, Int>()
-    private var totalDefeatedCounts = mutableMapOf<ResourceLocation, Int>()
-    var aspectsCollected = mutableMapOf<ResourceLocation, MutableSet<String>>()
+    private var totalDefeatedCounts = mutableMapOf<Identifier, Int>()
+    var aspectsCollected = mutableMapOf<Identifier, MutableSet<String>>()
         private set
 
     fun updateTotalCaptureCount() {

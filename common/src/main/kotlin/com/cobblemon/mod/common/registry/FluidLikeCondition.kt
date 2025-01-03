@@ -28,4 +28,4 @@ class FluidTagCondition(tag: TagKey<Fluid>) : RegistryLikeTagCondition<Fluid>(ta
  * @author Hiroku
  * @since December 15th, 2022
  */
-class FluidIdentifierCondition(identifier: ResourceLocation) : RegistryLikeIdentifierCondition<Fluid>(identifier)
+class FluidIdentifierCondition(identifier: Identifier) : RegistryLikeIdentifierCondition<Fluid>(identifier)

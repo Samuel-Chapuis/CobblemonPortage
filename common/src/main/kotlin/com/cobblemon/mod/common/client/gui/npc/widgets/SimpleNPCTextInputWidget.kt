@@ -24,7 +24,7 @@ import kotlin.math.floor
 
 class SimpleNPCTextInputWidget(
     getter: () -> String,
-    val texture: ResourceLocation? = null,
+    val texture: Identifier? = null,
     private val setter: (String) -> Unit,
     posX: Int,
     posY: Int,

@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier
 import kotlin.math.min
 
 class NPCRenderer(context: Context) : LivingEntityRenderer<NPCEntity, PosableEntityModel<NPCEntity>>(context, PosableNPCModel(), 0.5f) {
-    override fun getTextureLocation(entity: NPCEntity): ResourceLocation {
+    override fun getTextureLocation(entity: NPCEntity): Identifier {
         return NPCModelRepository.getTexture(entity.npc.resourceIdentifier, (entity.delegate as NPCClientDelegate))
     }
 

@@ -86,8 +86,8 @@ class IntSpeciesFeatureProvider : SynchronizedSpeciesFeatureProvider<IntSpeciesF
 
         @SerializedName(value = "colour" /* fuck you we use real english */, alternate = ["color"])
         var colour = Vec3(255.0, 255.0, 255.0)
-        var underlay: ResourceLocation? = null
-        var overlay: ResourceLocation? = null
+        var underlay: Identifier? = null
+        var overlay: Identifier? = null
 
         override fun loadFromBuffer(buffer: RegistryFriendlyByteBuf) {
             name = buffer.readString()
@@ -119,7 +119,7 @@ class IntSpeciesFeatureProvider : SynchronizedSpeciesFeatureProvider<IntSpeciesF
     var min = 0
     var max = 100
     var display: DisplayData? = null
-    var itemPoints: Map<ResourceLocation, Int> = emptyMap()
+    var itemPoints: Map<Identifier, Int> = emptyMap()
 
     override fun fromString(value: String?) =
         value?.toIntOrNull()?.takeIf { it in min..max }?.let { IntSpeciesFeature(keys.first(), it) }
@@ -174,7 +174,7 @@ class IntSpeciesFeatureProvider : SynchronizedSpeciesFeatureProvider<IntSpeciesF
         min = buffer.readInt()
         max = buffer.readInt()
         display = buffer.readNullable { DisplayData().also { it.loadFromBuffer(buffer) } }
-        itemPoints = buffer.readMap({ ResourceLocation.parse(buffer.readString()) }) { buffer.readInt() }
+        itemPoints = buffer.readMap({ Identifier.parse(buffer.readString()) }) { buffer.readInt() }
     }
 
     override fun getRenderer(pokemon: Pokemon): SummarySpeciesFeatureRenderer<IntSpeciesFeature>? {

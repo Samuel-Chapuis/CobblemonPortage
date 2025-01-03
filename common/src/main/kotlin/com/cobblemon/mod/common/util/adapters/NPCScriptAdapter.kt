@@ -18,8 +18,8 @@ import com.mojang.datafixers.util.Either
 import java.lang.reflect.Type
 import net.minecraft.util.Identifier
 
-object NPCScriptAdapter : JsonDeserializer<Either<ResourceLocation, ExpressionLike>> {
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Either<ResourceLocation, ExpressionLike> {
+object NPCScriptAdapter : JsonDeserializer<Either<Identifier, ExpressionLike>> {
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Either<Identifier, ExpressionLike> {
         return if (json.isJsonPrimitive) {
             try {
                 val identifier = json.asString.asIdentifierDefaultingNamespace()

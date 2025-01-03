@@ -23,24 +23,24 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 
 data class FishingBait(
-    val item: ResourceLocation,
+    val item: Identifier,
     val effects: List<Effect>,
 ) {
     fun toItemStack(itemRegistry: Registry<Item>) = item.let(itemRegistry::get)?.let { ItemStack(it) } ?: ItemStack.EMPTY
 
     data class Effect(
-        val type: ResourceLocation,
-        val subcategory: ResourceLocation?,
+        val type: Identifier,
+        val subcategory: Identifier?,
         val chance: Double = 0.0,
         val value: Double = 0.0
     ) {
-        constructor(type: ResourceLocation, subcategory: Optional<ResourceLocation>, chance: Double, value: Double) : this(type, subcategory.orElse(null), chance, value)
+        constructor(type: Identifier, subcategory: Optional<Identifier>, chance: Double, value: Double) : this(type, subcategory.orElse(null), chance, value)
 
         companion object {
             val CODEC = RecordCodecBuilder.create<Effect> { instance ->
                 instance.group(
-                    ResourceLocation.CODEC.fieldOf("type").forGetter { it.type },
-                    ResourceLocation.CODEC.optionalFieldOf("subcategory").forGetter { Optional.ofNullable(it.subcategory) },
+                    Identifier.CODEC.fieldOf("type").forGetter { it.type },
+                    Identifier.CODEC.optionalFieldOf("subcategory").forGetter { Optional.ofNullable(it.subcategory) },
                     Codec.DOUBLE.fieldOf("chance").forGetter { it.chance },
                     Codec.DOUBLE.fieldOf("value").forGetter { it.value }
                 ).apply(instance, ::Effect)
@@ -51,7 +51,7 @@ data class FishingBait(
     companion object {
         val CODEC = RecordCodecBuilder.create<FishingBait> { instance ->
             instance.group(
-                ResourceLocation.CODEC.fieldOf("item").forGetter { it.item },
+                Identifier.CODEC.fieldOf("item").forGetter { it.item },
                 Effect.CODEC.listOf().fieldOf("effects").forGetter {it.effects}
             ).apply(instance, ::FishingBait)
         }
@@ -65,7 +65,7 @@ data class FishingBait(
     }
 
     object Effects {
-        private val EFFECT_FUNCTIONS: MutableMap<ResourceLocation, (PokemonEntity, Effect) -> Unit> = mutableMapOf()
+        private val EFFECT_FUNCTIONS: MutableMap<Identifier, (PokemonEntity, Effect) -> Unit> = mutableMapOf()
         val NATURE = cobblemonResource("nature")
         val IV = cobblemonResource("iv")
         val EV = cobblemonResource("ev")
@@ -80,11 +80,11 @@ data class FishingBait(
         val FRIENDSHIP = cobblemonResource("friendship")
         val INERT = cobblemonResource("inert")
 
-        fun registerEffect(type: ResourceLocation, effect: (PokemonEntity, Effect) -> Unit) {
+        fun registerEffect(type: Identifier, effect: (PokemonEntity, Effect) -> Unit) {
             EFFECT_FUNCTIONS[type] = effect
         }
 
-        fun getEffectFunction(type: ResourceLocation): ((PokemonEntity, Effect) -> Unit)? {
+        fun getEffectFunction(type: Identifier): ((PokemonEntity, Effect) -> Unit)? {
             return EFFECT_FUNCTIONS[type]
         }
 

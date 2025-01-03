@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
  * Some types can also have incremental updates, where a separate run action runs when the incremental flag is present in the packet
  */
 class PlayerInstancedDataStoreType(
-    val id: ResourceLocation,
+    val id: Identifier,
     val decoder: (RegistryFriendlyByteBuf) -> (SetClientPlayerDataPacket),
     val afterDecodeAction: (ClientInstancedPlayerData) -> (Unit),
     val incrementalAfterDecodeAction: (ClientInstancedPlayerData) -> Unit = {}

@@ -24,7 +24,7 @@ import net.minecraft.util.Identifier
  * @author Deltric
  */
 open class PersistentStatus(
-    name: ResourceLocation,
+    name: Identifier,
     showdownName: String,
     applyMessage: String,
     removeMessage: String,

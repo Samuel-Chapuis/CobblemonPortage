@@ -12,4 +12,4 @@ import com.mojang.blaze3d.vertex.VertexFormat
 import net.minecraft.util.Identifier
 import net.minecraft.server.packs.resources.ResourceProvider
 
-data class ShaderRegistryData(val resourceFactory: ResourceProvider, val shaderName: ResourceLocation, val vertexFormat: VertexFormat)
+data class ShaderRegistryData(val resourceFactory: ResourceProvider, val shaderName: Identifier, val vertexFormat: VertexFormat)

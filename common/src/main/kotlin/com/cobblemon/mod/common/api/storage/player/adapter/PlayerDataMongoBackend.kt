@@ -42,7 +42,7 @@ class PlayerDataMongoBackend(mongoClient: MongoClient, databaseName: String, col
 
     override val gson = GsonBuilder()
         .registerTypeAdapter(PlayerDataExtension::class.java, PlayerDataExtensionAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .create()
 
     override val classToken = TypeToken.get(GeneralPlayerData::class.java)

@@ -20,18 +20,18 @@ import java.util.Optional
 
 class PartyCheckCriterion(
     playerCtx: Optional<ContextAwarePredicate>,
-    val party: List<ResourceLocation>,
+    val party: List<Identifier>,
 ): SimpleCriterionCondition<PlayerPartyStore>(playerCtx) {
 
     companion object {
         val CODEC: Codec<PartyCheckCriterion> = RecordCodecBuilder.create { it.group(
             EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(PartyCheckCriterion::playerCtx),
-            ResourceLocation.CODEC.listOf().optionalFieldOf("party", listOf()).forGetter(PartyCheckCriterion::party)
+            Identifier.CODEC.listOf().optionalFieldOf("party", listOf()).forGetter(PartyCheckCriterion::party)
         ).apply(it, ::PartyCheckCriterion) }
     }
 
     override fun matches(player: ServerPlayer, context: PlayerPartyStore): Boolean {
-        val matches = mutableListOf<ResourceLocation>()
+        val matches = mutableListOf<Identifier>()
         party.forEach {
             if (it == "any".asIdentifierDefaultingNamespace("minecraft") || it == "any".asIdentifierDefaultingNamespace()) {
                 matches.add(it)

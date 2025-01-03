@@ -30,7 +30,7 @@ import net.minecraft.util.Identifier
 
 class NPCConfigurationDTO : Encodable, Decodable {
     var npcName: MutableComponent = "".text()
-    var npcClass: ResourceLocation = cobblemonResource("default")
+    var npcClass: Identifier = cobblemonResource("default")
     var battle: NPCBattleConfiguration? = null
     var interactionInherited: Boolean = false
     var interaction: NPCInteractConfiguration? = null

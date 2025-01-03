@@ -179,7 +179,7 @@ class PokemonOnShoulderRenderer<T : Player>(renderLayerParent: RenderLayerParent
                 .map { it.first }
                 .mapOrElse({ ShoulderData(pokemonUUID, it.species, it.form, it.aspects, it.scaleModifier) }, { null })
         }
-        val species = PokemonSpecies.getByIdentifier(ResourceLocation.parse(shoulderNbt.getString(DataKeys.SHOULDER_SPECIES)))
+        val species = PokemonSpecies.getByIdentifier(Identifier.parse(shoulderNbt.getString(DataKeys.SHOULDER_SPECIES)))
             ?: return null
         val formName = shoulderNbt.getString(DataKeys.SHOULDER_FORM)
         val form = species.forms.firstOrNull { it.name == formName } ?: species.standardForm

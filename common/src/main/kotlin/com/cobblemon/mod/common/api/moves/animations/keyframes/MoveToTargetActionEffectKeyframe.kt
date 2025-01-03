@@ -26,7 +26,7 @@ class MoveToTargetActionEffectKeyframe : ActionEffectKeyframe {
     val speed = 1F
     val timeout = "4".asExpressionLike()
     var proximity = -1F
-    val timeoutActionEffect: ResourceLocation? = null
+    val timeoutActionEffect: Identifier? = null
 
     override fun play(context: ActionEffectContext): CompletableFuture<Unit> {
         val user = context.findOneProvider<UsersProvider>()?.entities?.firstOrNull() as? PokemonEntity ?: return CompletableFuture.completedFuture(Unit)

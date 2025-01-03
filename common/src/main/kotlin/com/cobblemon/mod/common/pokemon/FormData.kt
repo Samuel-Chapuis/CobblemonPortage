@@ -106,7 +106,7 @@ class FormData(
      */
     val gigantamaxMove: MoveTemplate? = null,
     @SerializedName("battleTheme")
-    private var _battleTheme: ResourceLocation? = null,
+    private var _battleTheme: Identifier? = null,
     @SerializedName("lightingData")
     private var _lightingData: LightingData? = null
 ) : Decodable, Encodable, ShowdownIdentifiable {
@@ -196,7 +196,7 @@ class FormData(
     val evolutions: MutableSet<Evolution>
         get() = _evolutions ?: mutableSetOf()
 
-    val battleTheme: ResourceLocation
+    val battleTheme: Identifier
         get() = _battleTheme ?: species.battleTheme
 
     val lightingData: LightingData?

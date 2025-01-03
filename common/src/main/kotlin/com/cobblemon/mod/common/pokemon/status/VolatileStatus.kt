@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier
  * @author Deltric
  */
 open class VolatileStatus(
-    name: ResourceLocation,
+    name: Identifier,
     showdownName: String,
     applyMessage: String,
     removeMessage: String,

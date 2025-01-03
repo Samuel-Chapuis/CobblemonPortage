@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.util.Identifier
 
 object PlayerInstancedDataStoreTypes {
-    val types = mutableMapOf<ResourceLocation, PlayerInstancedDataStoreType>()
+    val types = mutableMapOf<Identifier, PlayerInstancedDataStoreType>()
 
     val GENERAL = register(PlayerInstancedDataStoreType(
         cobblemonResource("general"),
@@ -33,5 +33,5 @@ object PlayerInstancedDataStoreTypes {
         return type
     }
 
-    fun getTypeById(id: ResourceLocation) = types[id]
+    fun getTypeById(id: Identifier) = types[id]
 }

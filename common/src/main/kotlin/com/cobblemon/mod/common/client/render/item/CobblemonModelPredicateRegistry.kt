@@ -71,7 +71,7 @@ object CobblemonModelPredicateRegistry {
         )
 
         rods.forEach { rod ->
-            ItemProperties.register(rod, ResourceLocation.parse("cast")) { stack, world, entity, seed ->
+            ItemProperties.register(rod, Identifier.parse("cast")) { stack, world, entity, seed ->
                 if (entity !is Player || entity.fishing !is PokeRodFishingBobberEntity) return@register 0.0f
 
                 val rodId = entity.fishing!!.entityData.get(PokeRodFishingBobberEntity.POKEROD_ID)

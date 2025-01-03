@@ -104,7 +104,7 @@ interface StatProvider {
      * @param identifier The identifier being queried.
      * @return The [Stat] if existing otherwise null.
      */
-    fun fromIdentifier(identifier: ResourceLocation): Stat?
+    fun fromIdentifier(identifier: Identifier): Stat?
 
     /**
      * Provides the [Stat] for the given identifier.
@@ -113,7 +113,7 @@ interface StatProvider {
      * @param identifier The identifier being queried.
      * @return The [Stat] if existing otherwise throws exception.
      */
-    fun fromIdentifierOrThrow(identifier: ResourceLocation): Stat
+    fun fromIdentifierOrThrow(identifier: Identifier): Stat
 
     /**
      * Decode a [Stat] from the given [buffer].

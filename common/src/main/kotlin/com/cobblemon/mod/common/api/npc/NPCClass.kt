@@ -33,9 +33,9 @@ import net.minecraft.world.entity.EntityDimensions
  */
 class NPCClass {
     @Transient
-    lateinit var id: ResourceLocation
+    lateinit var id: Identifier
 
-    var resourceIdentifier: ResourceLocation = cobblemonResource("dummy")
+    var resourceIdentifier: Identifier = cobblemonResource("dummy")
     var names: MutableList<Component> = mutableListOf()
     var aspects: MutableSet<String> = mutableSetOf() // These only make sense when applied via presets
     var hitbox = EntityDimensions.scalable(0.6F, 1.8F).withEyeHeight(1.62F)
@@ -50,7 +50,7 @@ class NPCClass {
     var skill: Int = 0
     var autoHealParty: Boolean = true
     var randomizePartyOrder: Boolean = false
-    var battleTheme: ResourceLocation? = null
+    var battleTheme: Identifier? = null
     var ai: MutableList<BrainConfig> = mutableListOf()
     var isMovable: Boolean = true
     var isInvulnerable = false
@@ -98,7 +98,7 @@ class NPCClass {
     }
 
     fun decode(buffer: RegistryFriendlyByteBuf) {
-        resourceIdentifier = ResourceLocation.parse(buffer.readString().toString())
+        resourceIdentifier = Identifier.parse(buffer.readString().toString())
         names = buffer.readList { buffer.readText().copy() }.toMutableList()
         val length = buffer.readFloat()
         val width = buffer.readFloat()

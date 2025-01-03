@@ -33,12 +33,12 @@ object ModelTextureSupplierAdapter : JsonDeserializer<ModelTextureSupplier> {
                 return VariableModelTextureSupplier()
             }
 
-            return StaticModelTextureSupplier(ResourceLocation.parse(json.asString))
+            return StaticModelTextureSupplier(Identifier.parse(json.asString))
         } else if (json.isJsonObject) {
             val jsonObject = json as JsonObject
             val loop = jsonObject.get("loop")?.asBoolean ?: true
             val fps = jsonObject.get("fps")?.asFloat ?: 1F
-            val frames = jsonObject.get("frames")?.asJsonArray?.map { ResourceLocation.parse(it.asString) }
+            val frames = jsonObject.get("frames")?.asJsonArray?.map { Identifier.parse(it.asString) }
                 ?: throw IllegalArgumentException("Animated textures require a 'frames' value.")
             return AnimatedModelTextureSupplier(
                 loop = loop,

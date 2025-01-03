@@ -12,8 +12,8 @@ import net.minecraft.util.Identifier
 import org.joml.Vector3f
 
 data class InteractWheelOption(
-    val iconResource: ResourceLocation,
-    val secondaryIconResource: ResourceLocation? = null,
+    val iconResource: Identifier,
+    val secondaryIconResource: Identifier? = null,
     val tooltipText: String?,
     val colour: () -> Vector3f? = { null },
     val onPress: () -> Unit

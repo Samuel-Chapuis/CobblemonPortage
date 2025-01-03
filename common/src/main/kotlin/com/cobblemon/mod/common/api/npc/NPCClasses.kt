@@ -56,7 +56,7 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
         .registerTypeAdapter(AABB::class.java, BoxAdapter)
         .registerTypeAdapter(IntRange::class.java, IntRangeAdapter)
         .registerTypeAdapter(PokemonProperties::class.java, pokemonPropertiesShortAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .registerTypeAdapter(TimeRange::class.java, IntRangesAdapter(TimeRange.timeRanges) { TimeRange(*it) })
         .registerTypeAdapter(ItemDropMethod::class.java, ItemDropMethod.adapter)
         .registerTypeAdapter(SleepDepth::class.java, SleepDepth.adapter)
@@ -77,7 +77,7 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
         .registerTypeAdapter(TypeToken.getParameterized(RegistryLikeCondition::class.java, Biome::class.java).type, BiomeLikeConditionAdapter)
         .registerTypeAdapter(TypeToken.getParameterized(RegistryLikeCondition::class.java, Block::class.java).type, BlockLikeConditionAdapter)
         .registerTypeAdapter(TypeToken.getParameterized(RegistryLikeCondition::class.java, Item::class.java).type, ItemLikeConditionAdapter)
-        .registerTypeAdapter(TypeToken.getParameterized(Either::class.java, ResourceLocation::class.java, ExpressionLike::class.java).type, NPCScriptAdapter)
+        .registerTypeAdapter(TypeToken.getParameterized(Either::class.java, Identifier::class.java, ExpressionLike::class.java).type, NPCScriptAdapter)
         .disableHtmlEscaping()
         .enableComplexMapKeySerialization()
         .create()
@@ -85,7 +85,7 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
     override val typeToken: TypeToken<NPCClass> = TypeToken.get(NPCClass::class.java)
     override val resourcePath = "npcs"
     override val observable = SimpleObservable<NPCClasses>()
-    private val npcClassesByIdentifier = hashMapOf<ResourceLocation, NPCClass>()
+    private val npcClassesByIdentifier = hashMapOf<Identifier, NPCClass>()
 
     val classes: Collection<NPCClass>
         get() = this.npcClassesByIdentifier.values
@@ -99,7 +99,7 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
     }
 
     /**
-     * Finds an NPC class by the pathname of their [ResourceLocation].
+     * Finds an NPC class by the pathname of their [Identifier].
      * This method exists for the convenience of finding Cobble default NPC classes.
      * This uses [getByIdentifier] using the [Cobblemon.MODID] as the namespace and the [name] as the path.
      *
@@ -109,12 +109,12 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
     fun getByName(name: String) = this.getByIdentifier(cobblemonResource(name))
 
     /**
-     * Finds an [NPCClass] by its unique [ResourceLocation].
+     * Finds an [NPCClass] by its unique [Identifier].
      *
      * @param identifier The unique [NPCClass.id] of the [NPCClass].
      * @return The [NPCClass] if existing.
      */
-    fun getByIdentifier(identifier: ResourceLocation) = this.npcClassesByIdentifier[identifier]
+    fun getByIdentifier(identifier: Identifier) = this.npcClassesByIdentifier[identifier]
 
     /**
      * Counts the currently loaded NPC classes.
@@ -138,7 +138,7 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
         return dummy
     }
 
-    override fun reload(data: Map<ResourceLocation, NPCClass>) {
+    override fun reload(data: Map<Identifier, NPCClass>) {
         this.npcClassesByIdentifier.clear()
         data.forEach { (identifier, species) ->
             species.id = identifier

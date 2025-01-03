@@ -28,8 +28,8 @@ interface GrowthFactorAdapter : JsonDeserializer<GrowthFactor>, JsonSerializer<G
      * Register a [GrowthFactor] to be used by this adapter.
      *
      * @param type The [KClass] of the [GrowthFactor].
-     * @param identifier The expected [ResourceLocation] in the parsed JSON.
+     * @param identifier The expected [Identifier] in the parsed JSON.
      */
-    fun register(type: KClass<out GrowthFactor>, identifier: ResourceLocation)
+    fun register(type: KClass<out GrowthFactor>, identifier: Identifier)
 
 }

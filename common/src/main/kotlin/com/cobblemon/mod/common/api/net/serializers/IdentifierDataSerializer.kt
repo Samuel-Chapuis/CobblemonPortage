@@ -17,16 +17,16 @@ import net.minecraft.network.syncher.EntityDataSerializer
 import net.minecraft.util.Identifier
 
 /**
- * Data serializer of [ResourceLocation] for DataTracker things.
+ * Data serializer of [Identifier] for DataTracker things.
  *
  * @author Hiroku
  * @since May 22nd, 2023
  */
-object IdentifierDataSerializer : EntityDataSerializer<ResourceLocation> {
+object IdentifierDataSerializer : EntityDataSerializer<Identifier> {
     val ID = cobblemonResource("identifier")
-    override fun copy(value: ResourceLocation) = ResourceLocation.fromNamespaceAndPath(value.namespace, value.path)
-    fun read(buf: RegistryFriendlyByteBuf) = ResourceLocation.fromNamespaceAndPath(buf.readString(), buf.readString())
-    fun write(buf: RegistryFriendlyByteBuf, value: ResourceLocation) {
+    override fun copy(value: Identifier) = Identifier.fromNamespaceAndPath(value.namespace, value.path)
+    fun read(buf: RegistryFriendlyByteBuf) = Identifier.fromNamespaceAndPath(buf.readString(), buf.readString())
+    fun write(buf: RegistryFriendlyByteBuf, value: Identifier) {
         buf.writeString(value.namespace)
         buf.writeString(value.path)
     }

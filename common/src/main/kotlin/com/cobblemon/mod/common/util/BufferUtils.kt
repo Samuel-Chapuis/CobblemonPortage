@@ -121,13 +121,13 @@ fun <K, V> ByteBuf.readMap(keyReader: (ByteBuf) -> K, valueReader: (ByteBuf) -> 
 }
 
 
-fun ByteBuf.readIdentifier(): ResourceLocation {
+fun ByteBuf.readIdentifier(): Identifier {
     val str = this.readString()
     //If this is null we should be using writeNullable anyway
-    return ResourceLocation.tryParse(str)!!
+    return Identifier.tryParse(str)!!
 }
 
-fun ByteBuf.writeIdentifier(id: ResourceLocation) {
+fun ByteBuf.writeIdentifier(id: Identifier) {
     writeString(id.toString())
 }
 

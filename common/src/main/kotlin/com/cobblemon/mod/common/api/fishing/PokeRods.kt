@@ -33,15 +33,15 @@ object PokeRods : JsonDataRegistry<PokeRod> {
     // ToDo once datapack pokerod is implemented add required adapters here
     override val gson: Gson = GsonBuilder()
         .disableHtmlEscaping()
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .setPrettyPrinting()
         .create()
     override val typeToken: TypeToken<PokeRod> = TypeToken.get(PokeRod::class.java)
     override val resourcePath = "pokerods"
 
-    private val rods = mutableMapOf<ResourceLocation, PokeRod>()
+    private val rods = mutableMapOf<Identifier, PokeRod>()
 
-    override fun reload(data: Map<ResourceLocation, PokeRod>) {
+    override fun reload(data: Map<Identifier, PokeRod>) {
         data.forEach {
             it.value.name = it.key
             rods[it.key] = it.value
@@ -57,6 +57,6 @@ object PokeRods : JsonDataRegistry<PokeRod> {
      * Gets a Pokerod from registry name.
      * @return the pokerod object if found otherwise null.
      */
-    fun getPokeRod(name : ResourceLocation): PokeRod? = rods[name]
+    fun getPokeRod(name : Identifier): PokeRod? = rods[name]
 
 }

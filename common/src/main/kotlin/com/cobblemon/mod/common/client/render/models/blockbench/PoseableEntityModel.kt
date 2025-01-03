@@ -29,7 +29,7 @@ import net.minecraft.util.Identifier
  * @since January 5th, 2024
  */
 abstract class PosableEntityModel<T : Entity>(
-    renderTypeFunc: (ResourceLocation) -> RenderType = RenderType::entityCutout
+    renderTypeFunc: (Identifier) -> RenderType = RenderType::entityCutout
 ) : EntityModel<T>(renderTypeFunc) {
     val context: RenderContext = RenderContext().also {
         it.put(RenderContext.RENDER_STATE, RenderContext.RenderState.WORLD)

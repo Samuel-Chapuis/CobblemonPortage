@@ -1011,7 +1011,7 @@ open class PokemonEntity(
 
     override fun playAmbientSound() {
         if (!this.isSilent || this.busyLocks.filterIsInstance<EmptyPokeBallEntity>().isEmpty()) {
-            val sound = ResourceLocation.fromNamespaceAndPath(
+            val sound = Identifier.fromNamespaceAndPath(
                 this.pokemon.species.resourceIdentifier.namespace,
                 "pokemon.${this.pokemon.showdownId()}.ambient"
             )

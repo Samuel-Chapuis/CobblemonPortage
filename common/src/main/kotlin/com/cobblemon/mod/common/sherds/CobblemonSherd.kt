@@ -12,6 +12,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.util.Identifier
 
 data class CobblemonSherd(
-    val patternId: ResourceLocation,
+    val patternId: Identifier,
     val item: Item
 )

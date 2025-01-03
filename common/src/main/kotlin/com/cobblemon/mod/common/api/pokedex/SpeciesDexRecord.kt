@@ -47,7 +47,7 @@ class SpeciesDexRecord {
     }
 
     @Transient
-    lateinit var id: ResourceLocation
+    lateinit var id: Identifier
     private val aspects: MutableSet<String> = mutableSetOf()
     private val formRecords: MutableMap<String, FormDexRecord> = mutableMapOf()
 
@@ -80,7 +80,7 @@ class SpeciesDexRecord {
     @Transient
     lateinit var pokedexManager: AbstractPokedexManager
 
-    fun initialize(pokedexManager: AbstractPokedexManager, id: ResourceLocation) {
+    fun initialize(pokedexManager: AbstractPokedexManager, id: Identifier) {
         this.id = id
         this.pokedexManager = pokedexManager
         this.formRecords.forEach { it.value.initialize(this, it.key) }

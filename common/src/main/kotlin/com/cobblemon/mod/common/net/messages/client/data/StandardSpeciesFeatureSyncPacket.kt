@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier
  * @since November 13th, 2023
  */
 class StandardSpeciesFeatureSyncPacket(providers: Map<String, SpeciesFeatureProvider<*>>) : SpeciesFeatureSyncPacket<StandardSpeciesFeatureSyncPacket>(providers) {
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
     override fun synchronizeDecoded(entries: Collection<Map.Entry<String, SynchronizedSpeciesFeatureProvider<*>>>) = SpeciesFeatures.loadOnClient(entries)
     companion object {
         val ID = cobblemonResource("standard_species_feature_sync")

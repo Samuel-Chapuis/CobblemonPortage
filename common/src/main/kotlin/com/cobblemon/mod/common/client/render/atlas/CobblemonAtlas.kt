@@ -14,8 +14,8 @@ import net.minecraft.util.Identifier
 
 class CobblemonAtlas(
     textureManager: TextureManager,
-    atlasId: ResourceLocation,
-    sourcePath: ResourceLocation
+    atlasId: Identifier,
+    sourcePath: Identifier
 ) : TextureAtlasHolder(
     textureManager,
     atlasId,

@@ -19,5 +19,5 @@ class ClientPlayerTeamData {
 }
 
 class ClientMultiBattleTeamMember(val uuid: UUID, val name: MutableComponent) : ClientPlayerIcon(null) {
-    override val texture: ResourceLocation = cobblemonResource("textures/particle/request/icon_partner.png")
+    override val texture: Identifier = cobblemonResource("textures/particle/request/icon_partner.png")
 }

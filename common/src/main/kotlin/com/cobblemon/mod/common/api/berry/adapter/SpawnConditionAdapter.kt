@@ -28,7 +28,7 @@ interface SpawnConditionAdapter : JsonDeserializer<BerrySpawnCondition>, JsonSer
      * Register a [BerrySpawnCondition] to be used by this adapter.
      *
      * @param type The [KClass] of the [BerrySpawnCondition].
-     * @param identifier The expected [ResourceLocation] in the parsed JSON.
+     * @param identifier The expected [Identifier] in the parsed JSON.
      */
-    fun register(type: KClass<out BerrySpawnCondition>, identifier: ResourceLocation)
+    fun register(type: KClass<out BerrySpawnCondition>, identifier: Identifier)
 }

@@ -32,5 +32,5 @@ data class ClientBattleChallenge(
     override val expiryTime: Int,
     val battleFormat: BattleFormat
 ) : ClientPlayerActionRequest(expiryTime) {
-    override val texture: ResourceLocation = cobblemonResource("textures/particle/request/icon_challenge.png")
+    override val texture: Identifier = cobblemonResource("textures/particle/request/icon_challenge.png")
 }

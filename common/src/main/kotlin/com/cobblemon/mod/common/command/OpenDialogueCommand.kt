@@ -46,7 +46,7 @@ object OpenDialogueCommand {
         dispatcher.register(command.alias("opendialogue"))
     }
 
-    private fun execute(source: CommandSourceStack, dialogueId: ResourceLocation, player: ServerPlayer): Int {
+    private fun execute(source: CommandSourceStack, dialogueId: Identifier, player: ServerPlayer): Int {
         val dialogue = Dialogues.dialogues[dialogueId] ?: return run {
             source.sendSystemMessage("Invalid dialogue ID: $dialogueId".text())
             Command.SINGLE_SUCCESS

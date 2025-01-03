@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier
 class NPCRenderWidget(
     val x: Int,
     val y: Int,
-    var identifier: ResourceLocation,
+    var identifier: Identifier,
     val aspects: MutableSet<String>
 ) : CobblemonRenderable, GuiEventListener {
     val state = FloatingState().also {

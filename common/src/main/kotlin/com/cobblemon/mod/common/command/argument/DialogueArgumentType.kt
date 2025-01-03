@@ -22,7 +22,7 @@ import net.minecraft.commands.SharedSuggestionProvider
 import net.minecraft.util.Identifier
 import java.util.concurrent.CompletableFuture
 
-class DialogueArgumentType : ArgumentType<ResourceLocation> {
+class DialogueArgumentType : ArgumentType<Identifier> {
 
     companion object {
         val EXAMPLES: List<String> = listOf("cobblemon:example")
@@ -30,12 +30,12 @@ class DialogueArgumentType : ArgumentType<ResourceLocation> {
 
         fun dialogue() = DialogueArgumentType()
 
-        fun <S> getDialogue(context: CommandContext<S>, name: String): ResourceLocation {
-            return context.getArgument(name, ResourceLocation::class.java)
+        fun <S> getDialogue(context: CommandContext<S>, name: String): Identifier {
+            return context.getArgument(name, Identifier::class.java)
         }
     }
 
-    override fun parse(reader: StringReader): ResourceLocation {
+    override fun parse(reader: StringReader): Identifier {
         try {
             return reader.asIdentifierDefaultingNamespace()
         } catch (e: Exception) {

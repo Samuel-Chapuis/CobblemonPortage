@@ -19,7 +19,7 @@ import com.mojang.serialization.Codec
  * @author Deltric
  */
 open class Status(
-    val name: ResourceLocation,
+    val name: Identifier,
     val showdownName: String = "",
     val applyMessage: String,
     val removeMessage: String

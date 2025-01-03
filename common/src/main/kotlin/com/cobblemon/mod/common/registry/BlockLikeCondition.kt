@@ -27,4 +27,4 @@ class BlockTagCondition(tag: TagKey<Block>) : RegistryLikeTagCondition<Block>(ta
  * @author Hiroku
  * @since July 15th, 2022
  */
-class BlockIdentifierCondition(identifier: ResourceLocation) : RegistryLikeIdentifierCondition<Block>(identifier)
+class BlockIdentifierCondition(identifier: Identifier) : RegistryLikeIdentifierCondition<Block>(identifier)

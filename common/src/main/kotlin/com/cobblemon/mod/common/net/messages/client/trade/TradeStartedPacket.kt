@@ -36,7 +36,7 @@ class TradeStartedPacket(
 ) : NetworkPacket<TradeStartedPacket> {
     class TradeablePokemon(
         val pokemonId: UUID,
-        val species: ResourceLocation,
+        val species: Identifier,
         val aspects: Set<String>,
         val level: Int,
         val gender: Gender,

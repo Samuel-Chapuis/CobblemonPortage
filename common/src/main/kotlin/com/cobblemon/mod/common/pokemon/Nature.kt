@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.Mth.floor
 
 class Nature(
-    val name: ResourceLocation,
+    val name: Identifier,
     val displayName: String,
     val increasedStat: Stat?,
     val decreasedStat: Stat?,

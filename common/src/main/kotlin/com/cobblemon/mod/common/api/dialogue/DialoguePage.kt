@@ -30,7 +30,7 @@ class DialoguePage(
     var speaker: String? = null,
     var lines: MutableList<DialogueText> = mutableListOf(),
     var input: DialogueInput = DialogueNoInput(),
-    var background: ResourceLocation? = null,
+    var background: Identifier? = null,
     var clientActions: MutableList<Expression> = mutableListOf(),
     var escapeAction: DialogueAction? = null,
 ) {
@@ -42,7 +42,7 @@ class DialoguePage(
             speaker: String? = null,
             lines: Iterable<MutableComponent>,
             input: DialogueInput = DialogueNoInput(),
-            background: ResourceLocation? = null,
+            background: Identifier? = null,
             clientActions: Iterable<Expression> = emptyList(),
             /** The thing to do when the player presses ESC while on this page. If null, falls back to the same property on [Dialogue]. */
             escapeAction: ((ActiveDialogue) -> Unit)? = null,

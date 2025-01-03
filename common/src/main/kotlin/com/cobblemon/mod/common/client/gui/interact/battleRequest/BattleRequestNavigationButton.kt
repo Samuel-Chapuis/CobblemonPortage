@@ -23,8 +23,8 @@ class BattleRequestNavigationButton(
     pX: Number, pY: Number,
     private val clickHeight: Int = HEIGHT,
     private val forward: Boolean,
-    private val forwardIcon: ResourceLocation = forwardButtonResource,
-    private val backwardIcon: ResourceLocation = backwardsButtonResource,
+    private val forwardIcon: Identifier = forwardButtonResource,
+    private val backwardIcon: Identifier = backwardsButtonResource,
     onPress: OnPress
 ): Button(pX.toInt(), pY.toInt(), (WIDTH * SCALE).toInt(), (clickHeight * SCALE).toInt(), Component.literal("Navigation"), onPress, DEFAULT_NARRATION), CobblemonRenderable {
 

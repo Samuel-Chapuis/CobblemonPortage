@@ -26,9 +26,9 @@ import net.minecraft.util.Identifier
 interface Stat {
 
     /**
-     * The [ResourceLocation] of this stat.
+     * The [Identifier] of this stat.
      */
-    val identifier: ResourceLocation
+    val identifier: Identifier
 
     /**
      * The display name of this stat.

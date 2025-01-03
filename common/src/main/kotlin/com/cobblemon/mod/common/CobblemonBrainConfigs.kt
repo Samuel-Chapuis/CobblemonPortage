@@ -41,17 +41,17 @@ object CobblemonBrainConfigs : JsonDataRegistry<List<BrainConfig>> {
 
     override val typeToken = TypeToken.getParameterized(List::class.java, BrainConfig::class.java) as TypeToken<List<BrainConfig>>
     override val resourcePath = "brain_presets"
-    override val id: ResourceLocation = cobblemonResource("brain_presets")
+    override val id: Identifier = cobblemonResource("brain_presets")
     override val type = PackType.SERVER_DATA
     override val observable = SimpleObservable<CobblemonBrainConfigs>()
 
-    val presets = mutableMapOf<ResourceLocation, List<BrainConfig>>()
+    val presets = mutableMapOf<Identifier, List<BrainConfig>>()
 
     override fun sync(player: ServerPlayer) {
         // TODO implement probs ay
     }
 
-    override fun reload(data: Map<ResourceLocation, List<BrainConfig>>) {
+    override fun reload(data: Map<Identifier, List<BrainConfig>>) {
         presets.clear()
         presets.putAll(data)
     }

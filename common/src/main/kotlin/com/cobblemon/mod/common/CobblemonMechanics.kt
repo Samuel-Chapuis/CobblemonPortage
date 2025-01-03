@@ -25,7 +25,7 @@ import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.ResourceManager
 
 object CobblemonMechanics : DataRegistry {
-    override val id: ResourceLocation = cobblemonResource("mechanics")
+    override val id: Identifier = cobblemonResource("mechanics")
     override val type = PackType.SERVER_DATA
     override val observable = SimpleObservable<CobblemonMechanics>()
     val gson = GsonBuilder()

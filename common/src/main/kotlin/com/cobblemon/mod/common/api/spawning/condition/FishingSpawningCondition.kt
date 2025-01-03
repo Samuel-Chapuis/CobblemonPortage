@@ -30,8 +30,8 @@ class FishingSpawningCondition: SpawningCondition<FishingSpawningContext>() {
     var neededNearbyBlocks: MutableList<RegistryLikeCondition<Block>>? = null
     var minLureLevel: Int? = null
     var maxLureLevel: Int? = null
-    var bait: ResourceLocation? = null
-    var rodType: ResourceLocation? = null
+    var bait: Identifier? = null
+    var rodType: Identifier? = null
 
     override fun fits(ctx: FishingSpawningContext): Boolean {
         if (!super.fits(ctx)) {

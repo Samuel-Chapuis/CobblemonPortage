@@ -81,7 +81,7 @@ class PokemonRenderer(
         it.put(RenderContext.RENDER_STATE, RenderContext.RenderState.WORLD)
     }
 
-    override fun getTextureLocation(entity: PokemonEntity): ResourceLocation {
+    override fun getTextureLocation(entity: PokemonEntity): Identifier {
         return PokemonModelRepository.getTexture(entity.pokemon.species.resourceIdentifier, entity.delegate as PokemonClientDelegate)
     }
 

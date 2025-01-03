@@ -48,7 +48,7 @@ object EvolutionProgressTypes {
      */
     @Throws(IllegalStateException::class)
     @JvmStatic
-    fun <T : EvolutionProgress<*>> registerType(id: ResourceLocation, type: EvolutionProgressType<T>): EvolutionProgressType<T> {
+    fun <T : EvolutionProgress<*>> registerType(id: Identifier, type: EvolutionProgressType<T>): EvolutionProgressType<T> {
         return Registry.register(REGISTRY, id, type)
     }
 

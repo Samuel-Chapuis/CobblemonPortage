@@ -38,7 +38,7 @@ object CobblemonGrowthFactorAdapter : GrowthFactorAdapter {
         this.register(PreferredBiomeGrowthFactor::class, PreferredBiomeGrowthFactor.ID)
     }
 
-    override fun register(type: KClass<out GrowthFactor>, identifier: ResourceLocation) {
+    override fun register(type: KClass<out GrowthFactor>, identifier: Identifier) {
         val existing = this.types.put(identifier.toString(), type)
         if (existing != null) {
             Cobblemon.LOGGER.debug("Replaced {} under ID {} with {} in the {}", existing::class.qualifiedName, identifier.toString(), type.qualifiedName, this::class.qualifiedName)

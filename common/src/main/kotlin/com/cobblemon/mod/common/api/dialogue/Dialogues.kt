@@ -42,7 +42,7 @@ object Dialogues : JsonDataRegistry<Dialogue> {
     override val type = PackType.SERVER_DATA
     override val observable = SimpleObservable<Dialogues>()
 
-    val dialogues = mutableMapOf<ResourceLocation, Dialogue>()
+    val dialogues = mutableMapOf<Identifier, Dialogue>()
     /** If you need custom adapters registered, subscribe to this and register them. */
     val gsonObservable: SimpleObservable<GsonBuilder> = SimpleObservable()
 
@@ -57,14 +57,14 @@ object Dialogues : JsonDataRegistry<Dialogue> {
         .registerTypeAdapter(Expression::class.java, ExpressionAdapter)
         .registerTypeAdapter(ExpressionLike::class.java, ExpressionLikeAdapter)
         .registerTypeAdapter(MutableComponent::class.java, TranslatedTextAdapter)
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .also { gsonObservable.emit(it) }
         .create()
 
     override val typeToken = TypeToken.get(Dialogue::class.java)
     override val resourcePath = "dialogues"
 
-    override fun reload(data: Map<ResourceLocation, Dialogue>) {
+    override fun reload(data: Map<Identifier, Dialogue>) {
         dialogues.putAll(data)
         observable.emit(this)
     }

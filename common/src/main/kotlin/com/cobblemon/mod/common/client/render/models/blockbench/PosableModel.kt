@@ -444,7 +444,7 @@ open class PosableModel(@Transient override val rootPart: Bone) : ModelFrame {
     }
 
     /** Generates a [RenderType] by the power of god and anime. Only possible thanks to 100 access wideners. */
-    fun makeLayer(texture: ResourceLocation, emissive: Boolean, translucent: Boolean): RenderType {
+    fun makeLayer(texture: Identifier, emissive: Boolean, translucent: Boolean): RenderType {
         val multiPhaseParameters: RenderType.CompositeState = RenderType.CompositeState.builder()
             .setShaderState(
                 when {
@@ -473,7 +473,7 @@ open class PosableModel(@Transient override val rootPart: Bone) : ModelFrame {
     }
 
     /** Makes a [RenderType] in a jank way. Mostly works so that's cool. */
-    fun getLayer(texture: ResourceLocation, emissive: Boolean, translucent: Boolean): RenderType {
+    fun getLayer(texture: Identifier, emissive: Boolean, translucent: Boolean): RenderType {
         return if (!emissive && !translucent) {
             RenderType.entityCutout(texture)
         } else if (!emissive) {

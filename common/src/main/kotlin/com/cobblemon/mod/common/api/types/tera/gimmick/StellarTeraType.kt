@@ -15,7 +15,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
 
 class StellarTeraType : TeraType {
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     override val legalAsStatic: Boolean = false
 

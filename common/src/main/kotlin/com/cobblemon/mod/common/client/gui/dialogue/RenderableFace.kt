@@ -111,7 +111,7 @@ class ReferenceRenderableFace(val entity: PosableEntity, override val isLeftSide
 
 class ArtificialRenderableFace(
     val modelType: String,
-    val identifier: ResourceLocation,
+    val identifier: Identifier,
     val aspects: Set<String>,
     override val isLeftSide: Boolean
 ): RenderableFace {

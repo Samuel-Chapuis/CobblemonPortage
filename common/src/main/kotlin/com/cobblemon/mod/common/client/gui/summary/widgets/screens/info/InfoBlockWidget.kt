@@ -23,7 +23,7 @@ class InfoBlockWidget(
     blockHeight: Int,
     private val text: MutableComponent,
     private val withinRowVerticalTextOffset: Int,
-    private val font: ResourceLocation,
+    private val font: Identifier,
 ) : SoundlessWidget(pX, pY, blockWidth, blockHeight, Component.literal("InfoBlockWidget")) {
 
     override fun renderWidget(context: GuiGraphics, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {

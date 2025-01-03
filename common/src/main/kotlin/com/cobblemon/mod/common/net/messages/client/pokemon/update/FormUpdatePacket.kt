@@ -23,10 +23,10 @@ class FormUpdatePacket(pokemon: () -> Pokemon, form: FormData) : SingleUpdatePac
         pokemon.form = value
     }
 
-    override val id: ResourceLocation = ID
+    override val id: Identifier = ID
 
     companion object {
-        val ID: ResourceLocation = cobblemonResource("packets/form-update")
+        val ID: Identifier = cobblemonResource("packets/form-update")
         fun decode(buffer: RegistryFriendlyByteBuf): FormUpdatePacket {
             val pokemon = decodePokemon(buffer)
             val form = FormData()

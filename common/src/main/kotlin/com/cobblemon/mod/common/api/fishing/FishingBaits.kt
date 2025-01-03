@@ -30,17 +30,17 @@ object FishingBaits : JsonDataRegistry<FishingBait>{
     override val typeToken: TypeToken<FishingBait> = TypeToken.get(FishingBait::class.java)
     override val resourcePath = "fishing_baits"
     override val gson: Gson = GsonBuilder()
-        .registerTypeAdapter(ResourceLocation::class.java, IdentifierAdapter)
+        .registerTypeAdapter(Identifier::class.java, IdentifierAdapter)
         .setPrettyPrinting()
         .create()
 
-    private val itemMap = mutableMapOf<ResourceLocation, FishingBait>()
+    private val itemMap = mutableMapOf<Identifier, FishingBait>()
 
     override fun sync(player: ServerPlayer) {
         FishingBaitRegistrySyncPacket(this.itemMap.values.toList()).sendToPlayer(player)
     }
 
-    override fun reload(data: Map<ResourceLocation, FishingBait>) {
+    override fun reload(data: Map<Identifier, FishingBait>) {
         itemMap.clear()
         data.forEach { id, bait ->
             itemMap[bait.item] = bait
@@ -55,7 +55,7 @@ object FishingBaits : JsonDataRegistry<FishingBait>{
         return getFromIdentifier(BuiltInRegistries.ITEM.getKey(stack.item))
     }
 
-    fun getFromIdentifier(identifier: ResourceLocation): FishingBait? {
+    fun getFromIdentifier(identifier: Identifier): FishingBait? {
         return itemMap[identifier]
     }
 

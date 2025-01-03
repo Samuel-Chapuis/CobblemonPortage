@@ -18,11 +18,11 @@ import net.minecraft.util.Identifier
 /**
  * An [EvolutionRequirement] that checks if the player has a certain [Advancement]
  *
- * @param requiredAdvancement The [ResourceLocation] of the required advancement
+ * @param requiredAdvancement The [Identifier] of the required advancement
  *
  * @author whatsy
  */
-class PlayerHasAdvancementRequirement(val requiredAdvancement: ResourceLocation) : EntityQueryRequirement {
+class PlayerHasAdvancementRequirement(val requiredAdvancement: Identifier) : EntityQueryRequirement {
     override fun check(pokemon: Pokemon, queriedEntity: LivingEntity): Boolean {
         val player = queriedEntity as? ServerPlayer ?: return false
         for (entry in player.advancements.progress) {

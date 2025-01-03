@@ -18,9 +18,9 @@ import net.minecraft.util.Identifier
  * @see FishingBait.Effects
  */
 class BaitEffectFunctionRegistryEvent {
-    val functions = mutableMapOf<ResourceLocation, (PokemonEntity, FishingBait.Effect) -> Unit>()
+    val functions = mutableMapOf<Identifier, (PokemonEntity, FishingBait.Effect) -> Unit>()
 
-    fun registerFunction(id: ResourceLocation, function: (PokemonEntity, FishingBait.Effect) -> Unit) {
+    fun registerFunction(id: Identifier, function: (PokemonEntity, FishingBait.Effect) -> Unit) {
         functions[id] = function
     }
 }

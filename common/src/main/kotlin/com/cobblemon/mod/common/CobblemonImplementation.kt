@@ -129,7 +129,7 @@ interface CobblemonImplementation {
      * @param argumentClass
      * @param serializer
      */
-    fun <A : ArgumentType<*>, T : ArgumentTypeInfo.Template<A>> registerCommandArgument(identifier: ResourceLocation, argumentClass: KClass<A>, serializer: ArgumentTypeInfo<A, T>)
+    fun <A : ArgumentType<*>, T : ArgumentTypeInfo.Template<A>> registerCommandArgument(identifier: Identifier, argumentClass: KClass<A>, serializer: ArgumentTypeInfo<A, T>)
 
     /**
      * TODO
@@ -159,7 +159,7 @@ interface CobblemonImplementation {
      * @param type
      * @param dependencies
      */
-    fun registerResourceReloader(identifier: ResourceLocation, reloader: PreparableReloadListener, type: PackType, dependencies: Collection<ResourceLocation>)
+    fun registerResourceReloader(identifier: Identifier, reloader: PreparableReloadListener, type: PackType, dependencies: Collection<Identifier>)
 
     /**
      * TODO

@@ -41,7 +41,7 @@ abstract class SpawningCondition<T : SpawningContext> {
         }
     }
 
-    var dimensions: MutableList<ResourceLocation>? = null
+    var dimensions: MutableList<Identifier>? = null
     var biomes: MutableSet<RegistryLikeCondition<Biome>>? = null
     var moonPhase: MoonPhaseRange? = null
     var canSeeSky: Boolean? = null
@@ -58,7 +58,7 @@ abstract class SpawningCondition<T : SpawningContext> {
     var isRaining: Boolean? = null
     var isThundering: Boolean? = null
     var timeRange: TimeRange? = null
-    var structures: MutableList<Either<ResourceLocation, TagKey<Structure>>>? = null
+    var structures: MutableList<Either<Identifier, TagKey<Structure>>>? = null
     var isSlimeChunk: Boolean? = null
 
     @Transient

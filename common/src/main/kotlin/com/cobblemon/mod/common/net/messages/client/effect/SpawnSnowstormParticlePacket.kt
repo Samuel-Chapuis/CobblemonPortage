@@ -26,7 +26,7 @@ import net.minecraft.world.phys.Vec3
  * @since January 21st, 2022
  */
 class SpawnSnowstormParticlePacket(
-    val effectId: ResourceLocation,
+    val effectId: Identifier,
     val position: Vec3,
 ) : NetworkPacket<SpawnSnowstormParticlePacket> {
     override val id = ID

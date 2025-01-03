@@ -33,7 +33,7 @@ class ScriptPartyProvider : NPCPartyProvider {
 
     override val type = TYPE
     override var isStatic: Boolean = true
-    var script: ResourceLocation = cobblemonResource("dummy")
+    var script: Identifier = cobblemonResource("dummy")
 
     override fun loadFromJSON(json: JsonElement) {
         isStatic = json.asJsonObject.get("isStatic")?.asBoolean != false

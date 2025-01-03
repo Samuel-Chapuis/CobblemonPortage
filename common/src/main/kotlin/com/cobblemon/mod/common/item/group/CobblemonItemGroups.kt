@@ -61,10 +61,10 @@ object CobblemonItemGroups {
     @JvmStatic val HELD_ITEMS get() = BuiltInRegistries.CREATIVE_MODE_TAB.get(HELD_ITEMS_KEY)
     @JvmStatic val EVOLUTION_ITEMS get() = BuiltInRegistries.CREATIVE_MODE_TAB.get(EVOLUTION_ITEMS_KEY)
 
-    @JvmStatic val BUILDING_BLOCKS_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ResourceLocation.parse("building_blocks")), this::blocksInjections)
-    @JvmStatic val FOOD_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ResourceLocation.parse("food_and_drinks")), this::foodInjections)
-    @JvmStatic val TOOLS_AND_UTILITIES_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ResourceLocation.parse("tools_and_utilities")), this::toolsAndUtilitiesInjections)
-    @JvmStatic val INGREDIENTS_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ResourceLocation.parse("ingredients")), this::ingredientsInjections)
+    @JvmStatic val BUILDING_BLOCKS_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("building_blocks")), this::blocksInjections)
+    @JvmStatic val FOOD_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("food_and_drinks")), this::foodInjections)
+    @JvmStatic val TOOLS_AND_UTILITIES_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("tools_and_utilities")), this::toolsAndUtilitiesInjections)
+    @JvmStatic val INGREDIENTS_INJECTIONS = this.inject(ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.parse("ingredients")), this::ingredientsInjections)
 
     fun register(consumer: (holder: ItemGroupHolder) -> CreativeModeTab) {
         ALL.forEach(consumer::invoke)

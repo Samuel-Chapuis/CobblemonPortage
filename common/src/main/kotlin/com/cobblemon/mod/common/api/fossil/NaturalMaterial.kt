@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier
 
 data class NaturalMaterial(
     val content: Int = 0,
-    val item: ResourceLocation?,
+    val item: Identifier?,
     val tag: ItemTagCondition? = null,
-    val returnItem: ResourceLocation? = null
+    val returnItem: Identifier? = null
 )

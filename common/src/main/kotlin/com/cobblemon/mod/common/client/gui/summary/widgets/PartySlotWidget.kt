@@ -50,7 +50,7 @@ class PartySlotWidget(
         val genderIconFemale = cobblemonResource("textures/gui/party/party_gender_female.png")
     }
 
-    private fun getSlotTexture(pokemon: Pokemon?): ResourceLocation {
+    private fun getSlotTexture(pokemon: Pokemon?): Identifier {
         if (pokemon != null) {
             if (pokemon.isFainted()) return slotFaintedResource
             return slotResource

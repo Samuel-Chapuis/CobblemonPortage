@@ -20,9 +20,9 @@ import net.minecraft.util.Identifier
 import org.joml.Vector3f
 
 class InteractWheelButton(
-        private val iconResource: ResourceLocation?,
-        private val secondaryIconResource: ResourceLocation? = null,
-        private val buttonResource: ResourceLocation,
+        private val iconResource: Identifier?,
+        private val secondaryIconResource: Identifier? = null,
+        private val buttonResource: Identifier,
         private val tooltipText: String?,
         x: Int,
         y: Int,

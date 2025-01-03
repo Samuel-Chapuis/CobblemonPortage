@@ -39,8 +39,8 @@ object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>
 
 
     fun register() {
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:pokemon_item"), POKEMON_ITEM)
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:bait"), BAIT)
+        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.parse("cobblemon:pokemon_item"), POKEMON_ITEM)
+        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.parse("cobblemon:bait"), BAIT)
     }
 
     override val registry = BuiltInRegistries.DATA_COMPONENT_TYPE

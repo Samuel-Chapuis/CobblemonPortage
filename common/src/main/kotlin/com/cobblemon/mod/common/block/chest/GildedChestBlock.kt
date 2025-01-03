@@ -243,7 +243,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         return state.rotate(mirror.getRotation(state.getValue(HORIZONTAL_FACING) as Direction))
     }
 
-    enum class Type(val poserId: ResourceLocation) : StringRepresentable {
+    enum class Type(val poserId: Identifier) : StringRepresentable {
         RED(cobblemonResource("gilded_chest")),
         BLUE(cobblemonResource("blue_gilded_chest")),
         GREEN(cobblemonResource("green_gilded_chest")),

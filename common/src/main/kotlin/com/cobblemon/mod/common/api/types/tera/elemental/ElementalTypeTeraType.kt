@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier
 class ElementalTypeTeraType(val type: ElementalType) : TeraType {
     override val legalAsStatic: Boolean = true
 
-    override val id: ResourceLocation = cobblemonResource(this.type.name)
+    override val id: Identifier = cobblemonResource(this.type.name)
 
     override val displayName: Component = this.type.displayName
 

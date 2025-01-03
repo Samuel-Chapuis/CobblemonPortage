@@ -101,7 +101,7 @@ object Berries {
      * Gets a berry by registry name
      * @return a berry type or null
      */
-    fun getBerry(name: ResourceLocation): Berry? {
+    fun getBerry(name: Identifier): Berry? {
         return allBerries.find { berry -> berry.name == name }
     }
 }

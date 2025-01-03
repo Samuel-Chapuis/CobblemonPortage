@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier
  * @author Hiroku
  * @since July 2nd, 2022
  */
-class BattleCaptureStartPacket(val pokeBallType: ResourceLocation, val aspects: Set<String>, val targetPNX: String) : NetworkPacket<BattleCaptureStartPacket> {
+class BattleCaptureStartPacket(val pokeBallType: Identifier, val aspects: Set<String>, val targetPNX: String) : NetworkPacket<BattleCaptureStartPacket> {
     override val id = ID
     override fun encode(buffer: RegistryFriendlyByteBuf) {
         buffer.writeIdentifier(pokeBallType)

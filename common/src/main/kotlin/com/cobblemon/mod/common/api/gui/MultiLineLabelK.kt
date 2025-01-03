@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier
 
 class MultiLineLabelK(
     private val comps: List<TextWithWidth>,
-    private val font: ResourceLocation? = null
+    private val font: Identifier? = null
 ) {
 
     companion object {
@@ -26,7 +26,7 @@ class MultiLineLabelK(
 
         fun create(component: Component, width: Number, maxLines: Number) = create(component, width, maxLines, null)
 
-        fun create(component: Component, width: Number, maxLines: Number, font: ResourceLocation?): MultiLineLabelK {
+        fun create(component: Component, width: Number, maxLines: Number, font: Identifier?): MultiLineLabelK {
             return MultiLineLabelK(
                 mcFont.splitter.splitLines(component, width.toInt(), Style.EMPTY).stream()
                     .limit(maxLines.toLong())
