@@ -15,7 +15,7 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.Lifecycle
 import net.minecraft.core.MappedRegistry
 import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 import kotlin.jvm.Throws
 

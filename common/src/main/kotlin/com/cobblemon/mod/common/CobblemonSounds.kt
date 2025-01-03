@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.level.block.SoundType

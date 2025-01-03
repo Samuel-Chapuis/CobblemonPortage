@@ -14,7 +14,7 @@ import net.minecraft.advancements.critereon.EntitySubPredicate
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 
 object CobblemonEntitySubPredicates : PlatformRegistry<Registry<MapCodec<out EntitySubPredicate>>, ResourceKey<Registry<MapCodec<out EntitySubPredicate>>>, MapCodec<out EntitySubPredicate>>() {
 

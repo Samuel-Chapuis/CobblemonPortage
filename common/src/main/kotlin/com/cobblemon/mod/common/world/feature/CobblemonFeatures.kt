@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.platform.PlatformRegistry
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.world.level.levelgen.feature.Feature
 
 object CobblemonFeatures : PlatformRegistry<Registry<Feature<*>>, ResourceKey<Registry<Feature<*>>>, Feature<*>>() {

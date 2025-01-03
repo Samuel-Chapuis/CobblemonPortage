@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.world.feature.ore
 
 import com.cobblemon.mod.common.Cobblemon
 import net.minecraft.data.worldgen.features.FeatureUtils
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 
 object CobblemonOreConfiguredFeatures {

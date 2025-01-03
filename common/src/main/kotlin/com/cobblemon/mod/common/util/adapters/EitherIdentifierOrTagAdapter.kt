@@ -13,7 +13,7 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.mojang.datafixers.util.Either
 import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 import net.minecraft.tags.TagKey
 import java.lang.reflect.Type

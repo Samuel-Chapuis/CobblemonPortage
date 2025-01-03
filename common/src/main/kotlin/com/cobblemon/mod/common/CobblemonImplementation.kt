@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.mojang.brigadier.arguments.ArgumentType
 import kotlin.reflect.KClass
 import net.minecraft.commands.synchronization.ArgumentTypeInfo
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerPlayer

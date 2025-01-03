@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.battles.BagItems
 import com.cobblemon.mod.common.item.battle.BagItemLike
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 
 /**

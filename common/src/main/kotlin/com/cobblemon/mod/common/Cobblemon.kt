@@ -122,7 +122,7 @@ import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.jvm.javaField
 import net.minecraft.client.MinecraftClient
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.world.item.NameTagItem
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.storage.LevelResource

@@ -13,7 +13,7 @@ import net.minecraft.core.Registry
 import net.minecraft.core.particles.ParticleType
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 
 object CobblemonParticles : PlatformRegistry<Registry<ParticleType<*>>, ResourceKey<Registry<ParticleType<*>>>, ParticleType<*>>() {
 

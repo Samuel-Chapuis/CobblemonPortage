@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.world.structureprocessors
 
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 
 object CobblemonStructureProcessorLists {
     @JvmField

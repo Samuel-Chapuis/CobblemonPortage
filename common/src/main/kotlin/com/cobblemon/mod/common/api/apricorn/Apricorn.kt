@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.block.ApricornSaplingBlock
 import com.cobblemon.mod.common.item.ApricornItem
 import com.cobblemon.mod.common.world.feature.CobblemonConfiguredFeatures
 import com.mojang.serialization.Codec
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature

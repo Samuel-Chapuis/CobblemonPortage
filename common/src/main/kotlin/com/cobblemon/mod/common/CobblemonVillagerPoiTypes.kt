@@ -14,7 +14,7 @@ import com.google.common.collect.ImmutableSet
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.world.entity.ai.village.poi.PoiType
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState

@@ -23,7 +23,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 import net.minecraft.util.valueproviders.UniformInt
 import net.minecraft.world.effect.MobEffects

@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.net
 import com.cobblemon.mod.common.CobblemonNetwork
 import com.cobblemon.mod.common.util.server
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.Identifier
 import net.minecraft.world.level.Level

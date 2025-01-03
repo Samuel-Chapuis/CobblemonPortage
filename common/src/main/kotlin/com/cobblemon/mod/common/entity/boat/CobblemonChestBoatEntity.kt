@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.entity.boat
 
 import com.cobblemon.mod.common.CobblemonEntities
 import net.minecraft.core.NonNullList
-import net.minecraft.resources.ResourceKey
+import net.minecraft.registry.RegistryKey
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.EntityType
