@@ -14,7 +14,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.advancements.critereon.ContextAwarePredicate
 import net.minecraft.advancements.critereon.EntityPredicate
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.Optional
 
 class PokemonInteractContext(val type: ResourceLocation, val item: ResourceLocation)

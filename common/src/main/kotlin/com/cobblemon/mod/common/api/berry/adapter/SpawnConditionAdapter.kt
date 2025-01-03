@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.berry.spawncondition.BerrySpawnCondition
 import com.cobblemon.mod.common.util.adapters.CobblemonBerrySpawnConditionAdapter
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonSerializer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import kotlin.reflect.KClass
 
 /**

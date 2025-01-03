@@ -21,7 +21,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class SpawnPokemonPacket(
     private val ownerId: UUID?,

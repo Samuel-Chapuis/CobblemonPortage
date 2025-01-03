@@ -24,7 +24,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.renderer.LightTexture
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import org.joml.Quaternionf
 import org.joml.Vector3f
 

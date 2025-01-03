@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.net.messages.client.data
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignments
 import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A registry sync packet for the [SpeciesFeatureAssignments] registry.

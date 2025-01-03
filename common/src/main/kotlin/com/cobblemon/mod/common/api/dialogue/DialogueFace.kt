@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.dialogue
 import com.cobblemon.mod.common.api.molang.ExpressionLike
 import com.cobblemon.mod.common.util.cobblemonResource
 import java.util.UUID
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Something that produces a dialogue's renderable face. This is sealed because the client has very particular handling for this.

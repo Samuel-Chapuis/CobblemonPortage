@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.dialogue
 
 import com.cobblemon.mod.common.api.molang.ExpressionLike
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A dialogue that could be sent to players.

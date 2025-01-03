@@ -29,7 +29,7 @@ import net.minecraft.client.DeltaTracker
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.util.Mth.clamp
 import org.joml.Quaternionf
 import kotlin.math.*

@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.readString
 import com.cobblemon.mod.common.util.writeString
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class ClientPokedexManager(
     override val speciesRecords: MutableMap<ResourceLocation, SpeciesDexRecord>,

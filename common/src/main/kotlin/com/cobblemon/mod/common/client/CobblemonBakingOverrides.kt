@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.BakingOverride
 import com.cobblemon.mod.common.util.cobblemonModel
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.client.util.ModelIdentifier
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * The purpose of this class is to hold models that we want baked, but aren't associated with

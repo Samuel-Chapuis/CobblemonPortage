@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.client.trade
 
 import com.cobblemon.mod.common.client.requests.ClientPlayerActionRequest
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.UUID
 
 data class ClientTradeRequest(

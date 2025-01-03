@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.spawning.condition
 import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import com.cobblemon.mod.common.api.spawning.context.FishingSpawningContext
 import com.cobblemon.mod.common.util.itemRegistry
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments

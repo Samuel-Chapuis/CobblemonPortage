@@ -19,7 +19,7 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
 import com.mojang.brigadier.suggestion.Suggestions
 import com.mojang.brigadier.suggestion.SuggestionsBuilder
 import net.minecraft.commands.SharedSuggestionProvider
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.concurrent.CompletableFuture
 
 class DialogueArgumentType : ArgumentType<ResourceLocation> {

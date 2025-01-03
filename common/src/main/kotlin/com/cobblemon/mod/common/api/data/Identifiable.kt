@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.data
 
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A functional interface that resolves implementation from type to [ResourceLocation].

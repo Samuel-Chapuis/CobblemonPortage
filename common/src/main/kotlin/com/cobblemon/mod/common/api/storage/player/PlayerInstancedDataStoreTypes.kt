@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.storage.player
 import com.cobblemon.mod.common.api.storage.player.client.ClientGeneralPlayerData
 import com.cobblemon.mod.common.api.storage.player.client.ClientPokedexManager
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 object PlayerInstancedDataStoreTypes {
     val types = mutableMapOf<ResourceLocation, PlayerInstancedDataStoreType>()

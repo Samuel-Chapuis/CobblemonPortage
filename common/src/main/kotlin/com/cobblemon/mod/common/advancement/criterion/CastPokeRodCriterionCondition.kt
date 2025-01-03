@@ -15,7 +15,7 @@ import java.util.Optional
 import net.minecraft.advancements.critereon.ContextAwarePredicate
 import net.minecraft.advancements.critereon.EntityPredicate
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class CastPokeRodContext(val baitId: ResourceLocation)
 

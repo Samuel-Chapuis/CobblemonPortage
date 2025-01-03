@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.moves.categories
 
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 object DamageCategories {
     private val allCategories = mutableListOf<DamageCategory>()

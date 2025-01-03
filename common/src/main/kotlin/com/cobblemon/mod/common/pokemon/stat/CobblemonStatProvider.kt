@@ -24,7 +24,7 @@ import com.cobblemon.mod.common.util.writeSizedInt
 import net.minecraft.network.RegistryFriendlyByteBuf
 import kotlin.math.truncate
 import kotlin.random.Random
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * The default implementation of a [StatProvider].

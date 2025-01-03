@@ -19,7 +19,7 @@ import net.minecraft.client.gui.components.EditBox
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.network.chat.Style
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import kotlin.math.floor
 
 class SimpleNPCTextInputWidget(

@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.util.adapters.IdentifierAdapter
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.mongodb.client.MongoClient
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.UUID
 
 /**

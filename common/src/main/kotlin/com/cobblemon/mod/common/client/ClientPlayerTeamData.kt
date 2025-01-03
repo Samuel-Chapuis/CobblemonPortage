@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client
 import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.UUID
 
 class ClientPlayerTeamData {

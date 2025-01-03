@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.client
 
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 object CobblemonResources {
     /**

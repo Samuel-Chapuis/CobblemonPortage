@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.data
 
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.ResourceManager
 

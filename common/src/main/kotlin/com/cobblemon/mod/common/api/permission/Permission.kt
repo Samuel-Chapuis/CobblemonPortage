@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.permission
 
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 interface Permission {
 

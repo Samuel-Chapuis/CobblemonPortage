@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.api.dialogue.input.DialogueInput
 import com.cobblemon.mod.common.api.dialogue.input.DialogueNoInput
 import com.google.gson.JsonArray
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A page of a dialogue. This has lines of text and also some kind of input expected from the player.

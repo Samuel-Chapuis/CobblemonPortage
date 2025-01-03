@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.asExpressionLike
 import java.util.concurrent.CompletableFuture
 import kotlin.math.pow
 import kotlin.math.sqrt
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class MoveToTargetActionEffectKeyframe : ActionEffectKeyframe {
     val speed = 1F

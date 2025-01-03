@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.spawning.rules
 import com.cobblemon.mod.common.api.spawning.rules.component.SpawnRuleComponent
 import com.cobblemon.mod.common.api.text.text
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A bundling of [SpawnRuleComponent]s.

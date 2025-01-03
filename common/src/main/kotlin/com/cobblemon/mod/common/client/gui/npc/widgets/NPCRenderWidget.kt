@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.NPCMo
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Renderable
 import net.minecraft.client.gui.components.events.GuiEventListener
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class NPCRenderWidget(
     val x: Int,

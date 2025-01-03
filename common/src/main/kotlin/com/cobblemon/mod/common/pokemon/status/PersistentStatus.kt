@@ -16,7 +16,7 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.DataResult
 import kotlin.random.Random
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Represents a status that persists outside of battle.

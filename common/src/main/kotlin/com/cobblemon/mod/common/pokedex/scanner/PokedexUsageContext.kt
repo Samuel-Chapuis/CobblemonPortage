@@ -23,7 +23,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.util.Mth.clamp
 import kotlin.math.max

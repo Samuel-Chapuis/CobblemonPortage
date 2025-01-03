@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class ElementalTypeTeraType(val type: ElementalType) : TeraType {
     override val legalAsStatic: Boolean = true

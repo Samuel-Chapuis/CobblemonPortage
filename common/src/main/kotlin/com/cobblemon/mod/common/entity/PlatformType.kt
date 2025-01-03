@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.entity
 
 import com.cobblemon.mod.common.pokemon.FormData
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.EnumSet
 
 /**

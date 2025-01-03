@@ -12,7 +12,7 @@ import com.bedrockk.molang.runtime.MoLangRuntime
 import com.bedrockk.molang.runtime.value.StringValue
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.addStandardFunctions
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.concurrent.CompletableFuture
 
 /**

@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.storage
 
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * An exception when trying to deserialize a Pokemon instance with an identifier that doesn't seem to be in the registry.

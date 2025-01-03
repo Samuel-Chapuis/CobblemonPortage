@@ -21,7 +21,7 @@ import com.cobblemon.mod.common.net.IntSize
 import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.world.entity.EntityDimensions
 
 /**

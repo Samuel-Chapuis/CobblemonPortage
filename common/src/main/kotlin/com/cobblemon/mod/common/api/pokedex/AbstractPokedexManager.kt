@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
 import com.cobblemon.mod.common.pokedex.scanner.PokedexEntityData
 import com.cobblemon.mod.common.pokemon.Gender
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 abstract class AbstractPokedexManager {
     open val speciesRecords: MutableMap<ResourceLocation, SpeciesDexRecord> = mutableMapOf()

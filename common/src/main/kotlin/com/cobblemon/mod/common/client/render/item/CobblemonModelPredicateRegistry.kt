@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.entity.fishing.PokeRodFishingBobberEntity
 import com.cobblemon.mod.common.item.interactive.PokerodItem
 import net.minecraft.client.renderer.item.ItemProperties
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.world.entity.player.Player
 
 object CobblemonModelPredicateRegistry {

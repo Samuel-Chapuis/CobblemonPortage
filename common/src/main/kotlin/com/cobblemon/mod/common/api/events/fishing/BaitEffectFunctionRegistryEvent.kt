@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.events.fishing
 
 import com.cobblemon.mod.common.api.fishing.FishingBait
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Event to register code-based functions for bait effects.

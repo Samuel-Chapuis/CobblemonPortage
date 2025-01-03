@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.moves.animations.keyframes
 import com.cobblemon.mod.common.api.moves.animations.ActionEffectContext
 import com.cobblemon.mod.common.api.moves.animations.ActionEffects
 import java.util.concurrent.CompletableFuture
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * An action effect keyframe that simply runs another action effect based on an identifier. This action

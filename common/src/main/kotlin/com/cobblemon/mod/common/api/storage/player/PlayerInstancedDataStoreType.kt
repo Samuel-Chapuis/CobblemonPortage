@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.storage.player.client.ClientGeneralPlayerDat
 import com.cobblemon.mod.common.api.storage.player.client.ClientInstancedPlayerData
 import com.cobblemon.mod.common.net.messages.client.SetClientPlayerDataPacket
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Basically, each type here has a server representation, and a client representation

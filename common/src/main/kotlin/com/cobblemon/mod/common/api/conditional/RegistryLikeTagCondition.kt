@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.conditional
 import com.google.gson.JsonElement
 import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceKey
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.tags.TagKey
 
 /**

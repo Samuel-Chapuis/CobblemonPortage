@@ -20,7 +20,7 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.PrimitiveCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import java.util.UUID
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class PokedexManager(
     override val uuid: UUID,

@@ -11,7 +11,7 @@ package com.cobblemon.mod.common
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.model.BakedModel
 import net.minecraft.client.util.ModelIdentifier
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Contains information for forcing a model to be baked

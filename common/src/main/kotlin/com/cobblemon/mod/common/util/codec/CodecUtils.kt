@@ -12,7 +12,7 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.DataResult
 import com.mojang.serialization.MapCodec
 import java.util.Optional
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 //Codec.optionalFieldOf uses Java Optionals, which cant be passed into constructors using Kotlin optionals.
 fun <T> Codec<T>.kotlinOptionalFieldOf(name: String): MapCodec<T?> {

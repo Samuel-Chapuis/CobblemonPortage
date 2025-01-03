@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.client.gui.interact.wheel
 
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import org.joml.Vector3f
 
 data class InteractWheelOption(

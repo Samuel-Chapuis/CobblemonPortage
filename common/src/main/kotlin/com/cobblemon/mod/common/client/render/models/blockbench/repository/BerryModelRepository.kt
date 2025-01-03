@@ -21,7 +21,7 @@ import net.minecraft.client.model.geom.ModelPart
 
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * The data registry responsible for berry fruit and flower models.

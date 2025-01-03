@@ -23,7 +23,7 @@ import com.cobblemon.mod.common.api.net.Encodable
 import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
 import java.util.UUID
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class DialogueDTO : Encodable, Decodable {
     lateinit var dialogueId: UUID

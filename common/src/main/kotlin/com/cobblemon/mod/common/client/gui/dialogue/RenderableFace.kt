@@ -24,7 +24,7 @@ import kotlin.math.atan
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.InventoryScreen
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import org.joml.Quaternionf
 import org.joml.Vector3f
 

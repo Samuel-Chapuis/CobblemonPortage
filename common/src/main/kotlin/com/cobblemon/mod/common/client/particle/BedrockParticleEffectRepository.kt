@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.endsWith
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import java.nio.charset.StandardCharsets
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.server.packs.resources.ResourceManager
 
 /**

@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.util.adapters
 
 import com.google.gson.*
 import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.lang.reflect.Type
 
 /**

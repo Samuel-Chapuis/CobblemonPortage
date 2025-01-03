@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.data
 
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Provides a general listener for resource and data pack updates notifying the [DataRegistry] listening.

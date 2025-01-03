@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.molang.ExpressionLike
 import com.cobblemon.mod.common.api.scripting.CobblemonScripts
 import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class ScriptRegistrySyncPacket(entries: Collection<Map.Entry<ResourceLocation, ExpressionLike>>) : DataRegistrySyncPacket<Map.Entry<ResourceLocation, ExpressionLike>, ScriptRegistrySyncPacket>(entries){
     companion object {

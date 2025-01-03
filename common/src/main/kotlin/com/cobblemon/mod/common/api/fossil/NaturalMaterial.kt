@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.fossil
 
 import com.cobblemon.mod.common.registry.ItemTagCondition
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 data class NaturalMaterial(
     val content: Int = 0,

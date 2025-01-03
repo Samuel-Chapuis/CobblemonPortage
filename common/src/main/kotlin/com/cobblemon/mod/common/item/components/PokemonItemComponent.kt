@@ -15,7 +15,7 @@ import java.util.*
 import kotlin.jvm.optionals.getOrNull
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import org.joml.Vector4f
 
 data class PokemonItemComponent(

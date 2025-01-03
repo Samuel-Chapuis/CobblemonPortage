@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.resolveBoolean
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import kotlin.math.floor
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import org.joml.Vector3f
 import org.joml.Vector4f
 

@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.storage.player.client.ClientGeneralPlayerDat
 import com.cobblemon.mod.common.api.storage.player.client.ClientInstancedPlayerData
 import java.util.UUID
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * An [InstancedPlayerData] for misc stuff, mostly starters

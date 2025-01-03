@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.net.PacketHandler
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A generic wrapping of packet information for registration.

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
 import com.cobblemon.mod.common.util.asResource
 import com.google.gson.reflect.TypeToken
 import net.minecraft.world.entity.Entity
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 
 /**

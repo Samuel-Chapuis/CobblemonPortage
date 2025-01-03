@@ -14,7 +14,7 @@ import java.util.stream.Collectors
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.FormattedText
 import net.minecraft.network.chat.Style
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class MultiLineLabelK(
     private val comps: List<TextWithWidth>,

@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.pokemon.status
 
 import com.cobblemon.mod.common.api.pokemon.status.Status
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Represents a status that only remains during a battle.

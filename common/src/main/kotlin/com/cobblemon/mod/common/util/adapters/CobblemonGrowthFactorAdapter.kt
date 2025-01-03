@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.berry.PreferredBiomeGrowthFactor
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonElement
 import com.google.gson.JsonSerializationContext
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 

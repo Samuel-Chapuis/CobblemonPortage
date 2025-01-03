@@ -29,7 +29,7 @@ import java.util.UUID
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtIo
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 const val REFORGED_POKEMON_PER_BOX = 30
 class ReforgedConversion(val base: Path) : CobblemonConverter<CompoundTag> {

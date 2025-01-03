@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.conditional
 
 import com.google.gson.JsonElement
 import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A condition for some registry type which asserts that the entry must have the given [ResourceLocation].

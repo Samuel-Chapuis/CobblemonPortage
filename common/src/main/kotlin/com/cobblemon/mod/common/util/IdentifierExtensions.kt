@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.util
 
 import com.cobblemon.mod.common.Cobblemon
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 fun ResourceLocation.endsWith(suffix: String): Boolean {
     return this.toString().endsWith(suffix)

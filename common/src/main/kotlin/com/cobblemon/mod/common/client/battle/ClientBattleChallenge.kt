@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.interaction.PlayerActionRequest
 import com.cobblemon.mod.common.battles.BattleFormat
 import com.cobblemon.mod.common.client.requests.ClientPlayerActionRequest
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.*
 
 /**

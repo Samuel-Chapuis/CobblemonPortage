@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.interaction
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonSerializer
 import kotlin.reflect.KClass
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * A type adapter for [EntityInteraction]s.

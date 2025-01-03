@@ -26,7 +26,7 @@ import com.cobblemon.mod.common.util.writeText
 import io.netty.buffer.ByteBuf
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class NPCConfigurationDTO : Encodable, Decodable {
     var npcName: MutableComponent = "".text()

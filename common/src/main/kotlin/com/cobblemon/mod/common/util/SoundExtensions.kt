@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.util
 
 import com.cobblemon.mod.common.duck.SoundManagerDuck
 import net.minecraft.client.sounds.SoundManager
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.sounds.SoundSource
 
 /**

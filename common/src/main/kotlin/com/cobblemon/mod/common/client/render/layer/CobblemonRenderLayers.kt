@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import com.mojang.blaze3d.vertex.DefaultVertexFormat
 import com.mojang.blaze3d.vertex.VertexFormat
 import net.minecraft.client.renderer.RenderType
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.util.function.BiFunction
 import java.util.function.Function
 import net.minecraft.Util

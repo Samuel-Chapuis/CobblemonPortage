@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.pokemon.status
 
 import com.cobblemon.mod.common.api.moves.animations.ActionEffects
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import com.cobblemon.mod.common.util.codec.CodecUtils
 import com.mojang.serialization.Codec
 

@@ -18,7 +18,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import java.util.Optional
 import net.minecraft.core.Registry
 import net.minecraft.network.codec.ByteBufCodecs
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 

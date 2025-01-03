@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.storage.player
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class PlayerAdvancementData {
 

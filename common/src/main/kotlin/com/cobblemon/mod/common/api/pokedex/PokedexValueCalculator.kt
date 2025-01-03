@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.pokedex
 
 import com.cobblemon.mod.common.api.pokedex.entry.DexEntries
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Interface that serves for various calculations can be done around Pokédex. The output of these gets cached and invalidated when the Pokédex of a user updates.

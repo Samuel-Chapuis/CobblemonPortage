@@ -19,7 +19,7 @@ import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import net.minecraft.world.phys.Vec3
 
 /**

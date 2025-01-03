@@ -18,7 +18,7 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import java.lang.reflect.Type
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 object NPCInteractConfigurationAdapter : JsonDeserializer<NPCInteractConfiguration> {
     override fun deserialize(json: JsonElement, typeOfT: Type, ctx: JsonDeserializationContext): NPCInteractConfiguration {

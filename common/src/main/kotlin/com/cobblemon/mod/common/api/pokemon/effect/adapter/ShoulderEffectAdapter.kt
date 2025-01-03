@@ -16,7 +16,7 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 import java.lang.reflect.Type
 
 object ShoulderEffectAdapter: JsonDeserializer<ShoulderEffect> {

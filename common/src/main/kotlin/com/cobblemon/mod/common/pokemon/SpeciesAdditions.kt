@@ -23,7 +23,7 @@ import kotlin.reflect.javaType
 import kotlin.reflect.jvm.isAccessible
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 internal object SpeciesAdditions : JsonDataRegistry<SpeciesAdditions.AdditionParameter> {
 

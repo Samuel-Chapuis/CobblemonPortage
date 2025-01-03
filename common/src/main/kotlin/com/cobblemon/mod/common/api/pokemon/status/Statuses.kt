@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.pokemon.status.statuses.persistent.PoisonStatus
 import com.cobblemon.mod.common.pokemon.status.statuses.persistent.SleepStatus
 import com.cobblemon.mod.common.pokemon.status.statuses.nonpersistent.ConfuseStatus
 import com.cobblemon.mod.common.pokemon.status.statuses.nonpersistent.AttractStatus
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 /**
  * Main API point for Statuses

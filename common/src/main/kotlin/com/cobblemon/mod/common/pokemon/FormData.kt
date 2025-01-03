@@ -40,7 +40,7 @@ import com.cobblemon.mod.common.util.*
 import com.google.gson.annotations.SerializedName
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.world.entity.EntityDimensions
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class FormData(
     name: String = "Normal",

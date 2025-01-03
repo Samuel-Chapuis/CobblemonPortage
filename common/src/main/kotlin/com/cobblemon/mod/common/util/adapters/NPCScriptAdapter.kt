@@ -16,7 +16,7 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.mojang.datafixers.util.Either
 import java.lang.reflect.Type
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 object NPCScriptAdapter : JsonDeserializer<Either<ResourceLocation, ExpressionLike>> {
     override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Either<ResourceLocation, ExpressionLike> {
