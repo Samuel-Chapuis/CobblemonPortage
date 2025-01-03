@@ -24,6 +24,6 @@ data class BakingOverride(
     val modelIdentifier: ModelIdentifier
 ) {
     fun getModel(): BakedModel {
-        return MinecraftClient.getInstance().modelManager.getModel(modelIdentifier)
+        return MinecraftClient.getInstance().bakedModelManager.getModel(modelIdentifier)
     }
 }
