@@ -28,7 +28,7 @@ import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands.argument
 import net.minecraft.commands.Commands.literal
 import net.minecraft.commands.arguments.EntityArgument
-import net.minecraft.commands.arguments.IdentifierArgument
+import net.minecraft.commands.arguments.ResourceLocationArgument
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerPlayer
 
@@ -43,7 +43,7 @@ object RunMolangScriptCommand {
         dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.RUN_MOLANG_SCRIPT)
             .then(
-                argument(SCRIPT, IdentifierArgument.id())
+                argument(SCRIPT, ResourceLocationArgument.id())
                 .executes { execute(it, it.resourceLocation(SCRIPT), null, null, null) }
                 .then(argument(PLAYER, EntityArgument.player())
                     .executes { execute(it, it.resourceLocation(SCRIPT), it.player(PLAYER), null, null) }

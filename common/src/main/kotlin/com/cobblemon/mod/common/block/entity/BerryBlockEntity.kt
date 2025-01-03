@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.berry.BerryHarvestEvent
 import com.cobblemon.mod.common.api.mulch.MulchVariant
 import com.cobblemon.mod.common.block.BerryBlock
-import net.minecraft.IdentifierException
+import net.minecraft.ResourceLocationException
 import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
@@ -264,7 +264,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
             try {
                 val identifier = Identifier.parse(element.asString)
                 this.growthPoints += identifier
-            } catch (ignored: IdentifierException) {}
+            } catch (ignored: ResourceLocationException) {}
         }
         this.mulchDuration = nbt.getInt(MULCH_DURATION)
         this.wasLoading = false

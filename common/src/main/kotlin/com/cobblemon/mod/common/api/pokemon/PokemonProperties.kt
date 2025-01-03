@@ -48,7 +48,7 @@ import com.mojang.serialization.Codec
 import java.util.UUID
 import kotlin.math.min
 import kotlin.random.Random
-import net.minecraft.IdentifierException
+import net.minecraft.ResourceLocationException
 import net.minecraft.commands.arguments.item.ItemParser
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
@@ -199,7 +199,7 @@ open class PokemonProperties {
             return try {
                 val identifier = value.asIdentifierDefaultingNamespace()
                 valueFetcher(identifier)
-            } catch (_: IdentifierException) {
+            } catch (_: ResourceLocationException) {
                 null
             }
         }
@@ -209,7 +209,7 @@ open class PokemonProperties {
             val value = matched.second?.lowercase() ?: return null
             return try {
                 valueFetcher(value)
-            } catch (_: IdentifierException) {
+            } catch (_: ResourceLocationException) {
                 null
             }
         }
@@ -225,7 +225,7 @@ open class PokemonProperties {
                     try {
                         val species = PokemonSpecies.getByIdentifier(value.asIdentifierDefaultingNamespace()) ?: return null
                         return if (species.resourceIdentifier.namespace == Cobblemon.MODID) species.resourceIdentifier.path else species.resourceIdentifier.toString()
-                    } catch (e: IdentifierException) {
+                    } catch (e: ResourceLocationException) {
                         return null
                     }
                 }
@@ -240,7 +240,7 @@ open class PokemonProperties {
                             val identifier = cleanSpeciesName(pair.first).asIdentifierDefaultingNamespace()
                             val found = PokemonSpecies.getByIdentifier(identifier) ?: return@find false
                             if (found.resourceIdentifier.namespace == Cobblemon.MODID) found.resourceIdentifier.path else found.resourceIdentifier.toString()
-                        } catch (e: IdentifierException) {
+                        } catch (e: ResourceLocationException) {
                             return@find false
                         }
                     }
@@ -348,7 +348,7 @@ open class PokemonProperties {
         species = species?.let {
             return@let try {
                 PokemonSpecies.getByIdentifier(it.asIdentifierDefaultingNamespace())
-            } catch (e: IdentifierException) {
+            } catch (e: ResourceLocationException) {
                 PokemonSpecies.random()
             }
         } ?: PokemonSpecies.random(),
@@ -379,7 +379,7 @@ open class PokemonProperties {
                 } else {
                     PokemonSpecies.getByIdentifier(it.asIdentifierDefaultingNamespace())
                 }
-            } catch (e: IdentifierException) {
+            } catch (e: ResourceLocationException) {
                 null
             }
         }?.let { pokemon.species = it }
@@ -482,7 +482,7 @@ open class PokemonProperties {
                 if (pokemon.species != species) {
                     return false
                 }
-            } catch (e: IdentifierException) {
+            } catch (e: ResourceLocationException) {
                 return false
             }
         }
@@ -542,7 +542,7 @@ open class PokemonProperties {
                 if (properties.species != species.resourceIdentifier.toString()) {
                     return false
                 }
-            } catch (_: IdentifierException) {}
+            } catch (_: ResourceLocationException) {}
         }
         nickname?.takeIf { it.string != properties.nickname?.string }?.let { return false }
         form?.takeIf { !it.equals(properties.form, true) }?.let { return false }

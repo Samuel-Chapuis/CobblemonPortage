@@ -31,7 +31,7 @@ import org.joml.Vector4f
 
 fun cobblemonResource(path: String) = Identifier.fromNamespaceAndPath(Cobblemon.MODID, path)
 fun cobblemonModel(path: String, variant: String) =
-    ModelIdentifier(cobblemonResource(path), variant)
+    ModelResourceLocation(cobblemonResource(path), variant)
 
 fun String.asTranslated() = Component.translatable(this)
 fun String.asResource() = Identifier.parse(this)

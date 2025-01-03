@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.exceptions.CommandSyntaxException
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
-import net.minecraft.IdentifierException
+import net.minecraft.ResourceLocationException
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
@@ -48,13 +48,13 @@ fun String.asIdentifierDefaultingNamespace(namespace: String = Cobblemon.MODID):
  */
 fun StringReader.asIdentifierDefaultingNamespace(namespace: String = Cobblemon.MODID): Identifier {
     val start = this.cursor
-    while (this.canRead() && Identifier.isAllowedInIdentifier(this.peek())) {
+    while (this.canRead() && Identifier.isAllowedInResourceLocation(this.peek())) {
         this.skip()
     }
     val raw = this.string.substring(start, this.cursor)
     try {
         return raw.asIdentifierDefaultingNamespace(namespace)
-    } catch (e: IdentifierException) {
+    } catch (e: ResourceLocationException) {
         this.cursor = start
         throw SimpleCommandExceptionType(Component.translatable("argument.id.invalid")).createWithContext(this)
     }
