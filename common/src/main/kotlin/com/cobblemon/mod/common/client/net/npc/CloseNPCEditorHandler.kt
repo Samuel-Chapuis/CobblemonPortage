@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.npc
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.npc.NPCEditorScreen
 import com.cobblemon.mod.common.net.messages.client.npc.CloseNPCEditorPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object CloseNPCEditorHandler : ClientNetworkPacketHandler<CloseNPCEditorPacket> {
     override fun handle(packet: CloseNPCEditorPacket, client: Minecraft) {

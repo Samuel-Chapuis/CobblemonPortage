@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.gui
 
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import java.util.stream.Collectors
 import net.minecraft.network.chat.Component

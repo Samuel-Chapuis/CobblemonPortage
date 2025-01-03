@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleGimmickButton.
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.math.toRGB
 import com.mojang.blaze3d.vertex.PoseStack
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.sounds.SoundEvents
 

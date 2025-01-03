@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.ClientTeamRequest
 import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.net.messages.client.battle.TeamRequestNotificationPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object TeamRequestNotificationHandler : ClientNetworkPacketHandler<TeamRequestNotificationPacket> {
     override fun handle(packet: TeamRequestNotificationPacket, client: Minecraft) {

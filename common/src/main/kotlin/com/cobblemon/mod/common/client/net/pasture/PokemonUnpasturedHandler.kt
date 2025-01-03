@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.pasture.PasturePCGUIConfiguration
 import com.cobblemon.mod.common.client.gui.pc.PCGUI
 import com.cobblemon.mod.common.net.messages.client.pasture.PokemonUnpasturedPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * Handles the request to unpasture a Pokemon to update the pasture GUI.

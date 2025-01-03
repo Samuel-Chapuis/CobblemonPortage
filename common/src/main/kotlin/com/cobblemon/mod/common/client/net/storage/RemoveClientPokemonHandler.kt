@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.storage
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.net.messages.client.storage.RemoveClientPokemonPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object RemoveClientPokemonHandler : ClientNetworkPacketHandler<RemoveClientPokemonPacket> {
     override fun handle(packet: RemoveClientPokemonPacket, client: Minecraft) {

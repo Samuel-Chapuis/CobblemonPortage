@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.client.sound.instances
 
 import com.cobblemon.mod.common.client.sound.BlockEntitySoundTracker
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.client.resources.sounds.SoundInstance
 import net.minecraft.client.resources.sounds.TickableSoundInstance

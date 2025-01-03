@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.battles.ForcePassActionResponse
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI
 import com.cobblemon.mod.common.net.messages.client.battle.BattleApplyPassResponsePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleApplyPassResponseHandler : ClientNetworkPacketHandler<BattleApplyPassResponsePacket> {
     override fun handle(packet: BattleApplyPassResponsePacket, client: Minecraft) {

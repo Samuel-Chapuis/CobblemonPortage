@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMadeInvalidChoicePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleMadeInvalidChoiceHandler : ClientNetworkPacketHandler<BattleMadeInvalidChoicePacket> {
     override fun handle(packet: BattleMadeInvalidChoicePacket, client: Minecraft) {

@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.ClientBattleChallenge
 import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.net.messages.client.battle.BattleChallengeNotificationPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleChallengeNotificationHandler : ClientNetworkPacketHandler<BattleChallengeNotificationPacket> {
     override fun handle(packet: BattleChallengeNotificationPacket, client: Minecraft) {

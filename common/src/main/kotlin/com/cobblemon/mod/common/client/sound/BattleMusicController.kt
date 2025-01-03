@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.sound
 import com.cobblemon.mod.common.client.sound.instances.BattleMusicInstance
 import com.cobblemon.mod.common.util.pauseSounds
 import com.cobblemon.mod.common.util.resumeSounds
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.sounds.SoundSource
 import net.minecraft.sounds.SoundEvents
 

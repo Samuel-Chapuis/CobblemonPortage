@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.client.battle.ClientBattleActor
 import com.cobblemon.mod.common.client.battle.ClientBattlePokemon
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI
 import com.cobblemon.mod.common.net.messages.client.battle.BattleInitializePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleInitializeHandler : ClientNetworkPacketHandler<BattleInitializePacket> {
     override fun handle(packet: BattleInitializePacket, client: Minecraft) {

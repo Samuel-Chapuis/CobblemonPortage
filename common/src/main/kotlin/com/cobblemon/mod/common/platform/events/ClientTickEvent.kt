@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.platform.events
 
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * Event fired whenever the game ticks on the client side.

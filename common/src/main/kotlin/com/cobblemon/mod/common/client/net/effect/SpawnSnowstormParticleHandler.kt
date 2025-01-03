@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.client.particle.BedrockParticleOptionsRepository
 import com.cobblemon.mod.common.client.particle.ParticleStorm
 import com.cobblemon.mod.common.client.render.MatrixWrapper
 import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormParticlePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import com.mojang.blaze3d.vertex.PoseStack
 
 object SpawnSnowstormParticleHandler : ClientNetworkPacketHandler<SpawnSnowstormParticlePacket> {

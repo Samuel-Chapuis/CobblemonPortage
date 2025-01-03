@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.ClientBattlePokemon
 import com.cobblemon.mod.common.net.messages.client.battle.BattleReplacePokemonPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * The handler for [BattleReplacePokemonPacket]s. Removes the illusion [ClientBattlePokemon] and replaces it with the actual data.

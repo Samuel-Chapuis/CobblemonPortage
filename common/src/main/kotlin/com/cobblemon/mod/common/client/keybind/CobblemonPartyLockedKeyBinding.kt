@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.client.keybind.keybinds.SummaryBinding
 import com.cobblemon.mod.common.net.messages.server.starter.RequestStarterScreenPacket
 import com.cobblemon.mod.common.util.lang
 import com.mojang.blaze3d.platform.InputConstants
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * Util class for preventing clicks until the player has a party member, this will automatically handle starter selection

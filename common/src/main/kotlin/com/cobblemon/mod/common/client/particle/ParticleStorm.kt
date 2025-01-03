@@ -27,7 +27,7 @@ import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.math.geometry.transformDirection
 import com.mojang.blaze3d.vertex.PoseStack
 import com.cobblemon.mod.common.util.resolve
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.particle.NoRenderParticle
 import net.minecraft.world.entity.Entity

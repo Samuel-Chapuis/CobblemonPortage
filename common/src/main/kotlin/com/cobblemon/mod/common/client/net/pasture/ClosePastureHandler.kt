@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.pasture
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.pc.PCGUI
 import com.cobblemon.mod.common.net.messages.client.pasture.ClosePasturePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * Handles the request to close the pasture GUI.

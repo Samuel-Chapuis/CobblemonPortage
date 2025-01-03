@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.entity.PosableEntity
 import com.cobblemon.mod.common.net.messages.client.effect.RunPosableMoLangPacket
 import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.resolve
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object RunPosableMoLangHandler : ClientNetworkPacketHandler<RunPosableMoLangPacket> {
     override fun handle(packet: RunPosableMoLangPacket, client: Minecraft) {

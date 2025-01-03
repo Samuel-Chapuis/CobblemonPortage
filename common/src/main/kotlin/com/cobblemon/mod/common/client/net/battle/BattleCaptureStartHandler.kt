@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.ClientBallDisplay
 import com.cobblemon.mod.common.net.messages.client.battle.BattleCaptureStartPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleCaptureStartHandler : ClientNetworkPacketHandler<BattleCaptureStartPacket> {
     override fun handle(packet: BattleCaptureStartPacket, client: Minecraft) {

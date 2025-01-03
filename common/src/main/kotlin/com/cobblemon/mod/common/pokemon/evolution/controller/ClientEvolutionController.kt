@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.net.messages.server.pokemon.update.evolution.Acc
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.asTranslated
 import com.mojang.serialization.Codec
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 class ClientEvolutionController(
     private val pokemon: Pokemon,

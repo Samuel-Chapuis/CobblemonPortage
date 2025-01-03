@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.sound.BattleMusicController
 import com.cobblemon.mod.common.client.sound.instances.BattleMusicInstance
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMusicPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * The handler for [BattleMusicPacket]s. Interfaces with [BattleMusicController] to change battle music.

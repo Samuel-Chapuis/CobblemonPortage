@@ -47,7 +47,7 @@ import java.lang.Double.min
 import java.util.UUID
 import kotlin.math.floor
 import net.minecraft.client.DeltaTracker
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.ChatScreen

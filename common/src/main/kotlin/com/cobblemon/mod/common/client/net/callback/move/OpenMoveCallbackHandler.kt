@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.callback.move
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.interact.moveselect.MoveSelectGUI
 import com.cobblemon.mod.common.net.messages.client.callback.OpenMoveCallbackPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object OpenMoveCallbackHandler : ClientNetworkPacketHandler<OpenMoveCallbackPacket> {
     override fun handle(packet: OpenMoveCallbackPacket, client: Minecraft) {

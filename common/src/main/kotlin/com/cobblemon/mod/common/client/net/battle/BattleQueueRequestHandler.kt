@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.SingleActionRequest
 import com.cobblemon.mod.common.net.messages.client.battle.BattleQueueRequestPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleQueueRequestHandler : ClientNetworkPacketHandler<BattleQueueRequestPacket> {
     override fun handle(packet: BattleQueueRequestPacket, client: Minecraft) {

@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.client.keybind
 
 import com.mojang.blaze3d.platform.InputConstants
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 /**
  * An extension for the [CobblemonKeyBinding] to prevent the [onPress] from rapidly triggering when holding down the associated key

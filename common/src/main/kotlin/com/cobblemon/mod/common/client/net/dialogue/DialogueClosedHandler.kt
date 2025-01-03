@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.dialogue
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.dialogue.DialogueScreen
 import com.cobblemon.mod.common.net.messages.client.dialogue.DialogueClosedPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object DialogueClosedHandler : ClientNetworkPacketHandler<DialogueClosedPacket> {
     override fun handle(packet: DialogueClosedPacket, client: Minecraft) {

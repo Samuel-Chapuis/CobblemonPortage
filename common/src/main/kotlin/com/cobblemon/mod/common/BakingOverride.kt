@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common
 
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.resources.model.BakedModel
 import net.minecraft.client.resources.model.ModelResourceLocation
 import net.minecraft.resources.ResourceLocation
@@ -24,6 +24,6 @@ data class BakingOverride(
     val modelIdentifier: ModelResourceLocation
 ) {
     fun getModel(): BakedModel {
-        return Minecraft.getInstance().modelManager.getModel(modelIdentifier)
+        return MinecraftClient.getInstance().modelManager.getModel(modelIdentifier)
     }
 }

@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.client.trade.ClientTrade
 import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket
 import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket.TradeablePokemon
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object TradeStartedHandler : ClientNetworkPacketHandler<TradeStartedPacket> {
     override fun handle(packet: TradeStartedPacket, client: Minecraft) {

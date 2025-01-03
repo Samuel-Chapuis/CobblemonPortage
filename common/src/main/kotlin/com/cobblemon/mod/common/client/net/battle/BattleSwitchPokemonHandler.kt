@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.client.battle.ClientBattlePokemon
 import com.cobblemon.mod.common.client.battle.animations.MoveTileOffscreenAnimation
 import com.cobblemon.mod.common.client.battle.animations.MoveTileOnscreenAnimation
 import com.cobblemon.mod.common.net.messages.client.battle.BattleSwitchPokemonPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleSwitchPokemonHandler : ClientNetworkPacketHandler<BattleSwitchPokemonPacket> {
     override fun handle(packet: BattleSwitchPokemonPacket, client: Minecraft) {

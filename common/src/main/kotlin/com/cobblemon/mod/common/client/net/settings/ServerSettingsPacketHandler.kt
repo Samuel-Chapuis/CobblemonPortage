@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.settings
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.settings.ServerSettings
 import com.cobblemon.mod.common.net.messages.client.settings.ServerSettingsPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object ServerSettingsPacketHandler : ClientNetworkPacketHandler<ServerSettingsPacket> {
     override fun handle(packet: ServerSettingsPacket, client: Minecraft) {

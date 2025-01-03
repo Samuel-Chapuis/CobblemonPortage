@@ -23,7 +23,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.isUsingPokedex
 import com.cobblemon.mod.common.util.traceFirstEntityCollision
 import com.mojang.blaze3d.platform.InputConstants
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player

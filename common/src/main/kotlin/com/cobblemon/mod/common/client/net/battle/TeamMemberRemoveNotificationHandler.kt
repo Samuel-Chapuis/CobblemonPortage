@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.net.messages.client.battle.TeamMemberRemoveNotificationPacket
 import com.cobblemon.mod.common.util.lang
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object TeamMemberRemoveNotificationHandler : ClientNetworkPacketHandler<TeamMemberRemoveNotificationPacket> {
     override fun handle(packet: TeamMemberRemoveNotificationPacket, client: Minecraft) {

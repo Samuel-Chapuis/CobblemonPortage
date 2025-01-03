@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.gui.startselection.StarterSelectionScreen
 import com.cobblemon.mod.common.net.messages.client.starter.OpenStarterUIPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object StarterUIPacketHandler : ClientNetworkPacketHandler<OpenStarterUIPacket> {
     override fun handle(packet: OpenStarterUIPacket, client: Minecraft) {

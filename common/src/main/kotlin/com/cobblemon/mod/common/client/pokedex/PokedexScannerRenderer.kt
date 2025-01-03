@@ -26,7 +26,7 @@ import com.cobblemon.mod.common.util.lang
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.DeltaTracker
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.resources.ResourceLocation

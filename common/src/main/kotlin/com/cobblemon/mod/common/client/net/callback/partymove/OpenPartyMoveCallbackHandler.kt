@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.client.gui.interact.partyselect.PartySelectGUI
 import com.cobblemon.mod.common.net.messages.client.callback.OpenPartyMoveCallbackPacket
 import com.cobblemon.mod.common.net.messages.server.callback.partymove.PartyMoveSelectCancelledPacket
 import com.cobblemon.mod.common.net.messages.server.callback.partymove.PartyPokemonMoveSelectedPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object OpenPartyMoveCallbackHandler : ClientNetworkPacketHandler<OpenPartyMoveCallbackPacket> {
     override fun handle(packet: OpenPartyMoveCallbackPacket, client: Minecraft) {

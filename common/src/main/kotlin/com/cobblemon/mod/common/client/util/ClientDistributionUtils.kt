@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.client.util
 
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.resources.ResourceLocation
 
 /**

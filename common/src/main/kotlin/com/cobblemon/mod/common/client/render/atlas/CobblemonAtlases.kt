@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.client.render.atlas
 
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.resources.TextureAtlasHolder
 
 object CobblemonAtlases {

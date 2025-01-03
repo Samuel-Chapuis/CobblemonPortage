@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUI
 import com.cobblemon.mod.common.net.messages.client.ui.PokedexUIPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object PokedexUIPacketHandler: ClientNetworkPacketHandler<PokedexUIPacket> {
     override fun handle(packet: PokedexUIPacket, client: Minecraft) {

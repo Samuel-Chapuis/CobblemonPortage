@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.callback.party
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.interact.partyselect.PartySelectGUI
 import com.cobblemon.mod.common.net.messages.client.callback.OpenPartyCallbackPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object OpenPartyCallbackHandler : ClientNetworkPacketHandler<OpenPartyCallbackPacket> {
     override fun handle(packet: OpenPartyCallbackPacket, client: Minecraft) {

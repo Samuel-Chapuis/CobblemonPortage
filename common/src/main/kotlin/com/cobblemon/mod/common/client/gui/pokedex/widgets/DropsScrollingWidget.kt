@@ -21,7 +21,7 @@ import com.cobblemon.mod.common.util.itemRegistry
 import com.cobblemon.mod.common.util.lang
 import java.text.DecimalFormat
 import net.minecraft.ChatFormatting
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent

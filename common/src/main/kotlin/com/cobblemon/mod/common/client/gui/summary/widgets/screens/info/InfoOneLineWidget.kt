@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.client.gui.summary.widgets.screens.info
 
 import com.cobblemon.mod.common.client.CobblemonResources
 import com.cobblemon.mod.common.client.gui.summary.widgets.SoundlessWidget
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Component

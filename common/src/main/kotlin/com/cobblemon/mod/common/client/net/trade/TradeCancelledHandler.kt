@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.trade
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.net.messages.client.trade.TradeCancelledPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object TradeCancelledHandler : ClientNetworkPacketHandler<TradeCancelledPacket> {
     override fun handle(packet: TradeCancelledPacket, client: Minecraft) {

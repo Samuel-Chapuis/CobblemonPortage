@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.entity.Poseable
 import com.cobblemon.mod.common.net.messages.client.animation.PlayPoseableAnimationPacket
 import com.cobblemon.mod.common.util.asExpression
 import com.cobblemon.mod.common.util.resolve
-import net.minecraft.client.MinecraftClient
+import net.minecraft.client.MinecraftClientClient
 
 object PlayPoseableAnimationHandler : ClientNetworkPacketHandler<PlayPoseableAnimationPacket> {
     override fun handle(packet: PlayPoseableAnimationPacket, client: MinecraftClient) {

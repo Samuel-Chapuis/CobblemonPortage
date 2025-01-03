@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.client.ClientMultiBattleTeamMember
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.net.messages.client.battle.TeamJoinNotificationPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object TeamJoinNotificationHandler : ClientNetworkPacketHandler<TeamJoinNotificationPacket> {
     override fun handle(packet: TeamJoinNotificationPacket, client: Minecraft) {

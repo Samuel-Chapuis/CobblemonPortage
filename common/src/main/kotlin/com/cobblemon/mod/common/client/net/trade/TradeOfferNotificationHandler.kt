@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.render.ClientPlayerIcon
 import com.cobblemon.mod.common.client.trade.ClientTradeRequest
 import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferNotificationPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object TradeOfferNotificationHandler : ClientNetworkPacketHandler<TradeOfferNotificationPacket> {
     override fun handle(packet: TradeOfferNotificationPacket, client: Minecraft) {

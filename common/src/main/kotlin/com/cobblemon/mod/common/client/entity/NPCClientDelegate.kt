@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.entity.npc.NPCPlayerModelType
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.mojang.blaze3d.platform.NativeImage
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.renderer.texture.DynamicTexture
 import net.minecraft.network.syncher.EntityDataAccessor
 

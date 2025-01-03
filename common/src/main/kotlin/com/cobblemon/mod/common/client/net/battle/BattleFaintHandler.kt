@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.animations.MoveTileOffscreenAnimation
 import com.cobblemon.mod.common.net.messages.client.battle.BattleFaintPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleFaintHandler : ClientNetworkPacketHandler<BattleFaintPacket> {
     override fun handle(packet: BattleFaintPacket, client: Minecraft) {

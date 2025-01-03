@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.CobblemonResources
 import com.cobblemon.mod.common.client.gui.battle.widgets.BattleMessagePane
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMessagePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 import net.minecraft.locale.Language
 
 object BattleMessageHandler : ClientNetworkPacketHandler<BattleMessagePacket> {

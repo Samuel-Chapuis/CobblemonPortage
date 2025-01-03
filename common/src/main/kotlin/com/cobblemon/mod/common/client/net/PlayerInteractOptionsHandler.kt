@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.interact.wheel.createPlayerInteractGui
 import com.cobblemon.mod.common.net.messages.client.PlayerInteractOptionsPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object PlayerInteractOptionsHandler : ClientNetworkPacketHandler<PlayerInteractOptionsPacket> {
     override fun handle(packet: PlayerInteractOptionsPacket, client: Minecraft) {

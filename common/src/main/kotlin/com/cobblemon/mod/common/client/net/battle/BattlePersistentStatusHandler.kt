@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.net.battle
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.net.messages.client.battle.BattlePersistentStatusPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattlePersistentStatusHandler : ClientNetworkPacketHandler<BattlePersistentStatusPacket> {
     override fun handle(packet: BattlePersistentStatusPacket, client: Minecraft) {

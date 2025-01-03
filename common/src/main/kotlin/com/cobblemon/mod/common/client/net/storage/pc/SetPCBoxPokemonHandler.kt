@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.storage.ClientBox
 import com.cobblemon.mod.common.net.messages.client.storage.pc.SetPCBoxPokemonPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object SetPCBoxPokemonHandler : ClientNetworkPacketHandler<SetPCBoxPokemonPacket> {
     override fun handle(packet: SetPCBoxPokemonPacket, client: Minecraft) {

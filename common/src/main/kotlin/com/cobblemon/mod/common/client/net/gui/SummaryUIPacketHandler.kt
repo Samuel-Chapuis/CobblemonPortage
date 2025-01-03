@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.gui.summary.Summary
 import com.cobblemon.mod.common.net.messages.client.ui.SummaryUIPacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object SummaryUIPacketHandler: ClientNetworkPacketHandler<SummaryUIPacket> {
     override fun handle(packet: SummaryUIPacket, client: Minecraft) {

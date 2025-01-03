@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ClientNetworkPacketHandler
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.battle.animations.HealthChangeAnimation
 import com.cobblemon.mod.common.net.messages.client.battle.BattleHealthChangePacket
-import net.minecraft.client.Minecraft
+import net.minecraft.client.MinecraftClient
 
 object BattleHealthChangeHandler : ClientNetworkPacketHandler<BattleHealthChangePacket> {
     override fun handle(packet: BattleHealthChangePacket, client: Minecraft) {
