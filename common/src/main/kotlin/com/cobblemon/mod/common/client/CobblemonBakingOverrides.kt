@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client
 import com.cobblemon.mod.common.BakingOverride
 import com.cobblemon.mod.common.util.cobblemonModel
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.client.resources.model.ModelResourceLocation
+import net.minecraft.client.util.ModelIdentifier
 import net.minecraft.resources.ResourceLocation
 
 /**

@@ -10,7 +10,7 @@ package com.cobblemon.mod.common
 
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.model.BakedModel
-import net.minecraft.client.resources.model.ModelResourceLocation
+import net.minecraft.client.util.ModelIdentifier
 import net.minecraft.resources.ResourceLocation
 
 /**

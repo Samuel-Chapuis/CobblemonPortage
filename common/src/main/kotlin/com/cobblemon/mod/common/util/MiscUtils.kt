@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
 import kotlin.math.min
 import kotlin.random.Random
-import net.minecraft.client.resources.model.ModelResourceLocation
+import net.minecraft.client.util.ModelIdentifier
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
