@@ -19,7 +19,7 @@ import net.minecraft.core.Direction
 import net.minecraft.core.Direction.*
 import net.minecraft.tags.BlockTags
 import net.minecraft.util.RandomSource
-import net.minecraft.world.level.LevelSimulatedReader
+import net.minecraft.world.TestableWorld
 import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
@@ -225,7 +225,7 @@ class ApricornTreeFeature : Feature<BlockStateConfiguration>(BlockStateConfigura
         return variationList
     }
 
-    private fun isAir(testableWorld: LevelSimulatedReader, blockPos: BlockPos?): Boolean {
+    private fun isAir(testableWorld: TestableWorld, blockPos: BlockPos?): Boolean {
         return testableWorld.isStateAtPosition(blockPos) { blockState: BlockState ->
             blockState.`is`(Blocks.AIR)
         }
