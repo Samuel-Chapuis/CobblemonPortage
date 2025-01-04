@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.berry
 
 import net.minecraft.core.BlockPos
 import net.minecraft.world.level.BlockGetter
-import net.minecraft.world.level.LevelReader
+import net.minecraft.world.BlockView
 import net.minecraft.world.level.block.state.BlockState
 
 /**

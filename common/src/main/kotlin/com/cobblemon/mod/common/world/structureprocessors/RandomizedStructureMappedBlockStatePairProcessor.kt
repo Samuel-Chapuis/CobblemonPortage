@@ -16,7 +16,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.util.RandomSource
-import net.minecraft.world.level.LevelReader
+import net.minecraft.world.BlockView
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings

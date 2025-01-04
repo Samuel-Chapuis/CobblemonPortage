@@ -39,7 +39,7 @@ import net.minecraft.world.item.ShovelItem
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelAccessor
-import net.minecraft.world.level.LevelReader
+import net.minecraft.world.BlockView
 import net.minecraft.world.level.block.*
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityTicker

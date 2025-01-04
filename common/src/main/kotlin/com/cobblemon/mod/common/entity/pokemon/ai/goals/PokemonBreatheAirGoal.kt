@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.util.closestPosition
 import net.minecraft.core.BlockPos
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.ai.goal.BreathAirGoal
-import net.minecraft.world.level.LevelReader
+import net.minecraft.world.BlockView
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.pathfinder.PathComputationType
 
