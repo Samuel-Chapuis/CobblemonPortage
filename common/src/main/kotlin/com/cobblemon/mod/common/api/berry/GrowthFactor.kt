@@ -36,7 +36,7 @@ interface GrowthFactor {
      * @param pos The [BlockPos] of the berry tree.
      * @return If the bonus should activate.
      */
-    fun isValid(world: LevelReader, state: BlockState, pos: BlockPos): Boolean
+    fun isValid(world: BlockView, state: BlockState, pos: BlockPos): Boolean
 
     /**
      * Resolves the amount of bonus berries to grow if [isValid] was true.

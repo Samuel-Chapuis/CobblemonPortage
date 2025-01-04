@@ -36,7 +36,7 @@ class BiomeDownfallGrowthFactor(
         }
     }
 
-    override fun isValid(world: LevelReader, state: BlockState, pos: BlockPos): Boolean {
+    override fun isValid(world: BlockView, state: BlockState, pos: BlockPos): Boolean {
         val biome = world.getBiome(pos).value() as BiomeAccessor
         return this.range.matches(biome.climateSettings.downfall.toDouble())
     }

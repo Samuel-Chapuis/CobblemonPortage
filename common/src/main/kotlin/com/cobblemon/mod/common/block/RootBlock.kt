@@ -57,7 +57,7 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
         return false
     }
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean = this.canGoOn(state, world, pos) { true }
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean = this.canGoOn(state, world, pos) { true }
 
     override fun updateShape(
         state: BlockState,
@@ -70,7 +70,7 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
         return if (direction == Direction.UP && !this.canSurvive(state, world, pos)) Blocks.AIR.defaultBlockState() else super.updateShape(state, direction, neighborState, world, pos, neighborPos)
     }
 
-    override fun isValidBonemealTarget(world: LevelReader, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
+    override fun isValidBonemealTarget(world: BlockView, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
 
     override fun isBonemealSuccess(world: Level, random: RandomSource, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
 
@@ -123,12 +123,12 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
     /**
      * Checks if this block can spread to any neighbouring blocks.
      *
-     * @param world The [LevelReader] being queried.
+     * @param world The [BlockView] being queried.
      * @param pos The [BlockPos] the block is currently on.
      * @param state The [BlockState] of the block.
      * @return If any direction supports spreading.
      */
-    protected fun canSpread(world: LevelReader, pos: BlockPos, state: BlockState): Boolean = this.possibleDirections.any { direction ->
+    protected fun canSpread(world: BlockView, pos: BlockPos, state: BlockState): Boolean = this.possibleDirections.any { direction ->
         val adjacent = pos.relative(direction)
         this.canSpreadTo(this.defaultBlockState(), world, adjacent)
     }
@@ -137,11 +137,11 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
      * Checks if the given coordinates allow for a root to spread to.
      *
      * @param state The base root [BlockState].
-     * @param world The [LevelReader] being queried.
+     * @param world The [BlockView] being queried.
      * @param pos The [BlockPos] being queried.
      * @return If the given coordinates allow for a root to spread onto.
      */
-    protected fun canSpreadTo(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    protected fun canSpreadTo(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val existingState = world.getBlockState(pos)
         // Isn't this useless since it's always air or replaceable if this is happening, not! See the spread implementation for the need of a valid block in the target pos as well.
         return (existingState.isAir || existingState.canBeReplaced()) && this.canGoOn(state, world, pos) { ceiling -> ceiling.`is`(CobblemonBlockTags.ROOTS_SPREADABLE) }
@@ -161,12 +161,12 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
      * Checks if the given coordinates allow for a root to be placed with some context.
      *
      * @param state The base root [BlockState].
-     * @param world The [LevelReader] being queried.
+     * @param world The [BlockView] being queried.
      * @param pos The [BlockPos] being queried.
      * @param ceilingValidator An extra condition to validate if the block it will be placed on allows for it based on context.
      * @return If the given coordinates allow for a root to be set.
      */
-    protected fun canGoOn(state: BlockState, world: LevelReader, pos: BlockPos, ceilingValidator: (ceiling: BlockState) -> Boolean): Boolean {
+    protected fun canGoOn(state: BlockState, world: BlockView, pos: BlockPos, ceilingValidator: (ceiling: BlockState) -> Boolean): Boolean {
         val up = pos.above()
         val upState = world.getBlockState(up)
         return upState.isFaceSturdy(world, up, Direction.DOWN) && ceilingValidator(upState) // todo (techdaan): ensure this is the right mapping

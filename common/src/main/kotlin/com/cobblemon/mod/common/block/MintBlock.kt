@@ -61,7 +61,7 @@ class MintBlock(private val mintType: MintType, settings: Properties) : CropBloc
         builder.add(IS_WILD)
     }
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val floor = world.getBlockState(pos.below())
         // A bit of a copy pasta but we don't have access to the BlockState being attempted to be placed above on the canPlantOnTop
         return (world.getRawBrightness(pos, 0) >= 8 || world.canSeeSky(pos)) && ((this.isWild(state) && floor.`is`(BlockTags.DIRT)) || this.mayPlaceOn(floor, world, pos))

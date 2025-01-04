@@ -140,7 +140,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
         return null
     }
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val blockPos = pos.below()
         val blockState = world.getBlockState(blockPos)
         return if (state.getValue(PART) == TankPart.BOTTOM) true else blockState.`is`(this)

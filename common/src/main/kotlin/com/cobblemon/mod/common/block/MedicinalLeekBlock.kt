@@ -54,7 +54,7 @@ class MedicinalLeekBlock(settings: Properties) : CropBlock(settings) {
 
     // These 3 are still around for the sake of compatibility, vanilla won't trigger it but some mods might
     // We implement applyGrowth & getGrowthAmount for them
-    override fun isValidBonemealTarget(world: LevelReader, pos: BlockPos, state: BlockState): Boolean = !this.isMaxAge(state)
+    override fun isValidBonemealTarget(world: BlockView, pos: BlockPos, state: BlockState): Boolean = !this.isMaxAge(state)
 
     override fun growCrops(world: Level, pos: BlockPos, state: BlockState) {
         world.setBlock(pos, state.setValue(this.ageProperty, (this.getAge(state) + 1).coerceAtMost(this.maxAge)), UPDATE_CLIENTS)
@@ -62,7 +62,7 @@ class MedicinalLeekBlock(settings: Properties) : CropBlock(settings) {
 
     override fun getBonemealAgeIncrease(world: Level): Int = 1
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         // We don't care about the sky & light level, sugar cane doesn't either
         return this.mayPlaceOn(state, world, pos)
     }

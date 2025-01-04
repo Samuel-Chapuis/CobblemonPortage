@@ -51,7 +51,7 @@ class RevivalHerbBlock(settings: Properties) : CropBlock(settings), Mulchable {
 
     override fun getAgeProperty(): IntegerProperty = AGE
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val floor = world.getBlockState(pos.below())
         val block = world.getBlockState(pos)
         // A bit of a copy pasta but we don't have access to the BlockState being attempted to be placed above on the canPlantOnTop

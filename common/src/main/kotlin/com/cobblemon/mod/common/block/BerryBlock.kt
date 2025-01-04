@@ -77,7 +77,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
 
     override fun newBlockEntity(pos: BlockPos, state: BlockState) = BerryBlockEntity(pos, state, berryIdentifier)
 
-    override fun isValidBonemealTarget(world: LevelReader, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
+    override fun isValidBonemealTarget(world: BlockView, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
 
     override fun isBonemealSuccess(world: Level, random: RandomSource, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
 
@@ -197,7 +197,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
     }
 
     @Deprecated("Deprecated in Java")
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val below = world.getBlockState(pos.below())
         return (state.getValue(WAS_GENERATED) && below.`is`(CobblemonBlockTags.BERRY_WILD_SOIL))
                 || below.`is`(CobblemonBlockTags.BERRY_SOIL)
@@ -227,7 +227,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
         builder.add(IS_ROOTED)
     }
 
-    override fun getCloneItemStack(world: LevelReader, pos: BlockPos, state: BlockState): ItemStack {
+    override fun getCloneItemStack(world: BlockView, pos: BlockPos, state: BlockState): ItemStack {
         val berryItem = this.berry()?.item() ?: return ItemStack.EMPTY
         return ItemStack(berryItem)
     }

@@ -210,7 +210,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
         return null
     }
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val blockPos = pos.below()
         val blockState = world.getBlockState(blockPos)
         return if (state.getValue(PART) == PCPart.BOTTOM) blockState.isFaceSturdy(world, blockPos, Direction.UP) else blockState.`is`(this)// todo (techdaan): ensure this is the right mapping

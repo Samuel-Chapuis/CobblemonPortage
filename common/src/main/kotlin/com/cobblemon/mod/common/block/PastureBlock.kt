@@ -149,7 +149,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         return null
     }
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         return true
     }
 

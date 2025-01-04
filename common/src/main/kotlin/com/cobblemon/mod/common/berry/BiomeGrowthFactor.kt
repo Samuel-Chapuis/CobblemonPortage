@@ -24,7 +24,7 @@ class PreferredBiomeGrowthFactor(
         }
     }
 
-    override fun isValid(world: LevelReader, state: BlockState, pos: BlockPos): Boolean {
+    override fun isValid(world: BlockView, state: BlockState, pos: BlockPos): Boolean {
         val biome = world.getBiome(pos)
         val block = state.block as BerryBlock
         val biomeTags = block.berry()?.preferredBiomeTags ?: emptyList()

@@ -72,7 +72,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
     }
 
     @Deprecated("Deprecated in Java")
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val blockState = world.getBlockState(pos.relative(state.getValue(FACING) as Direction))
         return blockState.`is`(CobblemonBlockTags.APRICORN_LEAVES)
     }
@@ -128,7 +128,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
             else super.updateShape(state, direction, neighborState, world, pos, neighborPos)
     }
 
-    override fun isValidBonemealTarget(world: LevelReader, pos: BlockPos, state: BlockState) = state.getValue(AGE) < MAX_AGE
+    override fun isValidBonemealTarget(world: BlockView, pos: BlockPos, state: BlockState) = state.getValue(AGE) < MAX_AGE
 
     override fun isBonemealSuccess(world: Level, random: RandomSource, pos: BlockPos, state: BlockState) = true
 
@@ -166,7 +166,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
     }
 
     // We need to point back to the actual apricorn item, see SweetBerryBushBlock for example
-    override fun getCloneItemStack(world: LevelReader, pos: BlockPos, state: BlockState) = ItemStack(this.apricorn.item())
+    override fun getCloneItemStack(world: BlockView, pos: BlockPos, state: BlockState) = ItemStack(this.apricorn.item())
 
     private fun doHarvest(world: Level, state: BlockState, pos: BlockPos, player: Player) {
         val resetState = this.harvest(world, state, pos)

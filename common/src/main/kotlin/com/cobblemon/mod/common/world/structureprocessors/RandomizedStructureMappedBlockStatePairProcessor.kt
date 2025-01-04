@@ -42,7 +42,7 @@ class RandomizedStructureMappedBlockStatePairProcessor(
     val probability: Float = 1.0f
 ) : StructureProcessor() {
     override fun processBlock(
-        world: LevelReader,
+        world: BlockView,
         pos: BlockPos,
         pivot: BlockPos,
         originalBlockInfo: StructureTemplate.StructureBlockInfo,

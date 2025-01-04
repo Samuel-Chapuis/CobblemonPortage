@@ -125,7 +125,7 @@ abstract class GrowableStoneBlock(
         return null
     }
 
-    override fun canSurvive(state: BlockState, world: LevelReader, pos: BlockPos): Boolean {
+    override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val direction = state.getValue(FACING) as Direction
         val blockState = world.getBlockState(pos.relative(direction.opposite))
         return blockState.isFaceSturdy(world, pos, direction) // todo (techdaan): ensure this is the right mapping

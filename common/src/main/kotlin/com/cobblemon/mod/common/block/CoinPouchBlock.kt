@@ -88,7 +88,7 @@ class CoinPouchBlock(settings: Properties, val small: Boolean) : HorizontalDirec
         builder.add(FACING, NATURAL, WATERLOGGED)
     }
 
-    override fun canSurvive(blockState: BlockState, levelReader: LevelReader, blockPos: BlockPos): Boolean {
+    override fun canSurvive(blockState: BlockState, levelReader: BlockView, blockPos: BlockPos): Boolean {
         if (this.small) {
             return !levelReader.getBlockState(blockPos.below()).`is`(CobblemonBlocks.RELIC_COIN_POUCH)
         }

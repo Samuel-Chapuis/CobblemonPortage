@@ -79,7 +79,7 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
 
     override fun getStateForPlacement(blockPlaceContext: BlockPlaceContext): BlockState = this.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, blockPlaceContext.horizontalDirection.opposite)
 
-    override fun getCloneItemStack(levelReader: LevelReader, blockPos: BlockPos, blockState: BlockState): ItemStack = ItemStack(Blocks.LECTERN)
+    override fun getCloneItemStack(levelReader: BlockView, blockPos: BlockPos, blockState: BlockState): ItemStack = ItemStack(Blocks.LECTERN)
 
     override fun rotate(blockState: BlockState, rotation: Rotation) = blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING) as Direction)) as BlockState
 

@@ -56,7 +56,7 @@ class PokemonBreatheAirGoal(val pokemonEntity: PokemonEntity) : BreathAirGoal(po
         }
     }
 
-    private fun isAirPos(world: LevelReader, pos: BlockPos): Boolean {
+    private fun isAirPos(world: BlockView, pos: BlockPos): Boolean {
         val blockState = world.getBlockState(pos)
         val aboveState = world.getBlockState(pos.above())
         val notFluid = world.getFluidState(pos.above()).isEmpty || blockState.`is`(Blocks.BUBBLE_COLUMN)

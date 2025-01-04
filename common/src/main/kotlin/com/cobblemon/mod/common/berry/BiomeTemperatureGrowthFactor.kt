@@ -35,7 +35,7 @@ class BiomeTemperatureGrowthFactor(
         }
     }
 
-    override fun isValid(world: LevelReader, state: BlockState, pos: BlockPos): Boolean {
+    override fun isValid(world: BlockView, state: BlockState, pos: BlockPos): Boolean {
         val biome = world.getBiome(pos).value()
         return this.range.matches(biome.baseTemperature.toDouble())
     }
