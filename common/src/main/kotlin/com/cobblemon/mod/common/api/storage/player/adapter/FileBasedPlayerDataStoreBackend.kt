@@ -32,7 +32,7 @@ abstract class FileBasedPlayerDataStoreBackend<T : InstancedPlayerData>(
     val useNestedStructure = true
 
     override fun setup(server: MinecraftServer) {
-        savePath = server.getWorldPath(LevelResource.PLAYER_DATA_DIR).parent
+        savePath = server.getWorldPath(WorldSavePath.PLAYER_DATA_DIR).parent
     }
 
     //TODO: Set file extension to be a field
