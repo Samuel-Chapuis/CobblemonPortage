@@ -96,7 +96,7 @@ import net.minecraft.world.entity.ai.memory.MemoryStatus
 import net.minecraft.world.entity.ai.memory.WalkTarget
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.Level.ExplosionInteraction
+import net.minecraft.world.explosion.Explosion.DestructionType
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.dimension.DimensionType
@@ -253,7 +253,7 @@ object MoLangFunctions {
                 val y = params.getDouble(1)
                 val z = params.getDouble(2)
                 val range = params.getDouble(3).toFloat()
-                world.explode(null, x, y, z, range, ExplosionInteraction.valueOf(params.getStringOrNull(4)?.uppercase() ?: ExplosionInteraction.TNT.name))
+                world.explode(null, x, y, z, range, DestructionType.valueOf(params.getStringOrNull(4)?.uppercase() ?: DestructionType.TNT.name))
             }
             map.put("spawn_lightning") { params ->
                 val x = params.getDouble(0)
