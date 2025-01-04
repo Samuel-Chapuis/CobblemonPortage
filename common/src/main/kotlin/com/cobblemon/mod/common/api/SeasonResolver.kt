@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api
 
 import com.cobblemon.mod.common.pokemon.feature.CobblemonSeason
 import net.minecraft.core.BlockPos
-import net.minecraft.world.level.LevelAccessor
+import net.minecraft.world.WorldAccess
 
 /**
  * Figures out what season it is at a particular position. Season is just a general approximation
