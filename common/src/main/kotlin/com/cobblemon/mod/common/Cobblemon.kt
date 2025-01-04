@@ -125,7 +125,7 @@ import net.minecraft.command.argument.serialize.ConstantArgumentSerializer
 import net.minecraft.registry.RegistryKey
 import net.minecraft.world.item.NameTagItem
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.storage.LevelResource
+import net.minecraft.util.WorldSavePath
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 

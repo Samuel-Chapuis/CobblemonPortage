@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.storage.player.adapter
 import com.cobblemon.mod.common.api.storage.player.InstancedPlayerData
 import com.cobblemon.mod.common.api.storage.player.PlayerInstancedDataStoreType
 import net.minecraft.server.MinecraftServer
-import net.minecraft.world.level.storage.LevelResource
+import net.minecraft.util.WorldSavePath
 import java.nio.file.Path
 import java.util.UUID
 

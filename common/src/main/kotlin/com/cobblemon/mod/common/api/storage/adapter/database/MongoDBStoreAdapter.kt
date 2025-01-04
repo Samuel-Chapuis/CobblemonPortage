@@ -24,7 +24,7 @@ import com.mongodb.client.MongoCollection
 import com.mongodb.client.model.ReplaceOptions
 import java.util.*
 import net.minecraft.core.RegistryAccess
-import net.minecraft.world.level.storage.LevelResource
+import net.minecraft.util.WorldSavePath
 import org.bson.Document
 
 /**

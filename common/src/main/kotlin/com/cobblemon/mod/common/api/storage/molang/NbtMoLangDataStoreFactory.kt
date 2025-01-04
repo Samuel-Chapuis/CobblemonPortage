@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.platform.events.PlatformEvents
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtAccounter
 import net.minecraft.nbt.NbtIo
-import net.minecraft.world.level.storage.LevelResource
+import net.minecraft.util.WorldSavePath
 import java.nio.file.Path
 import java.util.*
 
