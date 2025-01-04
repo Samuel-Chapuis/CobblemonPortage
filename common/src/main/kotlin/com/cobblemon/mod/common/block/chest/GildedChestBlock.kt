@@ -107,7 +107,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         state: BlockState,
         direction: Direction,
         neighborState: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos,
         neighborPos: BlockPos
     ): BlockState {

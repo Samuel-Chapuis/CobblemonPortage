@@ -20,5 +20,5 @@ import net.minecraft.world.WorldAccess
  * @since November 25th, 2022
  */
 fun interface SeasonResolver {
-    operator fun invoke(world: LevelAccessor, pos: BlockPos): CobblemonSeason?
+    operator fun invoke(world: WorldAccess, pos: BlockPos): CobblemonSeason?
 }

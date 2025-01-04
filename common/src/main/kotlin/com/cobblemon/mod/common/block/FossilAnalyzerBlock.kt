@@ -59,7 +59,7 @@ class FossilAnalyzerBlock(settings: Properties) : MultiblockBlock(settings), Wor
 
     override fun getContainer(
         state: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos
     ): WorldlyContainer {
         val analyzerEntity = world.getBlockEntity(pos) as FossilAnalyzerBlockEntity

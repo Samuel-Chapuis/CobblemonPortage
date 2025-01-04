@@ -228,7 +228,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
             state: BlockState,
             direction: Direction,
             neighborState: BlockState,
-            world: LevelAccessor,
+            world: WorldAccess,
             pos: BlockPos,
             neighborPos: BlockPos
     ): BlockState {
@@ -244,7 +244,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
 
     override fun getContainer(
         state: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos
     ): WorldlyContainer {
         val tankEntity =

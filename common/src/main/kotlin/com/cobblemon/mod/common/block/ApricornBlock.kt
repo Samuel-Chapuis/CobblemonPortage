@@ -120,7 +120,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
         state: BlockState,
         direction: Direction,
         neighborState: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos,
         neighborPos: BlockPos
     ): BlockState {

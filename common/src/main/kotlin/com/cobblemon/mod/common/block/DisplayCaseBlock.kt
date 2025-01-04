@@ -71,7 +71,7 @@ class DisplayCaseBlock(settings: Properties) : BaseEntityBlock(settings) {
         state: BlockState,
         direction: Direction,
         neighborState: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos,
         neighborPos: BlockPos
     ): BlockState {

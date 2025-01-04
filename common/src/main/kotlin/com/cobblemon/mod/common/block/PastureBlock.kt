@@ -187,7 +187,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         builder.add(WATERLOGGED)
     }
 
-    fun checkBreakEntity(world: LevelAccessor, state: BlockState, pos: BlockPos) {
+    fun checkBreakEntity(world: WorldAccess, state: BlockState, pos: BlockPos) {
         if (state.getValue(PART) == PasturePart.TOP) {
             return
         }
@@ -334,7 +334,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         state: BlockState,
         direction: Direction,
         neighborState: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos,
         neighborPos: BlockPos
     ): BlockState {

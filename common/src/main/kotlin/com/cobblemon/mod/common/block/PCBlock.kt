@@ -313,7 +313,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
         state: BlockState,
         direction: Direction,
         neighborState: BlockState,
-        world: LevelAccessor,
+        world: WorldAccess,
         pos: BlockPos,
         neighborPos: BlockPos
     ): BlockState {

@@ -37,7 +37,7 @@ enum class CobblemonSeason {
 const val SEASON = "season"
 
 object SeasonFeatureHandler {
-    fun updateSeason(pokemon: Pokemon, world: LevelAccessor, pos: BlockPos) {
+    fun updateSeason(pokemon: Pokemon, world: WorldAccess, pos: BlockPos) {
         updateSeason(pokemon, Cobblemon.seasonResolver(world, pos))
     }
 
@@ -60,7 +60,7 @@ object SeasonFeatureHandler {
  * @since November 25th, 2022
  */
 object TagSeasonResolver : SeasonResolver {
-    override fun invoke(world: LevelAccessor, pos: BlockPos): CobblemonSeason? {
+    override fun invoke(world: WorldAccess, pos: BlockPos): CobblemonSeason? {
         val biome = world.getBiome(pos)
         return if (biome.`is`(CobblemonBiomeTags.IS_WINTER)) {
             CobblemonSeason.WINTER
