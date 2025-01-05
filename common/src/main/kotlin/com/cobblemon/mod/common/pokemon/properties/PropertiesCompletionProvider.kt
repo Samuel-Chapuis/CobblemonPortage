@@ -132,14 +132,14 @@ internal object PropertiesCompletionProvider : DataRegistry {
     }
 
     private fun addDefaults() {
-        this.inject(setOf("level", "lvl", "l"), setOf("1", "${Cobblemon.config.maxPokemonWorld}") )
+        this.inject(setOf("level", "lvl", "l"), setOf("1", "${Cobblemon.config.maxPokemonLevel}") )
         this.inject(setOf("shiny", "s"), setOf("yes", "no"))
         this.inject(setOf("gender"), Gender.values().map { it.name.lowercase() })
         this.inject(setOf("friendship"), setOf("0", Cobblemon.config.maxPokemonFriendship.toString()))
         this.inject(setOf("pokeball"), PokeBalls.all().map { it.name.simplify() })
         this.inject(setOf("nature"), Natures.all().map { it.name.simplify() })
         this.inject(setOf("ability"), Abilities.all().map { if (it.name.asIdentifierDefaultingNamespace().namespace == Cobblemon.MODID) it.name.asIdentifierDefaultingNamespace().path else it.name })
-        this.inject(setOf("dmax"), setOf("0", Cobblemon.config.maxDynamaxWorld.toString()))
+        this.inject(setOf("dmax"), setOf("0", Cobblemon.config.maxDynamaxLevel.toString()))
         this.inject(setOf("gmax"), setOf("yes", "no"))
         this.inject(setOf("type", "elemental_type"), ElementalTypes.all().map { it.name })
         this.inject(setOf("tera_type", "tera"), TeraTypes.map { it.id.simplify() })

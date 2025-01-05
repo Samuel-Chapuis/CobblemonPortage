@@ -16,4 +16,4 @@ import com.cobblemon.mod.common.pokemon.Pokemon
  * @author Hiroku
  * @since August 5th, 2022
  */
-class WorldUpEvent(val pokemon: Pokemon, val oldWorld: Int, var newWorld: Int)
+class LevelUpEvent(val pokemon: Pokemon, val oldLevel: Int, var newLevel: Int)

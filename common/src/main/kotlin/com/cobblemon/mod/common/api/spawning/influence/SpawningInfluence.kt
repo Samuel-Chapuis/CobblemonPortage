@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.spawning.context.calculators.SpawningContext
 import com.cobblemon.mod.common.api.spawning.detail.SpawnAction
 import com.cobblemon.mod.common.api.spawning.detail.SpawnDetail
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.Entity
 
 /**
@@ -39,5 +39,5 @@ interface SpawningInfluence {
     /** Applies some influence over the weight of spawn buckets. */
     fun affectBucketWeight(bucket: SpawnBucket, weight: Float): Float = weight
     /** Filters positions that could be usable for a spawning context calculator */
-    fun isAllowedPosition(world: ServerWorld, pos: BlockPos, contextCalculator: SpawningContextCalculator<*, *>): Boolean = true
+    fun isAllowedPosition(world: ServerLevel, pos: BlockPos, contextCalculator: SpawningContextCalculator<*, *>): Boolean = true
 }

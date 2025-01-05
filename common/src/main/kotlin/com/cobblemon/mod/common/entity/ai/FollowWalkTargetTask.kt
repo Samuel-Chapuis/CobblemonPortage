@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.entity.ai
 
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.PathfinderMob
 import net.minecraft.world.entity.ai.behavior.Behavior
 import net.minecraft.world.entity.ai.behavior.EntityTracker
@@ -35,7 +35,7 @@ class FollowWalkTargetTask(
     private var lookTargetPos: BlockPos? = null
     private var speed = 0f
 
-    override fun checkExtraStartConditions(arg: ServerWorld, arg2: PathfinderMob): Boolean {
+    override fun checkExtraStartConditions(arg: ServerLevel, arg2: PathfinderMob): Boolean {
         if (this.pathUpdateCountdownTicks > 0) {
             --this.pathUpdateCountdownTicks
             return false
@@ -57,7 +57,7 @@ class FollowWalkTargetTask(
         }
     }
 
-    override fun canStillUse(arg: ServerWorld, arg2: PathfinderMob, l: Long): Boolean {
+    override fun canStillUse(arg: ServerLevel, arg2: PathfinderMob, l: Long): Boolean {
         if (this.path != null && this.lookTargetPos != null) {
             val optional = arg2.brain.getMemory(MemoryModuleType.WALK_TARGET)
             val bl = optional.map(::isTargetSpectator).orElse(false)
@@ -68,7 +68,7 @@ class FollowWalkTargetTask(
         }
     }
 
-    override fun stop(world: ServerWorld, entity: PathfinderMob, l: Long) {
+    override fun stop(world: ServerLevel, entity: PathfinderMob, l: Long) {
         val walkTarget = entity.brain.getMemory(MemoryModuleType.WALK_TARGET).orElse(null)
         if (walkTarget != null && !this.hasReached(entity, walkTarget) && entity.navigation.isStuck) {
             this.pathUpdateCountdownTicks = world.getRandom().nextInt(40)
@@ -80,12 +80,12 @@ class FollowWalkTargetTask(
         this.path = null
     }
 
-    override fun start(arg: ServerWorld, arg2: PathfinderMob, l: Long) {
+    override fun start(arg: ServerLevel, arg2: PathfinderMob, l: Long) {
         arg2.brain.setMemory(MemoryModuleType.PATH, this.path)
         arg2.navigation.moveTo(this.path, speed.toDouble())
     }
 
-    override fun tick(world: ServerWorld, entity: PathfinderMob, l: Long) {
+    override fun tick(world: ServerLevel, entity: PathfinderMob, l: Long) {
         val path = entity.navigation.path
         val brain = entity.brain
         if (this.path !== path) {

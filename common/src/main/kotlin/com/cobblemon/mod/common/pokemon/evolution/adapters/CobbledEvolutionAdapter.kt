@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.api.pokemon.evolution.adapters.EvolutionAdapter
 import com.cobblemon.mod.common.pokemon.evolution.variants.BlockClickEvolution
 import com.cobblemon.mod.common.pokemon.evolution.variants.ItemInteractionEvolution
-import com.cobblemon.mod.common.pokemon.evolution.variants.WorldUpEvolution
+import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution
 import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonElement
@@ -33,10 +33,10 @@ object CobblemonEvolutionAdapter : EvolutionAdapter {
     private val types = mutableMapOf<String, KClass<out Evolution>>()
 
     init {
-        this.registerType(WorldUpEvolution.ADAPTER_VARIANT, WorldUpEvolution::class)
+        this.registerType(LevelUpEvolution.ADAPTER_VARIANT, LevelUpEvolution::class)
         this.registerType(TradeEvolution.ADAPTER_VARIANT, TradeEvolution::class)
         this.registerType(ItemInteractionEvolution.ADAPTER_VARIANT, ItemInteractionEvolution::class)
-        this.registerType(WorldUpEvolution.ALTERNATIVE_ADAPTER_VARIANT, WorldUpEvolution::class)
+        this.registerType(LevelUpEvolution.ALTERNATIVE_ADAPTER_VARIANT, LevelUpEvolution::class)
         this.registerType(BlockClickEvolution.ADAPTER_VARIANT, BlockClickEvolution::class)
     }
 

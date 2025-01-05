@@ -36,7 +36,7 @@ object AdvancementHandler : EventHandler {
         POKEMON_CAPTURED.subscribe(Priority.NORMAL, ::onCapture)
         BATTLE_VICTORY.subscribe(Priority.NORMAL, ::onWinBattle)
         EVOLUTION_COMPLETE.subscribe(Priority.LOWEST, ::onEvolve)
-        LEVEL_UP_EVENT.subscribe(Priority.NORMAL, ::onWorldUp)
+        LEVEL_UP_EVENT.subscribe(Priority.NORMAL, ::onLevelUp)
         TRADE_COMPLETED.subscribe(Priority.NORMAL, ::onTradeCompleted)
     }
 
@@ -138,8 +138,8 @@ object AdvancementHandler : EventHandler {
 
     }
 
-    fun onWorldUp(event : WorldUpEvent) {
-        event.pokemon.getOwnerPlayer()?.let { CobblemonCriteria.LEVEL_UP.trigger(it, WorldUpContext(event.newWorld, event.pokemon)) }
+    fun onLevelUp(event : LevelUpEvent) {
+        event.pokemon.getOwnerPlayer()?.let { CobblemonCriteria.LEVEL_UP.trigger(it, LevelUpContext(event.newLevel, event.pokemon)) }
     }
 
     fun onTradeCompleted(event : TradeCompletedEvent) {

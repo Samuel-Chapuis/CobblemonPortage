@@ -16,23 +16,23 @@ import net.minecraft.advancements.critereon.EntityPredicate
 import net.minecraft.server.level.ServerPlayer
 import java.util.Optional
 
-class WorldUpContext(val level: Int, val pokemon: Pokemon)
+class LevelUpContext(val level: Int, val pokemon: Pokemon)
 
-class WorldUpCriterion(
+class LevelUpCriterion(
     playerCtx: Optional<ContextAwarePredicate>,
     val level: Int,
     val evolved: Boolean
-): SimpleCriterionCondition<WorldUpContext>(playerCtx) {
+): SimpleCriterionCondition<LevelUpContext>(playerCtx) {
 
     companion object {
-        val CODEC: Codec<WorldUpCriterion> = RecordCodecBuilder.create { it.group(
-            EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(WorldUpCriterion::playerCtx),
-            Codec.INT.optionalFieldOf("level", 0).forGetter(WorldUpCriterion::level),
-            Codec.BOOL.optionalFieldOf("evolved", true).forGetter(WorldUpCriterion::evolved)
-        ).apply(it, ::WorldUpCriterion) }
+        val CODEC: Codec<LevelUpCriterion> = RecordCodecBuilder.create { it.group(
+            EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(LevelUpCriterion::playerCtx),
+            Codec.INT.optionalFieldOf("level", 0).forGetter(LevelUpCriterion::level),
+            Codec.BOOL.optionalFieldOf("evolved", true).forGetter(LevelUpCriterion::evolved)
+        ).apply(it, ::LevelUpCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: WorldUpContext): Boolean {
+    override fun matches(player: ServerPlayer, context: LevelUpContext): Boolean {
         val preEvo = context.pokemon.preEvolution == null
         val hasEvolution = !context.pokemon.evolutions.none()
         var evolutionCheck = true
@@ -44,7 +44,7 @@ class WorldUpCriterion(
 
 }
 
-/*class WorldUpCriterionCondition(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<WorldUpContext>(id, entity) {
+/*class LevelUpCriterionCondition(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<LevelUpContext>(id, entity) {
     var level = 0
     var evolved = true
     override fun toJson(json: JsonObject) {
@@ -57,7 +57,7 @@ class WorldUpCriterion(
         evolved = json.get("has_evolved")?.asBoolean ?: true
     }
 
-    override fun matches(player: ServerPlayer, context: WorldUpContext): Boolean {
+    override fun matches(player: ServerPlayer, context: LevelUpContext): Boolean {
         val preEvo = context.pokemon.preEvolution == null
         val hasEvolution = !context.pokemon.evolutions.none()
         var evolutionCheck = true

@@ -263,9 +263,9 @@ class PartyOverlay : Gui(Minecraft.getInstance()) {
                     blue = 0.27F
                 )
 
-                val expForThisWorld = pokemon.experience - if (pokemon.level == 1) 0 else pokemon.experienceGroup.getExperience(pokemon.level)
-                val expToNextWorld = pokemon.experienceGroup.getExperience(pokemon.level + 1) - pokemon.experienceGroup.getExperience(pokemon.level)
-                val expRatio = expForThisWorld / expToNextWorld.toFloat()
+                val expForThisLevel = pokemon.experience - if (pokemon.level == 1) 0 else pokemon.experienceGroup.getExperience(pokemon.level)
+                val expToNextLevel = pokemon.experienceGroup.getExperience(pokemon.level + 1) - pokemon.experienceGroup.getExperience(pokemon.level)
+                val expRatio = expForThisLevel / expToNextLevel.toFloat()
 
                 val expBarWidth = 1
                 val expBarHeight = expRatio * barHeightMax

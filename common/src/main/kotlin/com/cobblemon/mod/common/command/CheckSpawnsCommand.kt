@@ -31,7 +31,7 @@ import net.minecraft.commands.CommandSourceStack
 import java.text.DecimalFormat
 import net.minecraft.commands.Commands
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Mth
 
@@ -64,7 +64,7 @@ object CheckSpawnsCommand {
             spawner = spawner,
             area = SpawningArea(
                 cause = cause,
-                world = player.level() as ServerWorld,
+                world = player.level() as ServerLevel,
                 baseX = Mth.ceil(player.x - config.worldSliceDiameter / 2F),
                 baseY = Mth.ceil(player.y - config.worldSliceHeight / 2F),
                 baseZ = Mth.ceil(player.z - config.worldSliceDiameter / 2F),

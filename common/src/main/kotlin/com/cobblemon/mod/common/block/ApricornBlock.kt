@@ -19,7 +19,7 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
@@ -61,7 +61,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
     override fun isRandomlyTicking(state: BlockState) = state.getValue(AGE) < MAX_AGE
 
     @Deprecated("Deprecated in Java")
-    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         // Cocoa block uses a 5 here might as well stay consistent
         if (world.random.nextInt(5) == 0) {
             val currentAge = state.getValue(AGE)
@@ -132,7 +132,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
 
     override fun isBonemealSuccess(world: World, random: RandomSource, pos: BlockPos, state: BlockState) = true
 
-    override fun performBonemeal(world: ServerWorld, random: RandomSource, pos: BlockPos, state: BlockState) {
+    override fun performBonemeal(world: ServerLevel, random: RandomSource, pos: BlockPos, state: BlockState) {
         world.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), 2)
     }
 
@@ -175,7 +175,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
         if (!world.isClientSide) {
             world.playSoundServer(position = pos.toVec3d(), sound = SoundEvents.ITEM_PICKUP, volume = 0.7F, pitch = 1.4F)
 
-            if (world is ServerWorld && player is ServerPlayer) {
+            if (world is ServerLevel && player is ServerPlayer) {
                 CobblemonEvents.APRICORN_HARVESTED.post(ApricornHarvestEvent(player, apricorn, world, pos))
             }
         }

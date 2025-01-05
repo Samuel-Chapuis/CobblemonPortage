@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.item.MintLeafItem
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
 import net.minecraft.util.RandomSource
 import net.minecraft.util.StringRepresentable
@@ -45,7 +45,7 @@ class MintBlock(private val mintType: MintType, settings: Properties) : CropBloc
 
     // DO NOT use withAge
     // Explanation for these 2 beautiful copy pasta are basically that we need to keep the blockstate and that's not possible with the default impl :(
-    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         if (world.getRawBrightness(pos, 0) < 9 || this.isMaxAge(state) || random.nextInt(8) != 0) {
             return
         }

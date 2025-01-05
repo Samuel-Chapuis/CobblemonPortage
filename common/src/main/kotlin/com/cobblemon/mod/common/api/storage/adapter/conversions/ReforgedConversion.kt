@@ -135,7 +135,7 @@ class ReforgedConversion(val base: Path) : CobblemonConverter<CompoundTag> {
             val compound = move as CompoundTag
             val id = compound.getString("MoveID").replace(Regex("[-\\s]", RegexOption.IGNORE_CASE), "")
             val pp = compound.getInt("MovePP")
-            val level = compound.getInt("MovePPWorld")
+            val level = compound.getInt("MovePPLevel")
 
             val template = Moves.getByNameOrDummy(id.lowercase())
             result.moveSet.add(template.create(pp, level))

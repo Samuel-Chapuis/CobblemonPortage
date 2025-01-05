@@ -45,7 +45,7 @@ object CobblemonCriteria : PlatformRegistry<Registry<CriterionTrigger<*>>, Regis
 
     val PARTY_CHECK = this.create("party", SimpleCriterionTrigger(PartyCheckCriterion.CODEC))
 
-    val LEVEL_UP = this.create("level_up", SimpleCriterionTrigger(WorldUpCriterion.CODEC))
+    val LEVEL_UP = this.create("level_up", SimpleCriterionTrigger(LevelUpCriterion.CODEC))
 
     val PASTURE_USE = this.create("pasture_use", SimpleCriterionTrigger(PokemonCriterion.CODEC))
 

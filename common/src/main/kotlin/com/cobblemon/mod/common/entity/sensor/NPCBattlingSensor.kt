@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.entity.sensor
 
 import com.cobblemon.mod.common.CobblemonMemories
 import com.cobblemon.mod.common.entity.npc.NPCEntity
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.ai.sensing.Sensor
 
 class NPCBattlingSensor : Sensor<NPCEntity>() {
@@ -20,7 +20,7 @@ class NPCBattlingSensor : Sensor<NPCEntity>() {
 
     override fun requires() = OUTPUT_MEMORY_MODULES
 
-    override fun doTick(world: ServerWorld, entity: NPCEntity) {
+    override fun doTick(world: ServerLevel, entity: NPCEntity) {
         val isBattling = entity.isInBattle()
         if (isBattling) {
             entity.getBrain().setMemory(CobblemonMemories.NPC_BATTLING, true)

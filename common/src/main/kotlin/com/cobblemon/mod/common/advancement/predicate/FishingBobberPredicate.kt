@@ -13,14 +13,14 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.advancements.critereon.EntitySubPredicate
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class FishingBobberPredicate(val inOpenWater: Boolean) : EntitySubPredicate {
     override fun codec(): MapCodec<FishingBobberPredicate> = CODEC
-    override fun matches(entity: Entity, serverWorld: ServerWorld, vec3: Vec3?): Boolean {
+    override fun matches(entity: Entity, serverLevel: ServerLevel, vec3: Vec3?): Boolean {
         return (entity as? PokeRodFishingBobberEntity)?.inOpenWater == this.inOpenWater
     }
     companion object {

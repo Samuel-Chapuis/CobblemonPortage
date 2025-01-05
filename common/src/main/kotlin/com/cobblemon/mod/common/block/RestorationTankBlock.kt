@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.block.multiblock.FossilMultiblockBuilder
 import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.*
@@ -79,7 +79,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
                 world.setBlock(getPositionOfOtherPart(state, pos), Blocks.AIR.defaultBlockState(), UPDATE_CLIENTS)
                 world.levelEvent(
                     player,
-                    WorldEvent.PARTICLES_DESTROY_BLOCK,
+                    LevelEvent.PARTICLES_DESTROY_BLOCK,
                     getPositionOfOtherPart(state, pos),
                     getId(otherPart)
                 )
@@ -199,7 +199,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
         }
     }
 
-    override fun tick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun tick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         if(world == null || pos == null) {
             return
         }

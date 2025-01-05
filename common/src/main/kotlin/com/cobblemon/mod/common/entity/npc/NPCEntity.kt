@@ -63,7 +63,7 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerEntity
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
@@ -242,7 +242,7 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
     }
 
     override fun brainProvider() = Brain.provider<NPCEntity>(MEMORY_MODULES, SENSORS)
-    override fun getBreedOffspring(world: ServerWorld, entity: AgeableMob) = null // No lovemaking! Unless...
+    override fun getBreedOffspring(world: ServerLevel, entity: AgeableMob) = null // No lovemaking! Unless...
     override fun getCurrentPoseType() = this.entityData.get(POSE_TYPE)
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
@@ -301,7 +301,7 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
 
     override fun customServerAiStep() {
         super.customServerAiStep()
-        getBrain().tick(level() as ServerWorld, this)
+        getBrain().tick(level() as ServerLevel, this)
     }
 
     override fun sendDebugPackets() {

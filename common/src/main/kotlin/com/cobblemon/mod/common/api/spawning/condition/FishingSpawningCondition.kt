@@ -28,8 +28,8 @@ class FishingSpawningCondition: SpawningCondition<FishingSpawningContext>() {
 
     var rod: RegistryLikeCondition<Item>? = null
     var neededNearbyBlocks: MutableList<RegistryLikeCondition<Block>>? = null
-    var minLureWorld: Int? = null
-    var maxLureWorld: Int? = null
+    var minLureLevel: Int? = null
+    var maxLureLevel: Int? = null
     var bait: Identifier? = null
     var rodType: Identifier? = null
 
@@ -42,15 +42,15 @@ class FishingSpawningCondition: SpawningCondition<FishingSpawningContext>() {
             return false
         }
 
-        if (minLureWorld != null) { // check for the lureWorld of the rod
+        if (minLureLevel != null) { // check for the lureLevel of the rod
             val pokerodStack = ctx.rodStack
-            val lureWorld = EnchantmentHelper.getItemEnchantmentWorld(
+            val lureLevel = EnchantmentHelper.getItemEnchantmentLevel(
                 ctx.enchantmentRegistry.getHolder(Enchantments.LURE).get(),
                 pokerodStack
             )
-            if (lureWorld < minLureWorld!!) {
+            if (lureLevel < minLureLevel!!) {
                 return false
-            } else if (maxLureWorld != null && lureWorld > maxLureWorld!!) {
+            } else if (maxLureLevel != null && lureLevel > maxLureLevel!!) {
                 return false
             }
         }

@@ -37,7 +37,7 @@ import com.cobblemon.mod.common.entity.PosableEntity
 import com.cobblemon.mod.common.entity.PoseType
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.multiplayer.ClientWorld
+import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
@@ -182,7 +182,7 @@ abstract class PosableState : Schedulable {
                 }
 
                 val entity = getEntity() ?: return@addFunction Unit
-                val world = entity.level() as ClientWorld
+                val world = entity.level() as ClientLevel
 
                 val rootMatrix = locatorStates["root"]!!
                 val locatorMatrix = locatorStates[locator] ?: locatorStates["root"]!!

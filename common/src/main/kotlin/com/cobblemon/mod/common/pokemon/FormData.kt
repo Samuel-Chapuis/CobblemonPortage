@@ -229,7 +229,7 @@ class FormData(
         this.preEvolution?.species
         this.preEvolution?.form
         this.evolutions.size
-        this._lightingData?.let { this._lightingData = it.copy(lightWorld = it.lightWorld.coerceIn(0, 15)) }
+        this._lightingData?.let { this._lightingData = it.copy(lightLevel = it.lightLevel.coerceIn(0, 15)) }
         return this
     }
 
@@ -270,7 +270,7 @@ class FormData(
         buffer.writeNullable(this._moves) { _, moves -> moves.encode(buffer)}
         buffer.writeNullable(this._pokedex) { pb1, pokedex -> pb1.writeCollection(pokedex)  { pb2, line -> pb2.writeString(line) } }
         buffer.writeNullable(this.lightingData) { pb, data ->
-            pb.writeInt(data.lightWorld)
+            pb.writeInt(data.lightLevel)
             pb.writeEnumConstant(data.liquidGlowMode)
         }
         buffer.writeNullable(_drops) { _, value -> value.encode(buffer) }

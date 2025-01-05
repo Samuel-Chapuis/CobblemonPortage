@@ -35,7 +35,7 @@ object FinishScanningHandler : ServerNetworkPacketHandler<FinishScanningPacket> 
         player: ServerPlayer
     ) {
         val targetEntity = player.level().getEntity(packet.targetedId) ?: return
-        if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomWorld)) {
+        if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomLevel)) {
             val inProgressUUID = PlayerScanningDetails.playerToEntityMap[player.uuid]
             val progressTick = PlayerScanningDetails.playerToTickMap[player.uuid]
             val ticksScan = progressTick?.let { server.tickCount - it } ?: return

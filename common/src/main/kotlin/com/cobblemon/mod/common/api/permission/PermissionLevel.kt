@@ -16,7 +16,7 @@ package com.cobblemon.mod.common.api.permission
  * @author Licious
  * @since September 25th, 2022
  */
-enum class PermissionWorld(val numericalValue: Int) {
+enum class PermissionLevel(val numericalValue: Int) {
 
     NONE(0),
     SPAWN_PROTECTION_BYPASS(1),
@@ -25,7 +25,7 @@ enum class PermissionWorld(val numericalValue: Int) {
     ALL_COMMANDS(4);
 
     companion object {
-        fun byNumericValue(value: Int): PermissionWorld {
+        fun byNumericValue(value: Int): PermissionLevel {
             return entries.first { it.numericalValue == value }
         }
     }

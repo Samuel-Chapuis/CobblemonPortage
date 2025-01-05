@@ -15,7 +15,7 @@ class BerryBlockEntityRenderState : BerryBlockEntity.RenderState {
     val lastRenderFrame = -1
     override var needsRebuild = true
     val vbo: VertexBuffer = VertexBuffer(VertexBuffer.Usage.STATIC)
-    var vboLightWorld: Int = 0
+    var vboLightLevel: Int = 0
     var drawVbo: Boolean = false
 
     override fun close() {

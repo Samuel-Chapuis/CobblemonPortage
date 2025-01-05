@@ -86,7 +86,7 @@ class SentOutState() : ActivePokemonState() {
     private var dimension = World.OVERWORLD
 
     override val entity: PokemonEntity?
-        get() = Cobblemon.getWorld(dimension)?.getEntity(entityId) as? PokemonEntity
+        get() = Cobblemon.getLevel(dimension)?.getEntity(entityId) as? PokemonEntity
 
     constructor(entity: PokemonEntity): this() {
         this.entityId = entity.id

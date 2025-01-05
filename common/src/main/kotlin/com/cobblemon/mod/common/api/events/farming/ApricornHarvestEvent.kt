@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.events.farming
 
 import com.cobblemon.mod.common.api.apricorn.Apricorn
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.level.block.state.BlockState
 
@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState
 class ApricornHarvestEvent(
     val player: ServerPlayer,
     val apricorn: Apricorn,
-    val world: ServerWorld,
+    val world: ServerLevel,
     val pos: BlockPos
 ) {
     fun getBlock(): BlockState {

@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.ai.memory.MemoryModuleType
 import net.minecraft.world.entity.ai.sensing.Sensor
 
@@ -30,7 +30,7 @@ class BattlingPokemonSensor : Sensor<LivingEntity>(20) {
 
     override fun requires() = OUTPUT_MEMORY_MODULES
 
-    override fun doTick(world: ServerWorld, entity: LivingEntity) {
+    override fun doTick(world: ServerLevel, entity: LivingEntity) {
         val battles = when (entity) {
             is PokemonEntity -> entity.battleId?.let { BattleRegistry.getBattle(it) }?.let { listOf(it) } ?: emptyList()
             is NPCEntity -> entity.battleIds.mapNotNull(BattleRegistry::getBattle)

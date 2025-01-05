@@ -30,7 +30,7 @@ import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.swap
 import java.util.concurrent.CompletableFuture
 import kotlin.random.Random
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.LivingEntity
 
 /**
@@ -78,7 +78,7 @@ class SwitchInstruction(val instructionSet: InstructionSet, val battleActor: Bat
                             pokemon.effectedPokemon.sendOutWithAnimation(
                                     source = entity,
                                     battleId = battle.battleId,
-                                    level = entity.level() as ServerWorld,
+                                    level = entity.level() as ServerLevel,
                                     doCry = false,
                                     position = targetPos,
                                     illusion = illusion?.let { IllusionEffect(it.effectedPokemon) }
@@ -94,7 +94,7 @@ class SwitchInstruction(val instructionSet: InstructionSet, val battleActor: Bat
 
             val futureSwitches = instructionSet.getSubsequentInstructions(this).filterIsInstance<SwitchInstruction>()
             if (futureSwitches.isEmpty()) {
-                if (battle.format.adjustWorld > 0) {
+                if (battle.format.adjustLevel > 0) {
                     // means battle is using clone teams, recall the "real" pokemon before the sendouts occur
                     var waitOnRecall = false
                     battle.actors.forEach { it ->
@@ -181,7 +181,7 @@ class SwitchInstruction(val instructionSet: InstructionSet, val battleActor: Bat
                     val pos = (if (battle.format.battleType.pokemonPerSide == 1) ShowdownInterpreter.getSendoutPosition(battle, activePokemon, actor)
                         else  activePokemon.position?.second) ?: entity.position()
                     // Send out at previous Pokémon's location if it is known, otherwise actor location
-                    val world = entity.level() as ServerWorld
+                    val world = entity.level() as ServerLevel
                     newPokemon.effectedPokemon.sendOutWithAnimation(
                         source = entity,
                         battleId = battle.battleId,

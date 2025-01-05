@@ -77,7 +77,7 @@ object CobblemonSpawningProspector : SpawningProspector {
         val defaultBlockData = WorldSlice.BlockData(defaultState, 0, 0)
 
         val blocks = Array(area.length) { Array(height) { Array(area.width) { defaultBlockData } } }
-        val skyWorld = Array(area.length) { Array(area.width) { world.maxBuildHeight } }
+        val skyLevel = Array(area.length) { Array(area.width) { world.maxBuildHeight } }
         val pos = BlockPos.MutableBlockPos()
 
         val chunks = mutableMapOf<Pair<Int, Int>, ChunkAccess?>()
@@ -99,7 +99,7 @@ object CobblemonSpawningProspector : SpawningProspector {
                         skyLight = skyLight
                     )
                     if (canSeeSky) {
-                        skyWorld[x - area.baseX][z - area.baseZ] = y
+                        skyLevel[x - area.baseX][z - area.baseZ] = y
                     }
                     if (state.fluidState.isEmpty && !state.`is`(CobblemonBlockTags.SEES_SKY)) {
                         canSeeSky = false
@@ -115,7 +115,7 @@ object CobblemonSpawningProspector : SpawningProspector {
             baseY = baseY,
             baseZ = area.baseZ,
             blocks = blocks,
-            skyWorld = skyWorld,
+            skyLevel = skyLevel,
             nearbyEntityPositions = nearbyEntityPositions
         )
     }

@@ -47,7 +47,7 @@ import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.NbtOps
 import net.minecraft.nbt.NbtUtils
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundSource
 import net.minecraft.tags.FluidTags
@@ -96,7 +96,7 @@ class FossilMultiblockStructure (
     var tankConnectorDirection: Direction? = null
 
     //Only updated clientside
-    var fillWorld = 0
+    var fillLevel = 0
     override fun useWithoutItem(
         blockState: BlockState,
         world: World,
@@ -303,7 +303,7 @@ class FossilMultiblockStructure (
         }
         return 0
     }
-    override fun onTriggerEvent(state: BlockState?, world: ServerWorld?, pos: BlockPos?, random: RandomSource?) {
+    override fun onTriggerEvent(state: BlockState?, world: ServerLevel?, pos: BlockPos?, random: RandomSource?) {
         // instantiate the pokemon as a new entity and spawn it at the location of the machine
         if(this.protectionTime <= 0) {
             val wildPokemon: Pokemon = if (hasCreatedPokemon) resultingFossil?.result?.create() ?: return else return
@@ -672,7 +672,7 @@ class FossilMultiblockStructure (
             } else if (nbt.contains(DataKeys.HAS_CREATED_POKEMON)){
                 result.hasCreatedPokemon = nbt.getBoolean(DataKeys.HAS_CREATED_POKEMON)
             }
-            result.fillWorld = result.organicMaterialInside * 8 / MATERIAL_TO_START
+            result.fillLevel = result.organicMaterialInside * 8 / MATERIAL_TO_START
             return result
         }
 

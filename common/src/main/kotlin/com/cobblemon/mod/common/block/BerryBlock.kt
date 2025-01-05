@@ -25,7 +25,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.RandomSource
@@ -91,12 +91,12 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
             .setValue(IS_ROOTED, false))
     }
 
-    override fun performBonemeal(world: ServerWorld, random: RandomSource, pos: BlockPos, state: BlockState) {
+    override fun performBonemeal(world: ServerLevel, random: RandomSource, pos: BlockPos, state: BlockState) {
         growHelper(world, random, pos, state, true)
     }
 
     //grow, but cooler
-    fun growHelper(world: ServerWorld, random: RandomSource, pos: BlockPos, state: BlockState, boneMealed: Boolean = false) {
+    fun growHelper(world: ServerLevel, random: RandomSource, pos: BlockPos, state: BlockState, boneMealed: Boolean = false) {
         val berry = berry() ?: return
         if (boneMealed && random.nextFloat() > berry.boneMealChance) return
         val curAge = state.getValue(AGE)
@@ -146,7 +146,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
     }
 
     override fun canHaveMulchApplied(
-        world: ServerWorld,
+        world: ServerLevel,
         pos: BlockPos,
         state: BlockState,
         variant: MulchVariant
@@ -158,7 +158,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
     }
 
     override fun applyMulch(
-        world: ServerWorld,
+        world: ServerLevel,
         random: RandomSource,
         pos: BlockPos,
         state: BlockState,
@@ -326,7 +326,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
 
         fun getMulch(entity: BerryBlockEntity) = entity.mulchVariant
 
-        fun convertMulchToEntity(world: ServerWorld, state: BlockState, pos: BlockPos) {
+        fun convertMulchToEntity(world: ServerLevel, state: BlockState, pos: BlockPos) {
             val entity = world.getBlockEntity(pos) as? BerryBlockEntity ?: return
             if (state.getValue(MULCH) != MulchVariant.NONE && state.getValue(MULCH) != entity.mulchVariant) {
                 entity.mulchVariant = state.getValue(MULCH)

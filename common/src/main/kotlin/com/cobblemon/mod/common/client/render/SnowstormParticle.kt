@@ -30,7 +30,7 @@ import net.minecraft.client.particle.ParticleRenderType.NO_RENDER
 import net.minecraft.client.particle.ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.Camera
-import net.minecraft.client.multiplayer.ClientWorld
+import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.core.Direction
 import net.minecraft.world.phys.AABB
@@ -45,7 +45,7 @@ import kotlin.random.Random
 
 class SnowstormParticle(
     val storm: ParticleStorm,
-    world: ClientWorld,
+    world: ClientLevel,
     x: Double,
     y: Double,
     z: Double,

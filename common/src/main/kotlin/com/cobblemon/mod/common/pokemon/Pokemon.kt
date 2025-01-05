@@ -134,7 +134,7 @@ import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.contents.PlainTextContents
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.Mth.ceil
@@ -239,14 +239,14 @@ open class Pokemon : ShowdownIdentifiable {
 
     var level = 1
         set(value) {
-            val boundedValue = clamp(value, 1, Cobblemon.config.maxPokemonWorld)
+            val boundedValue = clamp(value, 1, Cobblemon.config.maxPokemonLevel)
             val hpRatio = (currentHealth / maxHealth.toFloat()).coerceIn(0F, 1F)
             /*
              * When people set the level programmatically the experience value will become incorrect.
              * Specifically check for when there's a mismatch and update the experience.
              */
             field = boundedValue
-            if (experienceGroup.getWorld(experience) != boundedValue || value == Cobblemon.config.maxPokemonWorld) {
+            if (experienceGroup.getLevel(experience) != boundedValue || value == Cobblemon.config.maxPokemonLevel) {
                 experience = experienceGroup.getExperience(boundedValue)
             }
 //            _level.emit(value)
@@ -301,7 +301,7 @@ open class Pokemon : ShowdownIdentifiable {
     var experience = 0
         internal set(value) {
             field = value
-            if (this.level == Cobblemon.config.maxPokemonWorld) {
+            if (this.level == Cobblemon.config.maxPokemonLevel) {
                 field = this.experienceGroup.getExperience(this.level)
             }
             _experience.emit(field)
@@ -350,10 +350,10 @@ open class Pokemon : ShowdownIdentifiable {
             _teraType.emit(value)
         }
 
-    var dmaxWorld = 0
+    var dmaxLevel = 0
         set(value) {
-            field = value.coerceIn(0, Cobblemon.config.maxDynamaxWorld)
-            _dmaxWorld.emit(value)
+            field = value.coerceIn(0, Cobblemon.config.maxDynamaxLevel)
+            _dmaxLevel.emit(value)
         }
 
     /**
@@ -453,7 +453,7 @@ open class Pokemon : ShowdownIdentifiable {
 
     val maxHealth: Int
         get() = getStat(Stats.HP)
-    @Deprecated("Use maxHealth instead", ReplaceWith("maxHealth"), level = DeprecationWorld.WARNING)
+    @Deprecated("Use maxHealth instead", ReplaceWith("maxHealth"), level = DeprecationLevel.WARNING)
     val hp: Int
         get() = maxHealth
     val attack: Int
@@ -564,7 +564,7 @@ open class Pokemon : ShowdownIdentifiable {
         return this.form.showdownId()
     }
 
-    fun sendOut(level: ServerWorld, position: Vec3, illusion: IllusionEffect?, mutation: (PokemonEntity) -> Unit = {}): PokemonEntity? {
+    fun sendOut(level: ServerLevel, position: Vec3, illusion: IllusionEffect?, mutation: (PokemonEntity) -> Unit = {}): PokemonEntity? {
         CobblemonEvents.POKEMON_SENT_PRE.postThen(PokemonSentPreEvent(this, level, position)) {
             SeasonFeatureHandler.updateSeason(this, level, position.toBlockPos())
             val entity = PokemonEntity(level, this)
@@ -585,7 +585,7 @@ open class Pokemon : ShowdownIdentifiable {
 
     fun sendOutWithAnimation(
         source: LivingEntity,
-        level: ServerWorld,
+        level: ServerLevel,
         position: Vec3,
         battleId: UUID? = null,
         doCry: Boolean = true,
@@ -702,7 +702,7 @@ open class Pokemon : ShowdownIdentifiable {
      */
     fun sendOutFromShoulder(
         player: ServerPlayer,
-        level: ServerWorld,
+        level: ServerLevel,
         targetPosition: Vec3,
         battleId: UUID? = null,
         doCry: Boolean = true,
@@ -1045,7 +1045,7 @@ open class Pokemon : ShowdownIdentifiable {
         this.persistentData = other.persistentData
         this.tetheringId = other.tetheringId
         this.teraType = other.teraType
-        this.dmaxWorld = other.dmaxWorld
+        this.dmaxLevel = other.dmaxLevel
         this.gmaxFactor = other.gmaxFactor
         this.tradeable = other.tradeable
         this.originalTrainerType = other.originalTrainerType
@@ -1204,7 +1204,7 @@ open class Pokemon : ShowdownIdentifiable {
     }
 
     val allAccessibleMoves: Set<MoveTemplate>
-        get() = form.moves.getWorldUpMovesUpTo(level) + benchedMoves.map { it.moveTemplate } + form.moves.evolutionMoves
+        get() = form.moves.getLevelUpMovesUpTo(level) + benchedMoves.map { it.moveTemplate } + form.moves.evolutionMoves
 
     val relearnableMoves: Iterable<MoveTemplate>
         get() = allAccessibleMoves.filter { accessibleMove -> moveSet.none { it.template == accessibleMove } }
@@ -1366,7 +1366,7 @@ open class Pokemon : ShowdownIdentifiable {
     }
 
     fun initializeMoveset(preferLatest: Boolean = true) {
-        val possibleMoves = form.moves.getWorldUpMovesUpTo(level).toMutableList()
+        val possibleMoves = form.moves.getLevelUpMovesUpTo(level).toMutableList()
         moveSet.doWithoutEmitting {
             moveSet.clear()
             if (possibleMoves.isEmpty()) {
@@ -1394,14 +1394,14 @@ open class Pokemon : ShowdownIdentifiable {
         moveSet.update()
     }
 
-    fun getExperienceToNextWorld() = getExperienceToWorld(level + 1)
-    fun getExperienceToWorld(level: Int) = if (level <= this.level) 0 else experienceGroup.getExperience(level) - experience
+    fun getExperienceToNextLevel() = getExperienceToLevel(level + 1)
+    fun getExperienceToLevel(level: Int) = if (level <= this.level) 0 else experienceGroup.getExperience(level) - experience
 
-    fun setExperienceAndUpdateWorld(xp: Int) {
+    fun setExperienceAndUpdateLevel(xp: Int) {
         experience = xp
-        val newWorld = experienceGroup.getWorld(xp)
-        if (newWorld != level && newWorld <= Cobblemon.config.maxPokemonWorld) {
-            level = newWorld
+        val newLevel = experienceGroup.getLevel(xp)
+        if (newLevel != level && newLevel <= Cobblemon.config.maxPokemonLevel) {
+            level = newLevel
         }
     }
 
@@ -1411,9 +1411,9 @@ open class Pokemon : ShowdownIdentifiable {
             return result
         }
         player.sendSystemMessage(lang("experience.gained", getDisplayName(), xp), true)
-        if (result.oldWorld != result.newWorld) {
-            player.sendSystemMessage(lang("experience.level_up", getDisplayName(), result.newWorld))
-            val repeats = result.newWorld - result.oldWorld
+        if (result.oldLevel != result.newLevel) {
+            player.sendSystemMessage(lang("experience.level_up", getDisplayName(), result.newLevel))
+            val repeats = result.newLevel - result.oldLevel
             // Someone can technically trigger a "delevel"
             if (repeats >= 1) {
                 repeat(repeats) {
@@ -1450,11 +1450,11 @@ open class Pokemon : ShowdownIdentifiable {
     }
 
     fun addExperience(source: ExperienceSource, xp: Int): AddExperienceResult {
-        if (xp < 0 || !this.canWorldUpFurther()) {
+        if (xp < 0 || !this.canLevelUpFurther()) {
             return AddExperienceResult(level, level, emptySet(), 0) // no negatives!
         }
-        val oldWorld = level
-        val previousWorldUpMoves = form.moves.getWorldUpMovesUpTo(oldWorld)
+        val oldLevel = level
+        val previousLevelUpMoves = form.moves.getLevelUpMovesUpTo(oldLevel)
         var appliedXP = xp
         CobblemonEvents.EXPERIENCE_GAINED_EVENT_PRE.postThen(
             event = ExperienceGainedPreEvent(this, source, appliedXP),
@@ -1466,17 +1466,17 @@ open class Pokemon : ShowdownIdentifiable {
 
         experience += appliedXP
         // Bound is needed here as we can still be allowed to level up but go over the current cap
-        var newWorld = experienceGroup.getWorld(experience).coerceAtMost(Cobblemon.config.maxPokemonWorld)
-        if (newWorld != oldWorld) {
+        var newLevel = experienceGroup.getLevel(experience).coerceAtMost(Cobblemon.config.maxPokemonLevel)
+        if (newLevel != oldLevel) {
             CobblemonEvents.LEVEL_UP_EVENT.post(
-                WorldUpEvent(this, oldWorld, newWorld),
-                then = { newWorld = it.newWorld }
+                LevelUpEvent(this, oldLevel, newLevel),
+                then = { newLevel = it.newLevel }
             )
-            level = newWorld
+            level = newLevel
         }
 
-        val newWorldUpMoves = form.moves.getWorldUpMovesUpTo(newWorld)
-        val differences = (newWorldUpMoves - previousWorldUpMoves).filter { this.moveSet.none { move -> move.template == it } }.toMutableSet()
+        val newLevelUpMoves = form.moves.getLevelUpMovesUpTo(newLevel)
+        val differences = (newLevelUpMoves - previousLevelUpMoves).filter { this.moveSet.none { move -> move.template == it } }.toMutableSet()
         differences.forEach {
             if (moveSet.hasSpace()) {
                 moveSet.add(it.create())
@@ -1484,17 +1484,17 @@ open class Pokemon : ShowdownIdentifiable {
         }
 
         CobblemonEvents.EXPERIENCE_GAINED_EVENT_POST.post(
-            ExperienceGainedPostEvent(this, source, appliedXP, oldWorld, newWorld, differences),
-            then = { return AddExperienceResult(oldWorld, newWorld, it.learnedMoves, appliedXP) }
+            ExperienceGainedPostEvent(this, source, appliedXP, oldLevel, newLevel, differences),
+            then = { return AddExperienceResult(oldLevel, newLevel, it.learnedMoves, appliedXP) }
         )
 
         // This probably will never run, Kotlin just doesn't realize the inline function always runs the `then` block
-        return AddExperienceResult(oldWorld, newWorld, differences, appliedXP)
+        return AddExperienceResult(oldLevel, newLevel, differences, appliedXP)
     }
 
-    fun canWorldUpFurther() = this.level < Cobblemon.config.maxPokemonWorld
+    fun canLevelUpFurther() = this.level < Cobblemon.config.maxPokemonLevel
 
-    fun levelUp(source: ExperienceSource) = addExperience(source, getExperienceToNextWorld())
+    fun levelUp(source: ExperienceSource) = addExperience(source, getExperienceToNextLevel())
 
     /**
      * Exchanges an existing move set move with an empty moveslot, benched or otherwise accessible move that is not in the move set.
@@ -1642,7 +1642,7 @@ open class Pokemon : ShowdownIdentifiable {
     private val _heldItem = registerObservable(SimpleObservable<ItemStack>()) { HeldItemUpdatePacket({ this }, it) }
     private val _tetheringId = registerObservable(SimpleObservable<UUID?>()) { TetheringUpdatePacket({ this }, it) }
     private val _teraType = registerObservable(SimpleObservable<TeraType>()) { TeraTypeUpdatePacket({ this }, it) }
-    private val _dmaxWorld = registerObservable(SimpleObservable<Int>()) { DmaxWorldUpdatePacket({ this }, it) }
+    private val _dmaxLevel = registerObservable(SimpleObservable<Int>()) { DmaxLevelUpdatePacket({ this }, it) }
     private val _gmaxFactor = registerObservable(SimpleObservable<Boolean>()) { GmaxFactorUpdatePacket({ this }, it) }
     private val _originalTrainerName = registerObservable(SimpleObservable<String?>()) { OriginalTrainerUpdatePacket({ this }, it) }
 

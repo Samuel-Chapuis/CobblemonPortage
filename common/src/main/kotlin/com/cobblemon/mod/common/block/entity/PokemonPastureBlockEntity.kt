@@ -39,7 +39,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.NbtUtils
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.entity.Pose
@@ -284,9 +284,9 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
     }
 
     fun onBroken() {
-        if (level is ServerWorld) {
+        if (level is ServerLevel) {
             tetheredPokemon.toList().forEach { releasePokemon(it.pokemonId) }
-            PastureLinkManager.removeAt(level as ServerWorld, blockPos)
+            PastureLinkManager.removeAt(level as ServerLevel, blockPos)
         }
     }
 

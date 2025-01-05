@@ -408,27 +408,27 @@ class StrongBattleAI(skill: Int) : BattleAI {
     }
 
     // skill check that will be used for if the AI will make a successful Move decision
-    fun checkSkillWorld(skillWorld: Int): Boolean {
-        if (skillWorld == 5) {
+    fun checkSkillLevel(skillLevel: Int): Boolean {
+        if (skillLevel == 5) {
             return true
         }
         val randomNumber = Random.nextInt(100)
         // Map skill level to the desired probability
-        return randomNumber < skillWorld * 20
+        return randomNumber < skillLevel * 20
     }
 
     // skill check that will be used for if the AI will make a successful Switch Out decision
-    fun checkSwitchOutSkill(skillWorld: Int): Boolean {
+    fun checkSwitchOutSkill(skillLevel: Int): Boolean {
         // Generate a random number between 0 and 1
         val randomNumber = Random.nextDouble()
 
         // Determine the chance skill check will succeed based on skill level
-        val chance = when (skillWorld) {
+        val chance = when (skillLevel) {
             in 0..2 -> 0.0
             3 -> 0.20
             4 -> 0.60
             5 -> 1.00
-            else -> 0.0 // if skillWorld is out of expected range
+            else -> 0.0 // if skillLevel is out of expected range
         }
 
         // Check if the random number is less than the chance
@@ -436,18 +436,18 @@ class StrongBattleAI(skill: Int) : BattleAI {
     }
 
     // skill check that will be used for if the AI will make a successful Use Item decision
-    fun checkUseItemSkill(skillWorld: Int): Boolean {
+    fun checkUseItemSkill(skillLevel: Int): Boolean {
         // Generate a random number between 0 and 1
         val randomNumber = Random.nextDouble()
 
         // Determine the chance skill check will succeed based on skill level
-        val chance = when (skillWorld) {
+        val chance = when (skillLevel) {
             in 0..1 -> 0.0
             2 -> 0.25
             3 -> 0.5
             4 -> 0.75
             5 -> 1.00
-            else -> 0.0 // if skillWorld is out of expected range
+            else -> 0.0 // if skillLevel is out of expected range
         }
 
         // Check if the random number is less than the chance
@@ -471,7 +471,7 @@ class StrongBattleAI(skill: Int) : BattleAI {
 
         // Attempt at better estimation
         val movePower = moveData!!.power
-        val pokemonWorld = mon.pokemon!!.level
+        val pokemonLevel = mon.pokemon!!.level
         val statRatio = if (moveData.damageCategory == DamageCategories.PHYSICAL) physicalRatio else specialRatio
 
         val STAB = when {
@@ -499,7 +499,7 @@ class StrongBattleAI(skill: Int) : BattleAI {
         }
         //val hitsExpected = expectedHits(Moves.getByName(move.id)!!) // todo fix this as it has null issues
 
-        var damage = (((((2 * pokemonWorld) / 5 ) + 2) * movePower * statRatio) / 50 + 2)
+        var damage = (((((2 * pokemonLevel) / 5 ) + 2) * movePower * statRatio) / 50 + 2)
         damage *= weather
         damage *= STAB
         damage *= damageTypeMultiplier
@@ -750,7 +750,7 @@ class StrongBattleAI(skill: Int) : BattleAI {
 
 
         // todo Check for Skill of AI and see if they will make a smart move
-        if (!checkSkillWorld(skill)){
+        if (!checkSkillLevel(skill)){
             // todo choose random move
             if (moveset == null) {
                 return PassActionResponse
@@ -1123,7 +1123,7 @@ class StrongBattleAI(skill: Int) : BattleAI {
 
                 // Attempt at better estimation
                 val movePower = moveData!!.power
-                val pokemonWorld = mon.pokemon!!.level
+                val pokemonLevel = mon.pokemon!!.level
                 val statRatio = if (moveData.damageCategory == DamageCategories.PHYSICAL) physicalRatio else specialRatio
 
                 val STAB = when {
@@ -1151,7 +1151,7 @@ class StrongBattleAI(skill: Int) : BattleAI {
                 }
                 //val hitsExpected = expectedHits(Moves.getByName(move.id)!!) // todo fix this as it has null issues
 
-                var damage = (((((2 * pokemonWorld) / 5 ) + 2) * movePower * statRatio) / 50 + 2)
+                var damage = (((((2 * pokemonLevel) / 5 ) + 2) * movePower * statRatio) / 50 + 2)
                 damage *= weather
                 damage *= STAB
                 damage *= damageTypeMultiplier

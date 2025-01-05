@@ -21,16 +21,16 @@ import net.minecraft.network.RegistryFriendlyByteBuf
  */
 class ServerSettingsPacket internal constructor(
     val preventCompletePartyDeposit: Boolean,
-    val displayEntityWorldLabel: Boolean,
+    val displayEntityLevelLabel: Boolean,
     val displayEntityNameLabel: Boolean,
-    val maxPokemonWorld: Int
+    val maxPokemonLevel: Int
 ) : NetworkPacket<ServerSettingsPacket> {
     override val id = ID
     override fun encode(buffer: RegistryFriendlyByteBuf) {
         buffer.writeBoolean(Cobblemon.config.preventCompletePartyDeposit)
-        buffer.writeBoolean(Cobblemon.config.displayEntityWorldLabel)
+        buffer.writeBoolean(Cobblemon.config.displayEntityLevelLabel)
         buffer.writeBoolean(Cobblemon.config.displayEntityNameLabel)
-        buffer.writeInt(Cobblemon.config.maxPokemonWorld)
+        buffer.writeInt(Cobblemon.config.maxPokemonLevel)
     }
     companion object {
         val ID = cobblemonResource("server_settings")

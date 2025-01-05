@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.multiblock
 
 import com.cobblemon.mod.common.block.entity.FossilMultiblockEntity
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.BlockView
 import net.minecraft.world.entity.LivingEntity
@@ -35,7 +35,7 @@ abstract class MultiblockBlock(properties: Properties) : BaseEntityBlock(propert
         placer: LivingEntity?,
         itemStack: ItemStack
     ) {
-        if (world is ServerWorld) {
+        if (world is ServerLevel) {
             val multiblockEntity = world.getBlockEntity(pos) as? MultiblockEntity
             multiblockEntity?.multiblockBuilder?.validate(world)
         }

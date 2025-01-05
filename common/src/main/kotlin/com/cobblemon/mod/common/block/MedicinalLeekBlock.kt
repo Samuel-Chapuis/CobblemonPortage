@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
 import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.BlockGetter
@@ -43,7 +43,7 @@ class MedicinalLeekBlock(settings: Properties) : CropBlock(settings) {
 
     override fun getShape(state: BlockState, world: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = AGE_TO_SHAPE[this.getAge(state)]
 
-    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         // This is specified as growing fast like sugar cane
         // They have 15 age stages until they grow upwards, this is an attempt at a chance based but likely event
         if (this.isMaxAge(state) || random.nextInt(4) != 0) {

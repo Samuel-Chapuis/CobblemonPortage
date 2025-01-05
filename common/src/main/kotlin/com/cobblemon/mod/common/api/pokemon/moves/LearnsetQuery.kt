@@ -32,7 +32,7 @@ fun interface LearnsetQuery {
                     || learnset.evolutionMoves.contains(move)
         }
 
-        fun level(level: Int) = LearnsetQuery { move, learnset -> learnset.getWorldUpMovesUpTo(level).contains(move) }
+        fun level(level: Int) = LearnsetQuery { move, learnset -> learnset.getLevelUpMovesUpTo(level).contains(move) }
 
         val ANY_LEVEL = LearnsetQuery { move, learnset -> learnset.levelUpMoves.values.any { it.contains(move) } }
 

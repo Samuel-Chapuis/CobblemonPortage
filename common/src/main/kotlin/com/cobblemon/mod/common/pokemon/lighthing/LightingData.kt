@@ -12,10 +12,10 @@ package com.cobblemon.mod.common.pokemon.lighthing
  * Represents light emitting properties of a species/form.
  * This has no use in the base mod and is instead used for dynamic lighting mod compatibility.
  *
- * @property lightWorld The light level emitted.
+ * @property lightLevel The light level emitted.
  * @property liquidGlowMode The [LiquidGlowMode] for this effect.
  */
-data class LightingData(val lightWorld: Int, val liquidGlowMode: LiquidGlowMode) {
+data class LightingData(val lightLevel: Int, val liquidGlowMode: LiquidGlowMode) {
 
     /**
      * Represents if a [LightingData] is applied while in land or underwater

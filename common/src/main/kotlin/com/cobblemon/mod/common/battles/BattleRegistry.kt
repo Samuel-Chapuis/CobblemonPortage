@@ -114,9 +114,9 @@ object BattleRegistry {
             packedTeamBuilder.append(",")
             // Gigantamax
             packedTeamBuilder.append("${if (pk.gmaxFactor) "G" else ""},")
-            // DynamaxWorld
+            // DynamaxLevel
             // 0 - 9, empty == 10
-            packedTeamBuilder.append("${if (pk.dmaxWorld < 10) pk.dmaxWorld else ""},")
+            packedTeamBuilder.append("${if (pk.dmaxLevel < 10) pk.dmaxLevel else ""},")
             // Teratype
             packedTeamBuilder.append("${pokemon.effectedPokemon.teraType.showdownId()},")
 

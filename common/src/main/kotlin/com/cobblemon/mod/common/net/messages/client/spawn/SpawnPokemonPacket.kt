@@ -36,7 +36,7 @@ class SpawnPokemonPacket(
     private val beamMode: Byte,
     private val platform: PlatformType,
     private val nickname: MutableComponent?,
-    private val labelWorld: Int,
+    private val labelLevel: Int,
     private val poseType: PoseType,
     private val unbattlable: Boolean,
     private val hideLabel: Boolean,
@@ -62,7 +62,7 @@ class SpawnPokemonPacket(
         entity.beamMode.toByte(),
         entity.platform,
         entity.pokemon.nickname,
-        if (Cobblemon.config.displayEntityWorldLabel) entity.entityData.get(PokemonEntity.LABEL_LEVEL) else -1,
+        if (Cobblemon.config.displayEntityLevelLabel) entity.entityData.get(PokemonEntity.LABEL_LEVEL) else -1,
         entity.entityData.get(PokemonEntity.POSE_TYPE),
         entity.entityData.get(PokemonEntity.UNBATTLEABLE),
         entity.entityData.get(PokemonEntity.HIDE_LABEL),
@@ -86,7 +86,7 @@ class SpawnPokemonPacket(
         buffer.writeByte(this.beamMode.toInt())
         buffer.writeEnumConstant(this.platform)
         buffer.writeNullable(this.nickname) { _, v -> buffer.writeText(v) }
-        buffer.writeInt(this.labelWorld)
+        buffer.writeInt(this.labelLevel)
         buffer.writeEnumConstant(this.poseType)
         buffer.writeBoolean(this.unbattlable)
         buffer.writeBoolean(this.hideLabel)
@@ -112,7 +112,7 @@ class SpawnPokemonPacket(
         entity.beamMode = this.beamMode.toInt()
         entity.platform = this.platform
         entity.battleId = this.battleId
-        entity.entityData.set(PokemonEntity.LABEL_LEVEL, labelWorld)
+        entity.entityData.set(PokemonEntity.LABEL_LEVEL, labelLevel)
         entity.entityData.set(PokemonEntity.SPECIES, entity.pokemon.species.resourceIdentifier.toString())
         entity.entityData.set(PokemonEntity.ASPECTS, aspects)
         entity.entityData.set(PokemonEntity.POSE_TYPE, poseType)
@@ -140,7 +140,7 @@ class SpawnPokemonPacket(
             val beamModeEmitter = buffer.readByte()
             val platform = buffer.readEnumConstant(PlatformType::class.java)
             val nickname = buffer.readNullable { buffer.readText().copy() }
-            val labelWorld = buffer.readInt()
+            val labelLevel = buffer.readInt()
             val poseType = buffer.readEnumConstant(PoseType::class.java)
             val unbattlable = buffer.readBoolean()
             val hideLabel = buffer.readBoolean()
@@ -150,7 +150,7 @@ class SpawnPokemonPacket(
             val freezeFrame = buffer.readFloat()
             val vanillaPacket = decodeVanillaPacket(buffer)
 
-            return SpawnPokemonPacket(ownerId, scaleModifier, speciesId, gender, shiny, formName, aspects, battleId, phasingTargetId, beamModeEmitter, platform, nickname, labelWorld, poseType, unbattlable, hideLabel, caughtBall, spawnAngle, friendship, freezeFrame, vanillaPacket)
+            return SpawnPokemonPacket(ownerId, scaleModifier, speciesId, gender, shiny, formName, aspects, battleId, phasingTargetId, beamModeEmitter, platform, nickname, labelLevel, poseType, unbattlable, hideLabel, caughtBall, spawnAngle, friendship, freezeFrame, vanillaPacket)
         }
     }
 

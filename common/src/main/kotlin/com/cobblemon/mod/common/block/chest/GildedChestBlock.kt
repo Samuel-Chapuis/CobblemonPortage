@@ -23,7 +23,7 @@ import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.RandomSource
@@ -285,7 +285,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         */
     }
 
-    override fun tick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun tick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         val blockEntity = world.getBlockEntity(pos) as? GildedChestBlockEntity ?: return
         blockEntity.tick()
     }

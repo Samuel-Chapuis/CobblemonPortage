@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.util.asExpression
 import com.cobblemon.mod.common.util.resolveFloat
 import com.cobblemon.mod.common.util.withQueryValue
 import com.google.common.collect.ImmutableMap
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.PathfinderMob
 import net.minecraft.world.entity.ai.behavior.Behavior
@@ -27,18 +27,18 @@ class LookInDirectionTask(
     val yaw: Expression = "0".asExpression(),
     val pitch: Expression = "0".asExpression()
 ) : Behavior<LivingEntity>(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryStatus.VALUE_ABSENT), 0, 0) {
-    override fun canStillUse(level: ServerWorld, entity: LivingEntity, gameTime: Long): Boolean {
+    override fun canStillUse(level: ServerLevel, entity: LivingEntity, gameTime: Long): Boolean {
         return !entity.brain.getMemory(MemoryModuleType.LOOK_TARGET).isPresent
     }
 
-    override fun checkExtraStartConditions(level: ServerWorld, owner: LivingEntity): Boolean {
+    override fun checkExtraStartConditions(level: ServerLevel, owner: LivingEntity): Boolean {
         return owner is PathfinderMob && !owner.brain.getMemory(MemoryModuleType.LOOK_TARGET).isPresent
     }
 
-    override fun stop(level: ServerWorld, entity: LivingEntity, gameTime: Long) {
+    override fun stop(level: ServerLevel, entity: LivingEntity, gameTime: Long) {
     }
 
-    override fun tick(level: ServerWorld, entity: LivingEntity, gameTime: Long) {
+    override fun tick(level: ServerLevel, entity: LivingEntity, gameTime: Long) {
         entity as PathfinderMob
         val runtime = MoLangRuntime().setup()
         runtime.withQueryValue("entity", entity.asMostSpecificMoLangValue())

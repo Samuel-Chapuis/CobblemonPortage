@@ -27,7 +27,7 @@ import net.minecraft.CrashReport
 import net.minecraft.ReportedException
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.model.geom.ModelPart
-import net.minecraft.client.multiplayer.ClientWorld
+import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.util.Identifier
 import net.minecraft.sounds.SoundEvent
@@ -67,7 +67,7 @@ class BedrockParticleKeyframe(
 
     override fun run(entity: Entity?, state: PosableState) {
         entity ?: return
-        val world = entity.level() as? ClientWorld ?: return
+        val world = entity.level() as? ClientLevel ?: return
 
         val rootMatrix = state.locatorStates["root"]!!
         val locatorMatrix = state.locatorStates[locator] ?: state.locatorStates["root"]!!

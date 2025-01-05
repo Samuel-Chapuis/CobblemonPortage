@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.player.Player
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.World
@@ -43,5 +43,5 @@ interface MultiblockStructure {
     }
 
     fun setRemoved(world: World)
-    fun onTriggerEvent(state: BlockState?, world: ServerWorld?, pos: BlockPos?, random: RandomSource?)
+    fun onTriggerEvent(state: BlockState?, world: ServerLevel?, pos: BlockPos?, random: RandomSource?)
 }

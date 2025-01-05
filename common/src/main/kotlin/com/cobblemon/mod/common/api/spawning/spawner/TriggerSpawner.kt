@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import com.cobblemon.mod.common.api.spawning.selection.FlatContextWeightedSelector
 import com.cobblemon.mod.common.api.spawning.selection.SpawningSelector
 import java.util.concurrent.CompletableFuture
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.core.BlockPos
 
 /**
@@ -30,7 +30,7 @@ abstract class TriggerSpawner<T : SpawnCause>(override val name: String, var spa
     private var selector: SpawningSelector = FlatContextWeightedSelector()
     override val influences = mutableListOf<SpawningInfluence>()
 
-    open fun run(cause: T, world: ServerWorld, pos: BlockPos, influences: List<SpawningInfluence> = emptyList()): CompletableFuture<*>? {
+    open fun run(cause: T, world: ServerLevel, pos: BlockPos, influences: List<SpawningInfluence> = emptyList()): CompletableFuture<*>? {
         val context = parseContext(cause, world, pos) ?: return null
         context.influences.addAll(influences)
         selector.select(this, listOf(context))?.let { (_, spawn) ->
@@ -42,7 +42,7 @@ abstract class TriggerSpawner<T : SpawnCause>(override val name: String, var spa
     }
 
     /** Parses a context, if possible, from the given cause and position. */
-    abstract fun parseContext(cause: T, world: ServerWorld, pos: BlockPos): SpawningContext?
+    abstract fun parseContext(cause: T, world: ServerLevel, pos: BlockPos): SpawningContext?
 
     override fun canSpawn() = true
     override fun getSpawningSelector() = selector

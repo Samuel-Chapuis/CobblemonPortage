@@ -558,7 +558,7 @@ class PokedexGUI private constructor(
                     (tabInfoElement as DropsScrollingWidget).setEntries()
                 }
 //                TAB_MOVES -> {
-//                    form.moves.getWorldUpMovesUpTo(100)
+//                    form.moves.getLevelUpMovesUpTo(100)
 //                }
             }
         } else {

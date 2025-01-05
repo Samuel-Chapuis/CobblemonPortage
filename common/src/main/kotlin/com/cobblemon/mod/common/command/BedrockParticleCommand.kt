@@ -26,7 +26,7 @@ import net.minecraft.commands.arguments.DimensionArgument
 import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.commands.arguments.ResourceLocationArgument
 import net.minecraft.commands.arguments.coordinates.Vec3Argument
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.Identifier
 import net.minecraft.world.phys.Vec3
 
@@ -41,7 +41,7 @@ object BedrockParticleCommand {
                             .executes {
                                 val effectId = ResourceLocationArgument.getId(it, "effect")
                                 val entities = EntityArgument.getEntities(it, "target")
-                                return@executes entities.sumOf { entity -> execute(it.source, effectId, entity.level() as ServerWorld, entity.position()) }
+                                return@executes entities.sumOf { entity -> execute(it.source, effectId, entity.level() as ServerLevel, entity.position()) }
                             }
                             .then(
                                 Commands.argument("locator", StringArgumentType.word())
@@ -50,7 +50,7 @@ object BedrockParticleCommand {
                                         val entities = EntityArgument.getEntities(it, "target")
                                         val locator = StringArgumentType.getString(it, "locator")
 
-                                        return@executes entities.sumOf { entity -> execute(it.source, effectId, entity.level() as ServerWorld, entity, listOf(locator)) }
+                                        return@executes entities.sumOf { entity -> execute(it.source, effectId, entity.level() as ServerLevel, entity, listOf(locator)) }
                                     }
                             )
                     )
@@ -62,7 +62,7 @@ object BedrockParticleCommand {
                                         val effectId = ResourceLocationArgument.getId(it, "effect")
                                         val world = DimensionArgument.getDimension(it, "world")
                                         val pos = Vec3Argument.getVec3(it, "pos")
-                                        return@executes execute(it.source, effectId, world as ServerWorld, pos)
+                                        return@executes execute(it.source, effectId, world as ServerLevel, pos)
                                     }
                             )
                     )
@@ -71,14 +71,14 @@ object BedrockParticleCommand {
         dispatcher.register(command.alias("bedrockparticle"))
     }
 
-    private fun execute(source: CommandSourceStack, effectId: Identifier, world: ServerWorld, target: Vec3): Int {
+    private fun execute(source: CommandSourceStack, effectId: Identifier, world: ServerLevel, target: Vec3): Int {
         val pos = target.toBlockPos()
         val nearbyPlayers = world.getPlayers { it.distanceTo(pos) < 1000 }
         nearbyPlayers.forEach { player -> player.sendPacket(SpawnSnowstormParticlePacket(effectId, target)) }
         return Command.SINGLE_SUCCESS
     }
 
-    private fun execute(source: CommandSourceStack, effectId: Identifier, world: ServerWorld, target: Entity, locator: List<String>): Int {
+    private fun execute(source: CommandSourceStack, effectId: Identifier, world: ServerLevel, target: Entity, locator: List<String>): Int {
         val pos = target.blockPosition()
         val nearbyPlayers = world.getPlayers { it.distanceTo(pos) < 1000 }
         nearbyPlayers.forEach { player -> player.sendPacket(SpawnSnowstormEntityParticlePacket(effectId, target.id, locator)) }

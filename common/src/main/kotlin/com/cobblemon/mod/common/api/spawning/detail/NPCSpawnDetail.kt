@@ -32,8 +32,8 @@ class NPCSpawnDetail : SpawnDetail() {
     @SerializedName(value = "npcClass", alternate = ["class", "npc"])
     val npcClass: NPCClass = blankClass
     val aspects: Set<String> = emptySet()
-    val minWorld: Expression = "1".asExpression()
-    val maxWorld: Expression = "100".asExpression()
+    val minLevel: Expression = "1".asExpression()
+    val maxLevel: Expression = "100".asExpression()
 
     override fun doSpawn(ctx: SpawningContext) = NPCSpawnAction(ctx, this)
 }

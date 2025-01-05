@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.spawning.spawner
 
 import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.WorldSlice
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.phys.Vec3
 
 /**
@@ -21,7 +21,7 @@ import net.minecraft.world.phys.Vec3
  */
 data class SpawningArea(
     val cause: SpawnCause,
-    val world: ServerWorld,
+    val world: ServerLevel,
     val baseX: Int,
     val baseY: Int,
     val baseZ: Int,

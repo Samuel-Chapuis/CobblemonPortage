@@ -37,7 +37,7 @@ class ExperienceGainedPostEvent(
     val pokemon: Pokemon,
     val source: ExperienceSource,
     val experience: Int,
-    val previousWorld: Int,
-    val currentWorld: Int,
+    val previousLevel: Int,
+    val currentLevel: Int,
     val learnedMoves: MutableSet<MoveTemplate>
 )

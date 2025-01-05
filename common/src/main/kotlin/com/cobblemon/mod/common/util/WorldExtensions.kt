@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.Item
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.registries.Registries
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
 import net.minecraft.tags.FluidTags
@@ -40,7 +40,7 @@ fun World.playSoundServer(
     category: SoundSource = SoundSource.NEUTRAL,
     volume: Float = 1F,
     pitch: Float = 1F
-) = (this as ServerWorld).playSound(null, position.x, position.y, position.z, sound, category, volume, pitch)
+) = (this as ServerLevel).playSound(null, position.x, position.y, position.z, sound, category, volume, pitch)
 
 fun <T : ParticleOptions> World.sendParticlesServer(
     particleType: T,
@@ -48,7 +48,7 @@ fun <T : ParticleOptions> World.sendParticlesServer(
     particles: Int,
     offset: Vec3,
     speed: Double
-) = (this as ServerWorld).sendParticles(particleType, position.x, position.y, position.z, particles, offset.x, offset.y, offset.z, speed)
+) = (this as ServerLevel).sendParticles(particleType, position.x, position.y, position.z, particles, offset.x, offset.y, offset.z, speed)
 
 fun World.squeezeWithinBounds(pos: BlockPos): BlockPos {
     val border = worldBorder
@@ -59,7 +59,7 @@ fun World.squeezeWithinBounds(pos: BlockPos): BlockPos {
     )
 }
 
-fun ServerWorld.isBoxLoaded(box: AABB): Boolean {
+fun ServerLevel.isBoxLoaded(box: AABB): Boolean {
     val startChunkX = SectionPos.posToSectionCoord(box.minX)
     val startChunkZ = SectionPos.posToSectionCoord(box.minZ)
     val endChunkX = SectionPos.posToSectionCoord(box.maxX)

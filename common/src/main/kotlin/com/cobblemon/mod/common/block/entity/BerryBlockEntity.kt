@@ -26,7 +26,7 @@ import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
@@ -355,7 +355,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
                 blockEntity.stageTimer--
             }
             if (blockEntity.stageTimer == 0) {
-                (state.block as BerryBlock).growHelper(world as ServerWorld, world.random, pos, state)
+                (state.block as BerryBlock).growHelper(world as ServerLevel, world.random, pos, state)
             }
         }
         //private const val LIFE_CYCLES = "life_cycles"

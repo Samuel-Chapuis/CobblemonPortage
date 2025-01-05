@@ -25,7 +25,7 @@ import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionResult
@@ -207,7 +207,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
                 checkBreakEntity(world, blockState, blockPos)
                 val blockState2 = if (blockState.fluidState.`is`(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
                 world.setBlock(blockPos, blockState2, UPDATE_ALL or UPDATE_SUPPRESS_DROPS)
-                world.levelEvent(player, WorldEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
+                world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
             }
         }
         return super.playerWillDestroy(world, pos, state, player)
@@ -233,7 +233,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         world.blockUpdated(pos, Blocks.AIR)
         state.updateNeighbourShapes(world, pos, 3)
 
-        if (world is ServerWorld && placer is ServerPlayer) {
+        if (world is ServerLevel && placer is ServerPlayer) {
             val blockEntity = world.getBlockEntity(pos) as? PokemonPastureBlockEntity ?: return
             blockEntity.ownerId = placer.uuid
             blockEntity.ownerName = placer.gameProfile.name

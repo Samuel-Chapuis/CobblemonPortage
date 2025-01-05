@@ -27,10 +27,10 @@ import net.minecraft.server.level.ServerPlayer
  * @author Hiroku
  * @since February 14th, 2022
  */
-open class PlayerWorldRangeInfluence(
+open class PlayerLevelRangeInfluence(
     player: ServerPlayer,
     val variation: Int,
-    val noPokemonRange: IntRange = 1 .. config.minimumWorldRangeMax,
+    val noPokemonRange: IntRange = 1 .. config.minimumLevelRangeMax,
     val recalculationMillis: Long = 5000L
 ) : SpawningInfluence {
     companion object {
@@ -42,15 +42,15 @@ open class PlayerWorldRangeInfluence(
     var lastCalculatedTime: Long = 0
     var previousRange: IntRange = noPokemonRange
 
-    fun getPlayerWorldRange(): IntRange {
+    fun getPlayerLevelRange(): IntRange {
         return if (System.currentTimeMillis() - lastCalculatedTime > recalculationMillis) {
             lastCalculatedTime = System.currentTimeMillis()
 
             val party = Cobblemon.storage.getParty(uuid, server()!!.registryAccess())
             previousRange = if (party.any()) {
-                //val minimumWorld = party.minOf { it.level }
-                val maximumWorld = party.maxOf { it.level }
-                IntRange(max(maximumWorld - variation, 1), min(config.maxPokemonWorld, max(maximumWorld + variation, config.minimumWorldRangeMax)))
+                //val minimumLevel = party.minOf { it.level }
+                val maximumLevel = party.maxOf { it.level }
+                IntRange(max(maximumLevel - variation, 1), min(config.maxPokemonLevel, max(maximumLevel + variation, config.minimumLevelRangeMax)))
             } else {
                 noPokemonRange
             }
@@ -62,19 +62,19 @@ open class PlayerWorldRangeInfluence(
 
     override fun affectAction(action: SpawnAction<*>) {
         if (action is PokemonSpawnAction && action.props.level == null) {
-            val playerWorldRange = getPlayerWorldRange()
-            val derivedWorldRange = action.detail.getDerivedWorldRange()
-            var spawnWorldRange = playerWorldRange.intersection(derivedWorldRange)
-            val pokemonRangeWidth = derivedWorldRange.last - derivedWorldRange.first
-            if (spawnWorldRange.isEmpty()){
-                spawnWorldRange = if (derivedWorldRange.first > playerWorldRange.last) {
-                    derivedWorldRange.first..(derivedWorldRange.first + pokemonRangeWidth / 4F).toInt()
+            val playerLevelRange = getPlayerLevelRange()
+            val derivedLevelRange = action.detail.getDerivedLevelRange()
+            var spawnLevelRange = playerLevelRange.intersection(derivedLevelRange)
+            val pokemonRangeWidth = derivedLevelRange.last - derivedLevelRange.first
+            if (spawnLevelRange.isEmpty()){
+                spawnLevelRange = if (derivedLevelRange.first > playerLevelRange.last) {
+                    derivedLevelRange.first..(derivedLevelRange.first + pokemonRangeWidth / 4F).toInt()
                 }
                 else {
-                    (derivedWorldRange.first + 3 * pokemonRangeWidth / 4F).toInt()..derivedWorldRange.last
+                    (derivedLevelRange.first + 3 * pokemonRangeWidth / 4F).toInt()..derivedLevelRange.last
                 }
             }
-            action.props.level = spawnWorldRange.random()
+            action.props.level = spawnLevelRange.random()
         }
     }
 }

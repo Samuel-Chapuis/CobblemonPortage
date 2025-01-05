@@ -28,7 +28,7 @@ object CobblemonCommands {
         ClickTextCommand.register(dispatcher)
         PokemonEditCommand.register(dispatcher)
         TeachCommand.register(dispatcher)
-        WorldUp.register(dispatcher)
+        LevelUp.register(dispatcher)
         HealPokemonCommand.register(dispatcher)
         StopBattleCommand.register(dispatcher)
         CheckSpawnsCommand.register(dispatcher)

@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.spawning.context
 
 import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.core.BlockPos
 
 /**
@@ -22,7 +22,7 @@ import net.minecraft.core.BlockPos
  */
 open class TriggerSpawningContext(
     override val cause: SpawnCause,
-    override val world: ServerWorld,
+    override val world: ServerLevel,
     override val position: BlockPos,
     override val light: Int,
     override val skyLight: Int,

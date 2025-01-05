@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.block
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.BlockGetter
@@ -103,7 +103,7 @@ abstract class GrowableStoneBlock(
 
     override fun isRandomlyTicking(state: BlockState): Boolean = stage < MAX_STAGE
 
-    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         if (world.random.nextInt(5) == 0 && canGrow(pos, world)) {
             val block = nextStage
 

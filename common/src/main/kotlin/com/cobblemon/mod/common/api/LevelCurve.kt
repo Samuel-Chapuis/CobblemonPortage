@@ -12,15 +12,15 @@ package com.cobblemon.mod.common.api
  * A curve of experience that maps to levels. This is generally a discretized polynomial equation
  * that takes a level as x and returns the amount of experience required to reach it as y.
  *
- * Some curves are too complicated to invert. Implementations can use [CachedWorldThresholds] to
+ * Some curves are too complicated to invert. Implementations can use [CachedLevelThresholds] to
  * workaround this issue.
  *
  * @author Hiroku
  * @since March 21st, 2022
  */
-interface WorldCurve {
+interface LevelCurve {
     fun getExperience(level: Int): Int
-    fun getWorld(experience: Int): Int
+    fun getLevel(experience: Int): Int
 }
 
 /**
@@ -31,12 +31,12 @@ interface WorldCurve {
  * @author Hiroku
  * @since March 21st, 2022
  */
-class CachedWorldThresholds(
+class CachedLevelThresholds(
     val levelLimit: Int = 1000,
-    val experienceToWorld: (Int) -> Int
+    val experienceToLevel: (Int) -> Int
 ) {
     val savedThresholds = mutableListOf<Int>()
-    fun getWorld(experience: Int): Int {
+    fun getLevel(experience: Int): Int {
         var level = 1
         while (level <= savedThresholds.size) {
             val threshold = savedThresholds[level - 1]
@@ -46,7 +46,7 @@ class CachedWorldThresholds(
             level++
         }
         while (level < levelLimit) {
-            val threshold = experienceToWorld(level)
+            val threshold = experienceToLevel(level)
             savedThresholds.add(threshold)
             if (experience < threshold) {
                 return level - 1

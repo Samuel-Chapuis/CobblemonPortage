@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.spawning.SpawnerManager
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.nextBetween
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.Mth.PI
 import net.minecraft.util.Mth.ceil
@@ -58,7 +58,7 @@ class PlayerSpawner(player: ServerPlayer, spawns: SpawnPool, manager: SpawnerMan
 
         return SpawningArea(
             cause = cause,
-            world = player.level() as ServerWorld,
+            world = player.level() as ServerLevel,
             baseX = ceil(x - sliceDiameter / 2F),
             baseY = ceil(center.y - sliceHeight / 2F),
             baseZ = ceil(z - sliceDiameter / 2F),

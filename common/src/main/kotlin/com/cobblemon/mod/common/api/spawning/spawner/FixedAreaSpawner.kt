@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.spawning.spawner
 import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.SpawnerManager
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.core.BlockPos
 
 /**
@@ -26,7 +26,7 @@ open class FixedAreaSpawner(
     name: String,
     spawns: SpawnPool,
     manager: SpawnerManager,
-    val world: ServerWorld,
+    val world: ServerLevel,
     val position: BlockPos,
     val horizontalRadius: Int,
     val verticalRadius: Int,

@@ -73,7 +73,7 @@ class HealingMachineBlockEntity(
     init {
         maxCharge = (Cobblemon.config.maxHealerCharge).coerceAtLeast(6F)
         this.updateRedstoneSignal()
-        this.updateBlockChargeWorld()
+        this.updateBlockChargeLevel()
     }
 
     /**
@@ -116,7 +116,7 @@ class HealingMachineBlockEntity(
         }
         this.setUser(user, party)
         alreadyHealing.add(user)
-        updateBlockChargeWorld(HealingMachineBlock.MAX_CHARGE_LEVEL + 1)
+        updateBlockChargeLevel(HealingMachineBlock.MAX_CHARGE_LEVEL + 1)
         val world = level ?: return
         if (!world.isClientSide) world.playSoundServer(
             position = blockPos.toVec3d(),
@@ -143,7 +143,7 @@ class HealingMachineBlockEntity(
                 npc.sendSystemMessage(lang("healingmachine.healed").green()) // An NPC can read text, right?
             }
         }
-        updateBlockChargeWorld()
+        updateBlockChargeLevel()
         clearData()
     }
 
@@ -237,10 +237,10 @@ class HealingMachineBlockEntity(
         this.currentSignal = remainder.coerceAtMost(MAX_REDSTONE_SIGNAL)
     }
 
-    private fun updateBlockChargeWorld(level: Int? = null) {
+    private fun updateBlockChargeLevel(level: Int? = null) {
         val world = this.level ?: return
         if (!world.isClientSide) {
-            val chargeWorld = (level
+            val chargeLevel = (level
                 ?: if (Cobblemon.config.infiniteHealerCharge || this.infinite) HealingMachineBlock.MAX_CHARGE_LEVEL
                 else floor((healingCharge / maxCharge) * HealingMachineBlock.MAX_CHARGE_LEVEL).toInt()
                     ).coerceIn(0..HealingMachineBlock.MAX_CHARGE_LEVEL + 1)
@@ -248,8 +248,8 @@ class HealingMachineBlockEntity(
             val state = world.getBlockState(blockPos)
             if (state.block is HealingMachineBlock) {
                 val currentCharge = state.getValue(HealingMachineBlock.CHARGE_LEVEL).toInt()
-                if (chargeWorld != currentCharge)
-                    world.setBlockAndUpdate(blockPos, state.setValue(HealingMachineBlock.CHARGE_LEVEL, chargeWorld))
+                if (chargeLevel != currentCharge)
+                    world.setBlockAndUpdate(blockPos, state.setValue(HealingMachineBlock.CHARGE_LEVEL, chargeLevel))
             }
         }
     }
@@ -311,7 +311,7 @@ class HealingMachineBlockEntity(
                     val chargePerTick = (Cobblemon.config.chargeGainedPerTick).coerceAtLeast(0F)
                     blockEntity.healingCharge =
                         (blockEntity.healingCharge + chargePerTick).coerceIn(0F..blockEntity.maxCharge)
-                    blockEntity.updateBlockChargeWorld()
+                    blockEntity.updateBlockChargeLevel()
                     blockEntity.updateRedstoneSignal()
                     blockEntity.markUpdated()
                 }

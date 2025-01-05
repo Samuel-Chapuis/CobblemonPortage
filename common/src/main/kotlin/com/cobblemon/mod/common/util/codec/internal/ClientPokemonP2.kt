@@ -43,7 +43,7 @@ internal data class ClientPokemonP2(
     val persistentData: CompoundTag,
     val tetheringId: Optional<UUID>,
     val teraType: TeraType,
-    val dmaxWorld: Int,
+    val dmaxLevel: Int,
     val gmaxFactor: Boolean,
     val tradeable: Boolean
 ) : Partial<Pokemon> {
@@ -64,7 +64,7 @@ internal data class ClientPokemonP2(
         other.persistentData = this.persistentData
         this.tetheringId.ifPresent { other.tetheringId = it }
         other.teraType = this.teraType
-        other.dmaxWorld = this.dmaxWorld
+        other.dmaxLevel = this.dmaxLevel
         other.gmaxFactor = this.gmaxFactor
         other.tradeable = this.tradeable
         return other
@@ -86,7 +86,7 @@ internal data class ClientPokemonP2(
                 CompoundTag.CODEC.fieldOf(DataKeys.POKEMON_PERSISTENT_DATA).forGetter(ClientPokemonP2::persistentData),
                 UUIDUtil.LENIENT_CODEC.optionalFieldOf(DataKeys.TETHERING_ID).forGetter(ClientPokemonP2::tetheringId),
                 TeraType.BY_IDENTIFIER_CODEC.fieldOf(DataKeys.POKEMON_TERA_TYPE).forGetter(ClientPokemonP2::teraType),
-                CodecUtils.dynamicIntRange(0) { Cobblemon.config.maxDynamaxWorld }.fieldOf(DataKeys.POKEMON_DMAX_LEVEL).forGetter(ClientPokemonP2::dmaxWorld),
+                CodecUtils.dynamicIntRange(0) { Cobblemon.config.maxDynamaxLevel }.fieldOf(DataKeys.POKEMON_DMAX_LEVEL).forGetter(ClientPokemonP2::dmaxLevel),
                 Codec.BOOL.fieldOf(DataKeys.POKEMON_GMAX_FACTOR).forGetter(ClientPokemonP2::gmaxFactor),
                 Codec.BOOL.fieldOf(DataKeys.POKEMON_TRADEABLE).forGetter(ClientPokemonP2::tradeable)
             ).apply(instance, ::ClientPokemonP2)
@@ -109,7 +109,7 @@ internal data class ClientPokemonP2(
             pokemon.persistentData,
             Optional.ofNullable(pokemon.tetheringId),
             pokemon.teraType,
-            pokemon.dmaxWorld,
+            pokemon.dmaxLevel,
             pokemon.gmaxFactor,
             pokemon.tradeable
         )

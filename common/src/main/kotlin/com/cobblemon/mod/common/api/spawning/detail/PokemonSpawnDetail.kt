@@ -92,9 +92,9 @@ class PokemonSpawnDetail : SpawnDetail() {
         super.autoLabel()
     }
 
-    fun getDerivedWorldRange() = levelRange.let { levelRange ->
+    fun getDerivedLevelRange() = levelRange.let { levelRange ->
         if (levelRange == null && pokemon.level == null) {
-            IntRange(1, config.maxPokemonWorld)
+            IntRange(1, config.maxPokemonLevel)
         } else if (levelRange == null) {
             IntRange(pokemon.level!!, pokemon.level!!)
         } else {

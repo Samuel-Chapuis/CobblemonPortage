@@ -184,7 +184,7 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
         if (this.forms.isNotEmpty() && this.forms.none { it == this.standardForm }) {
             this.forms.add(0, this.standardForm)
         }
-        this.lightingData?.let { this.lightingData = it.copy(lightWorld = it.lightWorld.coerceIn(0, 15)) }
+        this.lightingData?.let { this.lightingData = it.copy(lightLevel = it.lightLevel.coerceIn(0, 15)) }
         // These properties are lazy, these need all species to be reloaded but SpeciesAdditions is what will eventually trigger this after all species have been loaded
         this.preEvolution?.species
         this.preEvolution?.form
@@ -247,7 +247,7 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
         buffer.writeIdentifier(this.battleTheme)
         buffer.writeCollection(this.features) { pb, feature -> pb.writeString(feature) }
         buffer.writeNullable(this.lightingData) { pb, data ->
-            pb.writeInt(data.lightWorld)
+            pb.writeInt(data.lightLevel)
             pb.writeEnumConstant(data.liquidGlowMode)
         }
 

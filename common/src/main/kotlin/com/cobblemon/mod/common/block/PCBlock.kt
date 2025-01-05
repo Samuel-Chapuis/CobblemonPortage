@@ -224,7 +224,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
             if (part == PCPart.TOP && world.getBlockState(pos.below().also { blockPos = it }).also { blockState = it }.`is`(state.block) && blockState.getValue(PART) == PCPart.BOTTOM) {
                 val blockState2 = if (blockState.fluidState.`is`(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
                 world.setBlock(blockPos, blockState2, UPDATE_ALL or UPDATE_SUPPRESS_DROPS)
-                world.levelEvent(player, WorldEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
+                world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
             }
         }
         return super.playerWillDestroy(world, pos, state, player)

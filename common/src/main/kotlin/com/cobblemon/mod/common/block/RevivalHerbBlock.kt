@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.mulch.MulchVariant
 import com.cobblemon.mod.common.api.mulch.Mulchable
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
 import net.minecraft.util.RandomSource
 import net.minecraft.util.StringRepresentable
@@ -67,10 +67,10 @@ class RevivalHerbBlock(settings: Properties) : CropBlock(settings), Mulchable {
 
     override fun getBaseSeedId(): ItemLike = CobblemonItems.REVIVAL_HERB
 
-    override fun canHaveMulchApplied(world: ServerWorld, pos: BlockPos, state: BlockState, variant: MulchVariant): Boolean =
+    override fun canHaveMulchApplied(world: ServerLevel, pos: BlockPos, state: BlockState, variant: MulchVariant): Boolean =
         variant == MulchVariant.SURPRISE && this.getAge(state) <= MUTABLE_MAX_AGE && !this.isMutated(state)
 
-    override fun applyMulch(world: ServerWorld, random: RandomSource, pos: BlockPos, state: BlockState, variant: MulchVariant) {
+    override fun applyMulch(world: ServerLevel, random: RandomSource, pos: BlockPos, state: BlockState, variant: MulchVariant) {
         val picked = Mutation.values().filterNot { it == Mutation.NONE }.random()
         world.setBlockAndUpdate(pos, state.setValue(MUTATION, picked))//.with(AGE, MUTABLE_MAX_AGE + 1))
     }
@@ -95,7 +95,7 @@ class RevivalHerbBlock(settings: Properties) : CropBlock(settings), Mulchable {
 
     // DO NOT use withAge
     // Explanation for these 2 beautiful copy pasta are basically that we need to keep the blockstate and that's not possible with the default impl :(
-    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
         if (world.getRawBrightness(pos, 0) < 9 || this.isMaxAge(state)) {
             return
         }

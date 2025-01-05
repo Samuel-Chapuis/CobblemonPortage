@@ -13,7 +13,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.Registries
 import net.minecraft.tags.TagKey
-import net.minecraft.world.level.WorldGenWorld
+import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate
 import java.util.*
@@ -30,7 +30,7 @@ class BiomePredicate(
     val excludedBiomes: Optional<MutableList<TagKey<Biome>>>
 ) : BlockPredicate {
 
-    override fun test(world: WorldGenWorld, block: BlockPos): Boolean {
+    override fun test(world: WorldGenLevel, block: BlockPos): Boolean {
         val biome = world.getBiome(block)
         // If biomes are not specified, default to true -- exclusions override inclusions
         return (

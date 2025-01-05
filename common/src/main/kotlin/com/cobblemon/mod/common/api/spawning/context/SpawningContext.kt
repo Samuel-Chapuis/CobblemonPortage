@@ -22,7 +22,7 @@ import net.minecraft.core.Holder
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.Registries
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.TagKey
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.enchantment.Enchantment
@@ -64,8 +64,8 @@ abstract class SpawningContext {
     abstract val cause: SpawnCause
     val spawner: Spawner
         get() = cause.spawner
-    /** The [ServerWorld] the spawning context exists in. */
-    abstract val world: ServerWorld
+    /** The [ServerLevel] the spawning context exists in. */
+    abstract val world: ServerLevel
     /** The location of the spawning attempt. */
     abstract val position: BlockPos
     /** The light level at this location. */

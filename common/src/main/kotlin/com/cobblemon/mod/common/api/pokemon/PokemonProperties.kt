@@ -125,7 +125,7 @@ open class PokemonProperties {
                 }
             }.toMutableList()
             props.gender = Gender.entries.toList().parsePropertyOfCollection(keyPairs, listOf("gender"), labelsOptional = true) { it.name.lowercase() }
-            props.level = parseIntProperty(keyPairs, listOf("level", "lvl", "l"))?.coerceIn(1, Cobblemon.config.maxPokemonWorld)
+            props.level = parseIntProperty(keyPairs, listOf("level", "lvl", "l"))?.coerceIn(1, Cobblemon.config.maxPokemonLevel)
             props.shiny = parseBooleanProperty(keyPairs, listOf("shiny", "s"))
             props.species = parseSpeciesIdentifier(keyPairs)
             props.form = parseForm(keyPairs)
@@ -137,7 +137,7 @@ open class PokemonProperties {
             props.nickname = parseText(keyPairs, listOf("nickname", "nick"))
             props.type = parseStringOfRegistry(keyPairs, listOf("type", "elemental_type")) { ElementalTypes.get(it)?.name }
             props.teraType = parseIdentifierOfRegistry(keyPairs, listOf("tera_type", "tera")) { TeraTypes.get(it)?.id?.simplify() }
-            props.dmaxWorld = parseIntProperty(keyPairs, listOf("dmax_level", "dmax"))?.coerceIn(0, Cobblemon.config.maxDynamaxWorld)
+            props.dmaxLevel = parseIntProperty(keyPairs, listOf("dmax_level", "dmax"))?.coerceIn(0, Cobblemon.config.maxDynamaxLevel)
             props.gmaxFactor = parseBooleanProperty(keyPairs, listOf("gmax_factor", "gmax"))
             props.tradeable = parseBooleanProperty(keyPairs, listOf("tradeable", "tradable"))
             props.originalTrainerType = OriginalTrainerType.entries.toList().parsePropertyOfCollection(keyPairs, listOf("originaltrainertype", "ottype"), labelsOptional = true) { it.name.lowercase() }
@@ -332,7 +332,7 @@ open class PokemonProperties {
     var status: String? = null
     var type: String? = null
     var teraType: String? = null
-    var dmaxWorld: Int? = null
+    var dmaxLevel: Int? = null
     var gmaxFactor: Boolean? = null
     var tradeable: Boolean? = null
     var originalTrainerType: OriginalTrainerType? = null
@@ -405,7 +405,7 @@ open class PokemonProperties {
             }
         }
         teraType?.let { TeraTypes.get(it.asIdentifierDefaultingNamespace())?.let { type -> pokemon.teraType = type } }
-        dmaxWorld?.let { pokemon.dmaxWorld = it }
+        dmaxLevel?.let { pokemon.dmaxLevel = it }
         gmaxFactor?.let { pokemon.gmaxFactor = it }
         tradeable?.let { pokemon.tradeable = it }
         // If it has been explicitly set to NONE, clear the stored information, including the originalTrainer property
@@ -501,7 +501,7 @@ open class PokemonProperties {
         }
         type?.takeIf { pokemon.types.none { type -> type.name.equals(it, true) } }?.let { return false }
         teraType?.takeIf { it.asIdentifierDefaultingNamespace() != pokemon.teraType.id }?.let { return false }
-        dmaxWorld?.takeIf { it != pokemon.dmaxWorld }?.let { return false }
+        dmaxLevel?.takeIf { it != pokemon.dmaxLevel }?.let { return false }
         gmaxFactor?.takeIf { it != pokemon.gmaxFactor }?.let { return false }
         tradeable?.takeIf { it != pokemon.tradeable }?.let { return false }
         originalTrainer?.takeIf { it != pokemon.originalTrainer }?.let { return false }
@@ -567,7 +567,7 @@ open class PokemonProperties {
         }
         type?.takeIf { !it.equals(properties.type, true) }?.let { return false }
         teraType?.takeIf { it != properties.teraType }?.let { return false }
-        dmaxWorld?.takeIf { it != properties.dmaxWorld }?.let { return false }
+        dmaxLevel?.takeIf { it != properties.dmaxLevel }?.let { return false }
         gmaxFactor?.takeIf { it != properties.gmaxFactor }?.let { return false }
         tradeable?.takeIf { it != properties.tradeable }?.let { return false }
         originalTrainer?.takeIf { it != properties.originalTrainer }?.let{ return false }
@@ -629,7 +629,7 @@ open class PokemonProperties {
         evs?.let { nbt.put(DataKeys.POKEMON_EVS, it.saveToNBT(CompoundTag())) }
         type?.let { nbt.putString(DataKeys.ELEMENTAL_TYPE, it) }
         teraType?.let { nbt.putString(DataKeys.POKEMON_TERA_TYPE, it) }
-        dmaxWorld?.let { nbt.putInt(DataKeys.POKEMON_DMAX_LEVEL, it) }
+        dmaxLevel?.let { nbt.putInt(DataKeys.POKEMON_DMAX_LEVEL, it) }
         gmaxFactor?.let { nbt.putBoolean(DataKeys.POKEMON_GMAX_FACTOR, it) }
         tradeable?.let { nbt.putBoolean(DataKeys.POKEMON_TRADEABLE, it) }
         originalTrainerType?.let { nbt.putInt(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE, it.ordinal) }
@@ -660,7 +660,7 @@ open class PokemonProperties {
         evs = if (tag.contains(DataKeys.POKEMON_EVS)) EVs().loadFromNBT(tag.getCompound(DataKeys.POKEMON_EVS)) as EVs else null
         type = if (tag.contains(DataKeys.ELEMENTAL_TYPE)) tag.getString(DataKeys.ELEMENTAL_TYPE) else null
         teraType = if (tag.contains(DataKeys.POKEMON_TERA_TYPE)) tag.getString(DataKeys.POKEMON_TERA_TYPE) else null
-        dmaxWorld = if (tag.contains(DataKeys.POKEMON_DMAX_LEVEL)) tag.getInt(DataKeys.POKEMON_DMAX_LEVEL) else null
+        dmaxLevel = if (tag.contains(DataKeys.POKEMON_DMAX_LEVEL)) tag.getInt(DataKeys.POKEMON_DMAX_LEVEL) else null
         gmaxFactor = if (tag.contains(DataKeys.POKEMON_GMAX_FACTOR)) tag.getBoolean(DataKeys.POKEMON_GMAX_FACTOR) else null
         tradeable = if (tag.contains(DataKeys.POKEMON_TRADEABLE)) tag.getBoolean(DataKeys.POKEMON_TRADEABLE) else null
         originalTrainerType = if (tag.contains(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE)) OriginalTrainerType.valueOf(tag.getString(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE)) else null
@@ -693,7 +693,7 @@ open class PokemonProperties {
         evs?.let { json.add(DataKeys.POKEMON_EVS, it.saveToJSON(JsonObject())) }
         type?.let { json.addProperty(DataKeys.ELEMENTAL_TYPE, it) }
         teraType?.let { json.addProperty(DataKeys.POKEMON_TERA_TYPE, it) }
-        dmaxWorld?.let { json.addProperty(DataKeys.POKEMON_DMAX_LEVEL, it) }
+        dmaxLevel?.let { json.addProperty(DataKeys.POKEMON_DMAX_LEVEL, it) }
         gmaxFactor?.let { json.addProperty(DataKeys.POKEMON_GMAX_FACTOR, it) }
         tradeable?.let { json.addProperty(DataKeys.POKEMON_TRADEABLE, it) }
         originalTrainerType?.let { json.addProperty(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE, it.name) }
@@ -725,7 +725,7 @@ open class PokemonProperties {
         evs = json.getAsJsonObject(DataKeys.POKEMON_EVS)?.let { EVs().loadFromJSON(it) } as EVs
         type = json.get(DataKeys.ELEMENTAL_TYPE)?.asString
         teraType = json.get(DataKeys.POKEMON_TERA_TYPE)?.asString
-        dmaxWorld = json.get(DataKeys.POKEMON_DMAX_LEVEL)?.asInt
+        dmaxLevel = json.get(DataKeys.POKEMON_DMAX_LEVEL)?.asInt
         gmaxFactor = json.get(DataKeys.POKEMON_GMAX_FACTOR)?.asBoolean
         tradeable = json.get(DataKeys.POKEMON_TRADEABLE)?.asBoolean
         originalTrainerType = json.get(DataKeys.POKEMON_ORIGINAL_TRAINER_TYPE)?.asString?.let { OriginalTrainerType.valueOf(it) }
@@ -760,7 +760,7 @@ open class PokemonProperties {
         }
         type?.let { pieces.add("type=$it") }
         teraType?.let { pieces.add("tera_type=$it") }
-        dmaxWorld?.let { pieces.add("dmax_level=$it") }
+        dmaxLevel?.let { pieces.add("dmax_level=$it") }
         gmaxFactor?.let { pieces.add("gmax_factor=$it") }
         tradeable?.let { pieces.add("tradeable=$it") }
         originalTrainerType?.let { pieces.add("originaltrainertype=${it.name}") }

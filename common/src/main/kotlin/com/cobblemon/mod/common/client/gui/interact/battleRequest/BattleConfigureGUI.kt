@@ -42,8 +42,8 @@ class BattleConfigureGUI(
         private val backgroundResource = cobblemonResource("textures/gui/interact/request/battle_request.png")
         private val battleArrowsResource = cobblemonResource("textures/gui/interact/request/battle_request_arrows.png")
         private var requestButton: BattleRequestButton? = null
-        var autoWorldNavButtonLeft: BattleRequestNavigationButton? = null
-        var autoWorldNavButtonRight: BattleRequestNavigationButton? = null
+        var autoLevelNavButtonLeft: BattleRequestNavigationButton? = null
+        var autoLevelNavButtonRight: BattleRequestNavigationButton? = null
 
         val battleRequestMap = mutableMapOf(
             Pair(
@@ -211,7 +211,7 @@ class BattleConfigureGUI(
             options = listOf(PlayerInteractOptionsPacket.Options.TEAM_REQUEST)
         } else if (activeRequest != null) {
             options =  packet.options.keys.filter { packet.options[it] === PlayerInteractOptionsPacket.OptionStatus.AVAILABLE && battleRequestMap[it]?.battleFormat?.battleType?.name == activeRequest.battleFormat.battleType.name }
-            val level = activeRequest.battleFormat.adjustWorld
+            val level = activeRequest.battleFormat.adjustLevel
             levelRulesetOptionIndex = maxOf(0, levelRulesetOption.indexOf(level))
         } else {
             options = packet.options.keys.filter { packet.options[it] === PlayerInteractOptionsPacket.OptionStatus.AVAILABLE && battleRequestMap.containsKey(it) }.toList()
@@ -254,7 +254,7 @@ class BattleConfigureGUI(
                 battleRequestMap[options[currentPage]]?.onRequest?.let { it1 ->
                     val battleFormat = battleRequestMap[options[currentPage]]?.battleFormat ?: BattleFormat.GEN_9_SINGLES
                     val level = levelRulesetOption[levelRulesetOptionIndex]
-                    battleFormat.adjustWorld = level
+                    battleFormat.adjustLevel = level
                     it1(packet, battleFormat)
                 }
                 closeGUI()
@@ -289,21 +289,21 @@ class BattleConfigureGUI(
 
             if (battleRequestMap[options[currentPage]]?.option != PlayerInteractOptionsPacket.Options.TEAM_REQUEST) {
                 // World Selection buttons
-                autoWorldNavButtonLeft = BattleRequestNavigationButton(
+                autoLevelNavButtonLeft = BattleRequestNavigationButton(
                     pX = x + 15,
                     pY = y + 76,
                     backwardIcon = cobblemonResource("textures/gui/interact/request/label_arrow_left.png"),
                     forward = false
                 ) { levelRulesetOptionIndex -= 1 }
-                this.addRenderableWidget(autoWorldNavButtonLeft)
+                this.addRenderableWidget(autoLevelNavButtonLeft)
 
-                autoWorldNavButtonRight = BattleRequestNavigationButton(
+                autoLevelNavButtonRight = BattleRequestNavigationButton(
                     pX = x + 94,
                     pY = y + 76,
                     forwardIcon = cobblemonResource("textures/gui/interact/request/label_arrow_right.png"),
                     forward = true
                 ) {levelRulesetOptionIndex += 1 }
-                this.addRenderableWidget(autoWorldNavButtonRight)
+                this.addRenderableWidget(autoLevelNavButtonRight)
             }
         }
     }
@@ -389,23 +389,23 @@ class BattleConfigureGUI(
                     shadow = true
             )
 
-            autoWorldNavButtonLeft.let {
+            autoLevelNavButtonLeft.let {
                 if (it != null) {
                     it.active = true
                 }
             }
-            autoWorldNavButtonRight.let {
+            autoLevelNavButtonRight.let {
                 if (it != null) {
                     it.active = true
                 }
             }
         } else {
-            autoWorldNavButtonLeft.let {
+            autoLevelNavButtonLeft.let {
                 if (it != null) {
                     it.active = false
                 }
             }
-            autoWorldNavButtonRight.let {
+            autoLevelNavButtonRight.let {
                 if (it != null) {
                     it.active = false
                 }

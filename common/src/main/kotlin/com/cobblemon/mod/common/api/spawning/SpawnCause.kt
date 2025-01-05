@@ -25,5 +25,5 @@ open class SpawnCause(
     val entityType = entity?.type
 
     val entity: Entity?
-        get() = if (entityType == EntityType.PLAYER) server()?.playerList?.getPlayer(entityUUID) else server()?.getWorld(entityWorldId)?.getEntity(entityId!!)
+        get() = if (entityType == EntityType.PLAYER) server()?.playerList?.getPlayer(entityUUID) else server()?.getLevel(entityWorldId)?.getEntity(entityId!!)
 }

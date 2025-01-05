@@ -105,7 +105,7 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerEntity
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
@@ -801,7 +801,7 @@ open class PokemonEntity(
                 })
     }
 
-    override fun getBreedOffspring(serverWorld: ServerWorld, ageableMob: AgeableMob) = null
+    override fun getBreedOffspring(serverLevel: ServerLevel, ageableMob: AgeableMob) = null
 
     override fun canSitOnShoulder(): Boolean {
         return pokemon.form.shoulderMountable
@@ -1007,7 +1007,7 @@ open class PokemonEntity(
      *
      * @return The level that should be displayed, if equal or lesser than 0 the level is not intended to be displayed.
      */
-    fun labelWorld() = entityData.get(LABEL_LEVEL)
+    fun labelLevel() = entityData.get(LABEL_LEVEL)
 
     override fun playAmbientSound() {
         if (!this.isSilent || this.busyLocks.filterIsInstance<EmptyPokeBallEntity>().isEmpty()) {
@@ -1306,7 +1306,7 @@ open class PokemonEntity(
         }
     }
 
-    override fun dropAllDeathLoot(world: ServerWorld, source: DamageSource) {
+    override fun dropAllDeathLoot(world: ServerLevel, source: DamageSource) {
         if (pokemon.isWild()) {
             super.dropAllDeathLoot(world, source)
             delegate.drop(source)
@@ -1316,14 +1316,14 @@ open class PokemonEntity(
     override fun dropExperience(attacker: Entity?) {
         // Copied over the entire function because it's the simplest way to switch out the gamerule check
         if (
-            level() is ServerWorld && !this.wasExperienceConsumed() &&
+            level() is ServerLevel && !this.wasExperienceConsumed() &&
             (isAlwaysExperienceDropper ||
                     lastHurtByPlayerTime > 0 &&
                     shouldDropExperience() &&
                     level().gameRules.getBoolean(CobblemonGameRules.DO_POKEMON_LOOT
             ))
         ) {
-            ExperienceOrb.award(level() as ServerWorld, position(), baseExperienceReward)
+            ExperienceOrb.award(level() as ServerLevel, position(), baseExperienceReward)
         }
     }
 
@@ -1485,7 +1485,7 @@ open class PokemonEntity(
 
     override fun canMate(other: Animal): Boolean = false
 
-    override fun spawnChildFromBreeding(world: ServerWorld, other: Animal) {}
+    override fun spawnChildFromBreeding(world: ServerLevel, other: Animal) {}
 
     override fun shear(shearedSoundCategory: SoundSource) {
         this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F)
@@ -1590,7 +1590,7 @@ open class PokemonEntity(
                 gender = this.pokemon.gender,
                 aspects = this.aspects,
                 shiny = this.pokemon.shiny,
-                level = this.labelWorld(),
+                level = this.labelLevel(),
                 ownerUUID = this.ownerUUID
             )
         }

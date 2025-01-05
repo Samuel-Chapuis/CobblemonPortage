@@ -9,6 +9,6 @@
 package com.cobblemon.mod.common.pokemon
 
 import com.cobblemon.mod.common.api.moves.MoveTemplate
-class WorldUpMoves : HashMap<Int, MutableList<MoveTemplate>>() {
-    fun getWorldUpMovesUpTo(level: Int) = entries.filter { it.key <= level }.sortedBy { it.key }.flatMap { it.value }.toSet()
+class LevelUpMoves : HashMap<Int, MutableList<MoveTemplate>>() {
+    fun getLevelUpMovesUpTo(level: Int) = entries.filter { it.key <= level }.sortedBy { it.key }.flatMap { it.value }.toSet()
 }

@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.weightedSelection
 import net.minecraft.core.Vec3i
 import net.minecraft.data.worldgen.placement.PlacementUtils
 import net.minecraft.util.valueproviders.ClampedNormalInt
-import net.minecraft.world.level.WorldGenWorld
+import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.GrassBlock
 import net.minecraft.world.level.chunk.status.ChunkStatus
@@ -30,14 +30,14 @@ import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter
 
 class BerryGroveFeature : Feature<NoneFeatureConfiguration>(NoneFeatureConfiguration.CODEC){
     override fun place(context: FeaturePlaceContext<NoneFeatureConfiguration>): Boolean {
-        val worldGenWorld: WorldGenWorld = context.level()
+        val worldGenLevel: WorldGenLevel = context.level()
         val random = context.random()
         val origin = context.origin()
 
-        val isGenerating = worldGenWorld.getChunk(origin).persistedStatus != ChunkStatus.FULL
+        val isGenerating = worldGenLevel.getChunk(origin).persistedStatus != ChunkStatus.FULL
 
         if (!isGenerating) return false
-        val biome = worldGenWorld.getBiome(origin)
+        val biome = worldGenLevel.getBiome(origin)
         //This basically goes through and finds the berries whose preferred biome we are in
         //Maybe cache these per biome in a map?
         val validTrees = BerryHelper.getBerriesForBiome(biome)
@@ -87,14 +87,14 @@ class BerryGroveFeature : Feature<NoneFeatureConfiguration>(NoneFeatureConfigura
         ).shuffled()
         for (dir in possiblePositions) {
             if (numTreesLeftToGen > 0) {
-                if (blockPlaceFeature?.place(worldGenWorld, context.chunkGenerator(), random, dir) == true) {
-                    worldGenWorld.blockUpdated(dir, worldGenWorld.getBlockState(dir).block)
+                if (blockPlaceFeature?.place(worldGenLevel, context.chunkGenerator(), random, dir) == true) {
+                    worldGenLevel.blockUpdated(dir, worldGenLevel.getBlockState(dir).block)
                     numTreesLeftToGen--
-                    val below = worldGenWorld.getBlockState(dir.below())
+                    val below = worldGenLevel.getBlockState(dir.below())
                     if (below.`is`(Blocks.GRASS_BLOCK) && below.getValue(GrassBlock.SNOWY)) {
-                        worldGenWorld.setBlock(dir.below(), below.setValue(GrassBlock.SNOWY, false), 2)
+                        worldGenLevel.setBlock(dir.below(), below.setValue(GrassBlock.SNOWY, false), 2)
                     }
-                    worldGenWorld.setBlock(dir.above(), Blocks.AIR.defaultBlockState(), 2)
+                    worldGenLevel.setBlock(dir.above(), Blocks.AIR.defaultBlockState(), 2)
                 }
             }
         }

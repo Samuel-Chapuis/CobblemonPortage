@@ -238,7 +238,7 @@ fun renderBeaconBeam(
     buffer: MultiBufferSource,
     textureLocation: Identifier = CobblemonResources.PHASE_BEAM,
     partialTicks: Float,
-    totalWorldTime: Long,
+    totalLevelTime: Long,
     yOffset: Float = 0F,
     height: Float,
     red: Float,
@@ -250,7 +250,7 @@ fun renderBeaconBeam(
     glowAlpha: Float
 ) {
     val i = yOffset + height
-    val beamRotation = Math.floorMod(totalWorldTime, 40).toFloat() + partialTicks
+    val beamRotation = Math.floorMod(totalLevelTime, 40).toFloat() + partialTicks
     matrixStack.pushPose()
     matrixStack.mulPose(Axis.YP.rotationDegrees(beamRotation * 2.25f - 45.0f))
     var f9 = -beamRadius

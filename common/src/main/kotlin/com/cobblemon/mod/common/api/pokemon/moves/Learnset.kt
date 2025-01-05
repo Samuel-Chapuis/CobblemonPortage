@@ -86,7 +86,7 @@ open class Learnset : ClientDataSynchronizer<Learnset> {
     val evolutionMoves = mutableSetOf<MoveTemplate>()
     val formChangeMoves = mutableListOf<MoveTemplate>()
 
-    fun getWorldUpMovesUpTo(level: Int) = levelUpMoves
+    fun getLevelUpMovesUpTo(level: Int) = levelUpMoves
         .entries
         .filter { it.key <= level }
         .sortedBy { it.key }

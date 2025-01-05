@@ -62,16 +62,16 @@ object BattleBuilder {
         partyAccessor: (ServerPlayer) -> PartyStore = { it.party() }
     ): BattleStartResult {
 
-        val adjustWorld = battleFormat.adjustWorld
-        val team1 = partyAccessor(player1).toBattleTeam(clone = cloneParties || adjustWorld > 0,  healPokemon = healFirst, leadingPokemonPlayer1).sortedBy { it.health <= 0 }
-        val team2 = partyAccessor(player2).toBattleTeam(clone = cloneParties || adjustWorld > 0,  healPokemon = healFirst, leadingPokemonPlayer2).sortedBy { it.health <= 0 }
+        val adjustLevel = battleFormat.adjustLevel
+        val team1 = partyAccessor(player1).toBattleTeam(clone = cloneParties || adjustLevel > 0,  healPokemon = healFirst, leadingPokemonPlayer1).sortedBy { it.health <= 0 }
+        val team2 = partyAccessor(player2).toBattleTeam(clone = cloneParties || adjustLevel > 0,  healPokemon = healFirst, leadingPokemonPlayer2).sortedBy { it.health <= 0 }
 
         val battlePartyStores = mutableListOf<PlayerPartyStore>()
 
-        if (adjustWorld > 0) {
+        if (adjustLevel > 0) {
             val tempStoreP1 = PlayerPartyStore(player1.uuid)
             team1.forEachIndexed { index, it ->
-                it.effectedPokemon.level = adjustWorld
+                it.effectedPokemon.level = adjustLevel
                 it.effectedPokemon.heal()
                 tempStoreP1.set(index, it.effectedPokemon)
             }
@@ -79,7 +79,7 @@ object BattleBuilder {
 
             val tempStoreP2 = PlayerPartyStore(player2.uuid)
             team2.forEachIndexed { index, it ->
-                it.effectedPokemon.level = adjustWorld
+                it.effectedPokemon.level = adjustLevel
                 it.effectedPokemon.heal()
                 tempStoreP2.set(index, it.effectedPokemon)
             }
@@ -134,10 +134,10 @@ object BattleBuilder {
         healFirst: Boolean = false,
         partyAccessor: (ServerPlayer) -> PartyStore = { it.party() }
     ): BattleStartResult {
-        val adjustWorld = battleFormat.adjustWorld
+        val adjustLevel = battleFormat.adjustLevel
         val teams = players.mapIndexed { index, it ->
             partyAccessor(it).toBattleTeam(
-                    clone = cloneParties || adjustWorld > 0,
+                    clone = cloneParties || adjustLevel > 0,
                     healPokemon = healFirst,
                     leadingPokemon[index]
             ).sortedBy { it.health <= 0 }
@@ -146,11 +146,11 @@ object BattleBuilder {
 
         val battlePartyStores = mutableListOf<PlayerPartyStore>()
 
-        if (adjustWorld > 0) {
+        if (adjustLevel > 0) {
             teams.forEachIndexed { playerIndex, battleTeam ->
                 val tempStore = PlayerPartyStore(players[playerIndex].uuid)
                 battleTeam.forEachIndexed { pokemonIndex, battlePokemon ->
-                    battlePokemon.effectedPokemon.level = adjustWorld
+                    battlePokemon.effectedPokemon.level = adjustLevel
                     battlePokemon.effectedPokemon.heal()
                     tempStore.set(pokemonIndex, battlePokemon.effectedPokemon)
                 }

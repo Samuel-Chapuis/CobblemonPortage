@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.net.messages.client.spawn
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.mixin.invoker.ClientPlayNetworkHandlerInvoker
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.multiplayer.ClientWorld
+import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.world.entity.Entity
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.protocol.PacketUtils
@@ -33,7 +33,7 @@ abstract class SpawnExtraDataEntityPacket<T: NetworkPacket<T>, E : Entity>(priva
     fun spawnAndApply(client: Minecraft) {
         client.execute {
             val player = client.player ?: return@execute
-            val world = player.level() as? ClientWorld ?: return@execute
+            val world = player.level() as? ClientLevel ?: return@execute
             // This is a copy pasta of ClientPlayNetworkHandler#onEntitySpawn
             // This exists due to us needing to do everything it does except spawn the entity in the world.
             // We invoke applyData then we add the entity to the world.

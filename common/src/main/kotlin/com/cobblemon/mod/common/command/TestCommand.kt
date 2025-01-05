@@ -343,7 +343,7 @@ object TestCommand {
     private fun testHiddenAbilityThroughoutEvolutions(): Component {
         // Hidden ability test, Dragonite HA differs from Dratini/Dragonair we need to ensure he keeps that ability until the end
         // Skip Dratini cause same HA irrelevant for this test
-        val pokemon = PokemonProperties.parse("dragonair level=${Cobblemon.config.maxPokemonWorld} hiddenability=true").create()
+        val pokemon = PokemonProperties.parse("dragonair level=${Cobblemon.config.maxPokemonLevel} hiddenability=true").create()
         val dragonite = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Dragonair » Dragonite evolution").red()
         dragonite.evolutionMethod(pokemon)
         val failed = pokemon.ability.index != 0 || pokemon.ability.priority != Priority.LOW || pokemon.ability.forced
@@ -353,7 +353,7 @@ object TestCommand {
     }
 
     private fun testMiddleStageSingleAbility(): Component {
-        val pokemon = PokemonProperties.parse("scatterbug level=${Cobblemon.config.maxPokemonWorld} ability=compoundeyes").create()
+        val pokemon = PokemonProperties.parse("scatterbug level=${Cobblemon.config.maxPokemonLevel} ability=compoundeyes").create()
         val spewpa = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Scatterbug » Spewpa evolution").red()
         spewpa.evolutionMethod(pokemon)
         val vivillon = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Spewpa » Vivillon evolution").red()
@@ -365,7 +365,7 @@ object TestCommand {
     }
 
     private fun testForcedAbility(): Component {
-        val pokemon = PokemonProperties.parse("magikarp level=${Cobblemon.config.maxPokemonWorld} ability=adaptability").create()
+        val pokemon = PokemonProperties.parse("magikarp level=${Cobblemon.config.maxPokemonLevel} ability=adaptability").create()
         val gyarados = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Magikarp » Gyarados evolution").red()
         gyarados.evolutionMethod(pokemon)
         val failed = !pokemon.ability.forced || pokemon.ability.template.name != "adaptability"

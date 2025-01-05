@@ -66,7 +66,7 @@ object CobblemonCaptureCalculator: CaptureCalculator, CriticalCaptureProvider, P
             is ParalysisStatus, is BurnStatus, is PoisonStatus, is PoisonBadlyStatus -> 1.5F
             else -> 1F
         }
-        val bonusWorld = if (pokemon.level < 13) max((36 - (2 * pokemon.level)) / 10, 1) else 1
+        val bonusLevel = if (pokemon.level < 13) max((36 - (2 * pokemon.level)) / 10, 1) else 1
         // ToDo implement badgePenalty when we have a system for obedience
         // ToDo implement bonusMisc when we have sandwich powers
         val ballBonus = if (validModifier) pokeBall.catchRateModifier.value(thrower, pokemon) else 1F
@@ -74,12 +74,12 @@ object CobblemonCaptureCalculator: CaptureCalculator, CriticalCaptureProvider, P
         var modifiedCatchRate = pokeBall.catchRateModifier
             .behavior(thrower, pokemon)
             .mutator((3F * pokemon.maxHealth - 2F * pokemon.currentHealth) * darkGrass * catchRate * inBattleModifier, ballBonus) / (3F * pokemon.maxHealth)
-        modifiedCatchRate *= bonusStatus * bonusWorld
+        modifiedCatchRate *= bonusStatus * bonusLevel
         if (thrower is ServerPlayer) {
-            val highestWorldThrower = this.findHighestThrowerWorld(thrower, pokemon)
-            if (highestWorldThrower != null && highestWorldThrower < pokemon.level) {
+            val highestLevelThrower = this.findHighestThrowerLevel(thrower, pokemon)
+            if (highestLevelThrower != null && highestLevelThrower < pokemon.level) {
                 val config = Cobblemon.config
-                modifiedCatchRate *= max(0.1F, min(1F, 1F - ((pokemon.level - highestWorldThrower) / (config.maxPokemonWorld / 2))))
+                modifiedCatchRate *= max(0.1F, min(1F, 1F - ((pokemon.level - highestLevelThrower) / (config.maxPokemonLevel / 2))))
             }
         }
         val critical = if (thrower is ServerPlayer) this.shouldHaveCriticalCapture(thrower, modifiedCatchRate) else false
@@ -98,7 +98,7 @@ object CobblemonCaptureCalculator: CaptureCalculator, CriticalCaptureProvider, P
         return CaptureContext(numberOfShakes = shakes, isSuccessfulCapture = shakes == 4, isCriticalCapture = false)
     }
 
-    private fun findHighestThrowerWorld(player: ServerPlayer, pokemon: Pokemon): Int? {
+    private fun findHighestThrowerLevel(player: ServerPlayer, pokemon: Pokemon): Int? {
         val entity = pokemon.entity ?: return null
         val battleId = entity.battleId ?: return null
         val battle = BattleRegistry.getBattle(battleId) ?: return null

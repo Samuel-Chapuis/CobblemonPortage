@@ -18,7 +18,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
-import net.minecraft.server.level.ServerWorld
+import net.minecraft.server.level.ServerLevel
 
 object SpawnAllPokemon {
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
@@ -45,7 +45,7 @@ object SpawnAllPokemon {
         for (species in PokemonSpecies.implemented) {
             if (species.nationalPokedexNumber in range) {
                 LOGGER.debug(species.name)
-                species.create().sendOut(player.level() as ServerWorld, player.position(), null)
+                species.create().sendOut(player.level() as ServerLevel, player.position(), null)
             }
         }
 

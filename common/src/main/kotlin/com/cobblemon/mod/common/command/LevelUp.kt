@@ -23,7 +23,7 @@ import net.minecraft.commands.Commands
 import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.server.level.ServerPlayer
 
-object WorldUp {
+object LevelUp {
 
     fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
         val command = Commands.literal("levelup")
@@ -61,7 +61,7 @@ object WorldUp {
         }
 
         val source = CommandExperienceSource(context.source)
-        pokemon.addExperienceWithPlayer(player, source, pokemon.getExperienceToNextWorld())
+        pokemon.addExperienceWithPlayer(player, source, pokemon.getExperienceToNextLevel())
         return Command.SINGLE_SUCCESS
     }
 }

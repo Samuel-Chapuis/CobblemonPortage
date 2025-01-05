@@ -112,7 +112,7 @@ class EntriesScrollingWidget(val pX: Int, val pY: Int, val setPokedexEntry: (Pok
 
     class PokemonScrollSlotRow(
         val dexDataList:  MutableList<PokedexEntry>,
-        val discoveryWorldList: MutableList<PokedexEntryProgress>,
+        val discoveryLevelList: MutableList<PokedexEntryProgress>,
         val setPokedexEntry : (PokedexEntry) -> (Unit)
     ): Slot<PokemonScrollSlotRow>() {
         companion object {
@@ -148,7 +148,7 @@ class EntriesScrollingWidget(val pX: Int, val pY: Int, val setPokedexEntry: (Pok
                 val pokemonNumber = (species?.nationalPokedexNumber?.toString() ?: "0").padStart(4, '0')
 
                 val speciesNumber = pokemonNumber.text()
-                val discoveryWorld = discoveryWorldList[index]
+                val discoveryLevel = discoveryLevelList[index]
                 val firstVisibleForm = CobblemonClient.clientPokedexData.getEncounteredForms(dexData).firstOrNull()
                 val shouldDrawMon = firstVisibleForm != null
 
@@ -249,7 +249,7 @@ class EntriesScrollingWidget(val pX: Int, val pY: Int, val setPokedexEntry: (Pok
                     scale = SCALE
                 )
 
-                if (discoveryWorld == PokedexEntryProgress.CAUGHT) {
+                if (discoveryLevel == PokedexEntryProgress.CAUGHT) {
                     blitk(
                         matrixStack = matrices,
                         texture = caughtIcon,

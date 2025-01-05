@@ -16,6 +16,6 @@ interface Permission {
 
     val literal: String
 
-    val level: PermissionWorld
+    val level: PermissionLevel
 
 }

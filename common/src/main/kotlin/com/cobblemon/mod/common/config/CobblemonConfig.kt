@@ -33,7 +33,7 @@ class CobblemonConfig {
 
     @NodeCategory(Category.Pokemon)
     @IntConstraint(min = 1, max = 1000)
-    var maxPokemonWorld = 100
+    var maxPokemonLevel = 100
 
     @NodeCategory(Category.Pokemon)
     @IntConstraint(min = 0, max = 1000)
@@ -73,7 +73,7 @@ class CobblemonConfig {
 
     @NodeCategory(Category.Spawning)
     @IntConstraint(min = 1, max = 1000)
-    var minimumWorldRangeMax = 10
+    var minimumLevelRangeMax = 10
 
     @NodeCategory(Category.Spawning)
     var enableSpawning = true
@@ -173,7 +173,7 @@ class CobblemonConfig {
     var baseApricornTreeGenerationChance = 0.1F
 
     @NodeCategory(Category.Pokemon)
-    var displayEntityWorldLabel = true
+    var displayEntityLevelLabel = true
 
     @NodeCategory(Category.Pokemon)
     var displayEntityNameLabel = true
@@ -210,7 +210,7 @@ class CobblemonConfig {
 
     @NodeCategory(Category.Pokemon)
     @IntConstraint(min = 0, max = 10)
-    var maxDynamaxWorld = 10
+    var maxDynamaxLevel = 10
 
     @NodeCategory(Category.Spawning)
     var teraTypeRate = 20F

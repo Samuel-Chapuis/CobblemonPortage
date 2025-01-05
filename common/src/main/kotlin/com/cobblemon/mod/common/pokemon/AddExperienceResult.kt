@@ -18,8 +18,8 @@ import com.cobblemon.mod.common.api.moves.MoveTemplate
  * @since April 18th, 2022
  */
 data class AddExperienceResult(
-    val oldWorld: Int,
-    val newWorld: Int,
+    val oldLevel: Int,
+    val newLevel: Int,
     val newMoves: Set<MoveTemplate>,
     val experienceAdded: Int
 )

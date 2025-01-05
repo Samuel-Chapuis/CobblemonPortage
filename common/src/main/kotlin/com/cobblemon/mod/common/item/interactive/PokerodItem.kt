@@ -219,16 +219,16 @@ class PokerodItem(val pokeRodId: Identifier, settings: Properties) : FishingRodI
         } else { // if the bobber is not out yet
 
             if (!world.isClientSide) {
-                val lureWorld = world.enchantmentRegistry.getHolder(Enchantments.LURE).map { EnchantmentHelper.getItemEnchantmentWorld(it, itemStack) }.orElse(0)
-                val luckWorld = world.enchantmentRegistry.getHolder(Enchantments.LUCK_OF_THE_SEA).map { EnchantmentHelper.getItemEnchantmentWorld(it, itemStack) }.orElse(0)
+                val lureLevel = world.enchantmentRegistry.getHolder(Enchantments.LURE).map { EnchantmentHelper.getItemEnchantmentLevel(it, itemStack) }.orElse(0)
+                val luckLevel = world.enchantmentRegistry.getHolder(Enchantments.LUCK_OF_THE_SEA).map { EnchantmentHelper.getItemEnchantmentLevel(it, itemStack) }.orElse(0)
 
                 val bobberEntity = PokeRodFishingBobberEntity(
                     user,
                     pokeRodId,
                     getBaitOnRod(itemStack)?.toItemStack(world.itemRegistry) ?: ItemStack.EMPTY,
                     world,
-                    luckWorld,
-                    lureWorld,
+                    luckLevel,
+                    lureLevel,
                     itemStack
                 )
                 CobblemonEvents.POKEROD_CAST_PRE.postThen(

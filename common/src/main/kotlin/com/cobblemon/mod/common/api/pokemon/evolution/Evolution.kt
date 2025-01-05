@@ -28,7 +28,7 @@ import com.cobblemon.mod.common.net.messages.client.animation.PlayPosableAnimati
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.activestate.ShoulderedState
 import com.cobblemon.mod.common.pokemon.evolution.variants.ItemInteractionEvolution
-import com.cobblemon.mod.common.pokemon.evolution.variants.WorldUpEvolution
+import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution
 import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.party
@@ -42,7 +42,7 @@ import net.minecraft.world.item.ItemStack
 /**
  * Represents an evolution of a [Pokemon], this is the server side counterpart of [EvolutionDisplay].
  * Following Pokémon these can be triggered by 3 possible events, level ups, trades or using an item.
- * For the default implementations see [WorldUpEvolution], [TradeEvolution] & [ItemInteractionEvolution].
+ * For the default implementations see [LevelUpEvolution], [TradeEvolution] & [ItemInteractionEvolution].
  * Also see [PassiveEvolution] & [ContextEvolution].
  *
  * @author Licious
