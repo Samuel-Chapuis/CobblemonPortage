@@ -28,7 +28,7 @@ import com.cobblemon.mod.common.util.math.geometry.transformDirection
 import com.mojang.blaze3d.vertex.PoseStack
 import com.cobblemon.mod.common.util.resolve
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.multiplayer.ClientLevel
+import net.minecraft.client.multiplayer.ClientWorld
 import net.minecraft.client.particle.NoRenderParticle
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
@@ -51,7 +51,7 @@ class ParticleStorm(
     //Currently only position is tracked. Ideally we would come up with a way to configure whether the emitter tracks any combination of position/rotation (or neither)
     //on this matrix.
     val locatorSpaceMatrix: MatrixWrapper,
-    val world: ClientLevel,
+    val world: ClientWorld,
     val sourceVelocity: () -> Vec3 = { Vec3.ZERO },
     val sourceAlive: () -> Boolean = { true },
     val sourceVisible: () -> Boolean = { true },
@@ -152,7 +152,7 @@ class ParticleStorm(
     companion object {
         var contextStorm: ParticleStorm? = null
 
-        fun createAtPosition(world: ClientLevel, effect: BedrockParticleOptions, position: Vec3): ParticleStorm {
+        fun createAtPosition(world: ClientWorld, effect: BedrockParticleOptions, position: Vec3): ParticleStorm {
             val wrapper = MatrixWrapper()
             val matrix = PoseStack()
             matrix.translate(position.x, position.y, position.z)
@@ -163,7 +163,7 @@ class ParticleStorm(
         /**
          * Creates multiple potentially, because in the case of posable entities if multiple locators match, it repeats the effect.
          */
-        fun createAtEntity(world: ClientLevel, effect: BedrockParticleOptions, entity: LivingEntity, locator: Collection<String> = emptySet()): List<ParticleStorm> {
+        fun createAtEntity(world: ClientWorld, effect: BedrockParticleOptions, entity: LivingEntity, locator: Collection<String> = emptySet()): List<ParticleStorm> {
             if (entity is PosableEntity) {
                 val state = entity.delegate as PosableState
                 val locators = locator.firstNotNullOfOrNull { state.getMatchingLocators(it).takeIf { it.isNotEmpty() } } ?: return emptyList()

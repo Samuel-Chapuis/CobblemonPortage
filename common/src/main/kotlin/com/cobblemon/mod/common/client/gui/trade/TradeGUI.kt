@@ -551,7 +551,7 @@ class TradeGUI(
     private fun renderPokemonInfo(pokemon: Pokemon?, isOpposing: Boolean, context: GuiGraphics, x: Int, y: Int, mouseX: Int, mouseY: Int) {
         if (pokemon != null) {
             val matrices = context.pose()
-            // Level
+            // World
             val levelXOffset = if (isOpposing) 117 else 0
             drawScaledText(
                 context = context,

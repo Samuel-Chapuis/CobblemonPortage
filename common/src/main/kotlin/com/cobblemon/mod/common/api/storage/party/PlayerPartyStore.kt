@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.pokemon.OriginalTrainerType
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.activestate.ShoulderedState
-import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution
+import com.cobblemon.mod.common.pokemon.evolution.variants.WorldUpEvolution
 import com.cobblemon.mod.common.util.*
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.server.level.ServerPlayer
@@ -147,7 +147,7 @@ open class PlayerPartyStore(
                 pokemon.lockedEvolutions.filterIsInstance<PassiveEvolution>().forEach { it.attemptEvolution(pokemon) }
                 val removeList = mutableListOf<Evolution>()
                 pokemon.evolutionProxy.server().forEach {
-                    if (!it.test(pokemon) && it is LevelUpEvolution && !it.permanent)
+                    if (!it.test(pokemon) && it is WorldUpEvolution && !it.permanent)
                         removeList.add(it)
                 }
                 removeList.forEach { pokemon.evolutionProxy.server().remove(it) }

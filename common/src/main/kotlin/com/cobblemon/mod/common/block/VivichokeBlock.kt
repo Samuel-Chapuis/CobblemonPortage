@@ -31,7 +31,7 @@ class VivichokeBlock(settings: Properties) : CropBlock(settings) {
     ): VoxelShape = AGE_TO_SHAPE.getOrElse(state.getValue(this.ageProperty)) { Shapes.block() }
 
     // This is a design choice, they shouldn't grow more than a single stage at a time.
-    override fun getBonemealAgeIncrease(world: Level): Int = 1
+    override fun getBonemealAgeIncrease(world: World): Int = 1
 
     override fun getBaseSeedId(): ItemLike = CobblemonItems.VIVICHOKE_SEEDS
 

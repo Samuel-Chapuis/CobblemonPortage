@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.events.world.BigRootPropagatedEvent
 import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.RandomSource
@@ -35,14 +35,14 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
     private val possibleDirections = setOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
     override fun isRandomlyTicking(state: BlockState) = true
 
-    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
         // Check for propagation
         if (random.nextDouble() < Cobblemon.config.bigRootPropagationChance && world.getMaxLocalRawBrightness(pos) < MAX_PROPAGATING_LIGHT_LEVEL && !hasReachedSpreadCap(world, pos)) {
             this.spreadFrom(world, pos, random)
         }
     }
 
-    fun hasReachedSpreadCap(world: Level, pos: BlockPos): Boolean {
+    fun hasReachedSpreadCap(world: World, pos: BlockPos): Boolean {
         var nearby = 0
         val nearbyPositions = BlockPos.betweenClosed(pos.offset(-4, -1, -4), pos.offset(4, 1, 4)).iterator()
         while (nearbyPositions.hasNext()) {
@@ -72,15 +72,15 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
 
     override fun isValidBonemealTarget(world: BlockView, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
 
-    override fun isBonemealSuccess(world: Level, random: RandomSource, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
+    override fun isBonemealSuccess(world: World, random: RandomSource, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
 
-    override fun performBonemeal(world: ServerLevel, random: RandomSource, pos: BlockPos, state: BlockState) {
+    override fun performBonemeal(world: ServerWorld, random: RandomSource, pos: BlockPos, state: BlockState) {
         this.spreadFrom(world, pos, random)
     }
 
     override fun getRenderShape(state: BlockState) = RenderShape.MODEL
 
-    fun spreadFrom(world: ServerLevel, pos: BlockPos, random: RandomSource) {
+    fun spreadFrom(world: ServerWorld, pos: BlockPos, random: RandomSource) {
         val possibleDirections = this.possibleDirections.toMutableSet()
         while (possibleDirections.isNotEmpty()) {
             val picked = possibleDirections.random()
@@ -108,7 +108,7 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
         }
     }
 
-    override fun attemptShear(world: Level, state: BlockState, pos: BlockPos, successCallback: () -> Unit): Boolean {
+    override fun attemptShear(world: World, state: BlockState, pos: BlockPos, successCallback: () -> Unit): Boolean {
         // We always allow the shearing at the moment but hey if it ever changes at least it's easy to do so.
         world.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1F, 1F)
         world.setBlockAndUpdate(pos, this.shearedResultingState())

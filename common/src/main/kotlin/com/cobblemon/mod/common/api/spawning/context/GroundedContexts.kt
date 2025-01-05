@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.WorldSlice
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.level.block.state.BlockState
 
@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.BlockState
  */
 abstract class FlooredSpawningContext(
     cause: SpawnCause,
-    world: ServerLevel,
+    world: ServerWorld,
     position: BlockPos,
     light: Int,
     skyLight: Int,
@@ -46,7 +46,7 @@ abstract class FlooredSpawningContext(
  */
 open class GroundedSpawningContext(
     cause: SpawnCause,
-    world: ServerLevel,
+    world: ServerWorld,
     position: BlockPos,
     light: Int,
     skyLight: Int,
@@ -65,7 +65,7 @@ open class GroundedSpawningContext(
  */
 open class SeafloorSpawningContext(
     cause: SpawnCause,
-    world: ServerLevel,
+    world: ServerWorld,
     position: BlockPos,
     light: Int,
     skyLight: Int,
@@ -75,7 +75,7 @@ open class SeafloorSpawningContext(
     nearbyBlocks: List<BlockState>,
     slice: WorldSlice
 ) : FlooredSpawningContext(cause, world, position, light, skyLight, canSeeSky, influences, height, nearbyBlocks, slice) {
-    override fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState) = state.fluidState.`is`(FluidTags.WATER)
+    override fun isSafeSpace(world: ServerWorld, pos: BlockPos, state: BlockState) = state.fluidState.`is`(FluidTags.WATER)
 }
 
 /**
@@ -86,7 +86,7 @@ open class SeafloorSpawningContext(
  */
 open class LavafloorSpawningContext(
     cause: SpawnCause,
-    world: ServerLevel,
+    world: ServerWorld,
     position: BlockPos,
     light: Int,
     skyLight: Int,
@@ -96,12 +96,12 @@ open class LavafloorSpawningContext(
     nearbyBlocks: List<BlockState>,
     slice: WorldSlice
 ) : FlooredSpawningContext(cause, world, position, light, skyLight, canSeeSky, influences, height, nearbyBlocks, slice) {
-    override fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState) = state.fluidState.`is`(FluidTags.LAVA)
+    override fun isSafeSpace(world: ServerWorld, pos: BlockPos, state: BlockState) = state.fluidState.`is`(FluidTags.LAVA)
 }
 
 open class SurfaceSpawningContext(
     cause: SpawnCause,
-    world: ServerLevel,
+    world: ServerWorld,
     position: BlockPos,
     light: Int,
     skyLight: Int,

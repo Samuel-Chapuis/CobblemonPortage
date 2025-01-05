@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.state.BlockState
  */
 class BerryYieldCalculationEvent(
     override val berry: Berry,
-    val world: Level,
+    val world: World,
     val state: BlockState,
     val pos: BlockPos,
     val placer: LivingEntity?,

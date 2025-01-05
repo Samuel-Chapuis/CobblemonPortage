@@ -32,7 +32,7 @@ class PokemonSpawnAction(
     override fun createEntity(): PokemonEntity {
         if (props.species == null) LOGGER.error("PokemonSpawnAction run with null species - Spawn detail: ${detail.id}")
         if (props.level == null) {
-            props.level = detail.getDerivedLevelRange().random()
+            props.level = detail.getDerivedWorldRange().random()
         }
         val heldItems = detail.heldItems?.takeIf { it.isNotEmpty() }?.toMutableList() ?: mutableListOf()
         val heldItem = if (heldItems.isNotEmpty()) {

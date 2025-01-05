@@ -97,10 +97,10 @@ class FishingSpawnCause(
                 }
         }
 
-        fun alterLevelAttempt(pokemonEntity: PokemonEntity, effect: FishingBait.Effect) {
+        fun alterWorldAttempt(pokemonEntity: PokemonEntity, effect: FishingBait.Effect) {
             var level = pokemonEntity.pokemon.level + effect.value.toInt()
-            if (level > Cobblemon.config.maxPokemonLevel)
-                level = Cobblemon.config.maxPokemonLevel
+            if (level > Cobblemon.config.maxPokemonWorld)
+                level = Cobblemon.config.maxPokemonWorld
             pokemonEntity.pokemon.level = level
         }
 

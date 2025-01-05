@@ -12,8 +12,8 @@ import com.cobblemon.mod.common.api.spawning.CobblemonSpawnPools
 import com.cobblemon.mod.common.api.spawning.CobblemonSpawnRules
 import com.cobblemon.mod.common.api.spawning.SpawnerManager
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
-import com.cobblemon.mod.common.api.spawning.influence.PlayerLevelRangeInfluence
-import com.cobblemon.mod.common.api.spawning.influence.PlayerLevelRangeInfluence.Companion.TYPICAL_VARIATION
+import com.cobblemon.mod.common.api.spawning.influence.PlayerWorldRangeInfluence
+import com.cobblemon.mod.common.api.spawning.influence.PlayerWorldRangeInfluence.Companion.TYPICAL_VARIATION
 import com.cobblemon.mod.common.api.spawning.influence.RestrictedSpawnBlocksInfluence
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import com.cobblemon.mod.common.api.spawning.rules.SpawnRule
@@ -37,11 +37,11 @@ object PlayerSpawnerFactory {
      * The list of influences for a new [PlayerSpawner].
      * The influences will be added to the spawner in the order they are added to this list.
      *
-     * [PlayerLevelRangeInfluence] adjusts the level range of Pokémon that can spawn based on the player's level.
+     * [PlayerWorldRangeInfluence] adjusts the level range of Pokémon that can spawn based on the player's level.
      * [RestrictedSpawnBlocksInfluence] prevents Pokémon from spawning on certain blocks.
      */
     var influenceBuilders = mutableListOf<(player: ServerPlayer) -> SpawningInfluence?>({
-        PlayerLevelRangeInfluence(
+        PlayerWorldRangeInfluence(
             it,
             variation = TYPICAL_VARIATION
         )

@@ -42,7 +42,7 @@ internal data class PokemonP2(
     val persistentData: CompoundTag,
     val tetheringId: Optional<UUID>,
     val teraType: TeraType,
-    val dmaxLevel: Int,
+    val dmaxWorld: Int,
     val gmaxFactor: Boolean,
     val tradeable: Boolean
 ) : Partial<Pokemon> {
@@ -64,7 +64,7 @@ internal data class PokemonP2(
         other.persistentData = this.persistentData
         this.tetheringId.ifPresent { other.tetheringId = it }
         other.teraType = this.teraType
-        other.dmaxLevel = this.dmaxLevel
+        other.dmaxWorld = this.dmaxWorld
         other.gmaxFactor = this.gmaxFactor
         other.tradeable = this.tradeable
         return other
@@ -86,7 +86,7 @@ internal data class PokemonP2(
                 CompoundTag.CODEC.fieldOf(DataKeys.POKEMON_PERSISTENT_DATA).forGetter(PokemonP2::persistentData),
                 UUIDUtil.LENIENT_CODEC.optionalFieldOf(DataKeys.TETHERING_ID).forGetter(PokemonP2::tetheringId),
                 TeraType.BY_IDENTIFIER_CODEC.fieldOf(DataKeys.POKEMON_TERA_TYPE).forGetter(PokemonP2::teraType),
-                CodecUtils.dynamicIntRange(0) { Cobblemon.config.maxDynamaxLevel }.fieldOf(DataKeys.POKEMON_DMAX_LEVEL).forGetter(PokemonP2::dmaxLevel),
+                CodecUtils.dynamicIntRange(0) { Cobblemon.config.maxDynamaxWorld }.fieldOf(DataKeys.POKEMON_DMAX_LEVEL).forGetter(PokemonP2::dmaxWorld),
                 Codec.BOOL.fieldOf(DataKeys.POKEMON_GMAX_FACTOR).forGetter(PokemonP2::gmaxFactor),
                 Codec.BOOL.fieldOf(DataKeys.POKEMON_TRADEABLE).forGetter(PokemonP2::tradeable)
             ).apply(instance, ::PokemonP2)
@@ -106,7 +106,7 @@ internal data class PokemonP2(
             pokemon.persistentData,
             Optional.ofNullable(pokemon.tetheringId),
             pokemon.teraType,
-            pokemon.dmaxLevel,
+            pokemon.dmaxWorld,
             pokemon.gmaxFactor,
             pokemon.tradeable
         )

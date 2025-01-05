@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockState
  */
 data class BerryMutationResultEvent(
     override val berry: Berry,
-    val world: Level,
+    val world: World,
     val state: BlockState,
     val pos: BlockPos,
     val mutations: Set<Berry>,

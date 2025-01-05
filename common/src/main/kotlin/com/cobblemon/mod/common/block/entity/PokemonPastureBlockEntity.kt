@@ -39,7 +39,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.NbtUtils
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.entity.Pose
@@ -225,7 +225,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
         }
     }
 
-    fun isSafeFloor(world: Level, pos: BlockPos, entity: PokemonEntity): Boolean {
+    fun isSafeFloor(world: World, pos: BlockPos, entity: PokemonEntity): Boolean {
         val state = world.getBlockState(pos)
         return if (state.isAir) {
             false
@@ -246,7 +246,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
 
     // Place the tether block like this: https://gyazo.com/7c163bccfde238688e9a2c600c27aace
     // You'll find you can't place pokemon into the tether. It's because of this function somehow
-    fun makeSuitableY(world: Level, pos: BlockPos, entity: PokemonEntity, box: AABB): BlockPos? {
+    fun makeSuitableY(world: World, pos: BlockPos, entity: PokemonEntity, box: AABB): BlockPos? {
         if (world.collidesWithSuffocatingBlock(entity, box)) {
             for (i in 1..15) {
                 val newBox = box.move(0.5, i.toDouble(), 0.5)
@@ -284,9 +284,9 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
     }
 
     fun onBroken() {
-        if (level is ServerLevel) {
+        if (level is ServerWorld) {
             tetheredPokemon.toList().forEach { releasePokemon(it.pokemonId) }
-            PastureLinkManager.removeAt(level as ServerLevel, blockPos)
+            PastureLinkManager.removeAt(level as ServerWorld, blockPos)
         }
     }
 
@@ -308,7 +308,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
         return unpastured
     }
 
-    private fun getInRangeViewerCount(world: Level, pos: BlockPos, range: Double = 5.0): Int {
+    private fun getInRangeViewerCount(world: World, pos: BlockPos, range: Double = 5.0): Int {
         val box = AABB(
             pos.x.toDouble() - range,
             pos.y.toDouble() - range,

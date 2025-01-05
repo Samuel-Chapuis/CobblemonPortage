@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.multiblock
 
 import com.cobblemon.mod.common.block.entity.FossilMultiblockEntity
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.BlockView
 import net.minecraft.world.entity.LivingEntity
@@ -29,13 +29,13 @@ import net.minecraft.world.phys.BlockHitResult
 abstract class MultiblockBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     override fun setPlacedBy(
-        world: Level,
+        world: World,
         pos: BlockPos,
         state: BlockState,
         placer: LivingEntity?,
         itemStack: ItemStack
     ) {
-        if (world is ServerLevel) {
+        if (world is ServerWorld) {
             val multiblockEntity = world.getBlockEntity(pos) as? MultiblockEntity
             multiblockEntity?.multiblockBuilder?.validate(world)
         }
@@ -44,7 +44,7 @@ abstract class MultiblockBlock(properties: Properties) : BaseEntityBlock(propert
 
     override fun useWithoutItem(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         player: Player,
         hit: BlockHitResult
@@ -56,7 +56,7 @@ abstract class MultiblockBlock(properties: Properties) : BaseEntityBlock(propert
         return super.useWithoutItem(state, world, pos, player, hit)
     }
 
-    override fun onRemove(state: BlockState, level: Level, pos: BlockPos, newState: BlockState, movedByPiston: Boolean) {
+    override fun onRemove(state: BlockState, level: World, pos: BlockPos, newState: BlockState, movedByPiston: Boolean) {
         val entity = level.getBlockEntity(pos)
         if (entity is MultiblockEntity && entity.multiblockStructure != null && state.block != newState.block) {
             entity.multiblockStructure!!.playerWillDestroy(level, pos, state, null)

@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.getNearbyBlockEntities
 import com.cobblemon.mod.common.util.resolveDouble
 import com.cobblemon.mod.common.util.withQueryValue
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.ai.behavior.Behavior
 import net.minecraft.world.entity.ai.memory.MemoryModuleType
@@ -43,12 +43,12 @@ class HealUsingHealingMachineTask(
     var blockPos = BlockPos(0, 0, 0)
     var nearestHealer: HealingMachineBlockEntity? = null
 
-    override fun canStillUse(world: ServerLevel, entity: LivingEntity, l: Long): Boolean {
+    override fun canStillUse(world: ServerWorld, entity: LivingEntity, l: Long): Boolean {
         val healer = nearestHealer
         return !(healer == null || healer.currentUser != entity.uuid || world.getBlockEntity(blockPos) != healer)
     }
 
-    override fun checkExtraStartConditions(world: ServerLevel, entity: LivingEntity): Boolean {
+    override fun checkExtraStartConditions(world: ServerWorld, entity: LivingEntity): Boolean {
         if (entity !is NPCEntity) {
             return false
         }
@@ -75,7 +75,7 @@ class HealUsingHealingMachineTask(
         return this.nearestHealer != null
     }
 
-    override fun start(world: ServerLevel, entity: LivingEntity, l: Long) {
+    override fun start(world: ServerWorld, entity: LivingEntity, l: Long) {
         entity as NPCEntity
         nearestHealer?.activate(entity.uuid, entity.party ?: return)
         entity.playAnimation("punch_right")

@@ -13,5 +13,5 @@ import net.minecraft.core.BlockPos
 import net.minecraft.world.World
 
 interface PreEmptsExplosion {
-    fun whenExploded(world: Level, state: BlockState, pos: BlockPos)
+    fun whenExploded(world: World, state: BlockState, pos: BlockPos)
 }

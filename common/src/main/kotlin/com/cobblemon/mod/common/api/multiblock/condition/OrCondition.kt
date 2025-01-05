@@ -8,14 +8,14 @@
 
 package com.cobblemon.mod.common.api.multiblock.condition
 
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.phys.shapes.VoxelShape
 
 class OrCondition(
     val conditionOne: MultiblockCondition,
     val conditionTwo: MultiblockCondition
 ) : MultiblockCondition {
-    override fun test(world: ServerLevel, box: VoxelShape): Boolean {
+    override fun test(world: ServerWorld, box: VoxelShape): Boolean {
         return conditionOne.test(world, box) or conditionTwo.test(world, box)
     }
 

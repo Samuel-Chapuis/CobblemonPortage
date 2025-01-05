@@ -56,9 +56,9 @@ class BerryBlockRenderer(private val context: BlockEntityRendererProvider.Contex
         }
         val bf = vertexConsumers.getBuffer(CobblemonRenderLayers.BERRY_LAYER)
         val renderState = entity.renderState as BerryBlockEntityRenderState
-//        if (renderState.needsRebuild || renderState.vboLightLevel != light) {
+//        if (renderState.needsRebuild || renderState.vboLightWorld != light) {
             renderToBuffer(entity, matrices, light, overlay, renderState, bf)
-//            renderState.vboLightLevel = light
+//            renderState.vboLightWorld = light
 //            (entity.renderState as BerryBlockEntityRenderState).needsRebuild = false
 //        }
 //        if (renderState.drawVbo) {

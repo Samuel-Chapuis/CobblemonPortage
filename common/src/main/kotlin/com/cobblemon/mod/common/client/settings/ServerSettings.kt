@@ -22,8 +22,8 @@ import com.cobblemon.mod.common.net.messages.client.settings.ServerSettingsPacke
 object ServerSettings {
 
     var preventCompletePartyDeposit = Cobblemon.config.preventCompletePartyDeposit
-    var displayEntityLevelLabel = Cobblemon.config.displayEntityLevelLabel
+    var displayEntityWorldLabel = Cobblemon.config.displayEntityWorldLabel
     var displayEntityNameLabel = Cobblemon.config.displayEntityNameLabel
-    var maxPokemonLevel = Cobblemon.config.maxPokemonLevel
+    var maxPokemonWorld = Cobblemon.config.maxPokemonWorld
 
 }

@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.platform.events
 
-import net.minecraft.client.multiplayer.ClientLevel
+import net.minecraft.client.multiplayer.ClientWorld
 import net.minecraft.world.entity.Entity
 
 /**
@@ -22,12 +22,12 @@ interface ClientEntityEvent {
     /** The [Entity] triggering the event. */
     val entity: Entity
 
-    /** The client's [ClientLevel]. */
-    val level: ClientLevel
+    /** The client's [ClientWorld]. */
+    val level: ClientWorld
 
     /** Event when [entity] loads into the client's [level]. */
-    data class Load(override val entity: Entity, override val level: ClientLevel) : ClientEntityEvent
+    data class Load(override val entity: Entity, override val level: ClientWorld) : ClientEntityEvent
 
     /** Event when [entity] unloads from the client's [level]. */
-    data class Unload(override val entity: Entity, override val level: ClientLevel) : ClientEntityEvent
+    data class Unload(override val entity: Entity, override val level: ClientWorld) : ClientEntityEvent
 }

@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.block.multiblock.FossilMultiblockBuilder
 import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.util.RandomSource
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.*
@@ -70,7 +70,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
 
     private fun isBase(state: BlockState): Boolean = state.getValue(PART) == TankPart.BOTTOM
 
-    override fun playerWillDestroy(world: Level, pos: BlockPos, state: BlockState, player: Player): BlockState {
+    override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
         val result = super.playerWillDestroy(world, pos, state, player)
         if (!world.isClientSide && player.isCreative) {
             val otherPart = world.getBlockState(getPositionOfOtherPart(state, pos))
@@ -79,7 +79,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
                 world.setBlock(getPositionOfOtherPart(state, pos), Blocks.AIR.defaultBlockState(), UPDATE_CLIENTS)
                 world.levelEvent(
                     player,
-                    LevelEvent.PARTICLES_DESTROY_BLOCK,
+                    WorldEvent.PARTICLES_DESTROY_BLOCK,
                     getPositionOfOtherPart(state, pos),
                     getId(otherPart)
                 )
@@ -89,7 +89,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
     }
 
     override fun setPlacedBy(
-        world: Level,
+        world: World,
         pos: BlockPos,
         state: BlockState,
         placer: LivingEntity?,
@@ -104,7 +104,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
 
     override fun useWithoutItem(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         player: Player,
         hit: BlockHitResult
@@ -157,7 +157,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
         return true
     }
 
-    override fun getAnalogOutputSignal(state: BlockState, world: Level, pos: BlockPos): Int {
+    override fun getAnalogOutputSignal(state: BlockState, world: World, pos: BlockPos): Int {
         if(world == null || pos == null) {
             return 0
         }
@@ -169,7 +169,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
         return 0
     }
 
-    override fun onRemove(state: BlockState, world: Level, pos: BlockPos, newState: BlockState, moved: Boolean) {
+    override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (state.block != newState.block) {
             super.onRemove(state, world, pos, newState, moved)
             val otherPart = world.getBlockState(getPositionOfOtherPart(state, pos))
@@ -183,7 +183,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
     @Deprecated("Deprecated in Java")
     override fun neighborChanged(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         sourceBlock: Block,
         sourcePos: BlockPos,
@@ -199,7 +199,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
         }
     }
 
-    override fun tick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
+    override fun tick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
         if(world == null || pos == null) {
             return
         }

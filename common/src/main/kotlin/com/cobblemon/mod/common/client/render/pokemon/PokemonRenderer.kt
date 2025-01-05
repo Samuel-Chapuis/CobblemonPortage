@@ -295,7 +295,7 @@ class PokemonRenderer(
             matrixStack = matrixStack,
             buffer = buffer,
             partialTicks = partialTicks,
-            totalLevelTime = entity.level().gameTime,
+            totalWorldTime = entity.level().gameTime,
             height = pokemonPosition.distanceTo(beamSourcePosition.add(offset)).toFloat() * ratio,
             red = recallBeamColour.x,
             green = recallBeamColour.y,
@@ -364,12 +364,12 @@ class PokemonRenderer(
             } else {
                 Component.empty()
             }
-            if(ServerSettings.displayEntityNameLabel && ServerSettings.displayEntityLevelLabel && entity.labelLevel() > 0) {
+            if(ServerSettings.displayEntityNameLabel && ServerSettings.displayEntityWorldLabel && entity.labelWorld() > 0) {
                 label.append(Component.literal(" "))
             }
-            if (ServerSettings.displayEntityLevelLabel && entity.labelLevel() > 0) {
+            if (ServerSettings.displayEntityWorldLabel && entity.labelWorld() > 0) {
                 // This a Style.EMPTY with a lot of effects set to false and color set to white, renderer inherits these from nick otherwise
-                val levelLabel = lang("label.lv", entity.labelLevel())
+                val levelLabel = lang("label.lv", entity.labelWorld())
                     .setStyle(LEVEL_LABEL_STYLE)
                 label = label.append(levelLabel)
             }

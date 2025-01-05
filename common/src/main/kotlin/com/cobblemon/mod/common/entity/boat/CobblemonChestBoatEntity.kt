@@ -28,12 +28,12 @@ import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.LootTable
 
 @Suppress("unused")
-class CobblemonChestBoatEntity(entityType: EntityType<CobblemonChestBoatEntity>, world: Level) : CobblemonBoatEntity(entityType, world), HasCustomInventoryScreen, ContainerEntity {
+class CobblemonChestBoatEntity(entityType: EntityType<CobblemonChestBoatEntity>, world: World) : CobblemonBoatEntity(entityType, world), HasCustomInventoryScreen, ContainerEntity {
 
-    constructor(world: Level) : this(CobblemonEntities.CHEST_BOAT, world)
+    constructor(world: World) : this(CobblemonEntities.CHEST_BOAT, world)
 
     // This exists cause super passes in vanilla boat entity type
-    constructor(world: Level, x: Double, y: Double, z: Double) : this(CobblemonEntities.CHEST_BOAT, world) {
+    constructor(world: World, x: Double, y: Double, z: Double) : this(CobblemonEntities.CHEST_BOAT, world) {
         this.setPos(x, y, z)
         this.xo = x
         this.yo = y

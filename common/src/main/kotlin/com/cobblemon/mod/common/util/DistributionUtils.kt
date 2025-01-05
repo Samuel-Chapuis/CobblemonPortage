@@ -61,4 +61,4 @@ fun server(): MinecraftServer? = Cobblemon.implementation.server()
 //    return future
 //}
 
-fun Level.isServerSide() = !isClientSide
+fun World.isServerSide() = !isClientSide

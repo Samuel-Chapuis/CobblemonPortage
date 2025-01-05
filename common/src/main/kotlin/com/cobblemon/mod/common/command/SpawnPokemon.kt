@@ -63,7 +63,7 @@ object SpawnPokemon {
     private fun execute(context: CommandContext<CommandSourceStack>, pos: Vec3): Int {
         val world = context.source.level
         val blockPos = pos.toBlockPos()
-        if (!Level.isInSpawnableBounds(blockPos)) {
+        if (!World.isInSpawnableBounds(blockPos)) {
             throw INVALID_POS_EXCEPTION.create()
         }
         val properties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)

@@ -41,7 +41,7 @@ object CobblemonRequirementAdapter : RequirementAdapter {
         this.registerType(PartyMemberRequirement.ADAPTER_VARIANT, PartyMemberRequirement::class)
         this.registerType(PokemonPropertiesRequirement.ADAPTER_VARIANT, PokemonPropertiesRequirement::class)
         this.registerType(TimeRangeRequirement.ADAPTER_VARIANT, TimeRangeRequirement::class)
-        this.registerType(LevelRequirement.ADAPTER_VARIANT, LevelRequirement::class)
+        this.registerType(WorldRequirement.ADAPTER_VARIANT, WorldRequirement::class)
         this.registerType(WeatherRequirement.ADAPTER_VARIANT, WeatherRequirement::class)
         this.registerType(StatCompareRequirement.ADAPTER_VARIANT, StatCompareRequirement::class)
         this.registerType(StatEqualRequirement.ADAPTER_VARIANT, StatEqualRequirement::class)

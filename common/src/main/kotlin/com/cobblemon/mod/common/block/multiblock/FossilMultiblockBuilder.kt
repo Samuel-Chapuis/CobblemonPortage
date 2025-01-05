@@ -22,7 +22,7 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
@@ -61,7 +61,7 @@ class FossilMultiblockBuilder(val centerPos: BlockPos) : MultiblockStructureBuil
         )
     )
 
-    override fun form(world: ServerLevel) {
+    override fun form(world: ServerWorld) {
         //We want to create a MultiblockStructure here and pass a reference to it in every constituent block's entity
         val blocks = boundingBox.blockPositionsAsList()
         val dirsToCheck = listOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST)

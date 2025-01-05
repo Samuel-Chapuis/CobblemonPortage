@@ -99,7 +99,7 @@ abstract class AreaSpawner(
         return null
     }
 
-    fun isValidStartPoint(world: Level, chunk: ChunkAccess, startPos: BlockPos.MutableBlockPos): Boolean {
+    fun isValidStartPoint(world: World, chunk: ChunkAccess, startPos: BlockPos.MutableBlockPos): Boolean {
         val y = startPos.y
         if (!world.isLoaded(startPos) || !world.isLoaded(startPos.setY(y + 1))) {
             return false

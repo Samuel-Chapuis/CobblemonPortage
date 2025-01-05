@@ -116,7 +116,7 @@ class DisplayCaseBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cob
         return this.saveWithoutMetadata(registryLookup)
     }
 
-    private fun onItemUpdated(world: Level, oldState: BlockState, newState: BlockState) {
+    private fun onItemUpdated(world: World, oldState: BlockState, newState: BlockState) {
         world.sendBlockUpdated(blockPos, oldState, newState, Block.UPDATE_CLIENTS)
         world.updateNeighbourForOutputSignal(blockPos, world.getBlockState(blockPos).block)
         setChanged()

@@ -33,7 +33,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
     override fun getUseDuration(stack: ItemStack, user: LivingEntity): Int = 72000
 
     override fun use(
-        world: Level,
+        world: World,
         player: Player,
         usedHand: InteractionHand
     ): InteractionResultHolder<ItemStack> {
@@ -61,7 +61,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
     }
 
     override fun onUseTick(
-        world: Level,
+        world: World,
         user: LivingEntity,
         stack: ItemStack,
         remainingUseTicks: Int
@@ -81,7 +81,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
 
     override fun releaseUsing(
         stack: ItemStack,
-        world: Level,
+        world: World,
         user: LivingEntity,
         remainingUseTicks: Int
     ) {

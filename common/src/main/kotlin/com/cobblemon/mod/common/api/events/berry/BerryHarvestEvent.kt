@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.state.BlockState
 data class BerryHarvestEvent(
     override val berry: Berry,
     val player: ServerPlayer,
-    val world: Level,
+    val world: World,
     val pos: BlockPos,
     val state: BlockState,
     val blockEntity: BerryBlockEntity,

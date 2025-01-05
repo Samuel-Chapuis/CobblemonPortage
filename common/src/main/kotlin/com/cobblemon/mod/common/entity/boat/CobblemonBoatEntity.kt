@@ -32,12 +32,12 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.WoodType
 
 @Suppress("unused")
-open class CobblemonBoatEntity(entityType: EntityType<out Boat>, world: Level) : Boat(entityType, world) {
+open class CobblemonBoatEntity(entityType: EntityType<out Boat>, world: World) : Boat(entityType, world) {
 
-    constructor(world: Level) : this(CobblemonEntities.BOAT, world)
+    constructor(world: World) : this(CobblemonEntities.BOAT, world)
 
     // This exists cause super passes in vanilla boat entity type
-    constructor(world: Level, x: Double, y: Double, z: Double) : this(CobblemonEntities.BOAT, world) {
+    constructor(world: World, x: Double, y: Double, z: Double) : this(CobblemonEntities.BOAT, world) {
         this.setPos(x, y, z)
         this.xo = x
         this.yo = y

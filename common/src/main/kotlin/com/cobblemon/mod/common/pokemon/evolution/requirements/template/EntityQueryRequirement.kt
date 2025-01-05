@@ -32,7 +32,7 @@ interface EntityQueryRequirement : EvolutionRequirement {
      * Checks if the given [Pokemon] & [LivingEntity] satisfies the requirement.
      *
      * @param pokemon The [Pokemon] being queried.
-     * @param queriedEntity The [LivingEntity] that can be compared in context of a [Level].
+     * @param queriedEntity The [LivingEntity] that can be compared in context of a [World].
      * @return If the requirement was satisfied.
      */
     fun check(pokemon: Pokemon, queriedEntity: LivingEntity): Boolean

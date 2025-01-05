@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.player.Player
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.World
@@ -24,24 +24,24 @@ interface MultiblockStructure {
 
     fun useWithoutItem(
         blockState: BlockState,
-        world: Level,
+        world: World,
         blockPos: BlockPos,
         player: Player,
         blockHitResult: BlockHitResult
     ): InteractionResult
 
-    fun playerWillDestroy(world: Level, pos: BlockPos, state: BlockState, player: Player?)
+    fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player?)
 
-    fun tick(world: Level)
+    fun tick(world: World)
 
-    fun syncToClient(world: Level)
+    fun syncToClient(world: World)
 
-    fun markDirty(world: Level)
+    fun markDirty(world: World)
     fun writeToNbt(registryLookup: HolderLookup.Provider): CompoundTag
-    fun getAnalogOutputSignal(state: BlockState, world: Level?, pos: BlockPos?): Int {
+    fun getAnalogOutputSignal(state: BlockState, world: World?, pos: BlockPos?): Int {
         return 0
     }
 
-    fun setRemoved(world: Level)
-    fun onTriggerEvent(state: BlockState?, world: ServerLevel?, pos: BlockPos?, random: RandomSource?)
+    fun setRemoved(world: World)
+    fun onTriggerEvent(state: BlockState?, world: ServerWorld?, pos: BlockPos?, random: RandomSource?)
 }

@@ -206,7 +206,7 @@ object Cobblemon {
             storage.onPlayerDataSync(it)
             playerDataManager.syncAllToPlayer(it)
             starterHandler.handleJoin(it)
-            ServerSettingsPacket(this.config.preventCompletePartyDeposit, this.config.displayEntityLevelLabel, this.config.displayEntityNameLabel, this.config.maxPokemonLevel).sendToPlayer(it)
+            ServerSettingsPacket(this.config.preventCompletePartyDeposit, this.config.displayEntityWorldLabel, this.config.displayEntityNameLabel, this.config.maxPokemonWorld).sendToPlayer(it)
         }
         PlatformEvents.SERVER_PLAYER_LOGOUT.subscribe {
             PCLinkManager.removeLink(it.player.uuid)
@@ -404,12 +404,12 @@ object Cobblemon {
         PokedexHandler.registerListeners()
     }
 
-    fun getLevel(dimension: RegistryKey<Level>): Level? {
+    fun getWorld(dimension: RegistryKey<World>): World? {
         return if (isDedicatedServer) {
-            server()?.getLevel(dimension)
+            server()?.getWorld(dimension)
         } else {
             val mc = Minecraft.getInstance()
-            return mc.singleplayerServer?.getLevel(dimension) ?: mc.level
+            return mc.singleplayerServer?.getWorld(dimension) ?: mc.level
         }
     }
 

@@ -77,7 +77,7 @@ class PoolPartyProvider : NPCPartyProvider {
                 PokemonProperties.parse(it.get("pokemon").asString),
                 it.get("levelVariation")?.asString?.asExpression() ?: "0".asExpression(),
                 it.get("level")?.asString?.asExpression(),
-                it.get("npcLevels")?.asString?.split("-")?.let { it[0].toInt()..it[1].toInt() } ?: 1..100,
+                it.get("npcWorlds")?.asString?.split("-")?.let { it[0].toInt()..it[1].toInt() } ?: 1..100,
                 it.get("selectableTimes")?.asString?.asExpression() ?: "1".asExpression(),
                 it.get("weight")?.asString?.asExpression() ?: "1".asExpression()
             )
@@ -90,7 +90,7 @@ class PoolPartyProvider : NPCPartyProvider {
         val pokemon: PokemonProperties,
         val levelVariation: Expression,
         val level: Expression? = null,
-        val npcLevels: IntRange,
+        val npcWorlds: IntRange,
         val selectableTimes: Expression,
         val weight: Expression = "1".asExpression()
     ) {
@@ -116,7 +116,7 @@ class PoolPartyProvider : NPCPartyProvider {
         val maxPokemon = runtime.resolveInt(this.maxPokemon)
         var desiredPokemonCount = (minPokemon..maxPokemon).random(random)
 
-        val workingPool = pool.filter { level in it.npcLevels && runtime.resolveInt(it.selectableTimes) > 0 }.toMutableList()
+        val workingPool = pool.filter { level in it.npcWorlds && runtime.resolveInt(it.selectableTimes) > 0 }.toMutableList()
         val useCounts = mutableMapOf<DynamicPokemon, Int>()
 
         while (desiredPokemonCount > 0 && workingPool.any { it.hasWeight(runtime) }) {
@@ -132,9 +132,9 @@ class PoolPartyProvider : NPCPartyProvider {
 
             // If the Pokémon's props specifies a level then use that, otherwise choose a random level within the range
             val levelVariation = (0..runtime.resolveInt(selected.levelVariation)).random(random)
-            val randomLevel = level + levelVariation
-            val dictatedLevel = selected.level?.let { runtime.resolveInt(it) }
-            val instance = selected.pokemon.copy().also { it.level = it.level ?: dictatedLevel ?: randomLevel }.create()
+            val randomWorld = level + levelVariation
+            val dictatedWorld = selected.level?.let { runtime.resolveInt(it) }
+            val instance = selected.pokemon.copy().also { it.level = it.level ?: dictatedWorld ?: randomWorld }.create()
             party.add(instance)
         }
     }

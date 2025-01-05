@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.multiblock.builder
 
 import com.cobblemon.mod.common.api.multiblock.condition.MultiblockCondition
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.phys.shapes.VoxelShape
 
 /**
@@ -24,7 +24,7 @@ interface MultiblockStructureBuilder {
     val boundingBox: VoxelShape
     val conditions: List<MultiblockCondition>
 
-    fun validate(world: ServerLevel): Boolean {
+    fun validate(world: ServerWorld): Boolean {
         conditions.forEach {
             if (!it.test(world, boundingBox)) {
                 return false
@@ -34,5 +34,5 @@ interface MultiblockStructureBuilder {
         return true
     }
 
-    fun form(world: ServerLevel)
+    fun form(world: ServerWorld)
 }

@@ -105,7 +105,7 @@ internal class ClientPokemonP1(
                 Species.BY_IDENTIFIER_CODEC.fieldOf(DataKeys.POKEMON_SPECIES_IDENTIFIER).forGetter(ClientPokemonP1::species),
                 Codec.STRING.fieldOf(DataKeys.POKEMON_FORM_ID).forGetter { pokemon -> pokemon.form.formOnlyShowdownId() },
                 ComponentSerialization.CODEC.optionalFieldOf(DataKeys.POKEMON_NICKNAME).forGetter(ClientPokemonP1::nickname),
-                CodecUtils.dynamicIntRange(1) { Cobblemon.config.maxPokemonLevel }.fieldOf(DataKeys.POKEMON_LEVEL).forGetter(ClientPokemonP1::level),
+                CodecUtils.dynamicIntRange(1) { Cobblemon.config.maxPokemonWorld }.fieldOf(DataKeys.POKEMON_LEVEL).forGetter(ClientPokemonP1::level),
                 Codec.intRange(0, Int.MAX_VALUE).fieldOf(DataKeys.POKEMON_EXPERIENCE).forGetter(ClientPokemonP1::experience),
                 CodecUtils.dynamicIntRange(0) { Cobblemon.config.maxPokemonFriendship }.fieldOf(DataKeys.POKEMON_FRIENDSHIP).forGetter(ClientPokemonP1::friendship),
                 Codec.intRange(0, Int.MAX_VALUE).fieldOf(DataKeys.POKEMON_HEALTH).forGetter(ClientPokemonP1::currentHealth),

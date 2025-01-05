@@ -44,7 +44,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
         it.environment.query.addStandardFunctions().addFunctions(pokemonEntity.struct.functions)
     }
 
-    private var waterLevel : Double = 0.0
+    private var waterWorld : Double = 0.0
 
     override fun tick() {
         if (pokemonEntity.pokemon.status?.status == Statuses.SLEEP || pokemonEntity.isDeadOrDying) {
@@ -210,7 +210,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
                 } else if (checkInWater()) {
                     if (this.pokemonEntity.platform != PlatformType.NONE ) {
                         // Hold Steady
-                        e = ((this.waterLevel - this.pokemonEntity.y) / this.pokemonEntity.bbHeight).toFloat()
+                        e = ((this.waterWorld - this.pokemonEntity.y) / this.pokemonEntity.bbHeight).toFloat()
                     } else if (exposedForm.behaviour.moving.swim.canBreatheUnderwater) {
                         // allow swimmers to sink a bit into the water
                         e = -1.5F
@@ -246,7 +246,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
         val m = Mth.floor(aABB.minZ)
         val n = Mth.ceil(aABB.maxZ)
         var bl = false
-        this.waterLevel = -1.7976931348623157E308
+        this.waterWorld = -1.7976931348623157E308
         val mutableBlockPos = BlockPos.MutableBlockPos()
         for (o in i until j) {
             for (p in k until l) {
@@ -255,7 +255,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
                     val fluidState: FluidState = mob.level().getFluidState(mutableBlockPos)
                     if (fluidState.`is`(FluidTags.WATER)) {
                         val f = p.toFloat() + fluidState.getHeight(mob.level(), mutableBlockPos)
-                        this.waterLevel = max(f.toDouble(), waterLevel)
+                        this.waterWorld = max(f.toDouble(), waterWorld)
                         bl = bl or (aABB.minY < f.toDouble())
                     }
                 }

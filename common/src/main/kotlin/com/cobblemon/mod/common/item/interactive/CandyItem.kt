@@ -35,7 +35,7 @@ import net.minecraft.world.World
 class CandyItem(val calculator: Calculator) : CobblemonItem(Properties()), PokemonSelectingItem {
     override val bagItem = null
 
-    override fun use(world: Level, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayer) {
             return use(user, user.getItemInHand(hand))
         }

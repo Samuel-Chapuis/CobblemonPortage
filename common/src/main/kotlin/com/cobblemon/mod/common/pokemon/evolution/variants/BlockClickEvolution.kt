@@ -63,7 +63,7 @@ open class BlockClickEvolution(
 
     data class BlockInteractionContext(
         val block: Block,
-        val world: Level
+        val world: World
     )
 
     companion object {

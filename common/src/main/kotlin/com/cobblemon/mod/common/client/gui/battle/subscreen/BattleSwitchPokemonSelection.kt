@@ -276,7 +276,7 @@ class BattleSwitchPokemonSelection(
 
                 val textOpacity = if (isFainted || isCurrentlyInBattle) 0.7F else 1F
 
-                // Target Level
+                // Target World
                 drawScaledText(
                     context = context,
                     font = CobblemonResources.DEFAULT_LARGE,

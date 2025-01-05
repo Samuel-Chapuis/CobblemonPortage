@@ -19,7 +19,7 @@ import net.minecraft.core.component.DataComponentPatch
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.item.ItemEntity
@@ -42,7 +42,7 @@ open class ItemDropEntry : DropEntry {
     open var item = Identifier.parse("minecraft:fish")
     open val components: DataComponentMap? = null
 
-    override fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayer?) {
+    override fun drop(entity: LivingEntity?, world: ServerWorld, pos: Vec3, player: ServerPlayer?) {
         val item = world.registryAccess().registryOrThrow(Registries.ITEM).get(item) ?: return LOGGER.error("Unable to load drop item: $item")
         val stack = ItemStack(item, quantityRange?.random() ?: quantity)
         val inLava = world.getBlockState(pos.toBlockPos()).block == Blocks.LAVA

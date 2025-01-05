@@ -133,11 +133,11 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
         return blockState.rotate(mirror.getRotation(blockState.getValue(HorizontalDirectionalBlock.FACING)))
     }
 
-    override fun onRemove(state: BlockState, world: Level, pos: BlockPos, newState: BlockState, moved: Boolean) {
+    override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (!state.`is`(newState.block)) super.onRemove(state, world, pos, newState, moved)
     }
 
-    override fun useWithoutItem(blockState: BlockState, world: Level, blockPos: BlockPos, player: Player, hit: BlockHitResult): InteractionResult {
+    override fun useWithoutItem(blockState: BlockState, world: World, blockPos: BlockPos, player: Player, hit: BlockHitResult): InteractionResult {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS
         }
@@ -185,7 +185,7 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
         return InteractionResult.CONSUME
     }
 
-    override fun setPlacedBy(world: Level, blockPos: BlockPos, blockState: BlockState, livingEntity: LivingEntity?, itemStack: ItemStack) {
+    override fun setPlacedBy(world: World, blockPos: BlockPos, blockState: BlockState, livingEntity: LivingEntity?, itemStack: ItemStack) {
         super.setPlacedBy(world, blockPos, blockState, livingEntity, itemStack)
 
         if (!world.isClientSide && livingEntity is ServerPlayer && livingEntity.isCreative) {
@@ -197,7 +197,7 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
         }
     }
 
-    override fun animateTick(state: BlockState, world: Level, pos: BlockPos, random: RandomSource) {
+    override fun animateTick(state: BlockState, world: World, pos: BlockPos, random: RandomSource) {
         val blockEntity = world.getBlockEntity(pos)
         if (blockEntity !is HealingMachineBlockEntity) return
 
@@ -211,9 +211,9 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
 
     override fun hasAnalogOutputSignal(state: BlockState) = true
 
-    override fun getAnalogOutputSignal(state: BlockState, world: Level, pos: BlockPos): Int = (world.getBlockEntity(pos) as? HealingMachineBlockEntity)?.currentSignal ?: 0
+    override fun getAnalogOutputSignal(state: BlockState, world: World, pos: BlockPos): Int = (world.getBlockEntity(pos) as? HealingMachineBlockEntity)?.currentSignal ?: 0
 
-    override fun <T : BlockEntity> getTicker(world: Level, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = createTickerHelper(blockWithEntityType, CobblemonBlockEntities.HEALING_MACHINE, HealingMachineBlockEntity.TICKER::tick)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = createTickerHelper(blockWithEntityType, CobblemonBlockEntities.HEALING_MACHINE, HealingMachineBlockEntity.TICKER::tick)
 
     override fun getRenderShape(blockState: BlockState): RenderShape {
         return RenderShape.MODEL

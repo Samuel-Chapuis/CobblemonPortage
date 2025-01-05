@@ -60,21 +60,21 @@ open class ViewerCountBlockEntity(type: BlockEntityType<*>?, blockPos: BlockPos,
         return this.saveWithoutMetadata(registryLookup)
     }
 
-    fun updateBlock(level: Level) {
+    fun updateBlock(level: World) {
         val oldState = level.getBlockState(blockPos)
         level.sendBlockUpdated(blockPos, oldState, level.getBlockState(blockPos), Block.UPDATE_ALL)
         level.updateNeighbourForOutputSignal(blockPos, level.getBlockState(blockPos).block)
         setChanged()
     }
 
-    private fun isPlayerLookingAt(world: Level, player: Player, blockPos: BlockPos): Boolean {
+    private fun isPlayerLookingAt(world: World, player: Player, blockPos: BlockPos): Boolean {
         val vec3 = player.eyePosition
         val vec32 = vec3.add(player.calculateViewVector(player.xRot, player.yRot).scale(player.blockInteractionRange()))
         val blockHitResult = world.clip(ClipContext(vec3, vec32, ClipContext.Block.OUTLINE, ClipContext.Fluid.ANY, player))
         return blockPos == blockHitResult.blockPos
     }
 
-    private fun getInRangeViewerCount(world: Level, pos: BlockPos, range: Double = 5.0): Int {
+    private fun getInRangeViewerCount(world: World, pos: BlockPos, range: Double = 5.0): Int {
         val box = AABB(
             pos.x.toDouble() - range,
             pos.y.toDouble() - range,

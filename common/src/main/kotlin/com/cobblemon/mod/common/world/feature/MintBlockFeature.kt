@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.world.feature
 import com.cobblemon.mod.common.block.MintBlock
 import net.minecraft.core.BlockPos
 import net.minecraft.tags.BlockTags
-import net.minecraft.world.level.WorldGenLevel
+import net.minecraft.world.level.WorldGenWorld
 import net.minecraft.world.level.block.CropBlock.UPDATE_CLIENTS
 import net.minecraft.world.level.levelgen.feature.Feature
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext
@@ -42,7 +42,7 @@ class MintBlockFeature : Feature<BlockStateConfiguration>(BlockStateConfiguratio
         return true
     }
 
-    private fun getValidPositions(world: WorldGenLevel, origin: BlockPos): List<BlockPos> {
+    private fun getValidPositions(world: WorldGenWorld, origin: BlockPos): List<BlockPos> {
         val validPositions = mutableListOf<BlockPos>()
 
         for (x in -1..1) {

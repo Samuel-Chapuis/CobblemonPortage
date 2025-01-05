@@ -32,7 +32,7 @@ class BigRootBlock(settings: Properties) : RootBlock(settings) {
 
     override fun useWithoutItem(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         player: Player,
         blockHitResult: BlockHitResult

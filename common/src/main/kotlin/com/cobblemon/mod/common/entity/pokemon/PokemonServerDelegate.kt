@@ -29,7 +29,7 @@ import com.cobblemon.mod.common.world.gamerules.CobblemonGameRules
 import java.util.Optional
 import net.minecraft.world.entity.Entity
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.network.chat.Component
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.world.damagesource.DamageSource
@@ -171,7 +171,7 @@ class PokemonServerDelegate : PokemonSideDelegate {
                 .find { it.battlePokemon?.uuid == entity.pokemon.uuid }
 
             if (activeBattlePokemon != null) {
-                activeBattlePokemon.position = entity.level() as ServerLevel to entity.position()
+                activeBattlePokemon.position = entity.level() as ServerWorld to entity.position()
             }
         }
 
@@ -258,7 +258,7 @@ class PokemonServerDelegate : PokemonSideDelegate {
             if (entity.ownerUUID == null && entity.owner == null) {
                 entity.level().broadcastEntityEvent(entity, 60.toByte()) // Sends smoke effect
                 if(entity.level().gameRules.getBoolean(CobblemonGameRules.DO_POKEMON_LOOT)) {
-                    (entity.drops ?: entity.pokemon.form.drops).drop(entity, entity.level() as ServerLevel, entity.position(), entity.killer)
+                    (entity.drops ?: entity.pokemon.form.drops).drop(entity, entity.level() as ServerWorld, entity.position(), entity.killer)
                 }
             }
 

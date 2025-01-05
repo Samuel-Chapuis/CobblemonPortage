@@ -81,7 +81,7 @@ class DisplayCaseBlock(settings: Properties) : BaseEntityBlock(settings) {
 
     override fun useWithoutItem(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         player: Player,
         blockHitResult: BlockHitResult
@@ -94,7 +94,7 @@ class DisplayCaseBlock(settings: Properties) : BaseEntityBlock(settings) {
         return result
     }
 
-    override fun playerWillDestroy(world: Level, pos: BlockPos, state: BlockState, player: Player): BlockState {
+    override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
         val entity = world.getBlockEntity(pos) as DisplayCaseBlockEntity
         if (!entity.getStack().isEmpty && !player.isCreative) {
             Containers.dropContents(world, pos, entity.inv)
@@ -104,7 +104,7 @@ class DisplayCaseBlock(settings: Properties) : BaseEntityBlock(settings) {
 
     override fun getRenderShape(state: BlockState) = RenderShape.MODEL
 
-    override fun getAnalogOutputSignal(state: BlockState, world: Level, pos: BlockPos): Int {
+    override fun getAnalogOutputSignal(state: BlockState, world: World, pos: BlockPos): Int {
         val stack = (world.getBlockEntity(pos) as DisplayCaseBlockEntity).getStack()
 
         if (stack.isEmpty) return 0

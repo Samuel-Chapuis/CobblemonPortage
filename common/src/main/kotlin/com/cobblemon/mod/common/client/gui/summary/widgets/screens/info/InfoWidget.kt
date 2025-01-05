@@ -163,11 +163,11 @@ class InfoWidget(
 
         val mcFont = Minecraft.getInstance().font
         val experience = pokemon.experience.toString().text()
-        val experienceForThisLevel =
+        val experienceForThisWorld =
             pokemon.experience - if (pokemon.level == 1) 0 else pokemon.experienceGroup.getExperience(pokemon.level)
-        val nextLevel = (pokemon.level + 1).coerceAtMost(ServerSettings.maxPokemonLevel)
+        val nextWorld = (pokemon.level + 1).coerceAtMost(ServerSettings.maxPokemonWorld)
         val experienceToNext =
-            pokemon.experienceGroup.getExperience(nextLevel) - pokemon.experienceGroup.getExperience(pokemon.level)
+            pokemon.experienceGroup.getExperience(nextWorld) - pokemon.experienceGroup.getExperience(pokemon.level)
 
         drawScaledText(
             context = context,
@@ -188,7 +188,7 @@ class InfoWidget(
             shadow = true
         )
 
-        val expRatio = experienceForThisLevel.toFloat() / experienceToNext.toFloat()
+        val expRatio = experienceForThisWorld.toFloat() / experienceToNext.toFloat()
         val expBarWidthMax = 55
         val expBarWidth = expRatio * expBarWidthMax
 

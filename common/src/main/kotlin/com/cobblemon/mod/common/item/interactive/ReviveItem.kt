@@ -26,7 +26,7 @@ import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.*
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
@@ -50,8 +50,8 @@ class ReviveItem(val max: Boolean): CobblemonItem(Properties()), HealingSource {
         override fun getShowdownInput(actor: BattleActor, battlePokemon: BattlePokemon, data: String?) = "revive ${ if (max) "1" else "0.5" }"
     }
 
-    override fun use(world: Level, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world !is ServerLevel) {
+    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+        if (world !is ServerWorld) {
             return InteractionResultHolder.success(user.getItemInHand(hand))
         } else {
             val player = user as ServerPlayer

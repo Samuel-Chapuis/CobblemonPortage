@@ -117,7 +117,7 @@ object CobblemonEvents {
     val TRADE_COMPLETED = EventObservable<TradeCompletedEvent>()
 
     @JvmField
-    val LEVEL_UP_EVENT = EventObservable<LevelUpEvent>()
+    val LEVEL_UP_EVENT = EventObservable<WorldUpEvent>()
 
     @JvmField
     val POKEMON_HEALED = CancelableObservable<PokemonHealedEvent>()

@@ -66,7 +66,7 @@ import com.cobblemon.mod.common.util.*
 import com.mojang.datafixers.util.Either
 import java.util.UUID
 import kotlin.math.sqrt
-import net.minecraft.client.multiplayer.ClientLevel
+import net.minecraft.client.multiplayer.ClientWorld
 import net.minecraft.commands.arguments.EntityAnchorArgument
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Holder
@@ -81,7 +81,7 @@ import net.minecraft.nbt.Tag
 import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.TagKey
 import net.minecraft.world.damagesource.DamageSource
@@ -206,7 +206,7 @@ object MoLangFunctions {
         }
     )
     val biomeFunctions = mutableListOf<(Holder<Biome>) -> HashMap<String, java.util.function.Function<MoParams, Any>>>()
-    val worldFunctions = mutableListOf<(Holder<Level>) -> HashMap<String, java.util.function.Function<MoParams, Any>>>(
+    val worldFunctions = mutableListOf<(Holder<World>) -> HashMap<String, java.util.function.Function<MoParams, Any>>>(
         { worldHolder ->
             val world = worldHolder.value()
             val map = hashMapOf<String, java.util.function.Function<MoParams, Any>>()
@@ -277,7 +277,7 @@ object MoLangFunctions {
                 } as? ServerPlayer
                 val pos = Vec3(x, y, z)
 
-                if (world !is ClientLevel) {
+                if (world !is ClientWorld) {
                     val packet = SpawnSnowstormParticlePacket(particle, pos)
                     if (player != null) {
                         packet.sendToPlayer(player)
@@ -315,8 +315,8 @@ object MoLangFunctions {
             map.put("off_held_item") { _ -> player.level().itemRegistry.wrapAsHolder(player.offhandItem.item).asMoLangValue(Registries.ITEM) }
             map.put("face") { params -> ObjectValue(PlayerDialogueFaceProvider(player.uuid, params.getBooleanOrNull(0) != false)) }
             map.put("swing_hand") { _ -> player.swing(player.usedItemHand) }
-            map.put("food_level") { _ -> DoubleValue(player.foodData.foodLevel) }
-            map.put("saturation_level") { _ -> DoubleValue(player.foodData.saturationLevel) }
+            map.put("food_level") { _ -> DoubleValue(player.foodData.foodWorld) }
+            map.put("saturation_level") { _ -> DoubleValue(player.foodData.saturationWorld) }
             map.put("tell") { params ->
                 val message = params.getString(0).text()
                 val overlay = params.getBooleanOrNull(1) == true
@@ -533,7 +533,7 @@ object MoLangFunctions {
                     if (target != null) {
                         val targetPlayer = if (target.asUUID != null) {
                             entity.level().getPlayerByUUID(target.asUUID!!) as ServerPlayer
-                        } else if (entity.level() is ServerLevel) {
+                        } else if (entity.level() is ServerWorld) {
                             entity.level().server!!.playerList.getPlayerByName(target)
                         } else {
                             null
@@ -592,7 +592,7 @@ object MoLangFunctions {
             }
             map.put("run_script_on_client") { params ->
                 val world = npc.level()
-                if (world is ServerLevel) {
+                if (world is ServerWorld) {
                     val script = params.getString(0)
                     val packet = RunPosableMoLangPacket(npc.id, setOf("q.run_script('$script')"))
                     packet.sendToPlayers(world.players().toList())
@@ -769,15 +769,15 @@ object MoLangFunctions {
             }
             map.put("average_level") { _ ->
                 var numberOfPokemon = 0
-                var totalLevel = 0
+                var totalWorld = 0
                 for (pokemon in store) {
-                    totalLevel += pokemon.level
+                    totalWorld += pokemon.level
                     numberOfPokemon++
                 }
                 if (numberOfPokemon == 0) {
                     return@put DoubleValue.ZERO
                 }
-                return@put DoubleValue(totalLevel.toDouble() / numberOfPokemon)
+                return@put DoubleValue(totalWorld.toDouble() / numberOfPokemon)
             }
             map.put("count") { _ -> DoubleValue(store.count()) }
             map.put("count_by_properties") { params ->
@@ -873,7 +873,7 @@ object MoLangFunctions {
             val map = hashMapOf<String, java.util.function.Function<MoParams, Any>>()
 
             map.put("get_world") { params ->
-                val world = server.getLevel(
+                val world = server.getWorld(
                     RegistryKey.create(
                         Registries.DIMENSION,
                         params.getString(0).asIdentifierDefaultingNamespace(namespace = "minecraft")
@@ -998,7 +998,7 @@ object MoLangFunctions {
     )
 
     fun Holder<Biome>.asBiomeMoLangValue() = asMoLangValue(Registries.BIOME).addFunctions(biomeFunctions.flatMap { it(this).entries.map { it.key to it.value } }.toMap())
-    fun Holder<Level>.asWorldMoLangValue() = asMoLangValue(Registries.DIMENSION).addFunctions(worldFunctions.flatMap { it(this).entries.map { it.key to it.value } }.toMap())
+    fun Holder<World>.asWorldMoLangValue() = asMoLangValue(Registries.DIMENSION).addFunctions(worldFunctions.flatMap { it(this).entries.map { it.key to it.value } }.toMap())
     fun Holder<Block>.asBlockMoLangValue() = asMoLangValue(Registries.BLOCK).addFunctions(blockFunctions.flatMap { it(this).entries.map { it.key to it.value } }.toMap())
     fun MinecraftServer.asMoLangValue() = ObjectValue(this).addStandardFunctions().addFunctions(serverFunctions.flatMap { it(this).entries.map { it.key to it.value } }.toMap())
     fun Holder<DimensionType>.asDimensionTypeMoLangValue() = asMoLangValue(Registries.DIMENSION_TYPE).addFunctions(dimensionTypeFunctions.flatMap { it(this).entries.map { it.key to it.value } }.toMap())

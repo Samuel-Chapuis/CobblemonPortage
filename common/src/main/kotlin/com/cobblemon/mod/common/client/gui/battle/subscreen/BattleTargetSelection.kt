@@ -219,7 +219,7 @@ class BattleTargetSelection(
                     )
                 }
 
-                // Target Level
+                // Target World
                 drawScaledText(
                     context = context,
                     font = CobblemonResources.DEFAULT_LARGE,

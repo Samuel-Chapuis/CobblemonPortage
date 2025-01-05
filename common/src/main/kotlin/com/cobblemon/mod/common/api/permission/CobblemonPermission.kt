@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 
 data class CobblemonPermission(
     private val node: String,
-    override val level: PermissionLevel
+    override val level: PermissionWorld
 ) : Permission {
     
     override val identifier = cobblemonResource(this.node)

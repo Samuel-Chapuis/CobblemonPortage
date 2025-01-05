@@ -182,7 +182,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
     private fun isBase(state: BlockState): Boolean = state.getValue(PART) == PCPart.BOTTOM
 
     override fun setPlacedBy(
-        world: Level,
+        world: World,
         pos: BlockPos,
         state: BlockState,
         placer: LivingEntity?,
@@ -216,7 +216,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
         return if (state.getValue(PART) == PCPart.BOTTOM) blockState.isFaceSturdy(world, blockPos, Direction.UP) else blockState.`is`(this)// todo (techdaan): ensure this is the right mapping
     }
 
-    override fun playerWillDestroy(world: Level, pos: BlockPos, state: BlockState, player: Player): BlockState {
+    override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
         if (!world.isClientSide && player?.isCreative == true) {
             var blockPos: BlockPos = BlockPos.ZERO
             var blockState: BlockState = state
@@ -224,7 +224,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
             if (part == PCPart.TOP && world.getBlockState(pos.below().also { blockPos = it }).also { blockState = it }.`is`(state.block) && blockState.getValue(PART) == PCPart.BOTTOM) {
                 val blockState2 = if (blockState.fluidState.`is`(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
                 world.setBlock(blockPos, blockState2, UPDATE_ALL or UPDATE_SUPPRESS_DROPS)
-                world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
+                world.levelEvent(player, WorldEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
             }
         }
         return super.playerWillDestroy(world, pos, state, player)
@@ -256,13 +256,13 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
         return blockState.rotate(mirror.getRotation(blockState.getValue(HorizontalDirectionalBlock.FACING)))
     }
 
-    override fun onRemove(state: BlockState, world: Level, pos: BlockPos, newState: BlockState, moved: Boolean) {
+    override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (!state.`is`(newState.block)) super.onRemove(state, world, pos, newState, moved)
     }
 
     override fun useWithoutItem(
         blockState: BlockState,
-        world: Level,
+        world: World,
         blockPos: BlockPos,
         player: Player,
         blockHitResult: BlockHitResult
@@ -296,7 +296,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
         return InteractionResult.SUCCESS
     }
 
-    override fun <T : BlockEntity> getTicker(world: Level, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) = createTickerHelper(BlockWithEntityType, CobblemonBlockEntities.PC, PCBlockEntity.TICKER::tick)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) = createTickerHelper(BlockWithEntityType, CobblemonBlockEntities.PC, PCBlockEntity.TICKER::tick)
 
     @Deprecated("Deprecated in Java")
     override fun getRenderShape(blockState: BlockState): RenderShape {

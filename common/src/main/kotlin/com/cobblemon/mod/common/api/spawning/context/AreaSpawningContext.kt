@@ -16,7 +16,7 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.core.BlockPos
 
 /**
@@ -27,7 +27,7 @@ import net.minecraft.core.BlockPos
  */
 open class AreaSpawningContext(
     override val cause: SpawnCause,
-    override val world: ServerLevel,
+    override val world: ServerWorld,
     override val position: BlockPos,
     override val light: Int,
     override val skyLight: Int,
@@ -49,7 +49,7 @@ open class AreaSpawningContext(
      * This is not considering the provided state as what the entity would be on top of,
      * but rather the space its hitbox would fill.
      */
-    open fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState): Boolean = !state.isSolid
+    open fun isSafeSpace(world: ServerWorld, pos: BlockPos, state: BlockState): Boolean = !state.isSolid
 
     override fun postFilter(detail: SpawnDetail): Boolean {
         if (!super.postFilter(detail)) {

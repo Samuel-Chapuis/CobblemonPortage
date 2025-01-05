@@ -24,7 +24,7 @@ import com.cobblemon.mod.common.util.resolveInt
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.item.Items
@@ -67,8 +67,8 @@ class HealingBerryItem(block: BerryBlock, val amount: () -> ExpressionLike): Ber
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
     }
 
-    override fun use(world: Level, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world is ServerLevel && user is ServerPlayer) {
+    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+        if (world is ServerWorld && user is ServerPlayer) {
             return use(user, user.getItemInHand(hand))
         }
         return super<BerryItem>.use(world, user, hand)

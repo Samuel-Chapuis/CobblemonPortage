@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import net.minecraft.commands.arguments.EntityArgument.getPlayers
 import java.util.concurrent.CompletableFuture
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 
 /**
  * Spawns particles on the entity based on the given particle effect and locator.
@@ -60,8 +60,8 @@ class EntityParticlesActionEffectKeyframe : ConditionalActionEffectKeyframe(), E
         }?.asIdentifierDefaultingNamespace() ?: return skip()
 
         //Things could be a little weird here since TECHNICALLY it might be possible for a battle to be happening across dimensions
-        val calcedLevel = (context.level as? ServerLevel) ?: allEntities.first().level() as ServerLevel
-        val players = calcedLevel.getPlayers { player ->
+        val calcedWorld = (context.level as? ServerWorld) ?: allEntities.first().level() as ServerWorld
+        val players = calcedWorld.getPlayers { player ->
             allEntities.any { player.distanceTo(it) <= visibilityRange }
         }
 

@@ -39,16 +39,16 @@ class GildedChestBlockEntity(pos: BlockPos, state: BlockState, val type: Type = 
     val posableState: GildedState = GildedState()
 
     private val stateManager: ContainerOpenersCounter = object : ContainerOpenersCounter() {
-        override fun onOpen(world: Level, pos: BlockPos, state: BlockState) {
+        override fun onOpen(world: World, pos: BlockPos, state: BlockState) {
             playSound(world, pos, state, CobblemonSounds.GILDED_CHEST_OPEN)
         }
 
-        override fun onClose(world: Level, pos: BlockPos, state: BlockState) {
+        override fun onClose(world: World, pos: BlockPos, state: BlockState) {
             playSound(world, pos, state, CobblemonSounds.GILDED_CHEST_CLOSE)
         }
 
         override fun openerCountChanged(
-            world: Level,
+            world: World,
             pos: BlockPos,
             state: BlockState,
             oldViewerCount: Int,
@@ -111,7 +111,7 @@ class GildedChestBlockEntity(pos: BlockPos, state: BlockState, val type: Type = 
 
     companion object {
         val NUM_SLOTS = 27
-        fun playSound(world: Level, pos: BlockPos, state: BlockState, sound: SoundEvent) {
+        fun playSound(world: World, pos: BlockPos, state: BlockState, sound: SoundEvent) {
             var d = pos.x.toDouble() + 0.5
             val e = pos.y.toDouble() + 0.5
             var f = pos.z.toDouble() + 0.5
@@ -146,7 +146,7 @@ class GildedChestBlockEntity(pos: BlockPos, state: BlockState, val type: Type = 
         return super.triggerEvent(type, data)
     }
 
-    fun onViewerCountUpdate(world: Level, pos: BlockPos, state: BlockState, oldViewerCount: Int, newViewerCount: Int) {
+    fun onViewerCountUpdate(world: World, pos: BlockPos, state: BlockState, oldViewerCount: Int, newViewerCount: Int) {
         val block = state.block
         world.blockEvent(pos, block, 1, newViewerCount)
     }

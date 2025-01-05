@@ -8,8 +8,8 @@
 
 package com.cobblemon.mod.common.api.pokemon.experience
 
-import com.cobblemon.mod.common.api.CachedLevelThresholds
-import com.cobblemon.mod.common.api.LevelCurve
+import com.cobblemon.mod.common.api.CachedWorldThresholds
+import com.cobblemon.mod.common.api.WorldCurve
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.math.pow
 import com.google.gson.JsonDeserializationContext
@@ -56,14 +56,14 @@ object ExperienceGroupAdapter : JsonSerializer<ExperienceGroup>, JsonDeserialize
 }
 
 /**
- * A Pokémon's experience group, as an implementation of [LevelCurve]. Complicated experience groups
+ * A Pokémon's experience group, as an implementation of [WorldCurve]. Complicated experience groups
  * should extend [CachedExperienceGroup] to save you from having to invert the level-to-experience
  * equation.
  *
  * @author Hiroku
  * @since March 21st, 2022
  */
-interface ExperienceGroup : LevelCurve {
+interface ExperienceGroup : WorldCurve {
     val name: String
     val translatedName: MutableComponent
         get() = lang("experience_group.${name.lowercase()}")
@@ -72,13 +72,13 @@ interface ExperienceGroup : LevelCurve {
         fun dummy(name: String) = object : ExperienceGroup {
             override val name = name
             override fun getExperience(level: Int) = 0
-            override fun getLevel(experience: Int) = 1
+            override fun getWorld(experience: Int) = 1
         }
     }
 }
 
 /**
- * An experience group which uses [CachedLevelThresholds] to answer how
+ * An experience group which uses [CachedWorldThresholds] to answer how
  * to get a level from an experience value, given only the opposite equation.
  *
  * Mainly because my maths skills have deteriorated over the years and I don't
@@ -88,8 +88,8 @@ interface ExperienceGroup : LevelCurve {
  * @since March 21st, 2022
  */
 abstract class CachedExperienceGroup : ExperienceGroup {
-    private val thresholds = CachedLevelThresholds(experienceToLevel = ::getExperience)
-    override fun getLevel(experience: Int) = thresholds.getLevel(experience)
+    private val thresholds = CachedWorldThresholds(experienceToWorld = ::getExperience)
+    override fun getWorld(experience: Int) = thresholds.getWorld(experience)
 }
 
 object Erratic : CachedExperienceGroup() {

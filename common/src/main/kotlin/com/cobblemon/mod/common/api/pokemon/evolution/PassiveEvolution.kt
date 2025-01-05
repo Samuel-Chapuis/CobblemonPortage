@@ -9,11 +9,11 @@
 package com.cobblemon.mod.common.api.pokemon.evolution
 
 import com.cobblemon.mod.common.pokemon.Pokemon
-import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution
+import com.cobblemon.mod.common.pokemon.evolution.variants.WorldUpEvolution
 
 /**
  * Represents an evolution of a [Pokemon] that can occur without any additional context or actions.
- * For the default implementation see [LevelUpEvolution].
+ * For the default implementation see [WorldUpEvolution].
  *
  * @author Licious
  * @since March 19th, 2022

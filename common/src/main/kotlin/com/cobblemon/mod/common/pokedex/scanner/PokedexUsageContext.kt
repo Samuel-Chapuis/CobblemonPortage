@@ -58,7 +58,7 @@ class PokedexUsageContext {
     var usageIntervals: Float = 0F
     var focusIntervals: Float = 0F
     var innerRingRotation: Float = 0F
-    var zoomLevel: Float = 0F
+    var zoomWorld: Float = 0F
     var newPokemonInfo: PokedexLearnedInformation = PokedexLearnedInformation.NONE
     var type: PokedexType = PokedexType.RED
     var availableInfoFrames: MutableList<Boolean?> = mutableListOf(null, null, null, null)
@@ -93,9 +93,9 @@ class PokedexUsageContext {
 
         if (scannedSpecies !== null && scannableEntityInFocus != null) {
             val targetId = scannableEntityInFocus?.resolveEntityScan()?.id
-            if (scanningProgress == 0F) targetId?.let { StartScanningPacket(it, zoomLevel.toInt()).sendToServer() }
+            if (scanningProgress == 0F) targetId?.let { StartScanningPacket(it, zoomWorld.toInt()).sendToServer() }
             if (scanningProgress < (MAX_SCAN_PROGRESS + CENTER_INFO_DISPLAY_INTERVALS)) scanningProgress += updateInterval
-            if (scanningProgress >= MAX_SCAN_PROGRESS) targetId?.let { FinishScanningPacket(it, zoomLevel.toInt()).sendToServer() }
+            if (scanningProgress >= MAX_SCAN_PROGRESS) targetId?.let { FinishScanningPacket(it, zoomWorld.toInt()).sendToServer() }
             if (focusIntervals > 0) focusIntervals = max(0F, focusIntervals - updateInterval)
         } else {
             if (scannableEntityInFocus != null) {
@@ -143,7 +143,7 @@ class PokedexUsageContext {
     }
 
     fun tryScanPokemon(user: LocalPlayer) {
-        val targetScannableEntity = PokemonScanner.findScannableEntity(user, zoomLevel.toInt())
+        val targetScannableEntity = PokemonScanner.findScannableEntity(user, zoomWorld.toInt())
         if (targetScannableEntity != null) {
             if (targetScannableEntity != scannableEntityInFocus) {
                 resetFocusedPokemonState()
@@ -203,7 +203,7 @@ class PokedexUsageContext {
 
     fun resetState(resetAnimationStates: Boolean = true) {
         scanningGuiOpen = false
-        zoomLevel = 0F
+        zoomWorld = 0F
         focusIntervals = 0F
         resetFocusedPokemonState()
 
@@ -215,14 +215,14 @@ class PokedexUsageContext {
     }
 
     fun adjustZoom(verticalScrollAmount: Double) {
-        zoomLevel = clamp(zoomLevel + verticalScrollAmount.toFloat(), 0F, ZOOM_STAGES.toFloat())
-        if (zoomLevel > 0F && zoomLevel < ZOOM_STAGES.toFloat()) {
+        zoomWorld = clamp(zoomWorld + verticalScrollAmount.toFloat(), 0F, ZOOM_STAGES.toFloat())
+        if (zoomWorld > 0F && zoomWorld < ZOOM_STAGES.toFloat()) {
             playSound(CobblemonSounds.POKEDEX_SCAN_ZOOM_INCREMENT)
         }
     }
 
     // Higher multiplier = more zoomed out
-    fun getFovMultiplier() = 1 - (zoomLevel / ZOOM_STAGES)
+    fun getFovMultiplier() = 1 - (zoomWorld / ZOOM_STAGES)
 
     fun playSound(soundEvent: SoundEvent) {
         Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))

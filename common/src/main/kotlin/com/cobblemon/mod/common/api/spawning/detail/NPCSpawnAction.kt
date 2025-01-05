@@ -24,10 +24,10 @@ class NPCSpawnAction(ctx: SpawningContext, override val detail: NPCSpawnDetail) 
         val npc = NPCEntity(ctx.world)
         npc.npc = detail.npcClass
         npc.appliedAspects.addAll(detail.aspects)
-        val minLevel = ctx.runtime.resolveInt(detail.minLevel).coerceIn(1, Cobblemon.config.maxPokemonLevel)
-        val maxLevel = ctx.runtime.resolveInt(detail.maxLevel).coerceIn(1, Cobblemon.config.maxPokemonLevel)
-        val seedLevel = (minLevel..maxLevel).random()
-        npc.initialize(seedLevel)
+        val minWorld = ctx.runtime.resolveInt(detail.minWorld).coerceIn(1, Cobblemon.config.maxPokemonWorld)
+        val maxWorld = ctx.runtime.resolveInt(detail.maxWorld).coerceIn(1, Cobblemon.config.maxPokemonWorld)
+        val seedWorld = (minWorld..maxWorld).random()
+        npc.initialize(seedWorld)
         return npc
     }
 }

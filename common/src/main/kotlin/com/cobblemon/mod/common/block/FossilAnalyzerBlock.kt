@@ -48,7 +48,7 @@ class FossilAnalyzerBlock(settings: Properties) : MultiblockBlock(settings), Wor
     }
 
     override fun <T : BlockEntity?> getTicker(
-        world: Level,
+        world: World,
         state: BlockState,
         type: BlockEntityType<T>
     ): BlockEntityTicker<T>? = createTickerHelper(type, CobblemonBlockEntities.FOSSIL_ANALYZER, FossilMultiblockStructure.TICKER::tick)

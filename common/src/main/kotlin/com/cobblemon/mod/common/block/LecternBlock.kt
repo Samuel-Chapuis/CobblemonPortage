@@ -57,7 +57,7 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
 
     override fun codec() = CODEC
 
-    override fun <T : BlockEntity> getTicker(world: Level, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) = createTickerHelper(BlockWithEntityType, CobblemonBlockEntities.LECTERN, ViewerCountBlockEntity.TICKER::tick)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) = createTickerHelper(BlockWithEntityType, CobblemonBlockEntities.LECTERN, ViewerCountBlockEntity.TICKER::tick)
 
     override fun getRenderShape(blockState: BlockState?) = RenderShape.MODEL
 
@@ -95,7 +95,7 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
 
     override fun getSignal(blockState: BlockState?, blockGetter: BlockGetter?, blockPos: BlockPos?, direction: Direction?): Int = 15
 
-    override fun playerWillDestroy(level: Level, blockPos: BlockPos, blockState: BlockState, player: Player): BlockState {
+    override fun playerWillDestroy(level: World, blockPos: BlockPos, blockState: BlockState, player: Player): BlockState {
         if (!level.isClientSide) {
             val blockEntity = level.getBlockEntity(blockPos)
             if (blockEntity is LecternBlockEntity && !player.isCreative) {
@@ -117,7 +117,7 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
         return mutableListOf(ItemStack(Blocks.LECTERN))
     }
 
-    override fun useWithoutItem(blockState: BlockState, level: Level, blockPos: BlockPos, player: Player, blockHitResult: BlockHitResult?): InteractionResult {
+    override fun useWithoutItem(blockState: BlockState, level: World, blockPos: BlockPos, player: Player, blockHitResult: BlockHitResult?): InteractionResult {
         val blockEntity = level.getBlockEntity(blockPos)
         if (blockEntity is LecternBlockEntity) {
             val itemStack = blockEntity.getItemStack()
@@ -137,7 +137,7 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
 
     override fun isPathfindable(blockState: BlockState?, pathComputationType: PathComputationType?) = false
 
-    private fun takeStoredItem(blockEntity: LecternBlockEntity, blockState: BlockState, level: Level, blockPos: BlockPos, player: Player) {
+    private fun takeStoredItem(blockEntity: LecternBlockEntity, blockState: BlockState, level: World, blockPos: BlockPos, player: Player) {
         if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty) {
             player.setItemInHand(InteractionHand.MAIN_HAND, blockEntity.removeItemStack())
             blockEntity.setRemoved()

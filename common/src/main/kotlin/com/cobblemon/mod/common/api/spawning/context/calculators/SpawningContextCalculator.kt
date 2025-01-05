@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.PrioritizedList
 import com.cobblemon.mod.common.api.Priority
 import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.context.SpawningContext
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.level.block.state.BlockState
 
@@ -62,6 +62,6 @@ interface SpawningContextCalculator<I : SpawningContextInput, O : SpawningContex
 open class SpawningContextInput(
     /** What caused the spawn context, as a [SpawnCause]. */
     val cause: SpawnCause,
-    /** The [Level] the spawning context exists in. */
-    val world: ServerLevel
+    /** The [World] the spawning context exists in. */
+    val world: ServerWorld
 )

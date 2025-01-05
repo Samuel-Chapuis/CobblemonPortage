@@ -26,7 +26,7 @@ import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
@@ -94,7 +94,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         }
     }
 
-    fun decrementMulchDuration(world: Level, pos: BlockPos, state: BlockState) {
+    fun decrementMulchDuration(world: World, pos: BlockPos, state: BlockState) {
         if (mulchVariant == MulchVariant.NONE || mulchVariant.duration == -1) {
             return
         }
@@ -109,7 +109,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         }
     }
 
-    fun setMulch(mulch: MulchVariant, world: Level, state: BlockState, pos: BlockPos) {
+    fun setMulch(mulch: MulchVariant, world: World, state: BlockState, pos: BlockPos) {
         this.mulchVariant = mulch
         this.mulchDuration = mulch.duration
         refreshTimers(pos)
@@ -191,12 +191,12 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
     /**
      * Generates a random amount of growth points for this tree.
      *
-     * @param world The [Level] the tree is in.
+     * @param world The [World] the tree is in.
      * @param state The [BlockState] of the tree.
      * @param pos The [BlockPos] of the tree.
      * @param placer The [LivingEntity] tending to the tree if any.
      */
-    fun generateGrowthPoints(world: Level, state: BlockState, pos: BlockPos, placer: LivingEntity?) {
+    fun generateGrowthPoints(world: World, state: BlockState, pos: BlockPos, placer: LivingEntity?) {
         val berry = this.berry() ?: return
         val yield = berry.calculateYield(world, state, pos, placer)
         this.growthPoints.clear()
@@ -219,13 +219,13 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
     /**
      * Calculates the berry produce in [ItemStack] form.
      *
-     * @param world The [Level] the tree is in.
+     * @param world The [World] the tree is in.
      * @param state The [BlockState] of the tree.
      * @param pos The [BlockPos] of the tree.
      * @param player The [Player] harvesting the tree.
      * @return The resulting [ItemStack]s to be dropped.
      */
-    fun harvest(world: Level, state: BlockState, pos: BlockPos, player: Player?): Collection<ItemStack> {
+    fun harvest(world: World, state: BlockState, pos: BlockPos, player: Player?): Collection<ItemStack> {
         val drops = arrayListOf<ItemStack>()
         val unique = this.growthPoints.groupingBy { it }.eachCount()
         unique.forEach { (identifier, amount) ->
@@ -248,7 +248,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         return drops
     }
 
-    fun harvest(world: Level, state: BlockState, pos: BlockPos): Collection<ItemStack>{
+    fun harvest(world: World, state: BlockState, pos: BlockPos): Collection<ItemStack>{
         return harvest(world, state, pos, null);
     }
 
@@ -334,7 +334,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         this.setChanged()
     }
 
-    private fun refresh(world: Level, pos: BlockPos, state: BlockState, player: Player?) {
+    private fun refresh(world: World, pos: BlockPos, state: BlockState, player: Player?) {
         val newState = state.setValue(BerryBlock.AGE, 3)
         world.setBlock(pos, newState, UPDATE_CLIENTS)
         world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos)
@@ -355,7 +355,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
                 blockEntity.stageTimer--
             }
             if (blockEntity.stageTimer == 0) {
-                (state.block as BerryBlock).growHelper(world as ServerLevel, world.random, pos, state)
+                (state.block as BerryBlock).growHelper(world as ServerWorld, world.random, pos, state)
             }
         }
         //private const val LIFE_CYCLES = "life_cycles"

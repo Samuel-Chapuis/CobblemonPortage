@@ -23,7 +23,7 @@ import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.RandomSource
@@ -140,7 +140,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
 
     fun isFake() = (type == Type.FAKE)
 
-    override fun playerWillDestroy(world: Level, pos: BlockPos, state: BlockState, player: Player): BlockState {
+    override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
         if (!world.isClientSide) {
             if (isFake() && (player is ServerPlayer)) {
                 spawnPokemon(world, pos, state, player)
@@ -149,7 +149,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         return super.playerWillDestroy(world, pos, state, player)
     }
 
-    private fun spawnPokemon(world: Level, pos: BlockPos, state: BlockState, player: ServerPlayer): InteractionResult {
+    private fun spawnPokemon(world: World, pos: BlockPos, state: BlockState, player: ServerPlayer): InteractionResult {
         val properties = "$POKEMON_ARGS lvl=${LEVEL_RANGE.random()}"
         val pokemon = PokemonProperties.parse(properties)
         val entity = pokemon.createEntity(world)
@@ -180,7 +180,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
 
     override fun useWithoutItem(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         player: Player,
         hit: BlockHitResult
@@ -203,7 +203,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
 
     override fun onRemove(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         newState: BlockState,
         moved: Boolean
@@ -235,7 +235,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         return true
     }
 
-    override fun getAnalogOutputSignal(state: BlockState, world: Level, pos: BlockPos): Int {
+    override fun getAnalogOutputSignal(state: BlockState, world: World, pos: BlockPos): Int {
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos))
     }
 
@@ -270,7 +270,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
     }
 
     override fun setPlacedBy(
-        world: Level,
+        world: World,
         pos: BlockPos,
         state: BlockState,
         placer: LivingEntity?,
@@ -285,7 +285,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         */
     }
 
-    override fun tick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
+    override fun tick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
         val blockEntity = world.getBlockEntity(pos) as? GildedChestBlockEntity ?: return
         blockEntity.tick()
     }

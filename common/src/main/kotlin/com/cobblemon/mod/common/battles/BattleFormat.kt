@@ -26,7 +26,7 @@ data class BattleFormat(
     val battleType: BattleType = BattleTypes.SINGLES,
     var ruleSet: Set<String> = setOf(),
     val gen: Int = 9,
-    var adjustLevel: Int = -1, // Stop gap rule before a more general system for rules enforced by Cobblemon is implemented.
+    var adjustWorld: Int = -1, // Stop gap rule before a more general system for rules enforced by Cobblemon is implemented.
 ) {
     companion object {
         val GEN_9_SINGLES = BattleFormat(
@@ -59,12 +59,12 @@ data class BattleFormat(
             val battleType = BattleType.loadFromBuffer(buffer)
             val ruleSet = mutableSetOf<String>()
             repeat(times = buffer.readSizedInt(IntSize.U_BYTE)) { ruleSet.add(buffer.readString()) }
-            val adjustLevel = buffer.readSizedInt(IntSize.INT)
+            val adjustWorld = buffer.readSizedInt(IntSize.INT)
             return BattleFormat(
                 mod = mod,
                 battleType = battleType,
                 ruleSet = ruleSet,
-                adjustLevel = adjustLevel
+                adjustWorld = adjustWorld
             )
         }
     }
@@ -74,7 +74,7 @@ data class BattleFormat(
         battleType.saveToBuffer(buffer)
         buffer.writeSizedInt(IntSize.U_BYTE, ruleSet.size)
         ruleSet.forEach(buffer::writeString)
-        buffer.writeSizedInt(IntSize.INT, adjustLevel)
+        buffer.writeSizedInt(IntSize.INT, adjustWorld)
         return buffer
     }
 

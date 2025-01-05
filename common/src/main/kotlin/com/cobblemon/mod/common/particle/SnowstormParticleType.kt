@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.client.particle.ParticleStorm
 import com.cobblemon.mod.common.client.render.SnowstormParticle
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import net.minecraft.client.multiplayer.ClientLevel
+import net.minecraft.client.multiplayer.ClientWorld
 import net.minecraft.client.particle.Particle
 import net.minecraft.client.particle.ParticleProvider
 import net.minecraft.client.particle.SpriteSet
@@ -48,7 +48,7 @@ class SnowstormParticleType : ParticleType<SnowstormParticleOptions>(true) {
     class Factory(val spriteProvider: SpriteSet) : ParticleProvider<SnowstormParticleOptions> {
         override fun createParticle(
             parameters: SnowstormParticleOptions,
-            world: ClientLevel,
+            world: ClientWorld,
             x: Double,
             y: Double,
             z: Double,

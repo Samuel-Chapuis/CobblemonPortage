@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.drop
 
 import com.cobblemon.mod.common.util.substitute
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.phys.Vec3
@@ -34,7 +34,7 @@ class CommandDropEntry : DropEntry {
     override val quantity = 1
     override val maxSelectableTimes = 1
 
-    override fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayer?) {
+    override fun drop(entity: LivingEntity?, world: ServerWorld, pos: Vec3, player: ServerPlayer?) {
         if (requiresPlayer && player == null) {
             return
         }

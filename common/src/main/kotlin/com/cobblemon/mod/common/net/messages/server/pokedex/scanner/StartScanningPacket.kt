@@ -12,12 +12,12 @@ import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.network.RegistryFriendlyByteBuf
 
-class StartScanningPacket(val targetedId: Int, val zoomLevel: Int) : NetworkPacket<StartScanningPacket> {
+class StartScanningPacket(val targetedId: Int, val zoomWorld: Int) : NetworkPacket<StartScanningPacket> {
     override val id = ID
 
     override fun encode(buffer: RegistryFriendlyByteBuf) {
         buffer.writeInt(targetedId)
-        buffer.writeInt(zoomLevel)
+        buffer.writeInt(zoomWorld)
     }
 
     companion object {

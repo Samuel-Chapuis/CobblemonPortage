@@ -394,7 +394,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
 
     // Medicine
     @JvmField
-    val RARE_CANDY = candyItem("rare_candy") { _, pokemon -> pokemon.getExperienceToNextLevel() }
+    val RARE_CANDY = candyItem("rare_candy") { _, pokemon -> pokemon.getExperienceToNextWorld() }
     @JvmField
     val EXPERIENCE_CANDY_XS = candyItem("exp_candy_xs") { _, _ -> CandyItem.DEFAULT_XS_CANDY_YIELD }
     @JvmField
@@ -443,7 +443,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
             .effect(MobEffectInstance(MobEffects.ABSORPTION, 900, 0), 1F)
             .alwaysEdible()
             .build())) {
-        override fun finishUsingItem(stack: ItemStack, world: Level, user: LivingEntity): ItemStack {
+        override fun finishUsingItem(stack: ItemStack, world: World, user: LivingEntity): ItemStack {
             user.removeAllEffects()
             return super.finishUsingItem(stack, world, user)
         }
@@ -1276,7 +1276,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
         }
     )
 
-    private fun compostable(item: Item, increaseLevelChance: Float) = Cobblemon.implementation.registerCompostable(item, increaseLevelChance)
+    private fun compostable(item: Item, increaseWorldChance: Float) = Cobblemon.implementation.registerCompostable(item, increaseWorldChance)
 
     private fun berryItem(name: String, berryBlock: BerryBlock): BerryItem {
         val finalName = "${name}_berry"
@@ -1329,21 +1329,21 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
         return item
     }
 
-    private fun compostableItem(name: String, item: Item? = null, increaseLevelChance: Float = .65f): Item {
+    private fun compostableItem(name: String, item: Item? = null, increaseWorldChance: Float = .65f): Item {
         val createdItem = this.create(name, item ?: Item(Item.Properties()))
-        compostable(createdItem, increaseLevelChance)
+        compostable(createdItem, increaseWorldChance)
         return createdItem
     }
 
-    private fun compostableHeldItem(name: String, remappedName: String? = null, increaseLevelChance: Float = .65f): CobblemonItem {
+    private fun compostableHeldItem(name: String, remappedName: String? = null, increaseWorldChance: Float = .65f): CobblemonItem {
         val createdItem = heldItem(name, remappedName)
-        compostable(createdItem, increaseLevelChance)
+        compostable(createdItem, increaseWorldChance)
         return createdItem
     }
 
-    private fun compostableBlockItem(name: String, block: Block, increaseLevelChance: Float = .65f): Item {
+    private fun compostableBlockItem(name: String, block: Block, increaseWorldChance: Float = .65f): Item {
         val createdItem = this.blockItem(name, block)
-        compostable(createdItem, increaseLevelChance)
+        compostable(createdItem, increaseWorldChance)
         return createdItem
     }
 

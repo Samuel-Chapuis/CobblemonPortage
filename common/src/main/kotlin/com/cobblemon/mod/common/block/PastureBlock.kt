@@ -25,7 +25,7 @@ import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionResult
@@ -197,7 +197,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         }
     }
 
-    override fun playerWillDestroy(world: Level, pos: BlockPos, state: BlockState, player: Player): BlockState {
+    override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
         checkBreakEntity(world, state, pos)
         if (!world.isClientSide && player?.isCreative == true) {
             var blockPos: BlockPos = BlockPos.ZERO
@@ -207,22 +207,22 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
                 checkBreakEntity(world, blockState, blockPos)
                 val blockState2 = if (blockState.fluidState.`is`(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
                 world.setBlock(blockPos, blockState2, UPDATE_ALL or UPDATE_SUPPRESS_DROPS)
-                world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
+                world.levelEvent(player, WorldEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
             }
         }
         return super.playerWillDestroy(world, pos, state, player)
     }
 
-    override fun whenExploded(world: Level, state: BlockState, pos: BlockPos) {
+    override fun whenExploded(world: World, state: BlockState, pos: BlockPos) {
         val blockEntity = world.getBlockEntity(pos) as? PokemonPastureBlockEntity ?: return
         blockEntity.onBroken()
     }
 
-    override fun <T : BlockEntity?> getTicker(world: Level, state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T>? {
+    override fun <T : BlockEntity?> getTicker(world: World, state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T>? {
         return createTickerHelper(type, CobblemonBlockEntities.PASTURE, PokemonPastureBlockEntity.TICKER::tick)
     }
 
-    override fun setPlacedBy(world: Level, pos: BlockPos, state: BlockState, placer: LivingEntity?, itemStack: ItemStack?) {
+    override fun setPlacedBy(world: World, pos: BlockPos, state: BlockState, placer: LivingEntity?, itemStack: ItemStack?) {
         world.setBlock(
             pos.above(),
             state
@@ -233,7 +233,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         world.blockUpdated(pos, Blocks.AIR)
         state.updateNeighbourShapes(world, pos, 3)
 
-        if (world is ServerLevel && placer is ServerPlayer) {
+        if (world is ServerWorld && placer is ServerPlayer) {
             val blockEntity = world.getBlockEntity(pos) as? PokemonPastureBlockEntity ?: return
             blockEntity.ownerId = placer.uuid
             blockEntity.ownerName = placer.gameProfile.name
@@ -243,7 +243,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
 
     override fun useWithoutItem(
         state: BlockState,
-        world: Level,
+        world: World,
         pos: BlockPos,
         player: Player,
         hit: BlockHitResult
@@ -320,7 +320,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         return blockState.rotate(mirror.getRotation(blockState.getValue(HorizontalDirectionalBlock.FACING)))
     }
 
-    override fun onRemove(state: BlockState, world: Level, pos: BlockPos, newState: BlockState, moved: Boolean) {
+    override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (!state.`is`(newState.block)) super.onRemove(state, world, pos, newState, moved)
     }
 

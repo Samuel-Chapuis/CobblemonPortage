@@ -16,13 +16,13 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 
 /**
  * Represents a [PassiveEvolution].
- * This can be triggered at any check as long as the [Pokemon] passes [LevelUpEvolution.isValid].
+ * This can be triggered at any check as long as the [Pokemon] passes [WorldUpEvolution.isValid].
  *
  * @property levels The level range the [Pokemon] is expected to be in, if the range only has a single number the [Pokemon.level] will need to be equal or greater then it instead.
  * @author Licious
  * @since March 20th, 2022
  */
-open class LevelUpEvolution(
+open class WorldUpEvolution(
     override val id: String,
     override val result: PokemonProperties,
     override val shedder: PokemonProperties?,
@@ -45,7 +45,7 @@ open class LevelUpEvolution(
         permanent = false
     )
 
-    override fun equals(other: Any?) = other is LevelUpEvolution && other.id.equals(this.id, true)
+    override fun equals(other: Any?) = other is WorldUpEvolution && other.id.equals(this.id, true)
 
     override fun hashCode(): Int {
         var result = id.hashCode()

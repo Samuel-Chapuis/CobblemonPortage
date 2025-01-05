@@ -209,7 +209,7 @@ class PCGUI(
                 )
             }
 
-            // Level
+            // World
             drawScaledText(
                 context = context,
                 font = CobblemonResources.DEFAULT_LARGE,

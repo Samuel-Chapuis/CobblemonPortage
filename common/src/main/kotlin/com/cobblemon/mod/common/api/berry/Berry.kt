@@ -165,7 +165,7 @@ class Berry(
      * @param placer The [LivingEntity] tending to the tree, if any.
      * @return The total berry stack count.
      */
-    fun calculateYield(world: Level, state: BlockState, pos: BlockPos, placer: LivingEntity? = null): Int {
+    fun calculateYield(world: World, state: BlockState, pos: BlockPos, placer: LivingEntity? = null): Int {
         val base = this.baseYield.random()
         val bonus = this.bonusYield(world, state, pos)
         var yield = base + bonus.first
@@ -307,7 +307,7 @@ class Berry(
      * @param pos The [BlockPos] of the tree.
      * @return The bonus yield, the growth factors that passed.
      */
-    private fun bonusYield(world: Level, state: BlockState, pos: BlockPos): Pair<Int, Collection<GrowthFactor>> {
+    private fun bonusYield(world: World, state: BlockState, pos: BlockPos): Pair<Int, Collection<GrowthFactor>> {
         var bonus = 0
         val passed = arrayListOf<GrowthFactor>()
         val treeEntity = world.getBlockEntity(pos) as? BerryBlockEntity ?: return 0 to passed

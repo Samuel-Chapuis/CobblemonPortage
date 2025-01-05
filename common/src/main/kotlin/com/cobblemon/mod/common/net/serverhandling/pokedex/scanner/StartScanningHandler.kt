@@ -22,7 +22,7 @@ object StartScanningHandler : ServerNetworkPacketHandler<StartScanningPacket> {
         player: ServerPlayer
     ) {
         val targetEntity = player.level().getEntity(packet.targetedId) ?: return
-        if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomLevel)) {
+        if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomWorld)) {
             PlayerScanningDetails.playerToEntityMap[player.uuid] = targetEntity.uuid
             PlayerScanningDetails.playerToTickMap[player.uuid] = server.tickCount
         }

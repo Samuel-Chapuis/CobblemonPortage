@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.spawning
 import com.cobblemon.mod.common.api.spawning.context.SpawningContext
 import com.cobblemon.mod.common.api.spawning.prospecting.SpawningProspector
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.level.ChunkPos
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
@@ -29,12 +29,12 @@ import kotlin.math.max
  */
 class WorldSlice(
     val cause: SpawnCause,
-    val world: ServerLevel,
+    val world: ServerWorld,
     val baseX: Int,
     val baseY: Int,
     val baseZ: Int,
     val blocks: Array<Array<Array<BlockData>>>,
-    val skyLevel: Array<Array<Int>>,
+    val skyWorld: Array<Array<Int>>,
     var nearbyEntityPositions: List<Vec3>
 ) {
     class BlockData(
@@ -89,7 +89,7 @@ class WorldSlice(
     fun getSkyLight(position: BlockPos, elseLight: Int = 0) = getSkyLight(position.x, position.y, position.z, elseLight)
 
     fun skySpaceAbove(x: Int, y: Int, z: Int): Int {
-        return if (!isInBounds(x, y, z) || skyLevel[x - baseX][z - baseZ] > y) {
+        return if (!isInBounds(x, y, z) || skyWorld[x - baseX][z - baseZ] > y) {
             0
         } else {
             max(0, world.maxBuildHeight - y)
@@ -101,7 +101,7 @@ class WorldSlice(
         return if (!isInBounds(x, y, z)) {
             elseCanSeeSky
         } else {
-            y >= skyLevel[x - baseX][z - baseZ]
+            y >= skyWorld[x - baseX][z - baseZ]
         }
     }
     fun canSeeSky(position: BlockPos, elseCanSeeSky: Boolean = false) = canSeeSky(position.x, position.y, position.z, elseCanSeeSky)

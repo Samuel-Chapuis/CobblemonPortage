@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.battles.runner.graal
 
 import com.cobblemon.mod.common.Cobblemon
 import java.util.logging.Handler
-import java.util.logging.Level
+import java.util.logging.World
 import java.util.logging.LogRecord
 
 object GraalLogger : Handler() {
@@ -20,9 +20,9 @@ object GraalLogger : Handler() {
         }
 
         when (record.level) {
-            Level.INFO -> Cobblemon.LOGGER.info(record.message)
-            Level.WARNING -> Cobblemon.LOGGER.warn(record.message)
-            Level.SEVERE -> Cobblemon.LOGGER.error(record.message)
+            World.INFO -> Cobblemon.LOGGER.info(record.message)
+            World.WARNING -> Cobblemon.LOGGER.warn(record.message)
+            World.SEVERE -> Cobblemon.LOGGER.error(record.message)
             else -> Cobblemon.LOGGER.debug(record.message)
         }
     }

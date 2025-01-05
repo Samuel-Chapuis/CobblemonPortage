@@ -33,11 +33,11 @@ object CatchRateModifiers {
      * Used by [PokeBalls.LEVEL_BALL].
      */
     val LEVEL = BattleModifier { _, playerPokemon, pokemon ->
-        val highestLevel = playerPokemon.maxOf { bp -> bp.battlePokemon?.originalPokemon?.level ?: 1 }
+        val highestWorld = playerPokemon.maxOf { bp -> bp.battlePokemon?.originalPokemon?.level ?: 1 }
         when {
-            highestLevel > (pokemon.level * 4) -> 4F
-            highestLevel > (pokemon.level * 2) -> 3F
-            highestLevel > pokemon.level -> 2F
+            highestWorld > (pokemon.level * 4) -> 4F
+            highestWorld > (pokemon.level * 2) -> 3F
+            highestWorld > pokemon.level -> 2F
             else -> 1F
         }
     }

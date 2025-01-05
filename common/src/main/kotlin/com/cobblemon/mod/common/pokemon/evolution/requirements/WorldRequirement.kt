@@ -15,9 +15,9 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 /**
- * A [EntityQueryRequirement] for when a [Pokemon] is expected to be in a [Level].
+ * A [EntityQueryRequirement] for when a [Pokemon] is expected to be in a [World].
  *
- * @property identifier The [Identifier] of the [Level] the queried entity is expected to be in.
+ * @property identifier The [Identifier] of the [World] the queried entity is expected to be in.
  * @author Licious
  * @since March 21st, 2022
  */

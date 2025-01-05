@@ -63,7 +63,7 @@ open class ItemInteractionEvolution(
 
     data class ItemInteractionContext(
         val stack: ItemStack,
-        val world: Level
+        val world: World
     )
 
     companion object {

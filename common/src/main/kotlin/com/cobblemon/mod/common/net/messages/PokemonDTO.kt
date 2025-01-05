@@ -72,7 +72,7 @@ class PokemonDTO : Encodable, Decodable {
     var heldItem: ItemStack = ItemStack.EMPTY
     var tetheringId: UUID? = null
     var teraType = ""
-    var dmaxLevel = 0
+    var dmaxWorld = 0
     var gmaxFactor = false
     var tradeable = true
 //    var features: List<SynchronizedSpeciesFeature> = emptyList()
@@ -111,7 +111,7 @@ class PokemonDTO : Encodable, Decodable {
         this.heldItem = pokemon.heldItemNoCopy()
         this.tetheringId = pokemon.tetheringId
         this.teraType = pokemon.teraType.id.toString()
-        this.dmaxLevel = pokemon.dmaxLevel
+        this.dmaxWorld = pokemon.dmaxWorld
         this.gmaxFactor = pokemon.gmaxFactor
         this.tradeable = pokemon.tradeable
         this.featuresBuffer = PacketByteBuf(Unpooled.buffer())
@@ -160,7 +160,7 @@ class PokemonDTO : Encodable, Decodable {
         buffer.writeItemStack(this.heldItem)
         buffer.writeNullable(tetheringId) { _, v -> buffer.writeUuid(v) }
         buffer.writeString(teraType)
-        buffer.writeInt(dmaxLevel)
+        buffer.writeInt(dmaxWorld)
         buffer.writeBoolean(gmaxFactor)
         buffer.writeBoolean(tradeable)
         val featureByteCount = featuresBuffer.readableBytes()
@@ -205,7 +205,7 @@ class PokemonDTO : Encodable, Decodable {
         heldItem = buffer.readItemStack()
         tetheringId = buffer.readNullable { buffer.readUuid() }
         teraType = buffer.readString()
-        dmaxLevel = buffer.readInt()
+        dmaxWorld = buffer.readInt()
         gmaxFactor = buffer.readBoolean()
         tradeable = buffer.readBoolean()
 
@@ -260,7 +260,7 @@ class PokemonDTO : Encodable, Decodable {
             it.swapHeldItem(heldItem, false)
             it.tetheringId = tetheringId
             it.teraType = TeraTypes.get(this.teraType.asIdentifierDefaultingNamespace())!!
-            it.dmaxLevel = dmaxLevel
+            it.dmaxWorld = dmaxWorld
             it.gmaxFactor = gmaxFactor
             it.tradeable = tradeable
             repeat(times = featuresBuffer.readSizedInt(IntSize.U_BYTE)) { _ ->

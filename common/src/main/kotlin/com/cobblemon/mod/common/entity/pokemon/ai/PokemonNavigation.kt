@@ -32,7 +32,7 @@ import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.acos
 
-class PokemonNavigation(val world: Level, val pokemonEntity: PokemonEntity) : GroundPathNavigation(pokemonEntity, world) {
+class PokemonNavigation(val world: World, val pokemonEntity: PokemonEntity) : GroundPathNavigation(pokemonEntity, world) {
     // Lazy init because navigation is instantiated during entity construction and pokemonEntity.form isn't set yet.
     // (pokemonEntity.behaviour is a shortcut to pokemonEntity.form.behaviour)
     // It's JVM field instantiation order stuff, too niche to explain further.
@@ -141,7 +141,7 @@ class PokemonNavigation(val world: Level, val pokemonEntity: PokemonEntity) : Gr
         doStuckDetection(vec3d)
     }
 
-    fun isAirborne(world: Level, pos: BlockPos) =
+    fun isAirborne(world: World, pos: BlockPos) =
         world.getBlockState(pos).isPathfindable(PathComputationType.AIR)
                 && world.getBlockState(pos.below(1)).isPathfindable(PathComputationType.AIR)
                 && world.getBlockState(pos.below(2)).isPathfindable(PathComputationType.AIR)

@@ -16,9 +16,9 @@ import net.minecraft.client.MinecraftClient
 object ServerSettingsPacketHandler : ClientNetworkPacketHandler<ServerSettingsPacket> {
     override fun handle(packet: ServerSettingsPacket, client: Minecraft) {
         ServerSettings.preventCompletePartyDeposit = packet.preventCompletePartyDeposit
-        ServerSettings.displayEntityLevelLabel = packet.displayEntityLevelLabel
+        ServerSettings.displayEntityWorldLabel = packet.displayEntityWorldLabel
         ServerSettings.displayEntityNameLabel = packet.displayEntityNameLabel
-        ServerSettings.maxPokemonLevel = packet.maxPokemonLevel
+        ServerSettings.maxPokemonWorld = packet.maxPokemonWorld
     }
 
 }

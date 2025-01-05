@@ -85,7 +85,7 @@ open class StorageSlot(
         // Ensure elements are not hidden behind Pokémon render
         matrices.pushPose()
         matrices.translate(0.0, 0.0, 100.0)
-        // Level
+        // World
         drawScaledText(
             context = context,
             text = lang("ui.lv.number", pokemon.level),

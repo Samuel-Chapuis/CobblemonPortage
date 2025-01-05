@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.events.pokemon
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.phys.Vec3
 
 /**
@@ -23,7 +23,7 @@ import net.minecraft.world.phys.Vec3
  */
 data class PokemonSentPreEvent(
     val pokemon: Pokemon,
-    val level: ServerLevel,
+    val level: ServerWorld,
     val position: Vec3
 ) : Cancelable()
 

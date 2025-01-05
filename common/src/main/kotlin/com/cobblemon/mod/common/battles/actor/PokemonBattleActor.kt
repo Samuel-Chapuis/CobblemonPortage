@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.messages.client.battle.BattleEndPacket
 import java.util.UUID
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Component
 import net.minecraft.world.phys.Vec3
@@ -37,17 +37,17 @@ class PokemonBattleActor(
     }
     override fun getName() = pokemon.effectedPokemon.species.translatedName
     override fun nameOwned(name: String): MutableComponent = Component.literal(name)
-    override fun getWorldAndPosition(): Pair<ServerLevel, Vec3>? {
+    override fun getWorldAndPosition(): Pair<ServerWorld, Vec3>? {
         // This isn't a great solution, but basically capturing a Pokémon
         // removes the entity from the world, which sure does look similar
         // to an entity perishing -> which is grounds for flee triggering.
         val ownerPlayer = pokemon.effectedPokemon.getOwnerPlayer()
         if (ownerPlayer != null) {
-            return ownerPlayer.serverLevel() to ownerPlayer.position()
+            return ownerPlayer.serverWorld() to ownerPlayer.position()
         }
 
         val entity = this.entity ?: return null
-        val world = entity.level() as? ServerLevel ?: return null
+        val world = entity.level() as? ServerWorld ?: return null
         return world to entity.position()
     }
 

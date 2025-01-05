@@ -77,7 +77,7 @@ class PCBlockEntity(
                 && pcLink.world!!.dimension() == player.level().dimension()
     }
 
-    private fun getInRangeViewerCount(world: Level, pos: BlockPos, range: Double = 5.0): Int {
+    private fun getInRangeViewerCount(world: World, pos: BlockPos, range: Double = 5.0): Int {
         val box = AABB(
             pos.x.toDouble() - range,
             pos.y.toDouble() - range,

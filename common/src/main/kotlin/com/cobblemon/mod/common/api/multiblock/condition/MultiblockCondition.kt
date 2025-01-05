@@ -8,12 +8,12 @@
 
 package com.cobblemon.mod.common.api.multiblock.condition
 
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.phys.shapes.VoxelShape
 
 /**
  *
  */
 interface MultiblockCondition {
-    fun test(world: ServerLevel, box: VoxelShape): Boolean
+    fun test(world: ServerWorld, box: VoxelShape): Boolean
 }

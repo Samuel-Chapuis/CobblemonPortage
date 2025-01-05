@@ -100,7 +100,7 @@ object BattleRegistry {
             packedTeamBuilder.append("$ivsInOrder|")
             // Shiny
             packedTeamBuilder.append("${if (pk.shiny) "S" else ""}|")
-            // Level
+            // World
             packedTeamBuilder.append("${pk.level}|")
 
             // Misc
@@ -114,9 +114,9 @@ object BattleRegistry {
             packedTeamBuilder.append(",")
             // Gigantamax
             packedTeamBuilder.append("${if (pk.gmaxFactor) "G" else ""},")
-            // DynamaxLevel
+            // DynamaxWorld
             // 0 - 9, empty == 10
-            packedTeamBuilder.append("${if (pk.dmaxLevel < 10) pk.dmaxLevel else ""},")
+            packedTeamBuilder.append("${if (pk.dmaxWorld < 10) pk.dmaxWorld else ""},")
             // Teratype
             packedTeamBuilder.append("${pokemon.effectedPokemon.teraType.showdownId()},")
 

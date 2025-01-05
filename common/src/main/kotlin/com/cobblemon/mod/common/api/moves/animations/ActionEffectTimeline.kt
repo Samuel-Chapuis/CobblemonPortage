@@ -71,7 +71,7 @@ class ActionEffectContext(
     var canBeInterrupted: Boolean = false,
     var interrupted: Boolean = false,
     var currentKeyframes: MutableList<ActionEffectKeyframe> = mutableListOf(),
-    var level: Level? = null
+    var level: World? = null
 ) {
     inline fun <reified T> findOneProvider() = providers.filterIsInstance<T>().firstOrNull()
 }

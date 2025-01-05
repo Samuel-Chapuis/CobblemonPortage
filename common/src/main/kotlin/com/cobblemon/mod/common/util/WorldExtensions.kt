@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.Item
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.registries.Registries
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
 import net.minecraft.tags.FluidTags
@@ -34,23 +34,23 @@ import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
 
-fun Level.playSoundServer(
+fun World.playSoundServer(
     position: Vec3,
     sound: SoundEvent,
     category: SoundSource = SoundSource.NEUTRAL,
     volume: Float = 1F,
     pitch: Float = 1F
-) = (this as ServerLevel).playSound(null, position.x, position.y, position.z, sound, category, volume, pitch)
+) = (this as ServerWorld).playSound(null, position.x, position.y, position.z, sound, category, volume, pitch)
 
-fun <T : ParticleOptions> Level.sendParticlesServer(
+fun <T : ParticleOptions> World.sendParticlesServer(
     particleType: T,
     position: Vec3,
     particles: Int,
     offset: Vec3,
     speed: Double
-) = (this as ServerLevel).sendParticles(particleType, position.x, position.y, position.z, particles, offset.x, offset.y, offset.z, speed)
+) = (this as ServerWorld).sendParticles(particleType, position.x, position.y, position.z, particles, offset.x, offset.y, offset.z, speed)
 
-fun Level.squeezeWithinBounds(pos: BlockPos): BlockPos {
+fun World.squeezeWithinBounds(pos: BlockPos): BlockPos {
     val border = worldBorder
     return BlockPos(
         pos.x.coerceIn(border.minX.toInt(), border.maxX.toInt()),
@@ -59,7 +59,7 @@ fun Level.squeezeWithinBounds(pos: BlockPos): BlockPos {
     )
 }
 
-fun ServerLevel.isBoxLoaded(box: AABB): Boolean {
+fun ServerWorld.isBoxLoaded(box: AABB): Boolean {
     val startChunkX = SectionPos.posToSectionCoord(box.minX)
     val startChunkZ = SectionPos.posToSectionCoord(box.minZ)
     val endChunkX = SectionPos.posToSectionCoord(box.maxX)
@@ -144,21 +144,21 @@ fun Entity.canFit(vec: Vec3): Boolean {
     return level().noCollision(box)
 }
 
-val Level.itemRegistry: Registry<Item>
+val World.itemRegistry: Registry<Item>
     get() = registryAccess().registryOrThrow(Registries.ITEM)
-val Level.biomeRegistry: Registry<Biome>
+val World.biomeRegistry: Registry<Biome>
     get() = registryAccess().registryOrThrow(Registries.BIOME)
-val Level.worldRegistry: Registry<Level>
+val World.worldRegistry: Registry<World>
     get() = registryAccess().registryOrThrow(Registries.DIMENSION)
-val Level.enchantmentRegistry: Registry<Enchantment>
+val World.enchantmentRegistry: Registry<Enchantment>
     get() = registryAccess().registryOrThrow(Registries.ENCHANTMENT)
-val Level.activityRegistry: Registry<Activity>
+val World.activityRegistry: Registry<Activity>
     get() = registryAccess().registryOrThrow(Registries.ACTIVITY)
-val Level.blockRegistry: Registry<Block>
+val World.blockRegistry: Registry<Block>
     get() = registryAccess().registryOrThrow(Registries.BLOCK)
 
 fun Vec3.traceDownwards(
-    world: Level,
+    world: World,
     maxDistance: Float = 10F,
     stepDistance: Float = 0.5F,
 ): TraceResult? {

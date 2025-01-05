@@ -71,7 +71,7 @@ object SpawnNPCCommand {
     private fun execute(context: CommandContext<CommandSourceStack>, pos: Vec3, level: Int): Int {
         val world = context.source.level
         val blockPos = pos.toBlockPos()
-        if (!Level.isInSpawnableBounds(blockPos)) {
+        if (!World.isInSpawnableBounds(blockPos)) {
             throw INVALID_POS_EXCEPTION.create()
         }
         val npcClass = NPCClassArgumentType.getNPCClass(context, CLASS)

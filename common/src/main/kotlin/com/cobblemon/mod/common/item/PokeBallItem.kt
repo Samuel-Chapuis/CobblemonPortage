@@ -30,7 +30,7 @@ class PokeBallItem(
     }
 }) {
 
-    override fun use(world: Level, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
         val itemStack = player.getItemInHand(usedHand)
         if (world.isServerSide()) {
             throwPokeBall(world, player as ServerPlayer)
@@ -41,7 +41,7 @@ class PokeBallItem(
         return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide)
     }
 
-    private fun throwPokeBall(world: Level, player: ServerPlayer) {
+    private fun throwPokeBall(world: World, player: ServerPlayer) {
         val pokeBallEntity = EmptyPokeBallEntity(pokeBall, player.level(), player).apply {
             val overhandFactor: Float = if (player.xRot < 0) {
                 5f * cos(player.xRot.toRadians())

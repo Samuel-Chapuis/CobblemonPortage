@@ -155,7 +155,7 @@ class DisplayCaseRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEntit
             Items.CREEPER_HEAD
         )
 
-        private fun getPositioningType(stack: ItemStack, world: Level) = when {
+        private fun getPositioningType(stack: ItemStack, world: World) = when {
             mobHeads.contains(stack.item) -> PositioningType.MOB_HEAD
             stack.item is BedItem -> PositioningType.BED
             stack.item is BannerItem -> PositioningType.BANNER

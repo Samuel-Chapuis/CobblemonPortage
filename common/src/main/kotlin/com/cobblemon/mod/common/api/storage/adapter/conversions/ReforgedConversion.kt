@@ -97,7 +97,7 @@ class ReforgedConversion(val base: Path) : CobblemonConverter<CompoundTag> {
         result.gender = Gender.values()[nbt.getInt("Gender")]
         result.shiny = this.find(nbt, "IsShiny", CompoundTag::getBoolean) ?:
                         this.find(nbt, "palette", CompoundTag::getString)?.equals("shiny") ?: false
-        result.level = nbt.getInt("Level")
+        result.level = nbt.getInt("World")
         result.addExperience(SidemodExperienceSource("Reforged"), nbt.getInt("EXP"))
         result.setFriendship(nbt.getInt("Friendship"))
         Abilities.get(nbt.getString("Ability"))?.let { template ->
@@ -135,7 +135,7 @@ class ReforgedConversion(val base: Path) : CobblemonConverter<CompoundTag> {
             val compound = move as CompoundTag
             val id = compound.getString("MoveID").replace(Regex("[-\\s]", RegexOption.IGNORE_CASE), "")
             val pp = compound.getInt("MovePP")
-            val level = compound.getInt("MovePPLevel")
+            val level = compound.getInt("MovePPWorld")
 
             val template = Moves.getByNameOrDummy(id.lowercase())
             result.moveSet.add(template.create(pp, level))

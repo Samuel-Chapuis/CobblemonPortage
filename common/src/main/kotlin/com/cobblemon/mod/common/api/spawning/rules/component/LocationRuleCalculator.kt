@@ -22,7 +22,7 @@ import com.cobblemon.mod.common.util.resolveBoolean
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Holder
 import net.minecraft.core.registries.Registries
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.world.World
 import net.minecraft.world.level.dimension.DimensionType
 
@@ -44,14 +44,14 @@ class LocationRuleCalculator : SpawnRuleComponent {
     @Transient
     private val reusableContext = StringValue("")
     @Transient
-    private lateinit var reusableWorldValue: ObjectValue<Holder<Level>>
+    private lateinit var reusableWorldValue: ObjectValue<Holder<World>>
     @Transient
     private lateinit var reusableDimensionTypeValue: ObjectValue<Holder<DimensionType>>
 
     val allow = "true".asExpressionLike()
 
     override fun isAllowedPosition(
-        world: ServerLevel,
+        world: ServerWorld,
         pos: BlockPos,
         contextCalculator: SpawningContextCalculator<*, *>
     ): Boolean {

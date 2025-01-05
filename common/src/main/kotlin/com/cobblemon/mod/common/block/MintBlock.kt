@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.item.MintLeafItem
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.tags.BlockTags
 import net.minecraft.util.RandomSource
 import net.minecraft.util.StringRepresentable
@@ -45,14 +45,14 @@ class MintBlock(private val mintType: MintType, settings: Properties) : CropBloc
 
     // DO NOT use withAge
     // Explanation for these 2 beautiful copy pasta are basically that we need to keep the blockstate and that's not possible with the default impl :(
-    override fun randomTick(state: BlockState, world: ServerLevel, pos: BlockPos, random: RandomSource) {
+    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: RandomSource) {
         if (world.getRawBrightness(pos, 0) < 9 || this.isMaxAge(state) || random.nextInt(8) != 0) {
             return
         }
         this.growCrops(world, pos, state, false)
     }
 
-    override fun growCrops(world: Level, pos: BlockPos, state: BlockState) {
+    override fun growCrops(world: World, pos: BlockPos, state: BlockState) {
         this.growCrops(world, pos, state, true)
     }
 
@@ -69,13 +69,13 @@ class MintBlock(private val mintType: MintType, settings: Properties) : CropBloc
 
     override fun getBaseSeedId(): ItemLike = this.mintType.getSeed()
 
-    override fun getBonemealAgeIncrease(world: Level): Int = 1
+    override fun getBonemealAgeIncrease(world: World): Int = 1
 
     override fun getShape(state: BlockState, world: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = AGE_TO_SHAPE[this.getAge(state)]
 
     fun isWild(state: BlockState): Boolean = state.getValue(IS_WILD)
 
-    private fun growCrops(world: Level, pos: BlockPos, state: BlockState, useRandomGrowthAmount: Boolean) {
+    private fun growCrops(world: World, pos: BlockPos, state: BlockState, useRandomGrowthAmount: Boolean) {
         val growthAmount = if (useRandomGrowthAmount) this.getBonemealAgeIncrease(world) else 1
         val newAge = (this.getAge(state) + growthAmount).coerceAtMost(MATURE_AGE)
         world.setBlock(pos, state.setValue(AGE, newAge), UPDATE_CLIENTS)

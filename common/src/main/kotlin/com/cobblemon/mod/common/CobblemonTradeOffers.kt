@@ -40,7 +40,7 @@ object CobblemonTradeOffers {
      */
     fun tradeOffersFor(profession: VillagerProfession): List<VillagerTradeOffer> = when (profession) {
         CobblemonVillagerProfessions.NURSE -> listOf(
-            // requiredLevel = the level of the villager for the trade to appear for
+            // requiredWorld = the level of the villager for the trade to appear for
             // Novice = 1, Apprentice = 2, Journeyman = 3, Expert = 4, Master = 5
             VillagerTradeOffer(CobblemonVillagerProfessions.NURSE, 1, listOf(
                 // i = emeraldCost, j = numberOfItems, k = maxUses, l = villagerXp, f = priceMultiplier
@@ -106,20 +106,20 @@ object CobblemonTradeOffers {
      * Represents trade offers from a villager.
      *
      * @property profession The target profession for this trade.
-     * @property requiredLevel The level required must be a possible level.
+     * @property requiredWorld The level required must be a possible level.
      * @property tradeOffers The list of the possible [TradeOffers.Factory].
      *
-     * @throws IllegalArgumentException If the [requiredLevel] is not within the bounds of [VillagerData.MIN_LEVEL] & [VillagerData.MAX_LEVEL].
+     * @throws IllegalArgumentException If the [requiredWorld] is not within the bounds of [VillagerData.MIN_LEVEL] & [VillagerData.MAX_LEVEL].
      */
     data class VillagerTradeOffer(
         val profession: VillagerProfession,
-        val requiredLevel: Int,
+        val requiredWorld: Int,
         override val tradeOffers: List<VillagerTrades.ItemListing>
     ): TradeOfferHolder {
 
         init {
-            if (this.requiredLevel < VillagerData.MIN_VILLAGER_LEVEL || this.requiredLevel > VillagerData.MAX_VILLAGER_LEVEL) {
-                throw IllegalArgumentException("${this.requiredLevel} is not a valid level for a villager trade accepted range is ${VillagerData.MIN_VILLAGER_LEVEL}-${VillagerData.MAX_VILLAGER_LEVEL}")
+            if (this.requiredWorld < VillagerData.MIN_VILLAGER_LEVEL || this.requiredWorld > VillagerData.MAX_VILLAGER_LEVEL) {
+                throw IllegalArgumentException("${this.requiredWorld} is not a valid level for a villager trade accepted range is ${VillagerData.MIN_VILLAGER_LEVEL}-${VillagerData.MAX_VILLAGER_LEVEL}")
             }
         }
 

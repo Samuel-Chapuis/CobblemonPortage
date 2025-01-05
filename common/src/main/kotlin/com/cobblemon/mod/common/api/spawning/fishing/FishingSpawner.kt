@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.spawning.CobblemonSpawnPools
 import com.cobblemon.mod.common.api.spawning.context.FishingSpawningContext
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
 import com.cobblemon.mod.common.api.spawning.spawner.TriggerSpawner
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerWorld
 import net.minecraft.core.BlockPos
 
 /**
@@ -25,7 +25,7 @@ open class FishingSpawner(
     override val name: String = "fishing",
     pool: SpawnPool = CobblemonSpawnPools.WORLD_SPAWN_POOL
 ) : TriggerSpawner<FishingSpawnCause>(name, pool) {
-    override fun parseContext(cause: FishingSpawnCause, world: ServerLevel, pos: BlockPos): FishingSpawningContext? {
+    override fun parseContext(cause: FishingSpawnCause, world: ServerWorld, pos: BlockPos): FishingSpawningContext? {
         // Maybe confirm that it's water we're fishing in?
         val ctx = FishingSpawningContext(
             cause = cause,

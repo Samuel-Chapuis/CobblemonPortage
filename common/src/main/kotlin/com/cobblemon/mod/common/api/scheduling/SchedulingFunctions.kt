@@ -37,11 +37,11 @@ fun delayedFuture(ticks: Int = 0, seconds: Float = 0F, serverThread: Boolean = f
 @JvmOverloads
 fun afterOnServer(seconds: Float, action: () -> Unit) = ServerTaskTracker.after(seconds, action)
 @JvmOverloads
-fun afterOnServer(ticks: Int, level: Level, action: () -> Unit) = ServerTaskTracker.after(ticks / level.tickRateManager().tickrate(), action)
+fun afterOnServer(ticks: Int, level: World, action: () -> Unit) = ServerTaskTracker.after(ticks / level.tickRateManager().tickrate(), action)
 @JvmOverloads
 fun afterOnClient(seconds: Float, action: () -> Unit) = ClientTaskTracker.after(seconds, action)
 @JvmOverloads
-fun afterOnClient(ticks: Int, level: Level, action: () -> Unit) = ClientTaskTracker.after(ticks / level.tickRateManager().tickrate(), action)
+fun afterOnClient(ticks: Int, level: World, action: () -> Unit) = ClientTaskTracker.after(ticks / level.tickRateManager().tickrate(), action)
 
 @Deprecated("Use lerpOnServer or lerpOnClient, side-ambiguity causes problems now")
 fun lerp(seconds: Float = 0F, serverThread: Boolean = false, action: (Float) -> Unit) = (if (serverThread) ServerTaskTracker else ClientTaskTracker).lerp(seconds, action = action)

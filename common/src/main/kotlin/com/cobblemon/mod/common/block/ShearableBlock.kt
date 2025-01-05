@@ -21,12 +21,12 @@ interface ShearableBlock {
     /**
      * Attempts to shear this block.
      *
-     * @param world The [Level] where the shear is being attempted.
+     * @param world The [World] where the shear is being attempted.
      * @param state The current [BlockState] of this block.
      * @param pos The [BlockPos] of this block.
      * @param successCallback The callback invoked if the shear attempt was successful.
      * @return If the shearing was successful.
      */
-    fun attemptShear(world: Level, state: BlockState, pos: BlockPos, successCallback: () -> Unit = {}): Boolean
+    fun attemptShear(world: World, state: BlockState, pos: BlockPos, successCallback: () -> Unit = {}): Boolean
 
 }
