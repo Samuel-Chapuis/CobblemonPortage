@@ -20,7 +20,7 @@ import net.minecraft.core.Direction
 import net.minecraft.world.WorldlyContainer
 import net.minecraft.world.WorldlyContainerHolder
 import net.minecraft.world.item.context.BlockPlaceContext
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.level.block.BaseEntityBlock
 import net.minecraft.world.level.block.Block

@@ -26,7 +26,7 @@ import net.minecraft.world.entity.schedule.Activity
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.ChunkPos
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity

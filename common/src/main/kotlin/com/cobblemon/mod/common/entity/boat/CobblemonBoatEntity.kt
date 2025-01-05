@@ -26,7 +26,7 @@ import net.minecraft.world.entity.vehicle.Boat
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.WoodType

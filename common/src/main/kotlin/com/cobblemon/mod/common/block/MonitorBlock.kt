@@ -18,7 +18,7 @@ import net.minecraft.core.Direction
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.BlockGetter
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.block.BaseEntityBlock
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Rotation

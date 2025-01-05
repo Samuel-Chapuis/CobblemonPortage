@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.resolveBoolean
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import java.util.concurrent.CompletableFuture
 
 /**

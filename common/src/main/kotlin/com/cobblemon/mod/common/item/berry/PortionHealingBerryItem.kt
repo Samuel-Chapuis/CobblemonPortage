@@ -28,7 +28,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.item.Items
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * A berry that heals the Pokémon by some portion of their max HP.

@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.PlaceOnWaterBlockItem
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.ClipContext
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 class VivichokeItem(block: VivichokeBlock) : ItemNameBlockItem(block, Properties()) {
     override fun use(world: Level, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {

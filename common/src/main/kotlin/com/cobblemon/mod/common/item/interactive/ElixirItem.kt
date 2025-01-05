@@ -26,7 +26,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * Items for recovering PP in all moves at once.

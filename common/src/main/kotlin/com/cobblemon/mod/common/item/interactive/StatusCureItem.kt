@@ -24,7 +24,7 @@ import net.minecraft.world.item.Items
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * An item that cures statuses. Based on the [status] parameter it can be either specific [Status]es or all statuses (none specified).

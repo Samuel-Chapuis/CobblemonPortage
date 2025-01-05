@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.spawning.condition
 
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * Represents the literal name of a moon phase instead of a raw number.

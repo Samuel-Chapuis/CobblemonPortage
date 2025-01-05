@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.scheduling
 import java.util.concurrent.CompletableFuture
 import com.cobblemon.mod.common.util.runOnServer
 import net.minecraft.world.TickRateManager
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 @Deprecated("Use afterOnServer or afterOnClient; ambiguous side is not good for your health")
 @JvmOverloads

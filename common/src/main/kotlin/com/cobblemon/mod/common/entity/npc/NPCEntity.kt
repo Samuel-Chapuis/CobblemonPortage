@@ -80,7 +80,7 @@ import net.minecraft.world.entity.ai.sensing.Sensor
 import net.minecraft.world.entity.ai.sensing.SensorType
 import net.minecraft.world.entity.npc.Npc
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 class NPCEntity(world: Level) : AgeableMob(CobblemonEntities.NPC, world), Npc, PosableEntity, PokemonSender, Schedulable {
     override val schedulingTracker = SchedulingTracker()

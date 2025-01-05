@@ -38,7 +38,7 @@ import java.util.EnumSet
 import net.minecraft.util.Identifier
 import net.minecraft.tags.TagKey
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState

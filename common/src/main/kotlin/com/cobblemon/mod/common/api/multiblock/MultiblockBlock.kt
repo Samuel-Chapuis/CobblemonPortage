@@ -16,7 +16,7 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.block.BaseEntityBlock
 import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.entity.BlockEntity

@@ -35,7 +35,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerEntity
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.Pose
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 class GenericBedrockEntity(world: Level) : Entity(CobblemonEntities.GENERIC_BEDROCK_ENTITY, world), PosableEntity, Schedulable {
     companion object {

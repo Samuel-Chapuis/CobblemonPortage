@@ -24,7 +24,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * A berry that raises friendship but lowers EVs in a particular stat.

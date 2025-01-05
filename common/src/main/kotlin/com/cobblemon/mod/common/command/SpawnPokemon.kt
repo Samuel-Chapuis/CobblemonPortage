@@ -26,7 +26,7 @@ import net.minecraft.commands.Commands.literal
 import net.minecraft.commands.arguments.coordinates.Vec3Argument
 import net.minecraft.network.chat.Component
 import net.minecraft.world.phys.Vec3
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 object SpawnPokemon {
 

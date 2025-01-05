@@ -17,7 +17,7 @@ import net.minecraft.tags.FluidTags
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.ItemLike
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.BlockView
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.CropBlock

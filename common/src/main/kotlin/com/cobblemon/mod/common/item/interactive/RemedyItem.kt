@@ -27,7 +27,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.item.Items
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 class RemedyItem(val remedyStrength: String) : CobblemonItem(Properties()), PokemonSelectingItem, HealingSource {
     companion object {

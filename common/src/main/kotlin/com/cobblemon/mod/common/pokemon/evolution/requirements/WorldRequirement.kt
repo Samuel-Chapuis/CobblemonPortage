@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.evolution.requirements.template.EntityQueryRequirement
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.util.Identifier
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * A [EntityQueryRequirement] for when a [Pokemon] is expected to be in a [Level].

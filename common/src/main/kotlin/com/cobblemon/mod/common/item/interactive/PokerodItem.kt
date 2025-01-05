@@ -42,7 +42,7 @@ import net.minecraft.world.item.FishingRodItem
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 

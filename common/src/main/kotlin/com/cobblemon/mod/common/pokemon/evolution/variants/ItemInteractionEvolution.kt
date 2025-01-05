@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.registry.ItemIdentifierCondition
 import net.minecraft.core.registries.Registries
 import net.minecraft.util.Identifier
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * Represents a [ContextEvolution] with [NbtItemPredicate] context.

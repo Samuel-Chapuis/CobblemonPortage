@@ -21,7 +21,7 @@ import net.minecraft.util.Mth
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.pathfinder.Node
 import net.minecraft.world.level.pathfinder.Path
 import net.minecraft.world.level.pathfinder.PathComputationType

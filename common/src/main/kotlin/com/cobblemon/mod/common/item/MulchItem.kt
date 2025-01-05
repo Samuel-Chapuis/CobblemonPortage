@@ -15,7 +15,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.block.LevelEvent
 
 class MulchItem(val variant: MulchVariant) : CobblemonItem(Properties()) {

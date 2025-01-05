@@ -30,7 +30,7 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.util.Identifier
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 sealed class PokemonState {
     companion object {

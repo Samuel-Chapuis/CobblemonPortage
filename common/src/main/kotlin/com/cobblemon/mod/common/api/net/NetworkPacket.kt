@@ -14,7 +14,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.registry.RegistryKey
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.Identifier
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * Platform abstract blueprint of a packet being sent out.

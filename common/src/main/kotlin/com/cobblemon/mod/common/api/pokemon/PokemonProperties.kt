@@ -60,7 +60,7 @@ import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * A grouping of typical, selectable properties for a Pokémon. This is serializable

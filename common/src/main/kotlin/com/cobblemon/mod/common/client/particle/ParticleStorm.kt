@@ -35,7 +35,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.Vec3
 import kotlin.random.Random
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 /**
  * An instance of a bedrock particle effect.

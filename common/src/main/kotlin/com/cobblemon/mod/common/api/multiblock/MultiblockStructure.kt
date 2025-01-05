@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionResult
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
 

@@ -95,7 +95,7 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType
 import net.minecraft.world.entity.ai.memory.MemoryStatus
 import net.minecraft.world.entity.ai.memory.WalkTarget
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 import net.minecraft.world.explosion.Explosion.DestructionType
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.block.Block

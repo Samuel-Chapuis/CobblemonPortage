@@ -25,7 +25,7 @@ import net.minecraft.core.Direction
 import net.minecraft.core.component.DataComponents
 import net.minecraft.world.item.*
 import net.minecraft.world.item.component.CustomModelData
-import net.minecraft.world.level.Level
+import net.minecraft.world.World
 
 class DisplayCaseRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEntityRenderer<DisplayCaseBlockEntity> {
     val context = RenderContext().also {
