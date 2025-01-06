@@ -45,7 +45,7 @@ class BerryBlockRenderer(private val context: BlockEntityRendererProvider.Contex
 
     override fun shouldRender(blockEntity: BerryBlockEntity, pos: Vec3): Boolean {
         return super.shouldRender(blockEntity, pos)
-                && Minecraft.getInstance().levelRenderer.cullingFrustum.isVisible(AABB.ofSize(pos, 2.0, 4.0, 2.0))
+                && MinecraftClient.getInstance().levelRenderer.cullingFrustum.isVisible(AABB.ofSize(pos, 2.0, 4.0, 2.0))
     }
 
     override fun render(entity: BerryBlockEntity, tickDelta: Float, matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int, overlay: Int) {

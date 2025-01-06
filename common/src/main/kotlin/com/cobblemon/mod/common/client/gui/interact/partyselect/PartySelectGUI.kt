@@ -180,6 +180,6 @@ class PartySelectGUI(
     override fun renderMenuBackground(context: GuiGraphics) {}
 
     fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 }

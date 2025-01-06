@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattlePersistentStatu
 import net.minecraft.client.MinecraftClient
 
 object BattlePersistentStatusHandler : ClientNetworkPacketHandler<BattlePersistentStatusPacket> {
-    override fun handle(packet: BattlePersistentStatusPacket, client: Minecraft) {
+    override fun handle(packet: BattlePersistentStatusPacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
         val (_, activeBattlePokemon) = battle.getPokemonFromPNX(packet.pnx)
         activeBattlePokemon.battlePokemon?.status = packet.status

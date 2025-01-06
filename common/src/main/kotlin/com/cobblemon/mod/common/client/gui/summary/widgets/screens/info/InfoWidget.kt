@@ -161,7 +161,7 @@ class InfoWidget(
             shadow = true
         )
 
-        val mcFont = Minecraft.getInstance().font
+        val mcFont = MinecraftClient.getInstance().font
         val experience = pokemon.experience.toString().text()
         val experienceForThisLevel =
             pokemon.experience - if (pokemon.level == 1) 0 else pokemon.experienceGroup.getExperience(pokemon.level)

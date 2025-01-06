@@ -41,7 +41,7 @@ sealed interface RenderableFace {
 
 class PlayerRenderableFace(val playerId: UUID, override val isLeftSide: Boolean) : RenderableFace {
     override fun render(GuiGraphics: GuiGraphics, partialTicks: Float) {
-        val entity = Minecraft.getInstance().level?.getPlayerByUUID(playerId) ?: return
+        val entity = MinecraftClient.getInstance().level?.getPlayerByUUID(playerId) ?: return
         // All of the maths below is shamelessly stolen from InventoryScreen.drawEntity.
         // the -20 and 5 divided by 40 are for configuring the yaw and pitch tilt of the body and head respectively.
         // For more information, pray for divine inspiration or something idk.

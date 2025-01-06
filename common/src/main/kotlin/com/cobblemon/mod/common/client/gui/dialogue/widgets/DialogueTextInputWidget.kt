@@ -31,7 +31,7 @@ class DialogueTextInputWidget(
     height: Int,
     maxLength: Int = 30
 ) : EditBox(
-    Minecraft.getInstance().font,
+    MinecraftClient.getInstance().font,
     x,
     y,
     width,

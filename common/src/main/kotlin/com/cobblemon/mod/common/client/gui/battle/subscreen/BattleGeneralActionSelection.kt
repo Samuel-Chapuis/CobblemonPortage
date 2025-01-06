@@ -31,12 +31,12 @@ class BattleGeneralActionSelection(
     battleGUI,
     request,
     BattleGUI.OPTION_ROOT_X,
-    Minecraft.getInstance().window.guiScaledHeight - BattleGUI.OPTION_VERTICAL_OFFSET,
+    MinecraftClient.getInstance().window.guiScaledHeight - BattleGUI.OPTION_VERTICAL_OFFSET,
     (BattleOptionTile.OPTION_WIDTH + 3 * BattleGUI.OPTION_HORIZONTAL_SPACING).toInt(),
     (BattleOptionTile.OPTION_HEIGHT + 3 * BattleGUI.OPTION_VERTICAL_SPACING).toInt(),
     battleLang("choose_action")
 ) {
-    val backButton = BattleBackButton(BattleGUI.OPTION_ROOT_X - 3F, Minecraft.getInstance().window.guiScaledHeight - 22F)
+    val backButton = BattleBackButton(BattleGUI.OPTION_ROOT_X - 3F, MinecraftClient.getInstance().window.guiScaledHeight - 22F)
     val lastAnwseredRequest = CobblemonClient.battle?.getLastAnsweredRequest()
 
     val tiles = mutableListOf<BattleOptionTile>()
@@ -44,14 +44,14 @@ class BattleGeneralActionSelection(
         var rank = 0
 
         addOption(rank++, battleLang("ui.fight"), BattleGUI.fightResource) {
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             battleGUI.changeActionSelection(BattleMoveSelection(battleGUI, request))
         }
 
         if (request.moveSet?.trapped != true) {
             addOption(rank++, battleLang("ui.switch"), BattleGUI.switchResource) {
                 battleGUI.changeActionSelection(BattleSwitchPokemonSelection(battleGUI, request))
-                playDownSound(Minecraft.getInstance().soundManager)
+                playDownSound(MinecraftClient.getInstance().soundManager)
             }
         }
 
@@ -59,26 +59,26 @@ class BattleGeneralActionSelection(
             if (battle.battleFormat.battleType.pokemonPerSide == 1 && battle.side2.actors.first().type == ActorType.WILD) {
                 addOption(rank++, battleLang("ui.capture"), BattleGUI.bagResource) {
                     CobblemonClient.battle?.minimised = true
-                    Minecraft.getInstance().player?.displayClientMessage(battleLang("throw_pokeball_prompt"), false)
-                    playDownSound(Minecraft.getInstance().soundManager)
+                    MinecraftClient.getInstance().player?.displayClientMessage(battleLang("throw_pokeball_prompt"), false)
+                    playDownSound(MinecraftClient.getInstance().soundManager)
                 }
 
                 addOption(rank++, battleLang("ui.run"), BattleGUI.runResource) {
                     CobblemonClient.battle?.minimised = true
-                    Minecraft.getInstance().player?.displayClientMessage(battleLang("run_prompt"), false)
-                    playDownSound(Minecraft.getInstance().soundManager)
+                    MinecraftClient.getInstance().player?.displayClientMessage(battleLang("run_prompt"), false)
+                    playDownSound(MinecraftClient.getInstance().soundManager)
                 }
             } else {
                 addOption(rank++, battleLang("ui.forfeit"), BattleGUI.forfeitResource) {
                     battleGUI.changeActionSelection(ForfeitConfirmationSelection(battleGUI, request))
-                    playDownSound(Minecraft.getInstance().soundManager)
+                    playDownSound(MinecraftClient.getInstance().soundManager)
                 }
             }
         }
     }
 
     private fun addOption(rank: Int, text: MutableComponent, texture: Identifier, onClick: () -> Unit) {
-        val startY = Minecraft.getInstance().window.guiScaledHeight - BattleGUI.OPTION_VERTICAL_OFFSET
+        val startY = MinecraftClient.getInstance().window.guiScaledHeight - BattleGUI.OPTION_VERTICAL_OFFSET
         val x = if (rank % 2 == 0) BattleGUI.OPTION_ROOT_X else BattleGUI.OPTION_ROOT_X + BattleGUI.OPTION_HORIZONTAL_SPACING + BattleOptionTile.OPTION_WIDTH
         val y = if (rank > 1) startY + BattleOptionTile.OPTION_HEIGHT + BattleGUI.OPTION_HORIZONTAL_SPACING else startY
         tiles.add(
@@ -104,7 +104,7 @@ class BattleGeneralActionSelection(
 
     override fun mousePrimaryClicked(mouseX: Double, mouseY: Double): Boolean {
         if (lastAnwseredRequest != null && backButton.isHovered(mouseX, mouseY)) {
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             CobblemonClient.battle?.cancelLastAnsweredRequest()
             battleGUI.selectAction(request, null)
             battleGUI.changeActionSelection(null)

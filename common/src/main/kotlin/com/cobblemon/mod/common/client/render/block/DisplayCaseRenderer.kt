@@ -77,7 +77,7 @@ class DisplayCaseRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEntit
         matrices.mulPose(Axis.YP.rotationDegrees(-yRot))
         matrices.mulPose(Axis.YP.rotationDegrees(posType.rotY))
 
-        Minecraft.getInstance().itemRenderer.renderStatic(
+        MinecraftClient.getInstance().itemRenderer.renderStatic(
             stack,
             ItemDisplayContext.GROUND,
             light,
@@ -166,7 +166,7 @@ class DisplayCaseRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEntit
             //stack.item == CobblemonItems.POKEMON_MODEL -> PositioningType.ITEM_MODEL
             stack.item == Items.SHIELD -> PositioningType.SHIELD
             stack.item == Items.DECORATED_POT -> PositioningType.MOB_HEAD
-            Minecraft.getInstance().itemRenderer.getModel(stack, world, null, 0).isGui3d -> PositioningType.BLOCK_MODEL
+            MinecraftClient.getInstance().itemRenderer.getModel(stack, world, null, 0).isGui3d -> PositioningType.BLOCK_MODEL
             else -> PositioningType.ITEM_MODEL
         }
     }

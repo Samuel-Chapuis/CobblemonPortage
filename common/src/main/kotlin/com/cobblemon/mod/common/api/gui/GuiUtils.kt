@@ -112,7 +112,7 @@ fun drawCenteredText(
     shadow: Boolean = true
 ) {
     val comp = (text as MutableComponent).let { if (font != null) it.font(font) else it }
-    val textRenderer = Minecraft.getInstance().font
+    val textRenderer = MinecraftClient.getInstance().font
     context.drawString(textRenderer, comp, x.toInt() - textRenderer.width(comp) / 2, y.toInt(), colour, shadow)
 }
 
@@ -130,7 +130,7 @@ fun drawText(
     pMouseY: Number? = null
 ): Boolean {
     val comp = if (font == null) text else text.setStyle(text.style.withFont(font))
-    val textRenderer = Minecraft.getInstance().font
+    val textRenderer = MinecraftClient.getInstance().font
     var x = x
     val width = textRenderer.width(comp)
     if (centered) {
@@ -159,7 +159,7 @@ fun drawTextJustifiedRight(
     shadow: Boolean = true
 ) {
     val comp = text.let { if (font != null) it.font(font) else it }
-    val font = Minecraft.getInstance().font
+    val font = MinecraftClient.getInstance().font
     context.drawString(font, comp, x.toInt() - font.width(comp), y.toInt(), colour, shadow)
 }
 
@@ -173,7 +173,7 @@ fun drawText(
     colour: Int,
     shadow: Boolean = true
 ) {
-    val textRenderer = Minecraft.getInstance().font
+    val textRenderer = MinecraftClient.getInstance().font
     var tweakedX = x
     if (centered) {
         val width = textRenderer.width(text)
@@ -197,7 +197,7 @@ fun drawString(
             it.toFlatList(it.style.withFont(this))
         }
     }
-    val textRenderer = Minecraft.getInstance().font
+    val textRenderer = MinecraftClient.getInstance().font
     context.drawString(textRenderer, comp, x.toInt(), y.toInt(), colour, shadow)
 }
 
@@ -267,7 +267,7 @@ fun drawPosablePortrait(
         RenderSystem.setShaderLights(light1, light2)
         quaternion1.conjugate()
 
-        val immediate = Minecraft.getInstance().renderBuffers().bufferSource()
+        val immediate = MinecraftClient.getInstance().renderBuffers().bufferSource()
         val buffer = immediate.getBuffer(renderType)
         val packedLight = LightTexture.pack(11, 7)
 
@@ -327,10 +327,10 @@ fun drawProfile(
         matrixStack.mulPose(quaternion1)
         matrixStack.mulPose(quaternion2)
         Lighting.setupForEntityInInventory()
-        val entityRenderDispatcher = Minecraft.getInstance().entityRenderDispatcher
+        val entityRenderDispatcher = MinecraftClient.getInstance().entityRenderDispatcher
         entityRenderDispatcher.setRenderShadow(true)
 
-        val bufferSource = Minecraft.getInstance().renderBuffers().bufferSource()
+        val bufferSource = MinecraftClient.getInstance().renderBuffers().bufferSource()
         val buffer = bufferSource.getBuffer(renderType)
         val light1 = Vector3f(-1F, 1F, 1.0F)
         val light2 = Vector3f(1.3F, -1F, 1.0F)

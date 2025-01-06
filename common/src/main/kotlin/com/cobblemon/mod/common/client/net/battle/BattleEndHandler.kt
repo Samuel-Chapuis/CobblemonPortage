@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleEndPacket
 import net.minecraft.client.MinecraftClient
 
 object BattleEndHandler : ClientNetworkPacketHandler<BattleEndPacket> {
-    override fun handle(packet: BattleEndPacket, client: Minecraft) {
+    override fun handle(packet: BattleEndPacket, client: MinecraftClient) {
         CobblemonClient.endBattle()
     }
 }

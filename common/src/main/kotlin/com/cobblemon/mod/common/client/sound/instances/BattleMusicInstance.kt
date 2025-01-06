@@ -32,7 +32,7 @@ import net.minecraft.util.Mth
 class BattleMusicInstance(sound: SoundEvent, volume: Float = 1.0F, pitch: Float = 1.0F) :
     SimpleSoundInstance(sound, SoundSource.MUSIC, volume, pitch, SoundInstance.createUnseededRandom(), 0.0, 0.0, 0.0), TickableSoundInstance {
 
-    private val soundManager = Minecraft.getInstance().soundManager;
+    private val soundManager = MinecraftClient.getInstance().soundManager;
     private var fade: Boolean = false
     private var done: Boolean = false
     private var tickCount = 0

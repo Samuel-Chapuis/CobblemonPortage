@@ -30,7 +30,7 @@ class CategoryList(
     private val categories: List<RenderableStarterCategory>,
     val listX: Int,
     val listY: Int,
-    private val minecraft: Minecraft = Minecraft.getInstance(),
+    private val minecraft: MinecraftClient = MinecraftClient.getInstance(),
     private val starterSelectionScreen: StarterSelectionScreen
 ) : ObjectSelectionList<CategoryList.Category>(
     minecraft,

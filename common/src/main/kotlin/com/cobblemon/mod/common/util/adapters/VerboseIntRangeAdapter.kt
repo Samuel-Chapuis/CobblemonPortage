@@ -12,7 +12,7 @@ import com.google.gson.*
 import java.lang.reflect.Type
 
 /**
- * A verbose [IntRange] adapter used to be more consistent with Minecraft when used alongside their conditional ranges in datapack data.
+ * A verbose [IntRange] adapter used to be more consistent with MinecraftClient when used alongside their conditional ranges in datapack data.
  *
  * @author Licious
  * @since December 2nd, 2022

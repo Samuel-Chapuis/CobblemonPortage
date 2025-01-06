@@ -29,10 +29,10 @@ abstract class ClientPlayerActionRequest(expiryTime: Int) : ClientPlayerIcon(exp
     companion object {
         /** Client message to inform the player about a [langKey] request from [senderID]. */
         fun notify(langKey: String, senderID: UUID, vararg params: Any) {
-            val sender = Minecraft.getInstance().level?.players()?.find { it.uuid == senderID }
+            val sender = MinecraftClient.getInstance().level?.players()?.find { it.uuid == senderID }
             val senderName = sender?.name?.copy()?.aqua() ?: Component.literal("NULL").red()
             val lang = lang(langKey, senderName, *params).yellow()
-            Minecraft.getInstance().player!!.displayClientMessage(lang, false)
+            MinecraftClient.getInstance().player!!.displayClientMessage(lang, false)
         }
     }
 }

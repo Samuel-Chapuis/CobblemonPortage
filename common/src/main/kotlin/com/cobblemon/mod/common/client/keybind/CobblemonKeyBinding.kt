@@ -12,7 +12,7 @@ import com.mojang.blaze3d.platform.InputConstants
 import net.minecraft.client.KeyMapping
 
 /**
- * An extensions for Minecraft's [KeyBinding]
+ * An extensions for MinecraftClient's [KeyBinding]
  * When creating a new [CobblemonKeyBinding] [onPress] will be called when the key is pressed.
  *
  * @author Qu

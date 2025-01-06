@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.spawning.condition.SpawningCondition
  * A range of time ticks for a world mainly to be used in [SpawningCondition]s. A time range
  * is defined as any number of tick ranges. For example, you can define a time range
  * as being between 0 and 12000 ticks or 13000 and 14000 ticks just for a single time
- * range. This is to deal with the limitation that Minecraft days go from 0 ticks to
+ * range. This is to deal with the limitation that MinecraftClient days go from 0 ticks to
  * 24000 ticks before looping back to 0.
  *
  * There are a series of in-built time ranges that you can replace if they don't suit

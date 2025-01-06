@@ -16,7 +16,7 @@ import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.util.Mth
 
 /**
- * Emulation of Minecraft's punch animation.
+ * Emulation of MinecraftClient's punch animation.
  *
  * @author Hiroku
  * @since August 5th, 2024

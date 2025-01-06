@@ -43,7 +43,7 @@ import net.minecraft.world.level.storage.loot.LootParams
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
-import net.minecraft.world.level.block.LecternBlock as MinecraftLecternBlock
+import net.minecraft.world.level.block.LecternBlock as MinecraftClientLecternBlock
 
 class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
     companion object {
@@ -61,19 +61,19 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
 
     override fun getRenderShape(blockState: BlockState?) = RenderShape.MODEL
 
-    override fun getOcclusionShape(blockState: BlockState?, blockGetter: BlockGetter?, blockPos: BlockPos?): VoxelShape = MinecraftLecternBlock.SHAPE_COMMON
+    override fun getOcclusionShape(blockState: BlockState?, blockGetter: BlockGetter?, blockPos: BlockPos?): VoxelShape = MinecraftClientLecternBlock.SHAPE_COMMON
 
     override fun useShapeForLightOcclusion(blockState: BlockState?) = true
 
-    override fun getCollisionShape(blockState: BlockState?, blockGetter: BlockGetter?, blockPos: BlockPos?, collisionContext: CollisionContext?): VoxelShape = MinecraftLecternBlock.SHAPE_COLLISION
+    override fun getCollisionShape(blockState: BlockState?, blockGetter: BlockGetter?, blockPos: BlockPos?, collisionContext: CollisionContext?): VoxelShape = MinecraftClientLecternBlock.SHAPE_COLLISION
 
     override fun getShape(blockState: BlockState, blockGetter: BlockGetter?, blockPos: BlockPos?, collisionContext: CollisionContext?): VoxelShape {
         return when (blockState.getValue(FACING) as Direction) {
-            Direction.NORTH -> MinecraftLecternBlock.SHAPE_NORTH
-            Direction.SOUTH -> MinecraftLecternBlock.SHAPE_SOUTH
-            Direction.EAST -> MinecraftLecternBlock.SHAPE_EAST
-            Direction.WEST -> MinecraftLecternBlock.SHAPE_WEST
-            else -> MinecraftLecternBlock.SHAPE_COMMON
+            Direction.NORTH -> MinecraftClientLecternBlock.SHAPE_NORTH
+            Direction.SOUTH -> MinecraftClientLecternBlock.SHAPE_SOUTH
+            Direction.EAST -> MinecraftClientLecternBlock.SHAPE_EAST
+            Direction.WEST -> MinecraftClientLecternBlock.SHAPE_WEST
+            else -> MinecraftClientLecternBlock.SHAPE_COMMON
         }
     }
 

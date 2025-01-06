@@ -124,7 +124,7 @@ val PosableState.isInWater: Boolean
 val PosableState.isInWaterOrRain: Boolean
     get() = getEntity()?.isInWaterOrRain == true
 
-fun Screen.isInventoryKeyPressed(client: Minecraft?, keyCode: Int, scanCode: Int): Boolean {
+fun Screen.isInventoryKeyPressed(client: MinecraftClient?, keyCode: Int, scanCode: Int): Boolean {
     return client?.options?.keyInventory?.matches(keyCode, scanCode) == true
 }
 

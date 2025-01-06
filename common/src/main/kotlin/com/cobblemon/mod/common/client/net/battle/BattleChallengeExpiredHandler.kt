@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleChallengeExpire
 import net.minecraft.client.MinecraftClient
 
 object BattleChallengeExpiredHandler : ClientNetworkPacketHandler<BattleChallengeExpiredPacket> {
-    override fun handle(packet: BattleChallengeExpiredPacket, client: Minecraft) {
+    override fun handle(packet: BattleChallengeExpiredPacket, client: MinecraftClient) {
         val iter = CobblemonClient.requests.battleChallenges.iterator()
         while(iter.hasNext()) {
             val entry = iter.next()

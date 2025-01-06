@@ -154,7 +154,7 @@ class PokemonClientDelegate : PosableState(), PokemonSideDelegate {
                                     it.swing(it.usedItemHand ?: InteractionHand.MAIN_HAND)
                                 }
                             }
-                            val client = Minecraft.getInstance()
+                            val client = MinecraftClient.getInstance()
                             val sound = MovingSoundInstance(SoundEvent.createVariableRangeEvent(CobblemonSounds.POKE_BALL_TRAIL.location), SoundSource.PLAYERS, { sendOutPosition?.add(sendOutOffset) }, 0.1f, 1f, false, 20, 0)
                             if (!playedThrowingSound) {
                                 client.soundManager.play(sound)
@@ -202,7 +202,7 @@ class PokemonClientDelegate : PosableState(), PokemonSideDelegate {
                                             //This could potentially cause strange issues if the matrix has a translation component here.
                                             wrapper.updateMatrix(matrix.last().pose())
                                             wrapper.updatePosition(Vec3(newPos.x, newPos.y, newPos.z))
-                                            val world = Minecraft.getInstance().level ?: return@let
+                                            val world = MinecraftClient.getInstance().level ?: return@let
                                             ParticleStorm(effect, wrapper, wrapper, world).spawn()
                                             val ballsparks =
                                                 BedrockParticleOptionsRepository.getEffect(cobblemonResource("${ballType}/${mode}/ballsparks"))
@@ -266,7 +266,7 @@ class PokemonClientDelegate : PosableState(), PokemonSideDelegate {
                             currentEntity.isInvisible = false
                             ballDone = false
                             val soundPos = currentEntity.position()
-                            val client = Minecraft.getInstance()
+                            val client = MinecraftClient.getInstance()
 
                         val soundEvent = if (currentEntity.pokemon.shiny) {
                             CobblemonSounds.POKE_BALL_SHINY_SEND_OUT
@@ -381,7 +381,7 @@ class PokemonClientDelegate : PosableState(), PokemonSideDelegate {
     }
 
     fun getClientShinyPokemon() {
-        val player = Minecraft.getInstance().player ?: return
+        val player = MinecraftClient.getInstance().player ?: return
         val isWithinRange = player.position().distanceTo(currentEntity.position()) <= Cobblemon.config.shinyNoticeParticlesDistance
 
         if (currentEntity.pokemon.shiny && currentEntity.ownerUUID == null && !player.isSpectator ) {

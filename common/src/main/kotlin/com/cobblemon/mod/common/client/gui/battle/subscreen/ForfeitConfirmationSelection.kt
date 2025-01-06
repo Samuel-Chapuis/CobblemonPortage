@@ -46,8 +46,8 @@ class ForfeitConfirmationSelection(
     var declineButton: BattleResponseButton
 
     init {
-        val xPos = (Minecraft.getInstance().window.guiScaledWidth / 2) - (WIDTH / 2)
-        val yPos = (Minecraft.getInstance().window.guiScaledHeight / 2) - (HEIGHT / 2)
+        val xPos = (MinecraftClient.getInstance().window.guiScaledWidth / 2) - (WIDTH / 2)
+        val yPos = (MinecraftClient.getInstance().window.guiScaledHeight / 2) - (HEIGHT / 2)
 
         acceptButton = BattleResponseButton(xPos + 22, yPos + 18, true) {}
         declineButton = BattleResponseButton(xPos + 57, yPos + 18, false) {}
@@ -67,7 +67,7 @@ class ForfeitConfirmationSelection(
                     pendingRequest = CobblemonClient.battle?.getFirstUnansweredRequest()
                 }
             }
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             return true
         }
 
@@ -77,8 +77,8 @@ class ForfeitConfirmationSelection(
     override fun renderWidget(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         if (opacity <= 0.05F) return
 
-        val xPos = (Minecraft.getInstance().window.guiScaledWidth / 2) - (WIDTH / 2)
-        val yPos = (Minecraft.getInstance().window.guiScaledHeight / 2) - (HEIGHT / 2)
+        val xPos = (MinecraftClient.getInstance().window.guiScaledWidth / 2) - (WIDTH / 2)
+        val yPos = (MinecraftClient.getInstance().window.guiScaledHeight / 2) - (HEIGHT / 2)
 
         blitk(
             matrixStack = context.pose(),

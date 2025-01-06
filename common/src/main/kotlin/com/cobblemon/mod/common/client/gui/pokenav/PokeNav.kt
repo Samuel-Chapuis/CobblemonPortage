@@ -85,7 +85,7 @@ class PokeNav : Screen(Component.translatable("cobblemon.ui.pokenav.title")), Co
      */
     override fun keyPressed(pKeyCode: Int, pScanCode: Int, pModifiers: Int): Boolean {
         if (isInventoryKeyPressed(minecraft, pKeyCode, pScanCode)) {
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
             return true
         }
 
@@ -96,7 +96,7 @@ class PokeNav : Screen(Component.translatable("cobblemon.ui.pokenav.title")), Co
             InputConstants.KEY_DOWN, InputConstants.KEY_S -> 0 to 1
             InputConstants.KEY_SPACE -> {
                 val button = this.buttons.get(currentSelectionPos.first, currentSelectionPos.second)
-                button?.playDownSound(Minecraft.getInstance().soundManager)
+                button?.playDownSound(MinecraftClient.getInstance().soundManager)
                 button?.onPress()
                 0 to 0
             }
@@ -112,7 +112,7 @@ class PokeNav : Screen(Component.translatable("cobblemon.ui.pokenav.title")), Co
 
     override fun keyReleased(pKeyCode: Int, pScanCode: Int, pModifiers: Int): Boolean {
         if ((pKeyCode == PokeNavigatorBinding.boundKey().value || pKeyCode == InputConstants.KEY_LSHIFT || pKeyCode == InputConstants.KEY_RSHIFT) && aboutToClose) {
-            Minecraft.getInstance().setScreen(null) // So we only close if the Key was released
+            MinecraftClient.getInstance().setScreen(null) // So we only close if the Key was released
         }
         return super.keyReleased(pKeyCode, pScanCode, pModifiers)
     }
@@ -338,13 +338,13 @@ class PokeNav : Screen(Component.translatable("cobblemon.ui.pokenav.title")), Co
         try {
             Summary.open(CobblemonClient.storage.myParty.slots, true, CobblemonClient.storage.selectedSlot)
         } catch (e: Exception) {
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
             Cobblemon.LOGGER.debug("Failed to open the summary from the PokeNav screen", e)
         }
     }
 
     private fun onPressExit(button: Button) {
-        Minecraft.getInstance().setScreen(null)
+        MinecraftClient.getInstance().setScreen(null)
     }
 
 }

@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.npc.CloseNPCEditorPacket
 import net.minecraft.client.MinecraftClient
 
 object CloseNPCEditorHandler : ClientNetworkPacketHandler<CloseNPCEditorPacket> {
-    override fun handle(packet: CloseNPCEditorPacket, client: Minecraft) {
+    override fun handle(packet: CloseNPCEditorPacket, client: MinecraftClient) {
         val screen = client.screen
         if (screen is NPCEditorScreen) {
             screen.onClose()

@@ -152,7 +152,7 @@ class StarterSelectionScreen(private val categories: List<RenderableStarterCateg
                     selected = currentSelection
                 )
             )
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
         }
 
         addRenderableWidget(selectionButton)
@@ -190,8 +190,8 @@ class StarterSelectionScreen(private val categories: List<RenderableStarterCateg
                 pWidth = 16, pHeight = 12,
                 pXTexStart = 0, pYTexStart = 0, pYDiffText = 0
             ) {
-                Minecraft.getInstance().setScreen(null)
-                Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
+                MinecraftClient.getInstance().setScreen(null)
+                MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
             }
         )
     }
@@ -289,7 +289,7 @@ class StarterSelectionScreen(private val categories: List<RenderableStarterCateg
     }
 
     private fun right() {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
         currentSelection = rightOfCurrentSelection()
         updateSelection()
     }
@@ -297,7 +297,7 @@ class StarterSelectionScreen(private val categories: List<RenderableStarterCateg
     private fun rightOfCurrentSelection() : Int = if (currentSelection + 1 <= currentCategory.pokemon.size - 1) currentSelection + 1 else 0
 
     private fun left() {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
         currentSelection = leftOfCurrentSelection()
         updateSelection()
     }
@@ -332,7 +332,7 @@ class StarterSelectionScreen(private val categories: List<RenderableStarterCateg
 
     override fun keyPressed(keyCode: Int, scanCode: Int, modifiers: Int): Boolean {
         if (minecraft?.options?.keyInventory?.matches(keyCode, scanCode) == true) {
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
             return true
         }
 

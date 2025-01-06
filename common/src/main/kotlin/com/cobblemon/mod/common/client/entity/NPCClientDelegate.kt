@@ -44,7 +44,7 @@ class NPCClientDelegate : PosableState(), NPCSideDelegate {
             val currentTexture = getEntity().entityData.get(NPCEntity.NPC_PLAYER_TEXTURE)
             val textureResource = cobblemonResource(npcEntity.uuid.toString())
             if (currentTexture.model != NPCPlayerModelType.NONE) {
-                Minecraft.getInstance().textureManager.register(textureResource, DynamicTexture(NativeImage.read(currentTexture.texture)))
+                MinecraftClient.getInstance().textureManager.register(textureResource, DynamicTexture(NativeImage.read(currentTexture.texture)))
                 runtime.environment.setSimpleVariable("texture", StringValue(textureResource.toString()))
             }
         }

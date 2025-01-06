@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket
 import net.minecraft.client.MinecraftClient
 
 class PokemonUpdatePacketHandler<T : PokemonUpdatePacket<T>> : ClientNetworkPacketHandler<T> {
-    override fun handle(packet: T, client: Minecraft) {
+    override fun handle(packet: T, client: MinecraftClient) {
         packet.applyToPokemon()
         val player = client.player ?: return
         PokemonOnShoulderRenderer.clearCache(player)

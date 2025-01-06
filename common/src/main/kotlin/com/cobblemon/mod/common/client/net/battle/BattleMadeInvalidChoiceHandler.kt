@@ -15,11 +15,11 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleMadeInvalidChoi
 import net.minecraft.client.MinecraftClient
 
 object BattleMadeInvalidChoiceHandler : ClientNetworkPacketHandler<BattleMadeInvalidChoicePacket> {
-    override fun handle(packet: BattleMadeInvalidChoicePacket, client: Minecraft) {
+    override fun handle(packet: BattleMadeInvalidChoicePacket, client: MinecraftClient) {
         //Remove previous selected action, so user can select a new action
         val battle = CobblemonClient.battle ?: return
         battle.mustChoose = true
-        val gui = Minecraft.getInstance().screen
+        val gui = MinecraftClient.getInstance().screen
         if (gui is BattleGUI) {
             gui.removeInvalidBattleActionSelection()
         }

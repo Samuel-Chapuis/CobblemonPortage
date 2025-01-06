@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeCancelledPacket
 import net.minecraft.client.MinecraftClient
 
 object TradeCancelledHandler : ClientNetworkPacketHandler<TradeCancelledPacket> {
-    override fun handle(packet: TradeCancelledPacket, client: Minecraft) {
+    override fun handle(packet: TradeCancelledPacket, client: MinecraftClient) {
         val trade = CobblemonClient.trade ?: return
         trade.cancelEmitter.emit(Unit)
         CobblemonClient.trade = null

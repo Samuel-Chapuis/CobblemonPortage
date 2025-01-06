@@ -16,8 +16,8 @@ import com.cobblemon.mod.common.net.messages.client.storage.pc.OpenPCPacket
 import net.minecraft.client.MinecraftClient
 
 object OpenPCHandler : ClientNetworkPacketHandler<OpenPCPacket> {
-    override fun handle(packet: OpenPCPacket, client: Minecraft) {
+    override fun handle(packet: OpenPCPacket, client: MinecraftClient) {
         val pc = CobblemonClient.storage.pcStores[packet.storeID] ?: return
-        Minecraft.getInstance().setScreen(PCGUI(pc, CobblemonClient.storage.myParty, PCGUIConfiguration()))
+        MinecraftClient.getInstance().setScreen(PCGUI(pc, CobblemonClient.storage.myParty, PCGUIConfiguration()))
     }
 }

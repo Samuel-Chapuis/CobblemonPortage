@@ -19,7 +19,7 @@ import net.minecraft.core.RegistryAccess
 
 /**
  * A [OneToOneFileStoreAdapter] that can arbitrarily save a single [PokemonStore] into an [CompoundTag] with the
- * help of Minecraft's [NbtIo]. This is arguably the best persistence method for [PokemonStore]s and is absolutely
+ * help of MinecraftClient's [NbtIo]. This is arguably the best persistence method for [PokemonStore]s and is absolutely
  * the most efficient [FileStoreAdapter].
  *
  * @author Hiroku

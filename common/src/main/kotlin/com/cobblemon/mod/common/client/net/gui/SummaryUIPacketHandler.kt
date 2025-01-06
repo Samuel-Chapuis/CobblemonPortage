@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.ui.SummaryUIPacket
 import net.minecraft.client.MinecraftClient
 
 object SummaryUIPacketHandler: ClientNetworkPacketHandler<SummaryUIPacket> {
-    override fun handle(packet: SummaryUIPacket, client: Minecraft) {
+    override fun handle(packet: SummaryUIPacket, client: MinecraftClient) {
         try {
             Summary.open(
                 party = packet.pokemon,

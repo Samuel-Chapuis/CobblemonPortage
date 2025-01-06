@@ -111,12 +111,12 @@ fun drawProfilePokemon(
         }
         matrixStack.mulPose(rotation)
         Lighting.setupForEntityInInventory()
-        val entityRenderDispatcher = Minecraft.getInstance().entityRenderDispatcher
+        val entityRenderDispatcher = MinecraftClient.getInstance().entityRenderDispatcher
         rotation.conjugate()
         entityRenderDispatcher.overrideCameraOrientation(rotation)
         entityRenderDispatcher.setRenderShadow(true)
 
-        val bufferSource = Minecraft.getInstance().renderBuffers().bufferSource()
+        val bufferSource = MinecraftClient.getInstance().renderBuffers().bufferSource()
         val buffer = bufferSource.getBuffer(renderType)
         val light1 = Vector3f(-1F, 1F, 1.0F)
         val light2 = Vector3f(1.3F, -1F, 1.0F)

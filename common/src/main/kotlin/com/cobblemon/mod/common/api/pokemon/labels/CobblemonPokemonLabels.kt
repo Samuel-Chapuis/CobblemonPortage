@@ -45,7 +45,7 @@ object CobblemonPokemonLabels {
 
     /**
      * Represents a Pokémon that has multiple forms depending on the region they're from.
-     * In Cobblemon/Minecraft terms there are no regions, but we follow the official concept.
+     * In Cobblemon/MinecraftClient terms there are no regions, but we follow the official concept.
      */
     const val REGIONAL = "regional"
 

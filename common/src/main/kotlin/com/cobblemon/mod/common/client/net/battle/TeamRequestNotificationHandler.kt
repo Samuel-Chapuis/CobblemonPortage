@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.TeamRequestNotificati
 import net.minecraft.client.MinecraftClient
 
 object TeamRequestNotificationHandler : ClientNetworkPacketHandler<TeamRequestNotificationPacket> {
-    override fun handle(packet: TeamRequestNotificationPacket, client: Minecraft) {
+    override fun handle(packet: TeamRequestNotificationPacket, client: MinecraftClient) {
         CobblemonClient.requests.multiBattleTeamRequests[packet.senderID] = ClientTeamRequest(packet.requestID, packet.senderID, packet.expiryTime)
         ClientPlayerIcon.update(packet.senderID)
     }

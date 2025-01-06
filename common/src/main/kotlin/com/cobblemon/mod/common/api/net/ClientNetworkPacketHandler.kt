@@ -11,5 +11,5 @@ package com.cobblemon.mod.common.api.net
 import net.minecraft.client.MinecraftClient
 
 interface ClientNetworkPacketHandler<T: NetworkPacket<T>> : PacketHandler<T>{
-    fun handle(packet: T, client: Minecraft)
+    fun handle(packet: T, client: MinecraftClient)
 }

@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.pokedex.ServerConfirmedRegis
 import net.minecraft.client.MinecraftClient
 
 object ServerConfirmedRegisterHandler : ClientNetworkPacketHandler<ServerConfirmedRegisterPacket> {
-    override fun handle(packet: ServerConfirmedRegisterPacket, client: Minecraft) {
+    override fun handle(packet: ServerConfirmedRegisterPacket, client: MinecraftClient) {
         CobblemonClient.pokedexUsageContext.onServerConfirmedRegister(packet)
     }
 }

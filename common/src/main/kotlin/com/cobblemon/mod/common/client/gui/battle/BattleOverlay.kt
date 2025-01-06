@@ -59,7 +59,7 @@ import net.minecraft.util.Mth.ceil
 import org.joml.Vector3f
 import kotlin.math.floor
 
-class BattleOverlay : Gui(Minecraft.getInstance()), Schedulable {
+class BattleOverlay : Gui(MinecraftClient.getInstance()), Schedulable {
     companion object {
         const val MAX_OPACITY = 1.0
         const val MIN_OPACITY = 0.5
@@ -115,7 +115,7 @@ class BattleOverlay : Gui(Minecraft.getInstance()), Schedulable {
     override val schedulingTracker = SchedulingTracker()
 
     override fun render(context: GuiGraphics, tickCounter: DeltaTracker) {
-        val tickDelta = tickCounter.realtimeDeltaTicks.takeIf { !Minecraft.getInstance()!!.isPaused } ?: 0F
+        val tickDelta = tickCounter.realtimeDeltaTicks.takeIf { !MinecraftClient.getInstance()!!.isPaused } ?: 0F
         schedulingTracker.update(tickDelta / 20F)
         passedSeconds += tickDelta / 20
         if (passedSeconds > 100) {
@@ -127,9 +127,9 @@ class BattleOverlay : Gui(Minecraft.getInstance()), Schedulable {
         } else {
             min(opacity + tickDelta * OPACITY_CHANGE_PER_SECOND, MAX_OPACITY)
         }
-        val currentScreen = Minecraft.getInstance().screen
+        val currentScreen = MinecraftClient.getInstance().screen
         if (!hidePortraits) {
-            val playerUUID = Minecraft.getInstance().player?.uuid ?: return
+            val playerUUID = MinecraftClient.getInstance().player?.uuid ?: return
             val side1 = if (battle.side1.actors.any { it.uuid == playerUUID }) battle.side1 else battle.side2
             val side2 = if (side1 == battle.side1) battle.side2 else battle.side1
 
@@ -141,13 +141,13 @@ class BattleOverlay : Gui(Minecraft.getInstance()), Schedulable {
             side2.activeClientBattlePokemon.forEachIndexed { index, activeClientBattlePokemon -> drawTile(context, tickDelta, activeClientBattlePokemon, false, side2.activeClientBattlePokemon.count() - index - 1, battle.knowledge, false, false, battle.battleFormat.battleType.pokemonPerSide > 1) }
         }
 
-        if (Minecraft.getInstance().screen !is BattleGUI && battle.mustChoose) {
+        if (MinecraftClient.getInstance().screen !is BattleGUI && battle.mustChoose) {
             val textOpacity = PROMPT_TEXT_OPACITY_CURVE(passedSeconds)
             drawScaledText(
                 context = context,
                 text = battleLang("ui.actions_label", PartySendBinding.boundKey().displayName),
-                x = Minecraft.getInstance().window.guiScaledWidth / 2,
-                y = Minecraft.getInstance().window.guiScaledHeight / 5,
+                x = MinecraftClient.getInstance().window.guiScaledWidth / 2,
+                y = MinecraftClient.getInstance().window.guiScaledHeight / 5,
                 opacity = textOpacity,
                 centered = true
             )
@@ -164,7 +164,7 @@ class BattleOverlay : Gui(Minecraft.getInstance()), Schedulable {
     }
 
     fun drawTile(context: GuiGraphics, tickDelta: Float, activeBattlePokemon: ActiveClientBattlePokemon, left: Boolean, rank: Int, dexState: PokedexEntryProgress, hasCommand: Boolean = false, isHovered: Boolean = false, isCompact: Boolean = false) {
-        val mc = Minecraft.getInstance()
+        val mc = MinecraftClient.getInstance()
 
         val battlePokemon = activeBattlePokemon.battlePokemon ?: return
         val battle = CobblemonClient.battle ?: return
@@ -517,7 +517,7 @@ class BattleOverlay : Gui(Minecraft.getInstance()), Schedulable {
         RenderSystem.setShaderLights(light1, light2)
         quaternion1.conjugate()
 
-        val immediate = Minecraft.getInstance().renderBuffers().bufferSource()
+        val immediate = MinecraftClient.getInstance().renderBuffers().bufferSource()
         val buffer = immediate.getBuffer(renderType)
         val packedLight = LightTexture.pack(11, 7)
         model.render(context, matrixStack, buffer, packedLight, OverlayTexture.NO_OVERLAY, -0x1)

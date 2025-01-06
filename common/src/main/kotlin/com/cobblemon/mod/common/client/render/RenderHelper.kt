@@ -31,8 +31,8 @@ import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.item.ItemStack
 
 fun renderScaledGuiItemIcon(itemStack: ItemStack, x: Double, y: Double, scale: Double = 1.0, zTranslation: Float = 100.0F, matrixStack: PoseStack? = null) {
-    val itemRenderer = Minecraft.getInstance().itemRenderer
-    val textureManager = Minecraft.getInstance().textureManager
+    val itemRenderer = MinecraftClient.getInstance().itemRenderer
+    val textureManager = MinecraftClient.getInstance().textureManager
     val model = itemRenderer.getModel(itemStack, null, null, 0)
 
     textureManager.getTexture(TextureAtlas.LOCATION_BLOCKS).setFilter(false, false)
@@ -50,7 +50,7 @@ fun renderScaledGuiItemIcon(itemStack: ItemStack, x: Double, y: Double, scale: D
     RenderSystem.applyModelViewMatrix()
 
     val stack = matrixStack ?: PoseStack()
-    val immediate = Minecraft.getInstance().renderBuffers().bufferSource()
+    val immediate = MinecraftClient.getInstance().renderBuffers().bufferSource()
     val bl = !model.usesBlockLight()
     if (bl) Lighting.setupForFlatItems()
 
@@ -117,7 +117,7 @@ fun drawScaledText(
         return
     }
 
-    val textWidth = Minecraft.getInstance().font.width(if (font != null) text.font(font) else text)
+    val textWidth = MinecraftClient.getInstance().font.width(if (font != null) text.font(font) else text)
     val extraScale = if (textWidth < maxCharacterWidth) 1F else (maxCharacterWidth / textWidth.toFloat())
     val fontHeight = if (font == null) 5F else 6F
     val matrices = context.pose()
@@ -138,7 +138,7 @@ fun drawScaledText(
     matrices.popPose()
     // Draw tooltip that was created with onHover and is attached to the MutableComponent
     if (isHovered) {
-        context.renderComponentHoverEffect(Minecraft.getInstance().font, text.style, pMouseX!!, pMouseY!!)
+        context.renderComponentHoverEffect(MinecraftClient.getInstance().font, text.style, pMouseX!!, pMouseY!!)
     }
 }
 
@@ -187,7 +187,7 @@ fun drawScaledTextJustifiedRight(
     if (opacity.toFloat() < 0.05F) {
         return
     }
-    val textWidth = Minecraft.getInstance().font.width(if (font != null) text.font(font) else text)
+    val textWidth = MinecraftClient.getInstance().font.width(if (font != null) text.font(font) else text)
     val extraScale = if (textWidth < maxCharacterWidth) 1F else (maxCharacterWidth / textWidth.toFloat())
     val fontHeight = if (font == null) 5F else 6F
     val matrixStack = context.pose()

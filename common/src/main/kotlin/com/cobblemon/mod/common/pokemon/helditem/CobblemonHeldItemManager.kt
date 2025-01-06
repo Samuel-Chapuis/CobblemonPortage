@@ -177,7 +177,7 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
     /**
      * Registers a custom mapping from [Item] to showdown ID string.
      *
-     * @param item The Minecraft [Item] instance that has a specific showdownId.
+     * @param item The MinecraftClient [Item] instance that has a specific showdownId.
      * @param showdownId The showdown name of this item.
      */
     fun registerRemap(item: Item, showdownId: String) {

@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.util.resolve
 import net.minecraft.client.MinecraftClient
 
 object PlayPosableAnimationHandler : ClientNetworkPacketHandler<PlayPosableAnimationPacket> {
-    override fun handle(packet: PlayPosableAnimationPacket, client: Minecraft) {
+    override fun handle(packet: PlayPosableAnimationPacket, client: MinecraftClient) {
         val world = client.level ?: return
         val entity = world.getEntity(packet.entityId) ?: return
         if (entity is PosableEntity) {

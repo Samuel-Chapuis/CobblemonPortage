@@ -34,7 +34,7 @@ class SimpleNPCTextInputWidget(
     val shadow: Boolean = true,
     val wrap: Boolean = false
 ) : EditBox(
-    Minecraft.getInstance().font,
+    MinecraftClient.getInstance().font,
     posX + TEXT_PADDING,
     posY,
     width,
@@ -66,7 +66,7 @@ class SimpleNPCTextInputWidget(
         val clickedState = super.mouseClicked(mouseX, mouseY, button)
 
         if (wrap) {
-            val splitLines = Minecraft.getInstance().font.splitter.splitLines(value, width - 8, Style.EMPTY)
+            val splitLines = MinecraftClient.getInstance().font.splitter.splitLines(value, width - 8, Style.EMPTY)
             val clickedLineIndex = floor((mouseY - y)/11).toInt()
 
             if (clickedLineIndex >= 0 && splitLines.size > clickedLineIndex) {
@@ -74,7 +74,7 @@ class SimpleNPCTextInputWidget(
                 var lineSubstring = ""
                 for (char in lineAtIndex.string) {
                     lineSubstring += char
-                    val startToLineWidth = Minecraft.getInstance().font.width(lineSubstring.text())
+                    val startToLineWidth = MinecraftClient.getInstance().font.width(lineSubstring.text())
                     if ((mouseX - x) <= startToLineWidth) break
                 }
                 var unwrappedLine = ""
@@ -113,7 +113,7 @@ class SimpleNPCTextInputWidget(
             var cursorLineIndex = -1
             var cursorLinePos = 0
             var accumlatedLength = 0
-            val wrappedLines = Minecraft.getInstance().font.splitter.splitLines(input, width - (TEXT_PADDING * 2), Style.EMPTY)
+            val wrappedLines = MinecraftClient.getInstance().font.splitter.splitLines(input, width - (TEXT_PADDING * 2), Style.EMPTY)
 
             for ((index, line) in wrappedLines.withIndex()) {
                 accumlatedLength += line.string.length
@@ -133,7 +133,7 @@ class SimpleNPCTextInputWidget(
             }
 
             if (showCursor && !value.isEmpty() && cursorPosition != value.length) {
-                val startToCursorWidth = Minecraft.getInstance().font.width((cursorLine.substring(0, cursorLinePos).text()))
+                val startToCursorWidth = MinecraftClient.getInstance().font.width((cursorLine.substring(0, cursorLinePos).text()))
                 context.fill(
                     RenderType.guiTextHighlight(),
                     x + startToCursorWidth - 1,

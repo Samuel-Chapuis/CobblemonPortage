@@ -34,7 +34,7 @@ class SearchWidget(
     height: Int,
     text: Component = "Search".text(),
     val update: () -> (Unit)
-): EditBox(Minecraft.getInstance().font, posX.toInt(), posY.toInt(), width, height, text), CobblemonRenderable {
+): EditBox(MinecraftClient.getInstance().font, posX.toInt(), posY.toInt(), width, height, text), CobblemonRenderable {
 
     companion object {
         private val backgroundOverlay = cobblemonResource("textures/gui/pokedex/pokedex_screen_search_overlay.png")
@@ -95,7 +95,7 @@ class SearchWidget(
         )
 
         if (showCursor && !value.isEmpty() && cursorPosition != value.length) {
-            val startToCursorWidth = Minecraft.getInstance().font.width((input.getString(cursorPosition).text().bold()).font(CobblemonResources.DEFAULT_LARGE))
+            val startToCursorWidth = MinecraftClient.getInstance().font.width((input.getString(cursorPosition).text().bold()).font(CobblemonResources.DEFAULT_LARGE))
             context.fill(
                 RenderType.guiTextHighlight(),
                 startX + startToCursorWidth - 1,

@@ -98,7 +98,7 @@ class TexturedModel {
 //
 //                    /*
 //                     * The origin has the X and Z flipped, and that also means counting from the opposite side of the
-//                     * cube (second line is accomplishing that part). The reason for this is because Minecraft Java Edition
+//                     * cube (second line is accomplishing that part). The reason for this is because MinecraftClient Java Edition
 //                     * is a "right hand" coordinate system (finger guns time!!) whereas Bedrock presumably is left-hand.
 //                     *
 //                     * Pivots are also inverted fyi.

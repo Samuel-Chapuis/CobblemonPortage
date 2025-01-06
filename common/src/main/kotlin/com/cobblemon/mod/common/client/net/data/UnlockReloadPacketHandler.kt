@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.data.UnlockReloadPacket
 import net.minecraft.client.MinecraftClient
 
 internal object UnlockReloadPacketHandler : ClientNetworkPacketHandler<UnlockReloadPacket> {
-    override fun handle(packet: UnlockReloadPacket, client: Minecraft) {
+    override fun handle(packet: UnlockReloadPacket, client: MinecraftClient) {
         CobblemonDataProvider.canReload = true
     }
 }

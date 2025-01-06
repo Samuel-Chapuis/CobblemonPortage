@@ -32,7 +32,7 @@ class ConfigVariableList(
     var listY: Int,
     val parent: NPCEditorScreen
 ) : ContainerObjectSelectionList<ConfigVariable>(
-    Minecraft.getInstance(),
+    MinecraftClient.getInstance(),
     WIDTH, // width
     HEIGHT, // height
     0, // top
@@ -118,7 +118,7 @@ class ConfigVariableList(
     fun isHovered(mouseX: Double, mouseY: Double) = mouseX.toFloat() in (x.toFloat()..(x.toFloat() + WIDTH)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + HEIGHT))
 
     class ConfigVariable(val variable: NPCConfigVariable, val value: String, private val parent: ConfigVariableList) : Entry<ConfigVariable>() {
-        val client: Minecraft = Minecraft.getInstance()
+        val client: MinecraftClient = MinecraftClient.getInstance()
         var _focused = false
         var children = mutableListOf<GuiEventListener>()
 

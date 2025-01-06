@@ -39,7 +39,7 @@ class BattleMoveSelection(
     battleGUI = battleGUI,
     request = request,
     x = 20,
-    y = Minecraft.getInstance().window.guiScaledHeight - 84,
+    y = MinecraftClient.getInstance().window.guiScaledHeight - 84,
     width = 100,
     height = 100,
     battleLang("ui.select_move")
@@ -67,14 +67,14 @@ class BattleMoveSelection(
     }
     var moveTiles = baseTiles
 
-    val backButton = BattleBackButton(x - 11F, Minecraft.getInstance().window.guiScaledHeight - 22F)
+    val backButton = BattleBackButton(x - 11F, MinecraftClient.getInstance().window.guiScaledHeight - 22F)
     val gimmickButtons = moveSet.getGimmicks().mapIndexed { index, gimmick ->
         val initOff = BattleBackButton.WIDTH * 0.65F
         val xOff = initOff + BattleGimmickButton.SPACING * index
         BattleGimmickButton.create(gimmick, this, backButton.x + xOff, backButton.y)
     }
 
-    val shiftButton = BattleShiftButton(x + 22.5F, Minecraft.getInstance().window.guiScaledHeight - 22F )
+    val shiftButton = BattleShiftButton(x + 22.5F, MinecraftClient.getInstance().window.guiScaledHeight - 22F )
 
     open class MoveTile(
         val moveSelection: BattleMoveSelection,
@@ -179,7 +179,7 @@ class BattleMoveSelection(
 
         fun onClick() {
             if (!selectable) return
-            moveSelection.playDownSound(Minecraft.getInstance().soundManager)
+            moveSelection.playDownSound(MinecraftClient.getInstance().soundManager)
             moveSelection.battleGUI.selectAction(moveSelection.request, response)
         }
     }
@@ -205,17 +205,17 @@ class BattleMoveSelection(
                 move.onClick()
             } else {
                 battleGUI.changeActionSelection(BattleTargetSelection(battleGUI, request, move.move))
-                playDownSound(Minecraft.getInstance().soundManager)
+                playDownSound(MinecraftClient.getInstance().soundManager)
             }
             return true
         } else if (backButton.isHovered(mouseX, mouseY)) {
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             battleGUI.changeActionSelection(null)
         } else if (gimmick != null) {
             gimmickButtons.filter { it != gimmick }.forEach { it.toggled = false }
             moveTiles = if (gimmick.toggle()) gimmick.tiles else baseTiles
         } else if(shiftButton.isHovered(mouseX,mouseY)) {
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             battleGUI.selectAction(request, ShiftActionResponse())
         }
         return false

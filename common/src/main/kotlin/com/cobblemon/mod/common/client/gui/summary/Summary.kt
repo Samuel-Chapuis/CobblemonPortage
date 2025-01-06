@@ -106,7 +106,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
          * @throws IndexOutOfBoundsException If the [selection] is not a possible index of [party].
          */
         fun open(party: Collection<Pokemon?>, editable: Boolean = true, selection: Int = 0) {
-            val mc = Minecraft.getInstance()
+            val mc = MinecraftClient.getInstance()
             val screen = Summary(party, editable, selection)
             mc.setScreen(screen)
         }
@@ -207,7 +207,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
                 if (sideScreenIndex != PARTY) {
                     displaySideScreen(PARTY)
                 } else {
-                    Minecraft.getInstance().setScreen(null)
+                    MinecraftClient.getInstance().setScreen(null)
                 }
             }
         )
@@ -299,7 +299,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
     /**
      * Returns if this Screen is open or not
      */
-    private fun isOpen() = Minecraft.getInstance().screen == this
+    private fun isOpen() = MinecraftClient.getInstance().screen == this
 
     /**
      * Switch center screen
@@ -544,7 +544,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
         val itemY = y + 104
         if (!heldItem.isEmpty) {
             context.renderItem(heldItem, itemX, itemY)
-            context.renderItemDecorations(Minecraft.getInstance().font, heldItem, itemX, itemY)
+            context.renderItemDecorations(MinecraftClient.getInstance().font, heldItem, itemX, itemY)
         }
 
         drawScaledText(
@@ -579,7 +579,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
         // Render Item Tooltip
         if (!heldItem.isEmpty) {
             val itemHovered = mouseX.toFloat() in (itemX.toFloat()..(itemX.toFloat() + 16)) && mouseY.toFloat() in (itemY.toFloat()..(itemY.toFloat() + 16))
-            if (itemHovered) context.renderTooltip(Minecraft.getInstance().font, heldItem, mouseX, mouseY)
+            if (itemHovered) context.renderTooltip(MinecraftClient.getInstance().font, heldItem, mouseX, mouseY)
         }
     }
 
@@ -608,7 +608,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
         val nicknameSelected = this::nicknameEntryWidget.isInitialized && nicknameEntryWidget.isFocused
 
         if (isInventoryKeyPressed(minecraft, keyCode, scanCode) && !nicknameSelected) {
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
             return true
         }
 
@@ -643,14 +643,14 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
     }
 
     fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 
     override fun onClose() {
         if (Cobblemon.config.enableDebugKeys) {
             val model = PokemonModelRepository.getPoser(selectedPokemon.species.resourceIdentifier, modelWidget.state)
-            Minecraft.getInstance().player?.sendSystemMessage(Component.literal("Profile Translation: ${model.profileTranslation}"))
-            Minecraft.getInstance().player?.sendSystemMessage(Component.literal("Profile Scale: ${model.profileScale}"))
+            MinecraftClient.getInstance().player?.sendSystemMessage(Component.literal("Profile Translation: ${model.profileTranslation}"))
+            MinecraftClient.getInstance().player?.sendSystemMessage(Component.literal("Profile Scale: ${model.profileScale}"))
             Cobblemon.LOGGER.info("override var profileTranslation = Vec3d(${model.profileTranslation.x}, ${model.profileTranslation.y}, ${model.profileTranslation.z})")
             Cobblemon.LOGGER.info("override var profileScale = ${model.profileScale}F")
         }

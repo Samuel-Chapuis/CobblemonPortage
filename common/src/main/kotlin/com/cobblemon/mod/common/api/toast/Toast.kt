@@ -197,7 +197,7 @@ class Toast(
     companion object {
 
         /**
-         * The default Minecraft toast frame texture.
+         * The default MinecraftClient toast frame texture.
          */
         val VANILLA_FRAME = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/toasts.png")
 

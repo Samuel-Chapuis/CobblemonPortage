@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleCaptureStartPac
 import net.minecraft.client.MinecraftClient
 
 object BattleCaptureStartHandler : ClientNetworkPacketHandler<BattleCaptureStartPacket> {
-    override fun handle(packet: BattleCaptureStartPacket, client: Minecraft) {
+    override fun handle(packet: BattleCaptureStartPacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
         val targetPokemon = battle.getPokemonFromPNX(packet.targetPNX)
         val tile = targetPokemon.second

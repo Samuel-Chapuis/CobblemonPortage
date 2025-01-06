@@ -83,7 +83,7 @@ fun createPlayerInteractGui(optionsPacket: PlayerInteractOptionsPacket): Interac
         colour = { null },
         tooltipText = "cobblemon.ui.interact.battle",
         onPress = {
-            Minecraft.getInstance().setScreen(BattleConfigureGUI(optionsPacket, activeBattleRequest, activeTeamRequest))
+            MinecraftClient.getInstance().setScreen(BattleConfigureGUI(optionsPacket, activeBattleRequest, activeTeamRequest))
         }
     )
 
@@ -150,5 +150,5 @@ private fun getLangKey(status: PlayerInteractOptionsPacket.OptionStatus) : Strin
 
 
 private fun closeGUI() {
-    Minecraft.getInstance().setScreen(null)
+    MinecraftClient.getInstance().setScreen(null)
 }

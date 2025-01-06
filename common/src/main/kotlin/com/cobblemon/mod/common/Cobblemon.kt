@@ -408,7 +408,7 @@ object Cobblemon {
         return if (isDedicatedServer) {
             server()?.getLevel(dimension)
         } else {
-            val mc = Minecraft.getInstance()
+            val mc = MinecraftClient.getInstance()
             return mc.singleplayerServer?.getLevel(dimension) ?: mc.level
         }
     }

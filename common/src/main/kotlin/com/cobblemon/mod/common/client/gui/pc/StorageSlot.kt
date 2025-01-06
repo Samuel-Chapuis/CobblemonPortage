@@ -159,7 +159,7 @@ open class StorageSlot(
                 && config.permissions.canPasture
                 && config.canSelect(pokemon)
                 && config.pasturedPokemon.get().size < config.limit
-                && config.pasturedPokemon.get().count { it.playerId == Minecraft.getInstance().player!!.uuid } < config.permissions.maxPokemon
+                && config.pasturedPokemon.get().count { it.playerId == MinecraftClient.getInstance().player!!.uuid } < config.permissions.maxPokemon
             ) {
                 blitk(
                     matrixStack = matrices,

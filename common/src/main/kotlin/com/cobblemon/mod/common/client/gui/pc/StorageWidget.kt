@@ -310,7 +310,7 @@ class StorageWidget(
     }
 
     private fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 
     private fun onStorageSlotClicked(button: Button) {

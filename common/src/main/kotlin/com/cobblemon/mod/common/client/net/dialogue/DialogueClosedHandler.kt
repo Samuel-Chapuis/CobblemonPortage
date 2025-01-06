@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.dialogue.DialogueClosedPacke
 import net.minecraft.client.MinecraftClient
 
 object DialogueClosedHandler : ClientNetworkPacketHandler<DialogueClosedPacket> {
-    override fun handle(packet: DialogueClosedPacket, client: Minecraft) {
+    override fun handle(packet: DialogueClosedPacket, client: MinecraftClient) {
         val currentScreen = client.screen as? DialogueScreen ?: return
         if (packet.dialogueId == null || currentScreen.dialogueId == packet.dialogueId) {
             client.setScreen(null)

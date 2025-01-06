@@ -34,7 +34,7 @@ object BattleMusicController {
      */
     val filteredCategories = listOf(SoundSource.AMBIENT, SoundSource.MUSIC, SoundSource.RECORDS)
 
-    private val manager = Minecraft.getInstance().soundManager
+    private val manager = MinecraftClient.getInstance().soundManager
 
     /** Start a new [BattleMusicInstance] and pause all [filteredCategories] sounds currently playing. */
     fun initializeMusic(newMusic: BattleMusicInstance) {

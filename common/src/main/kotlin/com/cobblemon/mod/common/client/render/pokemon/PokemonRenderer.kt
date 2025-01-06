@@ -108,7 +108,7 @@ class PokemonRenderer(
             clientDelegate.updatePartialTicks(partialTicks)
         }
 
-        if (entity.beamMode != 0 && !Minecraft.getInstance().isPaused) {
+        if (entity.beamMode != 0 && !MinecraftClient.getInstance().isPaused) {
             renderTransition(
                 modelNow,
                 entity.beamMode,
@@ -143,7 +143,7 @@ class PokemonRenderer(
         if (this.shouldRenderLabel(entity)) {
             this.renderNameTag(entity, entity.effectiveName(), poseMatrix, buffer, packedLight, partialTicks)
         }
-//        Minecraft.getInstance().bufferBuilders.entityVertexConsumers.draw()
+//        MinecraftClient.getInstance().bufferBuilders.entityVertexConsumers.draw()
     }
 
     fun renderTransition(
@@ -171,7 +171,7 @@ class PokemonRenderer(
         var beamSourcePosition = if (phaseTarget is PosableEntity) {
             (phaseTarget.delegate as PosableState).locatorStates["beam"]?.getOrigin() ?: phaseTarget.position()
         } else {
-            if (phaseTarget.uuid == Minecraft.getInstance().player?.uuid) {
+            if (phaseTarget.uuid == MinecraftClient.getInstance().player?.uuid) {
                 val lookVec = phaseTarget.lookAngle.yRot((PI / 2).toFloat()).multiply(1.0, 0.0, 1.0).normalize()
                 phaseTarget.getEyePosition(partialTicks).subtract(0.0, 0.4, 0.0).subtract(lookVec.scale(0.3))
             } else {
@@ -245,7 +245,7 @@ class PokemonRenderer(
         var beamSourcePosition = if (beamTarget is EmptyPokeBallEntity) {
             (beamTarget.delegate as PokeBallPosableState).locatorStates["beam"]?.getOrigin() ?: beamTarget.position()
         } else {
-            if (beamTarget.uuid == Minecraft.getInstance().player?.uuid) {
+            if (beamTarget.uuid == MinecraftClient.getInstance().player?.uuid) {
                 val lookVec = beamTarget.lookAngle.yRot((PI / 2).toFloat()).multiply(1.0, 0.0, 1.0).normalize()
                 beamTarget.getEyePosition(partialTicks).subtract(0.0, 0.4, 0.0).subtract(lookVec.scale(0.3))
             } else if (beamTarget is NPCEntity) {
@@ -322,7 +322,7 @@ class PokemonRenderer(
         if (entity.entityData.get(PokemonEntity.HIDE_LABEL)) {
             return false
         }
-        val player = Minecraft.getInstance().player ?: return false
+        val player = MinecraftClient.getInstance().player ?: return false
         val delegate = entity.delegate as? PokemonClientDelegate ?: return false
         return (!Cobblemon.config.displayEntityLabelsWhenCrouchingOnly || player.isCrouching) &&
                 player.isLookingAt(entity) &&
@@ -341,7 +341,7 @@ class PokemonRenderer(
         if (entity.isInvisible) {
             return
         }
-        val player = Minecraft.getInstance().player ?: return
+        val player = MinecraftClient.getInstance().player ?: return
         val d = this.entityRenderDispatcher.distanceToSqr(entity)
         if (d <= 4096.0){
             val scale = min(1.5, max(0.65, d.remap(DoubleRange(-16.0, 96.0), DoubleRange(0.0, 1.0))))
@@ -354,7 +354,7 @@ class PokemonRenderer(
             matrices.translate(0.0, 0.0 + (offsetScale / 2), -(scale + offsetScale))
             matrices.scale((0.025 * sizeScale).toFloat(), (-0.025 * sizeScale).toFloat(), (1 * sizeScale).toFloat())
             val matrix4f = matrices.last().pose()
-            val opacity = (Minecraft.getInstance().options.getBackgroundOpacity(0.25F) * 255.0F).toInt() shl 24
+            val opacity = (MinecraftClient.getInstance().options.getBackgroundOpacity(0.25F) * 255.0F).toInt() shl 24
             var label = if (ServerSettings.displayEntityNameLabel &&
                 !Cobblemon.config.displayNameForUnknownPokemon &&
                 CobblemonClient.clientPokedexData.getKnowledgeForSpecies(entity.pokemon.species.resourceIdentifier) == PokedexEntryProgress.NONE) {

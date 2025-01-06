@@ -55,8 +55,8 @@ class ClientEvolutionController(
     override fun add(element: EvolutionDisplay): Boolean {
         var result = this.evolutions.add(element)
         if(result) {
-            Minecraft.getInstance().player?.sendSystemMessage("cobblemon.ui.evolve.hint".asTranslated(pokemon.getDisplayName()).green())
-            Minecraft.getInstance().player?.playSound(CobblemonSounds.EVOLUTION_NOTIFICATION, 1F, 1F)
+            MinecraftClient.getInstance().player?.sendSystemMessage("cobblemon.ui.evolve.hint".asTranslated(pokemon.getDisplayName()).green())
+            MinecraftClient.getInstance().player?.playSound(CobblemonSounds.EVOLUTION_NOTIFICATION, 1F, 1F)
         }
         return result
     }

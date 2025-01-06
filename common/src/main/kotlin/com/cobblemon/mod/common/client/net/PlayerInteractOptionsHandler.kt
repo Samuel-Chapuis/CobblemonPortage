@@ -14,8 +14,8 @@ import com.cobblemon.mod.common.net.messages.client.PlayerInteractOptionsPacket
 import net.minecraft.client.MinecraftClient
 
 object PlayerInteractOptionsHandler : ClientNetworkPacketHandler<PlayerInteractOptionsPacket> {
-    override fun handle(packet: PlayerInteractOptionsPacket, client: Minecraft) {
-        Minecraft.getInstance().setScreen(createPlayerInteractGui(packet))
+    override fun handle(packet: PlayerInteractOptionsPacket, client: MinecraftClient) {
+        MinecraftClient.getInstance().setScreen(createPlayerInteractGui(packet))
     }
 
 }

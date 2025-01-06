@@ -26,7 +26,7 @@ abstract class ScrollingWidget<T : ObjectSelectionList.Entry<T>>(
     slotHeight: Int = 10,
     val scrollBarWidth: Int = 5
 ) : ObjectSelectionList<T>(
-    Minecraft.getInstance(),
+    MinecraftClient.getInstance(),
     width, // Width
     height, // Height
     top, // Top

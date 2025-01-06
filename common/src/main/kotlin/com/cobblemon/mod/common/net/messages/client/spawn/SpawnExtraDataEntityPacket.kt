@@ -30,7 +30,7 @@ abstract class SpawnExtraDataEntityPacket<T: NetworkPacket<T>, E : Entity>(priva
 
     abstract fun checkType(entity: Entity): Boolean
 
-    fun spawnAndApply(client: Minecraft) {
+    fun spawnAndApply(client: MinecraftClient) {
         client.execute {
             val player = client.player ?: return@execute
             val world = player.level() as? ClientLevel ?: return@execute

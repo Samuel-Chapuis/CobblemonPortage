@@ -44,7 +44,7 @@ object CatchRateModifiers {
 
     /**
      * Used by [PokeBalls.DIVE_BALL].
-     * This is the Minecraft interpretation of the generation 3 mechanic.
+     * This is the MinecraftClient interpretation of the generation 3 mechanic.
      */
     val SUBMERGED_IN_WATER = WorldStateModifier { _, entity -> if (entity.isUnderWater) 3.5F else 1F }
 

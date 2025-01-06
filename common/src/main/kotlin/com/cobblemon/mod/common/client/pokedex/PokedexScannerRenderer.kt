@@ -150,7 +150,7 @@ class PokedexScannerRenderer {
                             )
 
                             val gender = pokedexEntityData.gender
-                            val speciesNameWidth = Minecraft.getInstance().font.width(speciesName.font(CobblemonResources.DEFAULT_LARGE))
+                            val speciesNameWidth = MinecraftClient.getInstance().font.width(speciesName.font(CobblemonResources.DEFAULT_LARGE))
                             if (gender != Gender.GENDERLESS) {
                                 val isMale = gender == Gender.MALE
                                 val textSymbol = if (isMale) "♂".text().bold() else "♀".text().bold()
@@ -180,7 +180,7 @@ class PokedexScannerRenderer {
 
                         if (infoDisplayedCounter == 3) {
                             val typeText = lang("type.suffix", pokedexEntityData.form.types.map { it.displayName.copy() }.reduce { acc, next -> acc.plus("/").plus(next) }).bold()
-                            val typeWidth = Minecraft.getInstance().font.width(typeText.font(CobblemonResources.DEFAULT_LARGE))
+                            val typeWidth = MinecraftClient.getInstance().font.width(typeText.font(CobblemonResources.DEFAULT_LARGE))
                             // Split into 2 lines if text width is too long
                             if (typeWidth > (OUTER_INFO_FRAME_WIDTH - 8) && pokedexEntityData.form.secondaryType !== null) {
                                 drawScaledText(
@@ -268,7 +268,7 @@ class PokedexScannerRenderer {
     }
 
     fun renderScanOverlay(graphics: GuiGraphics, tickDelta: Float) {
-        val client = Minecraft.getInstance()
+        val client = MinecraftClient.getInstance()
         val matrices = graphics.pose()
         val usageContext = CobblemonClient.pokedexUsageContext
 
@@ -432,7 +432,7 @@ class PokedexScannerRenderer {
     }
 
     fun onRenderOverlay(graphics: GuiGraphics, tickCounter: DeltaTracker) {
-        if ((CobblemonClient.pokedexUsageContext.scanningGuiOpen || CobblemonClient.pokedexUsageContext.transitionIntervals > 0) && Minecraft.getInstance().options.cameraType.isFirstPerson) {
+        if ((CobblemonClient.pokedexUsageContext.scanningGuiOpen || CobblemonClient.pokedexUsageContext.transitionIntervals > 0) && MinecraftClient.getInstance().options.cameraType.isFirstPerson) {
             val tickDelta = tickCounter.realtimeDeltaTicks
             renderScanOverlay(graphics, tickDelta)
         }

@@ -17,12 +17,12 @@ import net.minecraft.client.MinecraftClient
 import com.mojang.blaze3d.vertex.PoseStack
 
 object SpawnSnowstormParticleHandler : ClientNetworkPacketHandler<SpawnSnowstormParticlePacket> {
-    override fun handle(packet: SpawnSnowstormParticlePacket, client: Minecraft) {
+    override fun handle(packet: SpawnSnowstormParticlePacket, client: MinecraftClient) {
         val wrapper = MatrixWrapper()
         val matrix = PoseStack()
         wrapper.updateMatrix(matrix.last().pose())
         wrapper.updatePosition(packet.position)
-        val world = Minecraft.getInstance().level ?: return
+        val world = MinecraftClient.getInstance().level ?: return
         val effect = BedrockParticleOptionsRepository.getEffect(packet.effectId) ?: return
         ParticleStorm(effect, wrapper, wrapper, world).spawn()
     }

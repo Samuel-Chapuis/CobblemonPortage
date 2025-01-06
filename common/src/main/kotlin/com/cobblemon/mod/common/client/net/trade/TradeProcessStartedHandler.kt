@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeProcessStartedPac
 import net.minecraft.client.MinecraftClient
 
 object TradeProcessStartedHandler : ClientNetworkPacketHandler<TradeProcessStartedPacket> {
-    override fun handle(packet: TradeProcessStartedPacket, client: Minecraft) {
+    override fun handle(packet: TradeProcessStartedPacket, client: MinecraftClient) {
         val trade = CobblemonClient.trade ?: return
         trade.tradeProcessing.emit(Pair(true, packet.isTradeInitiator))
     }

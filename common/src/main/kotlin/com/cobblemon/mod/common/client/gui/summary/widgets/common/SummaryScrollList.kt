@@ -25,7 +25,7 @@ abstract class SummaryScrollList<T : ObjectSelectionList.Entry<T>>(
     val label: MutableComponent,
     slotHeight: Int
 ) : ObjectSelectionList<T>(
-    Minecraft.getInstance(),
+    MinecraftClient.getInstance(),
     WIDTH, // width
     HEIGHT, // height
     0, // top

@@ -14,7 +14,7 @@ import com.google.gson.JsonArray
 import java.util.UUID
 
 /**
- * Mediator service for communicating between the Cobblemon Minecraft mod and Cobblemon showdown service.
+ * Mediator service for communicating between the Cobblemon MinecraftClient mod and Cobblemon showdown service.
  *
  * All outgoing calls to showdown should be done through this layer to decouple the mod from a specific implementation.
  * To get an instance of the service, use the singleton provided via `ShowdownService.get()`

@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.settings.ServerSettingsPacke
 import net.minecraft.client.MinecraftClient
 
 object ServerSettingsPacketHandler : ClientNetworkPacketHandler<ServerSettingsPacket> {
-    override fun handle(packet: ServerSettingsPacket, client: Minecraft) {
+    override fun handle(packet: ServerSettingsPacket, client: MinecraftClient) {
         ServerSettings.preventCompletePartyDeposit = packet.preventCompletePartyDeposit
         ServerSettings.displayEntityLevelLabel = packet.displayEntityLevelLabel
         ServerSettings.displayEntityNameLabel = packet.displayEntityNameLabel

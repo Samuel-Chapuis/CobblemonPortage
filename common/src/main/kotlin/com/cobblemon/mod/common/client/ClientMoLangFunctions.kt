@@ -41,16 +41,16 @@ object ClientMoLangFunctions {
             val soundEvent = SoundEvent.createVariableRangeEvent(params.getString(0).asIdentifierDefaultingNamespace())
             if (soundEvent != null) {
                 val pitch = if (params.contains(2)) params.getDouble(2).toFloat() else 1F
-                Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, pitch))
+                MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, pitch))
             }
         },
         "is_time" to java.util.function.Function { params ->
-            val time = (Minecraft.getInstance().level?.dayTime() ?: 0) % 24000
+            val time = (MinecraftClient.getInstance().level?.dayTime() ?: 0) % 24000
             val min = params.getInt(0)
             val max = params.getInt(1)
             time in min..max
         },
-        "say" to java.util.function.Function { params -> Minecraft.getInstance().player?.sendSystemMessage(params.getString(0).text()) ?: Unit },
+        "say" to java.util.function.Function { params -> MinecraftClient.getInstance().player?.sendSystemMessage(params.getString(0).text()) ?: Unit },
     )
 
     val animationFunctions = hashMapOf<String, Function<PosableModel, Function<MoParams, Any>>>(

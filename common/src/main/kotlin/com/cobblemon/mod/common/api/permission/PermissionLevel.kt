@@ -9,8 +9,8 @@
 package com.cobblemon.mod.common.api.permission
 
 /**
- * Represents the different permission levels used in Minecraft.
- * See the Minecraft Wiki [entry](https://minecraft.fandom.com/wiki/Permission_level) for more information.
+ * Represents the different permission levels used in MinecraftClient.
+ * See the MinecraftClient Wiki [entry](https://minecraft.fandom.com/wiki/Permission_level) for more information.
  * This is mean as a human friendly util over the obfuscated fields in [Commands].
  *
  * @author Licious

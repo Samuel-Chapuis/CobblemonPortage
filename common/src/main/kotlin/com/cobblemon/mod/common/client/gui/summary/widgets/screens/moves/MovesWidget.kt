@@ -146,7 +146,7 @@ class MovesWidget(
             shadow = true
         )
 
-        val mcFont = Minecraft.getInstance().font
+        val mcFont = MinecraftClient.getInstance().font
         val movePower = if (selectedMove != null && selectedMove!!.power.toInt() > 0) selectedMove!!.power.toInt().toString().text() else "—".text()
         drawScaledText(
             context = context,

@@ -34,7 +34,7 @@ object FishingRodTooltipGenerator : TooltipGenerator() {
             resultLines.add(bobberDescription)
         }
 
-        val client = Minecraft.getInstance()
+        val client = MinecraftClient.getInstance()
         val itemRegistry = client.level?.registryAccess()?.registryOrThrow(Registries.ITEM)
         itemRegistry?.let { registry ->
             FishingBaits.getFromRodItemStack(stack)?.toItemStack(registry)?.item?.description

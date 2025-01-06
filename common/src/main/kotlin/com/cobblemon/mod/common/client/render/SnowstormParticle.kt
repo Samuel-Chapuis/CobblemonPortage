@@ -97,7 +97,7 @@ class SnowstormParticle(
     fun getVelocityZ() = zd
 
     fun getSpriteFromAtlas(): TextureAtlasSprite {
-        val atlas = Minecraft.getInstance().particleEngine.textureAtlas
+        val atlas = MinecraftClient.getInstance().particleEngine.textureAtlas
         val sprite = atlas.getSprite(storm.effect.particle.texture)
         return sprite
     }
@@ -131,7 +131,7 @@ class SnowstormParticle(
 
     override fun render(vertexConsumer: VertexConsumer, camera: Camera, tickDelta: Float) {
         if (Cobblemon.implementation.modAPI != ModAPI.FORGE) {
-           if (!Minecraft.getInstance().levelRenderer.cullingFrustum.isVisible(boundingBox)) {
+           if (!MinecraftClient.getInstance().levelRenderer.cullingFrustum.isVisible(boundingBox)) {
                return
            }
         }

@@ -47,10 +47,10 @@ class BattleSwitchPokemonSelection(
     battleGUI,
     request,
     x = 0,
-    y = if (Minecraft.getInstance().window.guiScaledHeight > 304) (Minecraft.getInstance().window.guiScaledHeight / 2) - (BACKGROUND_HEIGHT / 2)
-        else Minecraft.getInstance().window.guiScaledHeight - (BACKGROUND_HEIGHT + 78),
-    width = Minecraft.getInstance().window.guiScaledWidth,
-    height = Minecraft.getInstance().window.guiScaledHeight,
+    y = if (MinecraftClient.getInstance().window.guiScaledHeight > 304) (MinecraftClient.getInstance().window.guiScaledHeight / 2) - (BACKGROUND_HEIGHT / 2)
+        else MinecraftClient.getInstance().window.guiScaledHeight - (BACKGROUND_HEIGHT + 78),
+    width = MinecraftClient.getInstance().window.guiScaledWidth,
+    height = MinecraftClient.getInstance().window.guiScaledHeight,
     battleLang("switch_pokemon")
 ) {
     companion object {
@@ -62,7 +62,7 @@ class BattleSwitchPokemonSelection(
     }
 
     val tiles = mutableListOf<SwitchTile>()
-    val backButton = BattleBackButton(x + 9F, Minecraft.getInstance().window.guiScaledHeight - 22F )
+    val backButton = BattleBackButton(x + 9F, MinecraftClient.getInstance().window.guiScaledHeight - 22F )
 
     var isReviving = false
 
@@ -117,7 +117,7 @@ class BattleSwitchPokemonSelection(
 
         // Draw Title Text
         val text = lang("ui.party")
-        val textWidth = Minecraft.getInstance().font.width(text)
+        val textWidth = MinecraftClient.getInstance().font.width(text)
         drawScaledText(
             context = context,
             text = text,
@@ -149,12 +149,12 @@ class BattleSwitchPokemonSelection(
     override fun mousePrimaryClicked(mouseX: Double, mouseY: Double): Boolean {
         if (backButton.isHovered(mouseX, mouseY)) {
             battleGUI.changeActionSelection(null)
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             return true
         }
         val clicked = tiles.find { it.isHovered(mouseX, mouseY) && if (isReviving) it.isFainted else (!it.isFainted && !it.isCurrentlyInBattle) } ?: return false
         val pokemon = clicked.pokemon
-        playDownSound(Minecraft.getInstance().soundManager)
+        playDownSound(MinecraftClient.getInstance().soundManager)
         battleGUI.selectAction(request, SwitchActionResponse(pokemon.uuid))
 
         return true
@@ -310,7 +310,7 @@ class BattleSwitchPokemonSelection(
 
                 // Gender
                 val gender = pokemon.gender
-                val pokemonDisplayNameWidth = Minecraft.getInstance().font.width(displayText.font(CobblemonResources.DEFAULT_LARGE))
+                val pokemonDisplayNameWidth = MinecraftClient.getInstance().font.width(displayText.font(CobblemonResources.DEFAULT_LARGE))
                 if (gender != Gender.GENDERLESS) {
                     val isMale = gender == Gender.MALE
                     val textSymbol = if (isMale) "♂".text().bold() else "♀".text().bold()

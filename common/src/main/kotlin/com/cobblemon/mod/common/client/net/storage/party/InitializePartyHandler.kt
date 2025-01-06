@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.party.InitializePart
 import net.minecraft.client.MinecraftClient
 
 object InitializePartyHandler : ClientNetworkPacketHandler<InitializePartyPacket> {
-    override fun handle(packet: InitializePartyPacket, client: Minecraft) {
+    override fun handle(packet: InitializePartyPacket, client: MinecraftClient) {
         CobblemonClient.storage.createParty(packet.isThisPlayerParty, packet.uuid, packet.slots)
     }
 }

@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity
  */
 abstract class SoundTracker<T> {
 
-    private val manager = Minecraft.getInstance().soundManager
+    private val manager = MinecraftClient.getInstance().soundManager
 
     /** Map of each [T]'s tracked [SoundInstance]s. Instances are not guaranteed to be active. */
     private val trackedSounds: HashMap<T, HashMap<Identifier, SoundInstance>> = hashMapOf()

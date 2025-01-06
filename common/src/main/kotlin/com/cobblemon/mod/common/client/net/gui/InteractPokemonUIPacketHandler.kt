@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.ui.InteractPokemonUIPacket
 import net.minecraft.client.MinecraftClient
 
 object InteractPokemonUIPacketHandler: ClientNetworkPacketHandler<InteractPokemonUIPacket> {
-    override fun handle(packet: InteractPokemonUIPacket, client: Minecraft) {
+    override fun handle(packet: InteractPokemonUIPacket, client: MinecraftClient) {
         client.setScreen(createPokemonInteractGui(packet.pokemonID, packet.canMountShoulder))
     }
 }

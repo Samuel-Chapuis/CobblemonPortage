@@ -22,7 +22,7 @@ class CancellableSoundInstance(sound: SoundEvent, pos: BlockPos = BlockPos.ZERO,
     SimpleSoundInstance(sound, SoundSource.BLOCKS, volume, pitch, SoundInstance.createUnseededRandom(), pos),
     TickableSoundInstance {
 
-    private val soundManager = Minecraft.getInstance().soundManager;
+    private val soundManager = MinecraftClient.getInstance().soundManager;
     private var done: Boolean = false
     private var unheardTicks = 0
     private var initVolume = 1.0
@@ -47,7 +47,7 @@ class CancellableSoundInstance(sound: SoundEvent, pos: BlockPos = BlockPos.ZERO,
             BlockEntitySoundTracker.stop(this.pos, this)
         } else {
             // Using the player's position as a proxy for a SoundListener.
-            val listenerPos = Minecraft.getInstance().player?.position()?.distanceToSqr(
+            val listenerPos = MinecraftClient.getInstance().player?.position()?.distanceToSqr(
                 Vec3(
                     this.x,
                     this.y,

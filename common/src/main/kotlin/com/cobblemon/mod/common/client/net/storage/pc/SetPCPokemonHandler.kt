@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.pc.SetPCPokemonPacke
 import net.minecraft.client.MinecraftClient
 
 object SetPCPokemonHandler : ClientNetworkPacketHandler<SetPCPokemonPacket> {
-    override fun handle(packet: SetPCPokemonPacket, client: Minecraft) {
+    override fun handle(packet: SetPCPokemonPacket, client: MinecraftClient) {
         CobblemonClient.storage.setPCPokemon(packet.storeID, packet.storePosition, packet.pokemon(client.level!!.registryAccess()))
     }
 }

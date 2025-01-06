@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.callback.OpenMoveCallbackPac
 import net.minecraft.client.MinecraftClient
 
 object OpenMoveCallbackHandler : ClientNetworkPacketHandler<OpenMoveCallbackPacket> {
-    override fun handle(packet: OpenMoveCallbackPacket, client: Minecraft) {
+    override fun handle(packet: OpenMoveCallbackPacket, client: MinecraftClient) {
         client.setScreen(MoveSelectGUI(packet.title, packet.moves, packet.uuid))
     }
 }

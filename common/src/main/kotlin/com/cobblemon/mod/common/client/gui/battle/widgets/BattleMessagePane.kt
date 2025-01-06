@@ -28,7 +28,7 @@ import net.minecraft.util.FormattedCharSequence
 class BattleMessagePane(
     messageQueue: ClientBattleMessageQueue
 ): ObjectSelectionList<BattleMessagePane.BattleMessageLine>(
-    Minecraft.getInstance(),
+    MinecraftClient.getInstance(),
     FRAME_WIDTH, // width
     FRAME_HEIGHT, // height
     1, // top

@@ -48,8 +48,8 @@ class BattleTargetSelection(
     battleGUI = battleGUI,
     request = request,
     x = 0,
-    y = if (Minecraft.getInstance().window.guiScaledHeight > 304) (Minecraft.getInstance().window.guiScaledHeight / 2) - (BattleSwitchPokemonSelection.BACKGROUND_HEIGHT / 2)
-        else Minecraft.getInstance().window.guiScaledHeight - (BattleSwitchPokemonSelection.BACKGROUND_HEIGHT + 78),
+    y = if (MinecraftClient.getInstance().window.guiScaledHeight > 304) (MinecraftClient.getInstance().window.guiScaledHeight / 2) - (BattleSwitchPokemonSelection.BACKGROUND_HEIGHT / 2)
+        else MinecraftClient.getInstance().window.guiScaledHeight - (BattleSwitchPokemonSelection.BACKGROUND_HEIGHT + 78),
     width = 100,
     height = 100,
     battleLang("ui.select_move")
@@ -81,7 +81,7 @@ class BattleTargetSelection(
 
     val targets = request.activePokemon.getAllActivePokemon()
 
-    val backButton = BattleBackButton(x + 9F, Minecraft.getInstance().window.guiScaledHeight - 22F)
+    val backButton = BattleBackButton(x + 9F, MinecraftClient.getInstance().window.guiScaledHeight - 22F)
     val selectableTargetList = move.target.targetList(request.activePokemon)
     val multiTargetList = if(selectableTargetList == null) request.activePokemon.getMultiTargetList(move.target) else null
 
@@ -94,11 +94,11 @@ class BattleTargetSelection(
         val y: Float
         val arrowDirection: ArrowDirection
         if (verticalAligned) {
-            x = this.x + (Minecraft.getInstance().window.guiScaledWidth / 2) + if (isAlly) - (TARGET_WIDTH + MOVE_HORIZONTAL_SPACING) else MOVE_HORIZONTAL_SPACING
+            x = this.x + (MinecraftClient.getInstance().window.guiScaledWidth / 2) + if (isAlly) - (TARGET_WIDTH + MOVE_HORIZONTAL_SPACING) else MOVE_HORIZONTAL_SPACING
             y = this.y + (5 + BACKGROUND_HEIGHT - (TARGET_HEIGHT + MOVE_VERTICAL_SPACING) * teamSize) / 2 + (TARGET_HEIGHT + MOVE_VERTICAL_SPACING) * fieldPos
             arrowDirection = if (isAlly) ArrowDirection.RIGHT else ArrowDirection.LEFT
         } else {
-            x = this.x + Minecraft.getInstance().window.guiScaledWidth / 2 - (TARGET_WIDTH + MOVE_HORIZONTAL_SPACING) * teamSize / 2 + MOVE_HORIZONTAL_SPACING + fieldPos * TARGET_WIDTH
+            x = this.x + MinecraftClient.getInstance().window.guiScaledWidth / 2 - (TARGET_WIDTH + MOVE_HORIZONTAL_SPACING) * teamSize / 2 + MOVE_HORIZONTAL_SPACING + fieldPos * TARGET_WIDTH
             y = this.y + 44 + (if (isAlly) TARGET_HEIGHT + MOVE_VERTICAL_SPACING else 0F)
             arrowDirection = when (fieldPos) {
                 0 -> ArrowDirection.RIGHT
@@ -253,7 +253,7 @@ class BattleTargetSelection(
                 )
                 // Gender
                 val gender = battlePokemon.gender
-                val pokemonDisplayNameWidth = Minecraft.getInstance().font.width(displayText.font(CobblemonResources.DEFAULT_LARGE))
+                val pokemonDisplayNameWidth = MinecraftClient.getInstance().font.width(displayText.font(CobblemonResources.DEFAULT_LARGE))
                 if (gender != Gender.GENDERLESS) {
                     val isMale = gender == Gender.MALE
                     val textSymbol = if (isMale) "♂".text().bold() else "♀".text().bold()
@@ -304,7 +304,7 @@ class BattleTargetSelection(
 
         fun onClick() {
             if (!selectable) return
-            targetSelection.playDownSound(Minecraft.getInstance().soundManager)
+            targetSelection.playDownSound(MinecraftClient.getInstance().soundManager)
             targetSelection.battleGUI.selectAction(targetSelection.request, response)
         }
     }
@@ -317,17 +317,17 @@ class BattleTargetSelection(
             texture = underlayTexture,
             x = x,
             y = y,
-            width = Minecraft.getInstance().window.guiScaledWidth,
+            width = MinecraftClient.getInstance().window.guiScaledWidth,
             height = BACKGROUND_HEIGHT
         )
 
         // Draw Title Text
         val text = lang("battle.select_target")
-        val width = Minecraft.getInstance().font.width(text)
+        val width = MinecraftClient.getInstance().font.width(text)
         drawScaledText(
             context = context,
             text = text,
-            x = (Minecraft.getInstance().window.guiScaledWidth - width) / 2,
+            x = (MinecraftClient.getInstance().window.guiScaledWidth - width) / 2,
             y = y + if (request.activePokemon.getSidePokemon().count() == 2) 25 else 16,
             scale = 1F,
             shadow = true
@@ -345,7 +345,7 @@ class BattleTargetSelection(
             target.onClick()
             return true
         } else if (backButton.isHovered(mouseX, mouseY)) {
-            playDownSound(Minecraft.getInstance().soundManager)
+            playDownSound(MinecraftClient.getInstance().soundManager)
             battleGUI.changeActionSelection(BattleMoveSelection(battleGUI, request))
         }
         return false

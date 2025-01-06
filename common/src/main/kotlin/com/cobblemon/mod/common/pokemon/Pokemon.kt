@@ -417,7 +417,7 @@ open class Pokemon : ShowdownIdentifiable {
 
     /**
      * Either:
-     * - The Minecraft UniqueID of a Player
+     * - The MinecraftClient UniqueID of a Player
      * - A display name for a Fake OT
      * - Null
      */

@@ -80,7 +80,7 @@ abstract class BattleGimmickButton(gimmick: ShowdownMoveset.Gimmick, val x: Floa
 
     fun toggle(): Boolean {
         toggled = !toggled
-        Minecraft.getInstance().soundManager.play(sfx)
+        MinecraftClient.getInstance().soundManager.play(sfx)
         return toggled
     }
 

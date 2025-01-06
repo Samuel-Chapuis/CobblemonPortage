@@ -22,7 +22,7 @@ import net.minecraft.client.MinecraftClient
  */
 object BattleMusicHandler : ClientNetworkPacketHandler<BattleMusicPacket> {
 
-    override fun handle(packet: BattleMusicPacket, client: Minecraft) {
+    override fun handle(packet: BattleMusicPacket, client: MinecraftClient) {
         val soundManager = client.soundManager
         val newMusic = packet.music?.let { BattleMusicInstance(it, packet.volume, packet.pitch) }
         val currMusic = BattleMusicController.music

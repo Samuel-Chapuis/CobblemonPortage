@@ -14,9 +14,9 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleSetTeamPokemonP
 import net.minecraft.client.MinecraftClient
 
 object BattleSetTeamPokemonHandler : ClientNetworkPacketHandler<BattleSetTeamPokemonPacket> {
-    override fun handle(packet: BattleSetTeamPokemonPacket, client: Minecraft) {
+    override fun handle(packet: BattleSetTeamPokemonPacket, client: MinecraftClient) {
         CobblemonClient.battle!!.side1.actors
-            .find { it.uuid == Minecraft.getInstance().player?.uuid }
+            .find { it.uuid == MinecraftClient.getInstance().player?.uuid }
             ?.pokemon = packet.team.toMutableList()
     }
 }

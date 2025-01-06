@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleCaptureShakePac
 import net.minecraft.client.MinecraftClient
 
 object BattleCaptureShakeHandler : ClientNetworkPacketHandler<BattleCaptureShakePacket> {
-    override fun handle(packet: BattleCaptureShakePacket, client: Minecraft) {
+    override fun handle(packet: BattleCaptureShakePacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
         val (_, activeBattlePokemon) = battle.getPokemonFromPNX(packet.targetPNX)
         val ballState = activeBattlePokemon.ballCapturing ?: return

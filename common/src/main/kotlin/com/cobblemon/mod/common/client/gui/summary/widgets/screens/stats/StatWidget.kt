@@ -411,7 +411,7 @@ class StatWidget(
         // Only play sound here as the rest of the widget is meant to be silent
         if (index in 0..4 && statTabIndex != index) {
             statTabIndex = index
-            Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
+            MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(CobblemonSounds.GUI_CLICK, 1.0F))
         }
         return super.mouseClicked(pMouseX, pMouseY, pButton)
     }

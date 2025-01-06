@@ -15,9 +15,9 @@ import net.minecraft.util.Identifier
  * Checks if a resource exists at this location
  */
 fun Identifier.exists(): Boolean {
-    return Minecraft.getInstance().resourceManager.getResource(this).isPresent
+    return MinecraftClient.getInstance().resourceManager.getResource(this).isPresent
 }
 
 fun runOnRender(action: () -> Unit) {
-    Minecraft.getInstance().execute(action)
+    MinecraftClient.getInstance().execute(action)
 }

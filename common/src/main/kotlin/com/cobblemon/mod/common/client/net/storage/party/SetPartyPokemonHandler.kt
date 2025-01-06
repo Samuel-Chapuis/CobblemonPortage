@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.party.SetPartyPokemo
 import net.minecraft.client.MinecraftClient
 
 object SetPartyPokemonHandler : ClientNetworkPacketHandler<SetPartyPokemonPacket> {
-    override fun handle(packet: SetPartyPokemonPacket, client: Minecraft) {
+    override fun handle(packet: SetPartyPokemonPacket, client: MinecraftClient) {
         CobblemonClient.storage.setPartyPokemon(packet.storeID, packet.storePosition, packet.pokemon(client.level!!.registryAccess()))
     }
 }

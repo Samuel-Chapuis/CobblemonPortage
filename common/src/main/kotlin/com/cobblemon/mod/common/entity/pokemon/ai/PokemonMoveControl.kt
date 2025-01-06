@@ -198,7 +198,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
             }
 
             // In battle water antics
-            // Borrowing hard from Minecraft's Boat logic
+            // Borrowing hard from MinecraftClient's Boat logic
             if (this.pokemonEntity.isBattling && mob.isInWater) {
                 var e = 0.0F
                 val exposedForm = this.pokemonEntity.exposedForm
@@ -235,7 +235,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
 
     /*
      * Returns true if a pokemon is touching a water block.
-     * Based on vanilla Minecraft's Boat.checkInWater()
+     * Based on vanilla MinecraftClient's Boat.checkInWater()
      */
     private fun checkInWater(): Boolean {
         val aABB: AABB = mob.boundingBox
@@ -266,7 +266,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
 
     /*
      * Returns true if a pokemon's y level is below it's idealized float height in battle.
-     * Based on vanilla Minecraft's Boat.isUnderWater()
+     * Based on vanilla MinecraftClient's Boat.isUnderWater()
      */
     private fun isUnderwater(): Boolean {
         val aABB: AABB = this.pokemonEntity.boundingBox

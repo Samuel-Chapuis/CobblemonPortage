@@ -20,7 +20,7 @@ import net.minecraft.util.Mth
 
 /**
  * A bimanual arm animation that will have more force while moving and idle sway.
- * This creates a simple predictable arm movement like Minecraft bimanuals.
+ * This creates a simple predictable arm movement like MinecraftClient bimanuals.
  *
  * @author Deltric
  * @since December 21st, 2021

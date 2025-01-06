@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.party.MoveClientPart
 import net.minecraft.client.MinecraftClient
 
 object MoveClientPartyPokemonHandler : ClientNetworkPacketHandler<MoveClientPartyPokemonPacket> {
-    override fun handle(packet: MoveClientPartyPokemonPacket, client: Minecraft) {
+    override fun handle(packet: MoveClientPartyPokemonPacket, client: MinecraftClient) {
         CobblemonClient.storage.moveInParty(packet.storeID, packet.pokemonID, packet.newPosition)
     }
 }

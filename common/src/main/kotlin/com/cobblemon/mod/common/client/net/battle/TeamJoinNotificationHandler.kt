@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.TeamJoinNotificationP
 import net.minecraft.client.MinecraftClient
 
 object TeamJoinNotificationHandler : ClientNetworkPacketHandler<TeamJoinNotificationPacket> {
-    override fun handle(packet: TeamJoinNotificationPacket, client: Minecraft) {
+    override fun handle(packet: TeamJoinNotificationPacket, client: MinecraftClient) {
         CobblemonClient.teamData.multiBattleTeamMembers = packet.teamMemberUUIDs.mapIndexed { index, uuid -> ClientMultiBattleTeamMember(uuid, packet.teamMemberNames[index]) }.toMutableList()
         packet.teamMemberUUIDs.forEach { ClientPlayerIcon.update(it) }
     }

@@ -18,7 +18,7 @@ object CobblemonAtlases {
     val BERRY_SPRITE_ATLAS = register("textures/atlas/berries.png", "berries")
     fun register(atlasId: String, sourcePath: String): TextureAtlasHolder {
         val atlas = CobblemonAtlas(
-            Minecraft.getInstance().textureManager,
+            MinecraftClient.getInstance().textureManager,
             cobblemonResource(atlasId),
             cobblemonResource(sourcePath)
         )

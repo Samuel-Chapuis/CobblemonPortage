@@ -269,7 +269,7 @@ class PCGUI(
             val itemY = y + 98
             if (!heldItem.isEmpty) {
                 context.renderItem(heldItem, itemX, itemY)
-                context.renderItemDecorations(Minecraft.getInstance().font, heldItem, itemX, itemY)
+                context.renderItemDecorations(MinecraftClient.getInstance().font, heldItem, itemX, itemY)
             }
 
             drawScaledText(
@@ -414,7 +414,7 @@ class PCGUI(
             val itemHovered =
                 mouseX.toFloat() in (itemX.toFloat()..(itemX.toFloat() + 16)) && mouseY.toFloat() in (itemY.toFloat()..(itemY.toFloat() + 16))
             if (itemHovered) context.renderTooltip(
-                Minecraft.getInstance().font,
+                MinecraftClient.getInstance().font,
                 pokemon.heldItemNoCopy(),
                 mouseX,
                 mouseY
@@ -424,7 +424,7 @@ class PCGUI(
 
     fun closeNormally(unlink: Boolean = true) {
         playSound(CobblemonSounds.PC_OFF)
-        Minecraft.getInstance().setScreen(null)
+        MinecraftClient.getInstance().setScreen(null)
         if (unlink) {
             UnlinkPlayerFromPCPacket().sendToServer()
         }
@@ -455,7 +455,7 @@ class PCGUI(
         if (isInventoryKeyPressed(minecraft, keyCode, scanCode)) {
             playSound(CobblemonSounds.PC_OFF)
             UnlinkPlayerFromPCPacket().sendToServer()
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
             return true
         }
 
@@ -495,7 +495,7 @@ class PCGUI(
     }
 
     fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 
     fun setPreviewPokemon(pokemon: Pokemon?) {

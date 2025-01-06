@@ -46,8 +46,8 @@ class BattleGUI : Screen(battleLang("gui.title")), CobblemonRenderable {
 
     private lateinit var messagePane: BattleMessagePane
     var opacity = 0F
-    val actor = CobblemonClient.battle?.side1?.actors?.find { it.uuid == Minecraft.getInstance().player?.uuid }
-    val specBackButton = BattleBackButton(12f, Minecraft.getInstance().window.guiScaledHeight - 32f)
+    val actor = CobblemonClient.battle?.side1?.actors?.find { it.uuid == MinecraftClient.getInstance().player?.uuid }
+    val specBackButton = BattleBackButton(12f, MinecraftClient.getInstance().window.guiScaledHeight - 32f)
 
     var queuedActions = mutableListOf<() -> Unit>()
 
@@ -125,8 +125,8 @@ class BattleGUI : Screen(battleLang("gui.title")), CobblemonRenderable {
             drawScaledText(
                 context = context,
                 text = battleLang("ui.hide_label", PartySendBinding.boundKey().displayName),
-                x = Minecraft.getInstance().window.guiScaledWidth / 2,
-                y = (Minecraft.getInstance().window.guiScaledHeight / 5),
+                x = MinecraftClient.getInstance().window.guiScaledWidth / 2,
+                y = (MinecraftClient.getInstance().window.guiScaledHeight / 5),
                 opacity = 0.75F * opacity,
                 centered = true
             )
@@ -134,8 +134,8 @@ class BattleGUI : Screen(battleLang("gui.title")), CobblemonRenderable {
             drawScaledText(
                 context = context,
                 text = battleLang("ui.forfeit_confirmation", PartySendBinding.boundKey().displayName),
-                x = Minecraft.getInstance().window.guiScaledWidth / 2,
-                y = (Minecraft.getInstance().window.guiScaledHeight / 5),
+                x = MinecraftClient.getInstance().window.guiScaledWidth / 2,
+                y = (MinecraftClient.getInstance().window.guiScaledHeight / 5),
                 opacity = 0.75F * opacity,
                 centered = true
             )

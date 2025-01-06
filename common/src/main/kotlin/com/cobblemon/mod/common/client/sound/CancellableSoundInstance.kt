@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.client.sound
 
-import net.minecraft.client.MinecraftClientClient
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.sound.*
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent

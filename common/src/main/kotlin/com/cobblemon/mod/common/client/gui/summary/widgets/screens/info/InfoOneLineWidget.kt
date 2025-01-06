@@ -38,7 +38,7 @@ class InfoOneLineWidget(
         val label = InfoBlockWidget(
             pX = x + LABEL_HORIZONTAL_OFFSET,
             pY = y,
-            blockWidth = Minecraft.getInstance().font.width(label),
+            blockWidth = MinecraftClient.getInstance().font.width(label),
             blockHeight = height,
             text = label,
             font = FONT,
@@ -50,7 +50,7 @@ class InfoOneLineWidget(
         val value = InfoBlockWidget(
             pX = x + VALUE_HORIZONTAL_OFFSET,
             pY = y,
-            blockWidth = Minecraft.getInstance().font.width(value),
+            blockWidth = MinecraftClient.getInstance().font.width(value),
             blockHeight = height,
             text = value,
             font = FONT,

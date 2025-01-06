@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.npc.OpenNPCEditorPacket
 import net.minecraft.client.MinecraftClient
 
 object OpenNPCEditorHandler : ClientNetworkPacketHandler<OpenNPCEditorPacket> {
-    override fun handle(packet: OpenNPCEditorPacket, client: Minecraft) {
+    override fun handle(packet: OpenNPCEditorPacket, client: MinecraftClient) {
         client.setScreen(NPCEditorScreen(packet.npcId, packet.dto))
     }
 }

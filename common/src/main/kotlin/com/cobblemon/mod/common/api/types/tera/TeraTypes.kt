@@ -106,7 +106,7 @@ object TeraTypes : Iterable<TeraType> {
     /**
      * Gets a [TeraType] by its [id].
      *
-     * @param id The string representation of a [Identifier] if no namespace is present assumes Cobblemon' instead of Minecraft'.
+     * @param id The string representation of a [Identifier] if no namespace is present assumes Cobblemon' instead of MinecraftClient'.
      * @return The found [TeraType] or null.
      */
     @JvmStatic

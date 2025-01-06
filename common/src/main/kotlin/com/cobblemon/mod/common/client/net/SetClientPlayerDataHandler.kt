@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.net.messages.client.SetClientPlayerDataPacket
 import net.minecraft.client.MinecraftClient
 
 object SetClientPlayerDataHandler : ClientNetworkPacketHandler<SetClientPlayerDataPacket> {
-    override fun handle(packet: SetClientPlayerDataPacket, client: Minecraft) {
+    override fun handle(packet: SetClientPlayerDataPacket, client: MinecraftClient) {
         if (packet.isIncremental) {
             packet.type.incrementalAfterDecodeAction.invoke(packet.playerData)
         }

@@ -103,7 +103,7 @@ class PokedexGUI private constructor(
          * Attempts to open this screen for a client.
          */
         fun open(pokedex: ClientPokedexManager, type: PokedexType, species: Identifier? = null, blockPos: BlockPos? = null) {
-            val mc = Minecraft.getInstance()
+            val mc = MinecraftClient.getInstance()
             val screen = PokedexGUI(type, species, blockPos)
             mc.setScreen(screen)
         }
@@ -334,7 +334,7 @@ class PokedexGUI private constructor(
             matrices.pushPose()
             matrices.translate(0.0, 0.0, 1000.0)
             val searchTypeText = lang("ui.pokedex.search.search_by", lang("ui.pokedex.search.type.${selectedSearchByType.name.lowercase()}")).bold()
-            val searchTypeTextWidth = Minecraft.getInstance().font.width(searchTypeText.font(CobblemonResources.DEFAULT_LARGE))
+            val searchTypeTextWidth = MinecraftClient.getInstance().font.width(searchTypeText.font(CobblemonResources.DEFAULT_LARGE))
             val tooltipWidth = searchTypeTextWidth + 6
 
             blitk(matrixStack = matrices, texture = tooltipEdge, x = mouseX - (tooltipWidth / 2) - 1, y = mouseY - 16, width = 1, height = 11)
@@ -589,6 +589,6 @@ class PokedexGUI private constructor(
     override fun isPauseScreen(): Boolean = false
 
     fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 }

@@ -39,7 +39,7 @@ import net.minecraft.client.gui.screens.ChatScreen
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.util.Mth
 
-class PartyOverlay : Gui(Minecraft.getInstance()) {
+class PartyOverlay : Gui(MinecraftClient.getInstance()) {
 
     companion object {
         private const val SLOT_HEIGHT = 30
@@ -77,7 +77,7 @@ class PartyOverlay : Gui(Minecraft.getInstance()) {
     private var attachedToast = false
 
     fun resetAttachedToast() {
-        val minecraft = Minecraft.getInstance()
+        val minecraft = MinecraftClient.getInstance()
         minecraft.toasts.clear()
         starterToast.nextVisibility = Toast.Visibility.SHOW
         attachedToast = false
@@ -85,7 +85,7 @@ class PartyOverlay : Gui(Minecraft.getInstance()) {
 
     override fun render(context: GuiGraphics, tickCounter: DeltaTracker) {
         val partialDeltaTicks = tickCounter.realtimeDeltaTicks
-        val minecraft = Minecraft.getInstance()
+        val minecraft = MinecraftClient.getInstance()
 
         // Hiding if a Screen is open and not exempt
         if (minecraft.screen != null) {

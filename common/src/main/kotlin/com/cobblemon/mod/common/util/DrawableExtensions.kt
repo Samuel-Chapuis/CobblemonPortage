@@ -11,4 +11,4 @@ package com.cobblemon.mod.common.util
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.components.Renderable
 
-fun Renderable.scaleIt(value: Number) = (Minecraft.getInstance().window.guiScale * value.toFloat()).toInt()
+fun Renderable.scaleIt(value: Number) = (MinecraftClient.getInstance().window.guiScale * value.toFloat()).toInt()

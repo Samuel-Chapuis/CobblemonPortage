@@ -39,7 +39,7 @@ abstract class CobblemonBlockingKeyBinding(
         } else if (!isDown) {
             wasDown = false
         } else if (wasDown) {
-            timeDown += Minecraft.getInstance().timer.getGameTimeDeltaPartialTick(false)
+            timeDown += MinecraftClient.getInstance().timer.getGameTimeDeltaPartialTick(false)
         }
     }
 }

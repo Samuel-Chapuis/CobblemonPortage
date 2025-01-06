@@ -19,11 +19,11 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket.Tra
 import net.minecraft.client.MinecraftClient
 
 object TradeStartedHandler : ClientNetworkPacketHandler<TradeStartedPacket> {
-    override fun handle(packet: TradeStartedPacket, client: Minecraft) {
+    override fun handle(packet: TradeStartedPacket, client: MinecraftClient) {
         Cobblemon.LOGGER.error("handle trade start from: " + packet.traderId)
         val trade = ClientTrade()
         CobblemonClient.trade = trade
-        Minecraft.getInstance().setScreen(
+        MinecraftClient.getInstance().setScreen(
             TradeGUI(
                 trade,
                 packet.traderId,

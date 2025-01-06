@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleCaptureEndPacke
 import net.minecraft.client.MinecraftClient
 
 object BattleCaptureEndHandler : ClientNetworkPacketHandler<BattleCaptureEndPacket> {
-    override fun handle(packet: BattleCaptureEndPacket, client: Minecraft) {
+    override fun handle(packet: BattleCaptureEndPacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
         val overlay = CobblemonClient.battleOverlay
         val (_, activeBattlePokemon) = battle.getPokemonFromPNX(packet.targetPNX)

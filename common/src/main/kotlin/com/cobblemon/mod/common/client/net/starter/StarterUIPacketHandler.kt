@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.starter.OpenStarterUIPacket
 import net.minecraft.client.MinecraftClient
 
 object StarterUIPacketHandler : ClientNetworkPacketHandler<OpenStarterUIPacket> {
-    override fun handle(packet: OpenStarterUIPacket, client: Minecraft) {
+    override fun handle(packet: OpenStarterUIPacket, client: MinecraftClient) {
         CobblemonClient.checkedStarterScreen = true
         client.setScreen(StarterSelectionScreen(categories = packet.categories))
     }

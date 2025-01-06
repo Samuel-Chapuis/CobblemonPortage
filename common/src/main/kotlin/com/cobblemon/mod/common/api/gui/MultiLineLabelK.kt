@@ -22,7 +22,7 @@ class MultiLineLabelK(
 ) {
 
     companion object {
-        private val mcFont = Minecraft.getInstance().font
+        private val mcFont = MinecraftClient.getInstance().font
 
         fun create(component: Component, width: Number, maxLines: Number) = create(component, width, maxLines, null)
 

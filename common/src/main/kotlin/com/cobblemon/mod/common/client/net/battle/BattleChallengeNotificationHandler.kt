@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleChallengeNotifi
 import net.minecraft.client.MinecraftClient
 
 object BattleChallengeNotificationHandler : ClientNetworkPacketHandler<BattleChallengeNotificationPacket> {
-    override fun handle(packet: BattleChallengeNotificationPacket, client: Minecraft) {
+    override fun handle(packet: BattleChallengeNotificationPacket, client: MinecraftClient) {
         val clientBattleChallenge = ClientBattleChallenge(packet.challengeID, packet.senderID, packet.expiryTime, packet.battleFormat)
         packet.challengerIDs.forEach {
             CobblemonClient.requests.battleChallenges[it] = clientBattleChallenge

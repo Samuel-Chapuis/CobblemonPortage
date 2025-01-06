@@ -43,7 +43,7 @@ import com.cobblemon.mod.common.util.asExpression
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.resolve
 import java.util.concurrent.ConcurrentLinkedQueue
-import net.minecraft.client.MinecraftClientClient
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.sound.PositionedSoundInstance
 import net.minecraft.client.world.ClientWorld
 import net.minecraft.entity.Entity

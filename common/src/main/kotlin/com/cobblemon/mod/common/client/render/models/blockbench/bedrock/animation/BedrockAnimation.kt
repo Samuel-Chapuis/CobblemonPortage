@@ -111,7 +111,7 @@ class BedrockSoundKeyframe(
             if (entity != null) {
                 entity.level().playLocalSound(entity, soundEvent, entity.soundSource, 1F, 1F)
             } else {
-                Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1F, 1F))
+                MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1F, 1F))
             }
         }
     }
@@ -254,8 +254,8 @@ class MolangBoneValue(
     override fun resolve(time: Double, runtime: MoLangRuntime): Vec3 {
         val environment = runtime.environment
         environment.setSimpleVariable("anim_time", DoubleValue(time))
-        environment.setSimpleVariable("camera_rotation_x", DoubleValue(Minecraft.getInstance().gameRenderer.mainCamera.rotation().x.toDouble()))
-        environment.setSimpleVariable("camera_rotation_y", DoubleValue(Minecraft.getInstance().gameRenderer.mainCamera.rotation().y.toDouble()))
+        environment.setSimpleVariable("camera_rotation_x", DoubleValue(MinecraftClient.getInstance().gameRenderer.mainCamera.rotation().x.toDouble()))
+        environment.setSimpleVariable("camera_rotation_y", DoubleValue(MinecraftClient.getInstance().gameRenderer.mainCamera.rotation().y.toDouble()))
         return Vec3(
             runtime.resolveDouble(x),
             runtime.resolveDouble(y) * yMul,

@@ -14,9 +14,9 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import net.minecraft.client.MinecraftClient
 
 object BattleUpdateTeamPokemonHandler : ClientNetworkPacketHandler<BattleUpdateTeamPokemonPacket> {
-    override fun handle(packet: BattleUpdateTeamPokemonPacket, client: Minecraft) {
+    override fun handle(packet: BattleUpdateTeamPokemonPacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
-        val actor = battle.side1.actors.find { it.uuid == Minecraft.getInstance().player?.uuid }
+        val actor = battle.side1.actors.find { it.uuid == MinecraftClient.getInstance().player?.uuid }
         if (actor != null) {
             val previous = actor.pokemon.find { it.uuid == packet.pokemon.uuid }
             if (previous !=  null) {

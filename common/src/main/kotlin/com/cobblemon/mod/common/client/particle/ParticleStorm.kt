@@ -92,7 +92,7 @@ class ParticleStorm(
             runtime.environment.setSimpleVariable("entity_radius", DoubleValue(longerDiameter / 2))
             runtime.environment.setSimpleVariable("entity_scale", DoubleValue((entity as? PokemonEntity)?.scale ?: 1.0))
         }
-        Minecraft.getInstance().particleEngine.add(this)
+        MinecraftClient.getInstance().particleEngine.add(this)
     }
 
     fun addAttackingFunctions(destinationPosSupplier: (() -> Vec3)) {

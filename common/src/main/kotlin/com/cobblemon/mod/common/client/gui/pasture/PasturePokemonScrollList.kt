@@ -36,7 +36,7 @@ class PasturePokemonScrollList(
     val listY: Int,
     val parent: PastureWidget
 ) : ObjectSelectionList<PasturePokemonScrollList.PastureSlot>(
-    Minecraft.getInstance(),
+    MinecraftClient.getInstance(),
     WIDTH, // width
     HEIGHT, // height
     0, // top
@@ -159,7 +159,7 @@ class PasturePokemonScrollList(
     fun isHovered(mouseX: Double, mouseY: Double) = mouseX.toFloat() in (x.toFloat()..(x.toFloat() + WIDTH)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + HEIGHT))
 
     class PastureSlot(val pokemon: OpenPasturePacket.PasturePokemonDataDTO, private val parent: PastureWidget) : Entry<PastureSlot>() {
-        val client: Minecraft = Minecraft.getInstance()
+        val client: MinecraftClient = MinecraftClient.getInstance()
         val state = FloatingState()
 
         fun isOwned() = client.player?.uuid == pokemon.playerId

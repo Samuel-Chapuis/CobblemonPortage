@@ -443,7 +443,7 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
                 // Tooltip
                 if (it.isVisible() && it.getWidget().isButtonHovered(mouseX, mouseY)) {
                     val variationText = it.variation.displayName.asTranslated().bold()
-                    val variationTextWidth = Minecraft.getInstance().font.width(variationText.font(CobblemonResources.DEFAULT_LARGE))
+                    val variationTextWidth = MinecraftClient.getInstance().font.width(variationText.font(CobblemonResources.DEFAULT_LARGE))
                     val tooltipWidth = variationTextWidth + 6
 
                     blitk(matrixStack = matrices, texture = tooltipEdge, x = mouseX - (tooltipWidth / 2) - 1, y = mouseY + 8, width = 1, height = 11)
@@ -698,6 +698,6 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
     }
 
     fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 }

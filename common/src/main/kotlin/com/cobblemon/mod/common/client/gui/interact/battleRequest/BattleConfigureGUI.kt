@@ -205,7 +205,7 @@ class BattleConfigureGUI(
 
 
     override fun init() {
-        targetName = Minecraft.getInstance().player?.level()?.getPlayerByUUID(packet.targetId)?.name?.plainCopy()?.bold() ?: targetName
+        targetName = MinecraftClient.getInstance().player?.level()?.getPlayerByUUID(packet.targetId)?.name?.plainCopy()?.bold() ?: targetName
         val pendingRequest = activeTeamRequest ?: activeRequest
         if (activeTeamRequest != null) {
             options = listOf(PlayerInteractOptionsPacket.Options.TEAM_REQUEST)
@@ -451,7 +451,7 @@ class BattleConfigureGUI(
     override fun isPauseScreen() = false
 
     private fun closeGUI() {
-        Minecraft.getInstance().setScreen(null)
+        MinecraftClient.getInstance().setScreen(null)
     }
 
 }

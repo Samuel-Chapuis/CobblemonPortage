@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.callback.OpenPartyCallbackPa
 import net.minecraft.client.MinecraftClient
 
 object OpenPartyCallbackHandler : ClientNetworkPacketHandler<OpenPartyCallbackPacket> {
-    override fun handle(packet: OpenPartyCallbackPacket, client: Minecraft) {
+    override fun handle(packet: OpenPartyCallbackPacket, client: MinecraftClient) {
         client.setScreen(
             PartySelectGUI(
                 title = packet.title,

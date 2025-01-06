@@ -20,7 +20,7 @@ import net.minecraft.world.entity.EntityDimensions
 
 /**
  * An adapter for [EntityDimensions]. This isn't technically needed on newer versions of Gson because
- * they're actually pretty clever now, but Minecraft still is still packing the old version.
+ * they're actually pretty clever now, but MinecraftClient still is still packing the old version.
  *
  * @author Hiroku
  * @since April 4th, 2022

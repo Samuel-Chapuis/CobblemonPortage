@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.client.sound.battle
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.util.resumeSounds
-import net.minecraft.client.MinecraftClientClient
+import net.minecraft.client.MinecraftClient
 import net.minecraft.client.sound.*
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent

@@ -20,7 +20,7 @@ class MoveDescriptionScrollList(
     private val listY: Int,
     slotHeight: Int
 ) : ObjectSelectionList<MoveDescriptionEntry>(
-    Minecraft.getInstance(),
+    MinecraftClient.getInstance(),
     60, // width
     30, // height
     0, // top
@@ -88,7 +88,7 @@ class MoveDescriptionScrollList(
         var currentLine = StringBuilder()
 
         for (word in words) {
-            if (Minecraft.getInstance().font.width(currentLine.toString() + word) > splitWidth) {
+            if (MinecraftClient.getInstance().font.width(currentLine.toString() + word) > splitWidth) {
                 splitText.add(currentLine.toString())
                 currentLine = StringBuilder(word)
             } else {

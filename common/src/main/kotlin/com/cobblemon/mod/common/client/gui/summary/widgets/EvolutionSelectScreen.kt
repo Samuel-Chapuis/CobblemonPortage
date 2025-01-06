@@ -65,7 +65,7 @@ class EvolutionSelectScreen(
     }
 
     class EvolveSlot(private val pokemon: Pokemon, private val evolution: EvolutionDisplay) : Entry<EvolveSlot>() {
-        val client: Minecraft = Minecraft.getInstance()
+        val client: MinecraftClient = MinecraftClient.getInstance()
         val state = FloatingState()
         val form: FormData = evolution.species.getForm(evolution.aspects)
         val selectButton: SummaryButton = SummaryButton(
@@ -74,7 +74,7 @@ class EvolutionSelectScreen(
             buttonWidth = 40,
             buttonHeight = 10,
             clickAction = {
-                Minecraft.getInstance().player?.clientSideCloseContainer()
+                MinecraftClient.getInstance().player?.clientSideCloseContainer()
                 playSound(CobblemonSounds.GUI_CLICK)
                 pokemon.evolutionProxy.client().start(this.evolution)
             },
@@ -86,7 +86,7 @@ class EvolutionSelectScreen(
         )
 
         fun playSound(soundEvent: SoundEvent) {
-            Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+            MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
         }
 
         override fun getNarration() = evolution.species.translatedName

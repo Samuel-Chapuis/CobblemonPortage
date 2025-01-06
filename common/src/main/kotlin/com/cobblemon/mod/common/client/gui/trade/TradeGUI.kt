@@ -168,7 +168,7 @@ class TradeGUI(
             ExitButton(pX = x + 265, pY = y + 6) {
                 playSound(CobblemonSounds.GUI_CLICK)
                 onClose()
-                Minecraft.getInstance().setScreen(null)
+                MinecraftClient.getInstance().setScreen(null)
             }
         )
 
@@ -404,7 +404,7 @@ class TradeGUI(
         drawScaledText(
             context = context,
             font = CobblemonResources.DEFAULT_LARGE,
-            text = Minecraft.getInstance().user.name.text().bold(),
+            text = MinecraftClient.getInstance().user.name.text().bold(),
             x = x + 13,
             y = y - 10.5,
             shadow = true
@@ -426,14 +426,14 @@ class TradeGUI(
             val itemX = x + 50
             val itemY = y + 125
             val itemHovered = mouseX.toFloat() in (itemX.toFloat()..(itemX.toFloat() + 16)) && mouseY.toFloat() in (itemY.toFloat()..(itemY.toFloat() + 16))
-            if (itemHovered) context.renderTooltip(Minecraft.getInstance().font, offeredPokemon!!.heldItemNoCopy(), mouseX, mouseY)
+            if (itemHovered) context.renderTooltip(MinecraftClient.getInstance().font, offeredPokemon!!.heldItemNoCopy(), mouseX, mouseY)
         }
 
         if (opposingOfferedPokemon != null && !opposingOfferedPokemon!!.heldItemNoCopy().isEmpty) {
             val itemX = x + 227
             val itemY = y + 125
             val itemHovered = mouseX.toFloat() in (itemX.toFloat()..(itemX.toFloat() + 16)) && mouseY.toFloat() in (itemY.toFloat()..(itemY.toFloat() + 16))
-            if (itemHovered) context.renderTooltip(Minecraft.getInstance().font, opposingOfferedPokemon!!.heldItemNoCopy(), mouseX, mouseY)
+            if (itemHovered) context.renderTooltip(MinecraftClient.getInstance().font, opposingOfferedPokemon!!.heldItemNoCopy(), mouseX, mouseY)
         }
     }
 
@@ -441,7 +441,7 @@ class TradeGUI(
         if (minecraft?.options?.keyInventory?.matches(keyCode, scanCode) == true) {
             CancelTradePacket().sendToServer()
             cancelTradeSound()
-            Minecraft.getInstance().setScreen(null)
+            MinecraftClient.getInstance().setScreen(null)
             return true
         }
 
@@ -540,12 +540,12 @@ class TradeGUI(
 
     private fun playSound(soundEvent: SoundEvent): SoundInstance {
         val soundInstance = SimpleSoundInstance.forUI(soundEvent, 1.0F)
-        Minecraft.getInstance().soundManager.play(soundInstance)
+        MinecraftClient.getInstance().soundManager.play(soundInstance)
         return soundInstance
     }
 
     private fun cancelTradeSound() {
-        if (tradeSoundInstance !== null) Minecraft.getInstance().soundManager.stop(tradeSoundInstance)
+        if (tradeSoundInstance !== null) MinecraftClient.getInstance().soundManager.stop(tradeSoundInstance)
     }
 
     private fun renderPokemonInfo(pokemon: Pokemon?, isOpposing: Boolean, context: GuiGraphics, x: Int, y: Int, mouseX: Int, mouseY: Int) {
@@ -612,7 +612,7 @@ class TradeGUI(
             val itemX = x + (if (isOpposing) 227 else 50)
             val itemY = y + 125
             if (!heldItem.isEmpty) {
-                val textRenderer = Minecraft.getInstance().font
+                val textRenderer = MinecraftClient.getInstance().font
                 context.renderItem(heldItem, itemX, itemY)
                 context.renderItemDecorations(textRenderer, heldItem, itemX, itemY)
             }

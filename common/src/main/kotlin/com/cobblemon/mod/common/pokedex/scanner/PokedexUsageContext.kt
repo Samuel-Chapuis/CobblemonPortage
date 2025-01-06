@@ -73,7 +73,7 @@ class PokedexUsageContext {
     }
 
     fun renderUpdate(graphics: GuiGraphics, tickCounter: DeltaTracker) {
-        val tickDelta = tickCounter.realtimeDeltaTicks.takeIf { !Minecraft.getInstance().isPaused } ?: 0F
+        val tickDelta = tickCounter.realtimeDeltaTicks.takeIf { !MinecraftClient.getInstance().isPaused } ?: 0F
         val updateInterval = (tickDelta / 20) * RENDER_UPDATES_PER_SECOND
 
         if (scanningGuiOpen && viewInfoTicks < VIEW_INFO_BUFFER_TICKS) {
@@ -225,6 +225,6 @@ class PokedexUsageContext {
     fun getFovMultiplier() = 1 - (zoomLevel / ZOOM_STAGES)
 
     fun playSound(soundEvent: SoundEvent) {
-        Minecraft.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
+        MinecraftClient.getInstance().soundManager.play(SimpleSoundInstance.forUI(soundEvent, 1.0F))
     }
 }

@@ -30,7 +30,7 @@ class ActiveClientBattlePokemon(val actor: ClientBattleActor, var battlePokemon:
     override fun isAllied(other: Targetable) = actor.side == (other as ActiveClientBattlePokemon).actor.side
     override fun hasPokemon() = battlePokemon != null
     fun getHue(): Int {
-        val playerUUID = Minecraft.getInstance().player?.uuid ?: return 0xFAFAFA
+        val playerUUID = MinecraftClient.getInstance().player?.uuid ?: return 0xFAFAFA
         val actor = battlePokemon?.actor ?: return 0xFAFAFA
         val side = actor.side
         val battle = actor.side.battle

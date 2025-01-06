@@ -19,7 +19,7 @@ import net.minecraft.util.Mth
 
 /**
  * A biped animation that will have zero-rotations on all legs at
- * zero and otherwise does simple predictable walking like Minecraft
+ * zero and otherwise does simple predictable walking like MinecraftClient
  * quadrupeds.
  *
  * @author Deltric

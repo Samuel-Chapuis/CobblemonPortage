@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferNotification
 import net.minecraft.client.MinecraftClient
 
 object TradeOfferNotificationHandler : ClientNetworkPacketHandler<TradeOfferNotificationPacket> {
-    override fun handle(packet: TradeOfferNotificationPacket, client: Minecraft) {
+    override fun handle(packet: TradeOfferNotificationPacket, client: MinecraftClient) {
         CobblemonClient.requests.tradeOffers[packet.senderID] = ClientTradeRequest(packet.requestID, packet.senderID, packet.expiryTime)
         ClientPlayerIcon.update(packet.senderID)
     }

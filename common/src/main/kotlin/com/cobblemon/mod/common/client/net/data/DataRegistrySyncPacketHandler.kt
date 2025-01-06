@@ -14,7 +14,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.network.RegistryFriendlyByteBuf
 
 class DataRegistrySyncPacketHandler<P, T : DataRegistrySyncPacket<P, T>> : ClientNetworkPacketHandler<T> {
-    override fun handle(packet: T, client: Minecraft) {
+    override fun handle(packet: T, client: MinecraftClient) {
         val buffer = requireNotNull(packet.buffer) { "Buffer missing on DataRegistrySyncPacket" }
 
         packet.entries.clear()

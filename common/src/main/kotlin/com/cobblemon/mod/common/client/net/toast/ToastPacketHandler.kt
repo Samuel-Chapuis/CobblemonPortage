@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.toast.ToastPacket
 import net.minecraft.client.MinecraftClient
 
 object ToastPacketHandler : ClientNetworkPacketHandler<ToastPacket> {
-    override fun handle(packet: ToastPacket, client: Minecraft) {
+    override fun handle(packet: ToastPacket, client: MinecraftClient) {
         client.executeIfPossible { ToastTracker.handle(packet, client) }
     }
 }

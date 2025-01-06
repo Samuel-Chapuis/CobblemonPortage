@@ -43,9 +43,9 @@ abstract class ClientPlayerIcon(expiryTime: Int? = null) {
     open val SCALE = 0.75F
     private val FADE_RATIO = 0.25F
 
-    private val tickCount get() = Minecraft.getInstance().player?.tickCount ?: 0    // icon is only ticked when tracked, so derive lifetime from player tick - startTick
-    private val startTick = Minecraft.getInstance().player?.tickCount ?: 0
-    private val tickRateManager = Minecraft.getInstance().level!!.tickRateManager()
+    private val tickCount get() = MinecraftClient.getInstance().player?.tickCount ?: 0    // icon is only ticked when tracked, so derive lifetime from player tick - startTick
+    private val startTick = MinecraftClient.getInstance().player?.tickCount ?: 0
+    private val tickRateManager = MinecraftClient.getInstance().level!!.tickRateManager()
     /** The tick at which the icon begins fading. */
     private val fadeTickStamp = expiryTime?.let { it * tickRateManager.tickrate() * (1 - FADE_RATIO) + startTick}?.toInt() ?: Int.MAX_VALUE // TODO is server expiration based on epoc going to cause a problem?
 
@@ -97,7 +97,7 @@ abstract class ClientPlayerIcon(expiryTime: Int? = null) {
         poseStack.translate(-camera.position.x, -camera.position.y, -camera.position.z) // event posestack does not have PlayerRenderer context
 
         // billboard
-        val entityRenderDispatcher = Minecraft.getInstance().entityRenderDispatcher
+        val entityRenderDispatcher = MinecraftClient.getInstance().entityRenderDispatcher
         poseStack.mulPose(Axis.YP.rotationDegrees((180f - entityRenderDispatcher.camera.yRot)))
         poseStack.scale(SCALE, -SCALE, SCALE)
     }

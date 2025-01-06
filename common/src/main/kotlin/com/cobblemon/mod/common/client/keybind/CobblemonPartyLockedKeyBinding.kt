@@ -47,14 +47,14 @@ abstract class CobblemonPartyLockedKeyBinding(
         val startersLocked = CobblemonClient.clientPlayerData.starterLocked
         if (!starterSelected && !havePokemon) {
             if (startersLocked) {
-                Minecraft.getInstance().player?.displayClientMessage(lang("ui.starter.cannotchoose").red(), false)
+                MinecraftClient.getInstance().player?.displayClientMessage(lang("ui.starter.cannotchoose").red(), false)
             } else {
                 RequestStarterScreenPacket().sendToServer()
             }
             return false
         } else if (!startersLocked && !starterSelected && havePokemon) {
             if (!skippedStarterSelectionMessageShown) {
-                Minecraft.getInstance().player?.displayClientMessage(
+                MinecraftClient.getInstance().player?.displayClientMessage(
                     lang(
                         "ui.starter.skippedchoosing",
                         SummaryBinding.boundKey().displayName

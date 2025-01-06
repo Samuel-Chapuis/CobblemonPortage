@@ -27,7 +27,7 @@ import net.minecraft.network.chat.Component
 class NicknameEntryWidget(
     var pokemon: Pokemon, x: Int, y: Int, width: Int, height: Int, val isParty: Boolean, text: Component
 ): EditBox(
-    Minecraft.getInstance().font,
+    MinecraftClient.getInstance().font,
     x, y, width, height, text
 ), CobblemonRenderable {
 

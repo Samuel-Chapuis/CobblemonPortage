@@ -385,7 +385,7 @@ fun ServerPlayer.raycastSafeSendout(pokemon: Pokemon, maxDistance: Double, dropH
 fun Inventory.usableItems() = offhand + items
 
 /**
- * Utility function meant to emulate the behavior seen across Minecraft when attempting to give items directly to player but there's not enough room for the entire stack.
+ * Utility function meant to emulate the behavior seen across MinecraftClient when attempting to give items directly to player but there's not enough room for the entire stack.
  * This will drop any remainder of the stack on the ground with the associate player marked as the owner.
  * Keep in mind in creative attempting to insert stacks into the player inventory never fails instead they're simply consumed, this is not custom Cobblemon behavior.
  *

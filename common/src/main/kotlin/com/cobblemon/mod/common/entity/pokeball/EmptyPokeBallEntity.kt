@@ -415,7 +415,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                 val matrix = PoseStack()
                 matrix.translate(x, y, z)
                 wrapper.updateMatrix(matrix.last().pose())
-                val world = Minecraft.getInstance().level ?: return@let
+                val world = MinecraftClient.getInstance().level ?: return@let
                 ParticleStorm(effect, wrapper, wrapper, world).spawn()
             }
         }

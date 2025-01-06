@@ -497,7 +497,7 @@ class LookAtDirection : ParticleCameraMode {
         val particleAngle = if (angle == 0.0f) 0F else Mth.lerp(deltaTicks, prevAngle, angle)
         rotation.hamiltonProduct(Axis.ZP.rotationDegrees(particleAngle))
 
-        // Minecraft in 1.21 or 1.20.4 or something fucked with vertex draw order, and it flipped everything.
+        // MinecraftClient in 1.21 or 1.20.4 or something fucked with vertex draw order, and it flipped everything.
         rotation.hamiltonProduct(Axis.YP.rotationDegrees(180F))
 
         return rotation

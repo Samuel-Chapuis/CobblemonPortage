@@ -60,7 +60,7 @@ abstract class InfoTextScrollWidget(val pX: Int, val pY: Int): ScrollingWidget<I
     fun setText(text: Collection<String>) {
         clearEntries()
         text.forEach {
-            Minecraft.getInstance().font.splitter.splitLines(
+            MinecraftClient.getInstance().font.splitter.splitLines(
                 it.text(),
                 ((width - SCROLL_BAR_WIDTH  - (POKEMON_DESCRIPTION_PADDING * 2)) / SCALE).toInt(),
                 Style.EMPTY

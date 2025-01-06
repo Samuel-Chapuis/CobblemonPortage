@@ -27,7 +27,7 @@ class NPCEditorButton(
     var buttonY: Float,
     var label: MutableComponent,
     var cycleButtonState: Boolean? = null,
-    var buttonWidth: Int = Minecraft.getInstance().font.width(label) + (BUTTON_PADDING * 2),
+    var buttonWidth: Int = MinecraftClient.getInstance().font.width(label) + (BUTTON_PADDING * 2),
     val silent: Boolean = false,
     val alignRight: Boolean = false,
     val clickAction: OnPress

@@ -16,7 +16,7 @@ object ToastTracker {
 
     private val toasts = hashMapOf<UUID, CobblemonToast>()
 
-    fun handle(packet: ToastPacket, client: Minecraft) {
+    fun handle(packet: ToastPacket, client: MinecraftClient) {
         var needsQueue = false
         var toast = this.toasts[packet.uuid]
         if (toast == null) {

@@ -59,7 +59,7 @@ class FossilAnalyzerRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEn
             matrices.mulPose(Axis.XP.rotationDegrees(90F))
             matrices.scale(0.7F, 0.7F, 0.7F)
 
-            Minecraft.getInstance().itemRenderer.renderStatic(fossilStack, ItemDisplayContext.NONE, light, overlay, matrices, vertexConsumers, entity.level, 0)
+            MinecraftClient.getInstance().itemRenderer.renderStatic(fossilStack, ItemDisplayContext.NONE, light, overlay, matrices, vertexConsumers, entity.level, 0)
 
             matrices.popPose()
         }

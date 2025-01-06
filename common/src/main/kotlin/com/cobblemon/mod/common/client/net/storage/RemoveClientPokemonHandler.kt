@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.RemoveClientPokemonP
 import net.minecraft.client.MinecraftClient
 
 object RemoveClientPokemonHandler : ClientNetworkPacketHandler<RemoveClientPokemonPacket> {
-    override fun handle(packet: RemoveClientPokemonPacket, client: Minecraft) {
+    override fun handle(packet: RemoveClientPokemonPacket, client: MinecraftClient) {
         if (packet.storeIsParty) {
             CobblemonClient.storage.removeFromParty(packet.storeID, packet.pokemonID)
         } else {

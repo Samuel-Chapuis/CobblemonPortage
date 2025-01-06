@@ -14,7 +14,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.sounds.SoundEvent
 
 internal object UnvalidatedPlaySoundS2CPacketHandler : ClientNetworkPacketHandler<UnvalidatedPlaySoundS2CPacket> {
-    override fun handle(packet: UnvalidatedPlaySoundS2CPacket, client: Minecraft) {
+    override fun handle(packet: UnvalidatedPlaySoundS2CPacket, client: MinecraftClient) {
         client.executeIfPossible {
             // This prevents clients that might not have the required resources installed from getting spammed about missing sound
             if (client.soundManager.getSoundEvent(packet.sound) != null) {

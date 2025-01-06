@@ -15,9 +15,9 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleQueueRequestPac
 import net.minecraft.client.MinecraftClient
 
 object BattleQueueRequestHandler : ClientNetworkPacketHandler<BattleQueueRequestPacket> {
-    override fun handle(packet: BattleQueueRequestPacket, client: Minecraft) {
+    override fun handle(packet: BattleQueueRequestPacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
-        val actor = battle.side1.actors.find { it.uuid == Minecraft.getInstance().player?.uuid } ?: return
+        val actor = battle.side1.actors.find { it.uuid == MinecraftClient.getInstance().player?.uuid } ?: return
         CobblemonClient.battle?.pendingActionRequests = SingleActionRequest.composeFrom(actor, packet.request)
     }
 }

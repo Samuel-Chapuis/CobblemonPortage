@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.util.lang
 import net.minecraft.client.MinecraftClient
 
 object TeamMemberRemoveNotificationHandler : ClientNetworkPacketHandler<TeamMemberRemoveNotificationPacket> {
-    override fun handle(packet: TeamMemberRemoveNotificationPacket, client: Minecraft) {
+    override fun handle(packet: TeamMemberRemoveNotificationPacket, client: MinecraftClient) {
 
         if(packet.teamMemberUUID == client.player?.uuid) {
             // Client removes itself from its team

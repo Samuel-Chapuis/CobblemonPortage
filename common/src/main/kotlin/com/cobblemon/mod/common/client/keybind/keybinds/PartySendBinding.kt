@@ -44,11 +44,11 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
         secondsSinceActioned = 0F
     }
 
-    fun canAction() = canApplyChange && Minecraft.getInstance().player?.isUsingPokedex() == false
+    fun canAction() = canApplyChange && MinecraftClient.getInstance().player?.isUsingPokedex() == false
 
     override fun onTick() {
         if (secondsSinceActioned < 100) {
-            secondsSinceActioned += Minecraft.getInstance().timer.getGameTimeDeltaPartialTick(false)
+            secondsSinceActioned += MinecraftClient.getInstance().timer.getGameTimeDeltaPartialTick(false)
         }
 
         super.onTick()
@@ -63,7 +63,7 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
         }
 
         canApplyChange = true
-        val player = Minecraft.getInstance().player ?: return
+        val player = MinecraftClient.getInstance().player ?: return
 
         if (player.isSpectator) return
 
@@ -71,13 +71,13 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
         val battle = CobblemonClient.battle
         if (battle != null) {
             battle.minimised = !battle.minimised
-            if (!battle.minimised && !Minecraft.getInstance().options.hideGui) {
-                Minecraft.getInstance().setScreen(BattleGUI())
+            if (!battle.minimised && !MinecraftClient.getInstance().options.hideGui) {
+                MinecraftClient.getInstance().setScreen(BattleGUI())
             }
             return
         }
 
-        if (CobblemonClient.storage.selectedSlot != -1 && Minecraft.getInstance().screen == null) {
+        if (CobblemonClient.storage.selectedSlot != -1 && MinecraftClient.getInstance().screen == null) {
             val pokemon = CobblemonClient.storage.myParty.get(CobblemonClient.storage.selectedSlot)
             if (pokemon != null) {
                 val targetEntity = player.traceFirstEntityCollision(

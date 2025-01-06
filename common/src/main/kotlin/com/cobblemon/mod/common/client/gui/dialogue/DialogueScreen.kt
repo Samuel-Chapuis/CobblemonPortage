@@ -46,7 +46,7 @@ class DialogueScreen(var dialogueDTO: DialogueDTO) : Screen("gui.dialogue".asTra
             is ReferenceDialogueFaceProvider -> {
                 key to DialogueRenderableSpeaker(
                     name = name,
-                    face = ReferenceRenderableFace(Minecraft.getInstance().level?.getEntity(face.entityId) as? PosableEntity ?: return@mapNotNull null, face.isLeftSide)
+                    face = ReferenceRenderableFace(MinecraftClient.getInstance().level?.getEntity(face.entityId) as? PosableEntity ?: return@mapNotNull null, face.isLeftSide)
                 )
             }
             else -> key to DialogueRenderableSpeaker(name, null)

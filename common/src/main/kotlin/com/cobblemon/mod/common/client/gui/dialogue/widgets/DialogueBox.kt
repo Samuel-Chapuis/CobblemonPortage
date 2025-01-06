@@ -57,7 +57,7 @@ class DialogueBox(
     init {
         correctSize()
 
-        val textRenderer = Minecraft.getInstance().font
+        val textRenderer = MinecraftClient.getInstance().font
 
         messages.flatMap { Language.getInstance().getVisualOrder(textRenderer.splitter.splitLines(it, LINE_WIDTH, it.style)) }
             .forEach { addEntry(DialogueLine(it)) }

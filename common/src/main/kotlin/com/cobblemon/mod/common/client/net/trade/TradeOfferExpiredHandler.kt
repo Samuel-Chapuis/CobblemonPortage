@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferExpiredPacke
 import net.minecraft.client.MinecraftClient
 
 object TradeOfferExpiredHandler : ClientNetworkPacketHandler<TradeOfferExpiredPacket> {
-    override fun handle(packet: TradeOfferExpiredPacket, client: Minecraft) {
+    override fun handle(packet: TradeOfferExpiredPacket, client: MinecraftClient) {
         CobblemonClient.requests.tradeOffers.remove(packet.senderID)
         ClientPlayerIcon.update(packet.senderID)
     }

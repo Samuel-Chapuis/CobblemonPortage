@@ -54,7 +54,7 @@ class SearchFilter(val pokedexManager: AbstractPokedexManager, val searchString:
                 formsList.forEach {
                     it.drops.entries.forEach {
                         if (it is ItemDropEntry) {
-                            val itemStack = Minecraft.getInstance().player?.level()?.itemRegistry?.get(it.item)?.defaultInstance ?: ItemStack.EMPTY
+                            val itemStack = MinecraftClient.getInstance().player?.level()?.itemRegistry?.get(it.item)?.defaultInstance ?: ItemStack.EMPTY
                             if (!itemStack.isEmpty) dropsList.add(itemStack.displayName.string.lowercase())
                         }
                     }

@@ -12,7 +12,7 @@ import net.minecraft.world.World
 
 /**
  * Represents the literal name of a moon phase instead of a raw number.
- * For more information see the [Minecraft wiki](https://minecraft.fandom.com/wiki/Moon#Phases) page.
+ * For more information see the [MinecraftClient wiki](https://minecraft.fandom.com/wiki/Moon#Phases) page.
  *
  * @author Licious
  * @since January 25th, 2023

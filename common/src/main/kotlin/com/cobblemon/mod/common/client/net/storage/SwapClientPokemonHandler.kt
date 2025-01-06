@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.SwapClientPokemonPac
 import net.minecraft.client.MinecraftClient
 
 object SwapClientPokemonHandler : ClientNetworkPacketHandler<SwapClientPokemonPacket> {
-    override fun handle(packet: SwapClientPokemonPacket, client: Minecraft) {
+    override fun handle(packet: SwapClientPokemonPacket, client: MinecraftClient) {
         if (packet.storeIsParty) {
             CobblemonClient.storage.swapInParty(packet.storeID, packet.pokemonID1, packet.pokemonID2)
         } else {

@@ -27,7 +27,7 @@ import java.nio.charset.Charset
 import java.util.UUID
 
 /**
- * Mediator service for communicating between the Cobblemon Minecraft mod and Cobblemon showdown service via
+ * Mediator service for communicating between the Cobblemon MinecraftClient mod and Cobblemon showdown service via
  * a socket client.
  *
  * This is primarily used for debugging purposes, but could be extended in the future to provide

@@ -21,7 +21,7 @@ import net.minecraft.client.MinecraftClient
  */
 object ClosePastureHandler: ClientNetworkPacketHandler<ClosePasturePacket> {
 
-    override fun handle(packet: ClosePasturePacket, client: Minecraft) {
+    override fun handle(packet: ClosePasturePacket, client: MinecraftClient) {
         if (client.screen !is PCGUI) {
             return
         }

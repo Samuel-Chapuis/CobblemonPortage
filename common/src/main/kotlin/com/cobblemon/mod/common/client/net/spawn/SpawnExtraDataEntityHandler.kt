@@ -14,7 +14,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.world.entity.Entity
 
 class SpawnExtraDataEntityHandler<T : SpawnExtraDataEntityPacket<T, E>, E : Entity> : ClientNetworkPacketHandler<T> {
-    override fun handle(packet: T, client: Minecraft) {
+    override fun handle(packet: T, client: MinecraftClient) {
         packet.spawnAndApply(client)
     }
 

@@ -21,8 +21,8 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.world.entity.Entity
 
 object SpawnSnowstormEntityParticleHandler : ClientNetworkPacketHandler<SpawnSnowstormEntityParticlePacket> {
-    override fun handle(packet: SpawnSnowstormEntityParticlePacket, client: Minecraft) {
-        val world = Minecraft.getInstance().level ?: return
+    override fun handle(packet: SpawnSnowstormEntityParticlePacket, client: MinecraftClient) {
+        val world = MinecraftClient.getInstance().level ?: return
         val effect = BedrockParticleOptionsRepository.getEffect(packet.effectId) ?: return
         val sourceEntity = world.getEntity(packet.sourceEntityId) as? PosableEntity ?: return
         val targetedEntity = packet.targetedEntityId?.let { world.getEntity(it) }

@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.util.resolve
 import net.minecraft.client.MinecraftClient
 
 object RunPosableMoLangHandler : ClientNetworkPacketHandler<RunPosableMoLangPacket> {
-    override fun handle(packet: RunPosableMoLangPacket, client: Minecraft) {
+    override fun handle(packet: RunPosableMoLangPacket, client: MinecraftClient) {
         val world = client.level ?: return
         val entity = world.getEntity(packet.entityId) ?: return
         if (entity is PosableEntity) {

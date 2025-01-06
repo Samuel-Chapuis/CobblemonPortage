@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.party.SetPartyRefere
 import net.minecraft.client.MinecraftClient
 
 object SetPartyReferenceHandler : ClientNetworkPacketHandler<SetPartyReferencePacket> {
-    override fun handle(packet: SetPartyReferencePacket, client: Minecraft) {
+    override fun handle(packet: SetPartyReferencePacket, client: MinecraftClient) {
         CobblemonClient.storage.setPartyStore(packet.storeID)
     }
 }

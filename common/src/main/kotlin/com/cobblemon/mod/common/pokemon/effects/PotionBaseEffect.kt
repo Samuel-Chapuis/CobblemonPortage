@@ -83,14 +83,14 @@ class PotionBaseEffect(
              * it will be saved and loaded and any of our custom properties and subclassing doesn't mean shit.
              *
              * The way this effect works is that it's constantly checking if the Pokémon is where it should be. This
-             * can only happen if it is this subclass, so we have the pokemonId variable. We must not allow Minecraft
-             * to load this back in. We can manually handle this shit, so the goal is to stop Minecraft from doing it
+             * can only happen if it is this subclass, so we have the pokemonId variable. We must not allow MinecraftClient
+             * to load this back in. We can manually handle this shit, so the goal is to stop MinecraftClient from doing it
              * for us.
              *
              * Putting the ID as some impossible number means that when reading from NBT statically, it doesn't find a
              * match for the effect ID, so it doesn't bother. This is what we want because if the effect needs to
              * continue (like the Pokémon is still on the shoulder) then we handle that in our login handler - no need
-             * for Minecraft to get in our way.
+             * for MinecraftClient to get in our way.
              *
              * - Hiro
              */

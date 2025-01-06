@@ -19,18 +19,18 @@ import net.minecraft.client.MinecraftClient
 interface ClientTickEvent {
 
     /**
-     * The [Minecraft] instance.
+     * The [MinecraftClient] instance.
      */
-    val client: Minecraft
+    val client: MinecraftClient
 
     /**
      * Fired during the Pre tick phase.
      */
-    data class Pre(override val client: Minecraft) : ClientTickEvent
+    data class Pre(override val client: MinecraftClient) : ClientTickEvent
 
     /**
      * Fired during the Post tick phase.
      */
-    data class Post(override val client: Minecraft) : ClientTickEvent
+    data class Post(override val client: MinecraftClient) : ClientTickEvent
 
 }

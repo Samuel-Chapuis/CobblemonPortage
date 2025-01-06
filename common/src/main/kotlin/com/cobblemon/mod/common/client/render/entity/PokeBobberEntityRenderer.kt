@@ -136,7 +136,7 @@ class PokeBobberEntityRenderer(context: EntityRendererProvider.Context?) : Entit
         val ballItem = PokeBalls.getPokeBall(pokeRod?.pokeBallId!!)!!.item
 
         // render the pokebobber
-        Minecraft.getInstance().itemRenderer.renderStatic(
+        MinecraftClient.getInstance().itemRenderer.renderStatic(
             ballItem.defaultInstance,
             ItemDisplayContext.GROUND,
             light,
@@ -164,7 +164,7 @@ class PokeBobberEntityRenderer(context: EntityRendererProvider.Context?) : Entit
 
 
         // render the bait
-        Minecraft.getInstance().itemRenderer.renderStatic(
+        MinecraftClient.getInstance().itemRenderer.renderStatic(
                 pokeBobberBaitItemStack,
                 ItemDisplayContext.GROUND,
                 light,
@@ -189,7 +189,7 @@ class PokeBobberEntityRenderer(context: EntityRendererProvider.Context?) : Entit
         val sinBodyYaw = Mth.sin(bodyYawRadians).toDouble()
         val cosBodyYaw = Mth.cos(bodyYawRadians).toDouble()
         val horizontalOffset = armOffset.toDouble() * 0.35
-        if (!entityRenderDispatcher.options.cameraType.isFirstPerson || playerEntity != Minecraft.getInstance().player) {
+        if (!entityRenderDispatcher.options.cameraType.isFirstPerson || playerEntity != MinecraftClient.getInstance().player) {
             playerEyeYWorld = Mth.lerp(tickDelta.toDouble(), playerEntity.xo, playerEntity.x) - cosBodyYaw * horizontalOffset - sinBodyYaw * 0.8
             playerPosYWorld = playerEntity.yo + playerEntity.eyeHeight.toDouble() + (playerEntity.y - playerEntity.yo) * tickDelta.toDouble() - 0.45
             playerPosZWorld = Mth.lerp(tickDelta.toDouble(), playerEntity.zo, playerEntity.z) - sinBodyYaw * horizontalOffset + cosBodyYaw * 0.8

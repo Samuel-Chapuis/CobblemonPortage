@@ -59,9 +59,9 @@ class PokemonOnShoulderRenderer<T : Player>(renderLayerParent: RenderLayerParent
         netHeadYaw: Float,
         headPitch: Float
     ) {
-        // It's unclear why Minecraft's providing a partial ticks based on 60FPS regardless of the real FPS.
+        // It's unclear why MinecraftClient's providing a partial ticks based on 60FPS regardless of the real FPS.
         // Whatever - the delta manager works correctly.
-        val realPartialTicks = Minecraft.getInstance().timer.realtimeDeltaTicks
+        val realPartialTicks = MinecraftClient.getInstance().timer.realtimeDeltaTicks
         this.render(matrixStack, buffer, packedLight, livingEntity, limbSwing, limbSwingAmount, realPartialTicks, ageInTicks, netHeadYaw, headPitch, true)
         this.render(matrixStack, buffer, packedLight, livingEntity, limbSwing, limbSwingAmount, realPartialTicks, ageInTicks, netHeadYaw, headPitch, false)
     }

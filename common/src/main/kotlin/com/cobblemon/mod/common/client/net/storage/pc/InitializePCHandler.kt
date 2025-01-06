@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.pc.InitializePCPacke
 import net.minecraft.client.MinecraftClient
 
 object InitializePCHandler : ClientNetworkPacketHandler<InitializePCPacket> {
-    override fun handle(packet: InitializePCPacket, client: Minecraft) {
+    override fun handle(packet: InitializePCPacket, client: MinecraftClient) {
         CobblemonClient.storage.pcStores[packet.storeID] = ClientPC(packet.storeID, packet.boxCount)
     }
 }

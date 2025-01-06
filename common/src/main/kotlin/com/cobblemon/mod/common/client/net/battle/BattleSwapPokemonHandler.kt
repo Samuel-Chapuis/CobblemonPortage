@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleSwapPokemonPack
 import net.minecraft.client.MinecraftClient
 
 object BattleSwapPokemonHandler : ClientNetworkPacketHandler<BattleSwapPokemonPacket> {
-    override fun handle(packet: BattleSwapPokemonPacket, client: Minecraft) {
+    override fun handle(packet: BattleSwapPokemonPacket, client: MinecraftClient) {
         val battle = CobblemonClient.battle ?: return
         val (actor, activeBattlePokemon) = battle.getPokemonFromPNX(packet.pnx)
 

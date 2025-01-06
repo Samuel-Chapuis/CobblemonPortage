@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.TeamRequestExpiredPac
 import net.minecraft.client.MinecraftClient
 
 object TeamRequestExpiredHandler : ClientNetworkPacketHandler<TeamRequestExpiredPacket> {
-    override fun handle(packet: TeamRequestExpiredPacket, client: Minecraft) {
+    override fun handle(packet: TeamRequestExpiredPacket, client: MinecraftClient) {
         CobblemonClient.requests.multiBattleTeamRequests.remove(packet.senderID)
         ClientPlayerIcon.update(packet.senderID)
     }
