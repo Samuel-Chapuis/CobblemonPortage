@@ -811,7 +811,7 @@ open class PokemonEntity(
         if (!this.isBattling && this.isBattleClone()) {
             return InteractionResult.FAIL
         }
-        val itemStack = player.getItemInHand(hand)
+        val itemStack = player.getStackInHand(hand)
         val colorFeatureType = SpeciesFeatures.getFeaturesFor(pokemon.species)
             .find { it is ChoiceSpeciesFeatureProvider && DataKeys.CAN_BE_COLORED in it.keys }
         val colorFeature = pokemon.getFeature<StringSpeciesFeature>(DataKeys.CAN_BE_COLORED)
@@ -933,7 +933,7 @@ open class PokemonEntity(
                 )
             } else {
                 // TODO #105
-                if (this.attemptItemInteraction(player, player.getItemInHand(hand))) return InteractionResult.SUCCESS
+                if (this.attemptItemInteraction(player, player.getStackInHand(hand))) return InteractionResult.SUCCESS
             }
         }
 

@@ -34,7 +34,7 @@ class MedicinalLeekItem(block: MedicinalLeekBlock, settings: Properties) : ItemN
         val blockHitResult = PlaceOnWaterBlockItem.getPlayerPOVHitResult(world, user, ClipContext.Fluid.SOURCE_ONLY)
         val blockHitResult2 = blockHitResult.withPosition(blockHitResult.blockPos.above())
         val placeResult = this.place(BlockPlaceContext(UseOnContext(user, hand, blockHitResult2)))
-        val stack = user.getItemInHand(hand)
+        val stack = user.getStackInHand(hand)
         // This will always be true but just in case we change it down the line.
         /*
         if (!placeResult.isAccepted && this.isFood && user.canConsume(this.foodComponent?.isAlwaysEdible == true)) {

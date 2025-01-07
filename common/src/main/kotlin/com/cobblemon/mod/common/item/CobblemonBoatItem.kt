@@ -26,7 +26,7 @@ import net.minecraft.world.phys.HitResult
 class CobblemonBoatItem(val boatType: CobblemonBoatType, val hasChest: Boolean, settings: Properties) : CobblemonItem(settings) {
 
     override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
-        val stack = user.getItemInHand(hand)
+        val stack = user.getStackInHand(hand)
         val hitResult = getPlayerPOVHitResult(world, user, ClipContext.Fluid.ANY)
         if (hitResult.type == HitResult.Type.MISS) {
             return InteractionResultHolder.pass(stack)

@@ -75,7 +75,7 @@ class PortionHealingBerryItem(block: BerryBlock, val canCauseConfusion: Boolean,
 
     override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
-            return use(user, user.getItemInHand(hand))
+            return use(user, user.getStackInHand(hand))
         }
         return super<BerryItem>.use(world, user, hand)
     }

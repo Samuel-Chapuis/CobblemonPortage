@@ -49,8 +49,8 @@ class FeatherItem(val stat: Stat) : CobblemonItem(Properties()), PokemonSelectin
 
     override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
-            return use(user, user.getItemInHand(hand))
+            return use(user, user.getStackInHand(hand))
         }
-        return InteractionResultHolder.success(user.getItemInHand(hand))
+        return InteractionResultHolder.success(user.getStackInHand(hand))
     }
 }

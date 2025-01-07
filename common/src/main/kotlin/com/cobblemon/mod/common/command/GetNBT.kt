@@ -26,7 +26,7 @@ object GetNBT {
 
     private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity) : Int {
         /*
-        val stack = player.getItemInHand(Hand.MAIN_HAND)
+        val stack = player.getStackInHand(Hand.MAIN_HAND)
         try {
             val formatter = NbtOrderedStringFormatter("", 0, mutableListOf())
             val str = formatter.apply(stack.nbt)

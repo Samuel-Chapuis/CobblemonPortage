@@ -37,7 +37,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
         player: Player,
         usedHand: Hand
     ): InteractionResultHolder<ItemStack> {
-        val itemStack = player.getItemInHand(usedHand)
+        val itemStack = player.getStackInHand(usedHand)
 
         if (player.isCrouching) {
             val hitPokemon = player.traceFirstEntityCollision(

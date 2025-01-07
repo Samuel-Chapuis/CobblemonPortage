@@ -78,9 +78,9 @@ class ElixirItem(val max: Boolean) : CobblemonItem(Properties()), PokemonSelecti
 
     override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (world is ServerLevel && user is ServerPlayerEntity) {
-            val stack = user.getItemInHand(hand)
+            val stack = user.getStackInHand(hand)
             return use(user, stack)
         }
-        return InteractionResultHolder.success(user.getItemInHand(hand))
+        return InteractionResultHolder.success(user.getStackInHand(hand))
     }
 }

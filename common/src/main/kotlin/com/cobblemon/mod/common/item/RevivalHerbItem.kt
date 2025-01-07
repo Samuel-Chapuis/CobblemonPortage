@@ -55,12 +55,12 @@ class RevivalHerbItem(block: RevivalHerbBlock) : ItemNameBlockItem(block, Proper
 
     override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
-            val result = use(user, user.getItemInHand(hand))
+            val result = use(user, user.getStackInHand(hand))
             if (result.result != InteractionResult.PASS) {
                 return result
             }
         }
-        return InteractionResultHolder.success(user.getItemInHand(hand))
+        return InteractionResultHolder.success(user.getStackInHand(hand))
     }
 
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.isFainted()

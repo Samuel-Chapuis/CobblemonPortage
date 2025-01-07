@@ -25,6 +25,6 @@ class VivichokeItem(block: VivichokeBlock) : ItemNameBlockItem(block, Properties
         val blockHitResult = PlaceOnWaterBlockItem.getPlayerPOVHitResult(world, user, ClipContext.Fluid.SOURCE_ONLY)
         val blockHitResult2 = blockHitResult.withPosition(blockHitResult.blockPos.above())
         val actionResult: InteractionResult = super.useOn(UseOnContext(user, hand, blockHitResult2))
-        return InteractionResultHolder(actionResult, user.getItemInHand(hand))
+        return InteractionResultHolder(actionResult, user.getStackInHand(hand))
     }
 }
