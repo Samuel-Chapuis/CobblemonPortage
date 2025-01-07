@@ -27,7 +27,7 @@ import com.cobblemon.mod.common.util.permission
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 import java.text.DecimalFormat
 import net.minecraft.commands.Commands
 import net.minecraft.server.network.ServerPlayerEntity

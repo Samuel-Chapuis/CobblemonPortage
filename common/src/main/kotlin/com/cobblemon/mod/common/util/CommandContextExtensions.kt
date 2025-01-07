@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.util
 
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.commands.arguments.ResourceLocationArgument
 

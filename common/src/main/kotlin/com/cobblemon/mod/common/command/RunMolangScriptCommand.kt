@@ -24,7 +24,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.context.CommandContext
 import java.util.UUID
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.Commands.argument
 import net.minecraft.commands.Commands.literal
 import net.minecraft.commands.arguments.EntityArgument

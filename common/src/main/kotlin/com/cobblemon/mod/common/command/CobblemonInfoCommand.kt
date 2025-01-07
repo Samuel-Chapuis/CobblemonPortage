@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.CobblemonBuildDetails
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.minecraft.ChatFormatting
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.Commands
 import net.minecraft.network.chat.ClickEvent
 import net.minecraft.network.chat.Component

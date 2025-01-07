@@ -19,7 +19,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import com.mojang.brigadier.suggestion.Suggestions
 import com.mojang.brigadier.suggestion.SuggestionsBuilder
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.SharedSuggestionProvider
 import net.minecraft.server.network.ServerPlayerEntity
 import java.util.concurrent.CompletableFuture

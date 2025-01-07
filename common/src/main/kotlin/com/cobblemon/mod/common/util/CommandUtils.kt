@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.util
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.tree.LiteralCommandNode
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 
 fun <T : ArgumentBuilder<CommandSourceStack, T>> ArgumentBuilder<CommandSourceStack, T>.appendRequirement(requirement: (src: CommandSourceStack) -> Boolean): T = this.requires(this.requirement.and(requirement))
 

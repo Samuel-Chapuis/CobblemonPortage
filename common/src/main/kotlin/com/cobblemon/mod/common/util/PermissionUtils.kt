@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.util
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.permission.Permission
 import com.mojang.brigadier.builder.ArgumentBuilder
-import net.minecraft.command.CommandSourceStack
+import net.minecraft.server.command.ServerCommandSource
 
 /**
  * Creates an [ArgumentBuilder.requirement] for a permission.
