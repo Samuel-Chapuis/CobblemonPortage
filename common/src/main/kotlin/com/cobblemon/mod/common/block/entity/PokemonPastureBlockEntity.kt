@@ -83,7 +83,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
                 aspects = pokemon.aspects,
                 heldItem = pokemon.heldItem(),
                 level = pokemon.level,
-                entityKnown = (player.level()
+                entityKnown = (player.world
                     .getEntity(entityId) as? PokemonEntity)?.tethering?.tetheringId == tetheringId
             )
         }
@@ -124,7 +124,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
         val radius = Cobblemon.config.pastureMaxWanderDistance.toDouble()
         val bottom = blockPos.toVec3d().multiply(1.0, 0.0, 1.0)
 
-        val pokemonWithinPastureWander = player.level()
+        val pokemonWithinPastureWander = player.world
             .getEntitiesOfClass(PokemonEntity::class.java, AABB.ofSize(bottom, radius, 99999.0, radius)) { true }
             .count()
         val chunkDiameter = (radius / 16) * 2 // Diameter
@@ -324,7 +324,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
     private fun isPlayerViewing(player: ServerPlayerEntity): Boolean {
         val pastureLink = PastureLinkManager.getLinkByPlayer(player)
         return pastureLink != null && pastureLink.pos == blockPos && pastureLink.dimension == Identifier.tryParse(
-            player.level().dimensionTypeRegistration().registeredName // todo (techdaan): confirm this is good
+            player.world.dimensionTypeRegistration().registeredName // todo (techdaan): confirm this is good
         )
     }
 

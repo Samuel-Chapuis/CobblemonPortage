@@ -74,7 +74,7 @@ class PCBlockEntity(
         return pcLink != null
                 && pcLink is ProximityPCLink
                 && pcLink.pos == blockPos
-                && pcLink.world!!.dimension() == player.level().dimension()
+                && pcLink.world!!.dimension() == player.world.dimension()
     }
 
     private fun getInRangeViewerCount(world: World, pos: BlockPos, range: Double = 5.0): Int {

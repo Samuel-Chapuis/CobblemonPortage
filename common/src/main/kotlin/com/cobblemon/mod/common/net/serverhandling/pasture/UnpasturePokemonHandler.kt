@@ -21,7 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 object UnpasturePokemonHandler : ServerNetworkPacketHandler<UnpasturePokemonPacket> {
     override fun handle(packet: UnpasturePokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pastureLink = PastureLinkManager.getLinkByPlayer(player) ?: return player.sendPacket(ClosePasturePacket())
-        val pastureBlockEntity = player.level().getBlockEntity(pastureLink.pos) as? PokemonPastureBlockEntity ?: return
+        val pastureBlockEntity = player.world.getBlockEntity(pastureLink.pos) as? PokemonPastureBlockEntity ?: return
 
         val tethered = pastureBlockEntity.tetheredPokemon.find { it.pokemonId == packet.pokemonId }
         if (tethered != null && tethered.playerId == player.uuid) {

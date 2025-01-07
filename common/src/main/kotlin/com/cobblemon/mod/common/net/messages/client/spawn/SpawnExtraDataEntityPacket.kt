@@ -33,7 +33,7 @@ abstract class SpawnExtraDataEntityPacket<T: NetworkPacket<T>, E : Entity>(priva
     fun spawnAndApply(client: MinecraftClient) {
         client.execute {
             val player = client.player ?: return@execute
-            val world = player.level() as? ClientLevel ?: return@execute
+            val world = player.world as? ClientLevel ?: return@execute
             // This is a copy pasta of ClientPlayNetworkHandler#onEntitySpawn
             // This exists due to us needing to do everything it does except spawn the entity in the world.
             // We invoke applyData then we add the entity to the world.

@@ -197,7 +197,7 @@ class ShoulderedState() : ActivePokemonState() {
         val player = playerUUID.getPlayer() ?: return
         val nbt = if (isLeftShoulder) player.shoulderEntityLeft else player.shoulderEntityRight
         if (this.isShoulderedPokemon(nbt)) {
-            player.level().playSoundServer(player.position(), SoundEvents.CANDLE_FALL)
+            player.world.playSoundServer(player.position(), SoundEvents.CANDLE_FALL)
             if (isLeftShoulder) {
                 player.shoulderEntityLeft = CompoundTag()
             } else {

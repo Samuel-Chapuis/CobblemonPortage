@@ -21,7 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 object UnpastureAllPokemonHandler : ServerNetworkPacketHandler<UnpastureAllPokemonPacket> {
     override fun handle(packet: UnpastureAllPokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pastureLink = PastureLinkManager.getLinkByPlayer(player) ?: return player.sendPacket(ClosePasturePacket())
-        val pastureBlockEntity = player.level().getBlockEntity(pastureLink.pos) as? PokemonPastureBlockEntity ?: return
+        val pastureBlockEntity = player.world.getBlockEntity(pastureLink.pos) as? PokemonPastureBlockEntity ?: return
         pastureBlockEntity.releaseAllPokemon(player.uuid).map(::PokemonUnpasturedPacket).forEach { it.sendToPlayer(player) }
     }
 }

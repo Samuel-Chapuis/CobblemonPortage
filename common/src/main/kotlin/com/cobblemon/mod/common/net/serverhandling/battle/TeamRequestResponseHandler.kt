@@ -24,7 +24,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  */
 object TeamRequestResponseHandler : ServerNetworkPacketHandler<BattleTeamResponsePacket> {
     override fun handle(packet: BattleTeamResponsePacket, server: MinecraftServer, player: ServerPlayerEntity) {
-        val targetedEntity = player.level().getEntity(packet.targetedEntityId)?.let {
+        val targetedEntity = player.world.getEntity(packet.targetedEntityId)?.let {
             when (it) {
                 is PokemonEntity -> it.owner
                 is ServerPlayerEntity -> it

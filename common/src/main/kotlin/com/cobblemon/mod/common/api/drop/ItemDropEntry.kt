@@ -60,7 +60,7 @@ open class ItemDropEntry : DropEntry {
         stack.applyComponentsAndValidate(builder.build())
 
         if (dropMethod == ItemDropMethod.ON_PLAYER && player != null) {
-            world.addFreshEntity(ItemEntity(player.level(), player.x, player.y, player.z, stack))
+            world.addFreshEntity(ItemEntity(player.world, player.x, player.y, player.z, stack))
         } else if (dropMethod == ItemDropMethod.TO_INVENTORY && player != null && !stack.isEmpty) {
             val name = stack.hoverName
             val count = stack.count

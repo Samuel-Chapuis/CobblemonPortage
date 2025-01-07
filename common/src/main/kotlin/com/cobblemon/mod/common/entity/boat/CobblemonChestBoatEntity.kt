@@ -46,7 +46,7 @@ class CobblemonChestBoatEntity(entityType: EntityType<CobblemonChestBoatEntity>,
 
     override fun openCustomInventoryScreen(player: Player) {
         player.openMenu(this)
-        if (!player.level().isClientSide) {
+        if (!player.world.isClientSide) {
             this.gameEvent(GameEvent.CONTAINER_OPEN, player)
             PiglinAi.angerNearbyPiglins(player, true)
         }

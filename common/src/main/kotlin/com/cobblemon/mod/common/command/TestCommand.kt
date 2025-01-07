@@ -68,12 +68,12 @@ object TestCommand {
             //this.testCodecOutput(context)
             val player = context.source.entity as ServerPlayerEntity
             player.party().forEach { it.currentHealth = it.hp / 2 }
-            val npc = NPCEntity(player.level())
+            val npc = NPCEntity(player.world)
             npc.setPos(player.x, player.y, player.z)
             npc.npc = NPCClasses.getByName("standard")!!
             npc.initialize(50)
-            player.level().addFreshEntity(npc)
-//            val evolutionEntity = GenericBedrockEntity(world = player.level())
+            player.world.addFreshEntity(npc)
+//            val evolutionEntity = GenericBedrockEntity(world = player.world)
 //            evolutionEntity.apply {
 //                category = cobblemonResource("evolution")
 //                colliderHeight = 1.5F
@@ -82,7 +82,7 @@ object TestCommand {
 //                syncAge = true // Otherwise particle animation will be starting from zero even if you come along partway through
 //                setPos(player.x, player.y, player.z + 4)
 //            }
-//            player.level().addFreshEntity(evolutionEntity)
+//            player.world.addFreshEntity(evolutionEntity)
 //            after(seconds = 0.5F) {
 //                player.sendPacket(PlayPoseableAnimationPacket(evolutionEntity.id, setOf("evolution:animation.evolution.evolution"), emptySet()))
 //            }
@@ -112,10 +112,10 @@ object TestCommand {
 //            val enemyPokemon3 = BattlePokemon(PokemonSpecies.random().create())
 //            val enemyPokemon4 = BattlePokemon(PokemonSpecies.random().create())
 //
-//            enemyPokemon.effectedPokemon.sendOut(player.level() as ServerWorld, player.pos.add(2.0, 0.0, 0.0))
-//            enemyPokemon2.effectedPokemon.sendOut(player.level() as ServerWorld, player.pos.add(-2.0, 0.0, 0.0))
-//            enemyPokemon3.effectedPokemon.sendOut(player.level() as ServerWorld, player.pos.add(0.0, 0.0, 2.0))
-//            enemyPokemon4.effectedPokemon.sendOut(player.level() as ServerWorld, player.pos.add(0.0, 0.0, -2.0))
+//            enemyPokemon.effectedPokemon.sendOut(player.world as ServerWorld, player.pos.add(2.0, 0.0, 0.0))
+//            enemyPokemon2.effectedPokemon.sendOut(player.world as ServerWorld, player.pos.add(-2.0, 0.0, 0.0))
+//            enemyPokemon3.effectedPokemon.sendOut(player.world as ServerWorld, player.pos.add(0.0, 0.0, 2.0))
+//            enemyPokemon4.effectedPokemon.sendOut(player.world as ServerWorld, player.pos.add(0.0, 0.0, -2.0))
 //
 //            // Start the battle
 //            BattleRegistry.startBattle(
@@ -140,7 +140,7 @@ object TestCommand {
         val cloneTeam = player.party().toBattleTeam(true)
         cloneTeam.forEach { it.effectedPokemon.level = 100 }
         val scanBox = AABB.ofSize(player.position(), 9.0, 9.0, 9.0)
-        val results = player.level().getEntities(CobblemonEntities.POKEMON, scanBox) { entityPokemon -> entityPokemon.pokemon.isWild() }
+        val results = player.world.getEntities(CobblemonEntities.POKEMON, scanBox) { entityPokemon -> entityPokemon.pokemon.isWild() }
         val pokemonEntity = results.firstOrNull()
         if (pokemonEntity == null) {
             context.source.sendFailure(Component.literal("Cannot find any wild Pokémon in a 9x9x9 area"))

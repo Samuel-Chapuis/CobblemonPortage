@@ -30,7 +30,7 @@ object RequestInteractionsHandler : ServerNetworkPacketHandler<RequestPlayerInte
         server: MinecraftServer,
         player: ServerPlayerEntity
     ) {
-        val world = player.level()
+        val world = player.world
         val targetPlayerEntity = world.getPlayerByUUID(packet.targetId)
         val options : EnumMap<PlayerInteractOptionsPacket.Options, PlayerInteractOptionsPacket.OptionStatus> = EnumMap<PlayerInteractOptionsPacket.Options, PlayerInteractOptionsPacket.OptionStatus>(PlayerInteractOptionsPacket.Options::class.java)
         if (targetPlayerEntity != null && player.traceFirstEntityCollision(

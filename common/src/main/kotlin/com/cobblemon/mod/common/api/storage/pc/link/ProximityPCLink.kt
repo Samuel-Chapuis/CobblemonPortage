@@ -32,8 +32,8 @@ class ProximityPCLink(
     val pos = pcBlockEntity.blockPos
 
     override fun isPermitted(player: ServerPlayerEntity): Boolean {
-        val isWithinRange = player.level() == world && player.position().closerThan(pos.toVec3d(), maxDistance)
-        val pcStillStanding = player.level().getBlockEntity(pos) is PCBlockEntity
+        val isWithinRange = player.world == world && player.position().closerThan(pos.toVec3d(), maxDistance)
+        val pcStillStanding = player.world.getBlockEntity(pos) is PCBlockEntity
         if (!isWithinRange || !pcStillStanding) {
             PCLinkManager.removeLink(playerID)
         }

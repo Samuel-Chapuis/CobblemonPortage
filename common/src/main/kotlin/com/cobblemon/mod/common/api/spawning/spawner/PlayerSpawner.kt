@@ -58,7 +58,7 @@ class PlayerSpawner(player: ServerPlayerEntity, spawns: SpawnPool, manager: Spaw
 
         return SpawningArea(
             cause = cause,
-            world = player.level() as ServerLevel,
+            world = player.world as ServerLevel,
             baseX = ceil(x - sliceDiameter / 2F),
             baseY = ceil(center.y - sliceHeight / 2F),
             baseZ = ceil(z - sliceDiameter / 2F),

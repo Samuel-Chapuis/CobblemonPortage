@@ -34,7 +34,7 @@ object FinishScanningHandler : ServerNetworkPacketHandler<FinishScanningPacket> 
         server: MinecraftServer,
         player: ServerPlayerEntity
     ) {
-        val targetEntity = player.level().getEntity(packet.targetedId) ?: return
+        val targetEntity = player.world.getEntity(packet.targetedId) ?: return
         if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomLevel)) {
             val inProgressUUID = PlayerScanningDetails.playerToEntityMap[player.uuid]
             val progressTick = PlayerScanningDetails.playerToTickMap[player.uuid]

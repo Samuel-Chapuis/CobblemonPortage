@@ -47,7 +47,7 @@ object GiveAllPokemon {
         for (species in orderedSpeces) {
             val pokemon = species.create()
             pokemon.setOriginalTrainer(player.uuid)
-            pc.add(pokemon)//.sendOut(player.level() as ServerWorld, player.pos)
+            pc.add(pokemon)//.sendOut(player.world as ServerWorld, player.pos)
         }
 
         return Command.SINGLE_SUCCESS

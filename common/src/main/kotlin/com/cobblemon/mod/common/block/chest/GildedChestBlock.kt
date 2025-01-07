@@ -165,7 +165,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
 
         world.removeBlock(pos, false)
         afterOnServer(seconds = 0.1F) {
-            if (player !in player.level().players()) {
+            if (player !in player.world.players()) {
                 return@afterOnServer
             }
             val party = player.party()
@@ -195,7 +195,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         val entity = world.getBlockEntity(pos) as? GildedChestBlockEntity ?: return InteractionResult.FAIL
         if (world.getBlockState(pos.above()).isSolidRender(world, pos.above())) return InteractionResult.FAIL
         player.openMenu(entity)
-        if (!player.level().isClientSide) {
+        if (!player.world.isClientSide) {
             PiglinAi.angerNearbyPiglins(player, true)
         }
         return InteractionResult.SUCCESS

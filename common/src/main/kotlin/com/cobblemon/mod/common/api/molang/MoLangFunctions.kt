@@ -311,8 +311,8 @@ object MoLangFunctions {
             val map = hashMapOf<String, java.util.function.Function<MoParams, Any>>()
             map.put("username") { _ -> StringValue(player.gameProfile.name) }
             map.put("uuid") { _ -> StringValue(player.gameProfile.id.toString()) }
-            map.put("main_held_item") { _ -> player.level().itemRegistry.wrapAsHolder(player.mainHandItem.item).asMoLangValue(Registries.ITEM) }
-            map.put("off_held_item") { _ -> player.level().itemRegistry.wrapAsHolder(player.offhandItem.item).asMoLangValue(Registries.ITEM) }
+            map.put("main_held_item") { _ -> player.world.itemRegistry.wrapAsHolder(player.mainHandItem.item).asMoLangValue(Registries.ITEM) }
+            map.put("off_held_item") { _ -> player.world.itemRegistry.wrapAsHolder(player.offhandItem.item).asMoLangValue(Registries.ITEM) }
             map.put("face") { params -> ObjectValue(PlayerDialogueFaceProvider(player.uuid, params.getBooleanOrNull(0) != false)) }
             map.put("swing_hand") { _ -> player.swing(player.usedItemHand) }
             map.put("food_level") { _ -> DoubleValue(player.foodData.foodLevel) }
@@ -348,12 +348,12 @@ object MoLangFunctions {
                     DoubleValue(player.party().none(Pokemon::canBeHealed)) }
                 map.put("can_heal_at_healer") { params ->
                     val pos = params.get<ArrayStruct>(0).asBlockPos()
-                    val healer = player.level().getBlockEntity(pos, CobblemonBlockEntities.HEALING_MACHINE).orElse(null) ?: return@put DoubleValue.ZERO
+                    val healer = player.world.getBlockEntity(pos, CobblemonBlockEntities.HEALING_MACHINE).orElse(null) ?: return@put DoubleValue.ZERO
                     val party = player.party()
                     return@put DoubleValue(healer.canHeal(party))
                 }
                 map.put("put_pokemon_in_healer") { params ->
-                    val healer = player.level()
+                    val healer = player.world
                         .getBlockEntity(params.get<ArrayStruct>(0).asBlockPos(), CobblemonBlockEntities.HEALING_MACHINE)
                         .orElse(null) ?: return@put DoubleValue.ZERO
                     val party = player.party()

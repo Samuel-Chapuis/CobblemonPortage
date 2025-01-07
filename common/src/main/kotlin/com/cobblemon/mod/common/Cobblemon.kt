@@ -227,12 +227,12 @@ object Cobblemon {
         }
         PlatformEvents.RIGHT_CLICK_BLOCK.subscribe { event ->
             val player = event.player
-            val block = player.level().getBlockState(event.pos).block
+            val block = player.world.getBlockState(event.pos).block
             player.party().forEach { pokemon ->
                 pokemon.lockedEvolutions
                     .filterIsInstance<BlockClickEvolution>()
                     .forEach { evolution ->
-                        evolution.attemptEvolution(pokemon, BlockClickEvolution.BlockInteractionContext(block, player.level()))
+                        evolution.attemptEvolution(pokemon, BlockClickEvolution.BlockInteractionContext(block, player.world))
                     }
             }
         }

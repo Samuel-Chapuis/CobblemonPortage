@@ -64,7 +64,7 @@ object CheckSpawnsCommand {
             spawner = spawner,
             area = SpawningArea(
                 cause = cause,
-                world = player.level() as ServerLevel,
+                world = player.world as ServerLevel,
                 baseX = Mth.ceil(player.x - config.worldSliceDiameter / 2F),
                 baseY = Mth.ceil(player.y - config.worldSliceHeight / 2F),
                 baseZ = Mth.ceil(player.z - config.worldSliceDiameter / 2F),

@@ -39,7 +39,7 @@ import net.minecraft.world.phys.AABB
  */
 interface PokemonAndMoveSelectingItem {
     fun use(player: ServerPlayerEntity, stack: ItemStack): InteractionResultHolder<ItemStack>? {
-        val entity = player.level()
+        val entity = player.world
             .getEntities(player, AABB.ofSize(player.position(), 16.0, 16.0, 16.0))
             .filter { player.isLookingAt(it, stepDistance = 0.1F) }
             .minByOrNull { it.distanceTo(player) } as? PokemonEntity?

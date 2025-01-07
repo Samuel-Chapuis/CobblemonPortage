@@ -21,7 +21,7 @@ object StartScanningHandler : ServerNetworkPacketHandler<StartScanningPacket> {
         server: MinecraftServer,
         player: ServerPlayerEntity
     ) {
-        val targetEntity = player.level().getEntity(packet.targetedId) ?: return
+        val targetEntity = player.world.getEntity(packet.targetedId) ?: return
         if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomLevel)) {
             PlayerScanningDetails.playerToEntityMap[player.uuid] = targetEntity.uuid
             PlayerScanningDetails.playerToTickMap[player.uuid] = server.tickCount

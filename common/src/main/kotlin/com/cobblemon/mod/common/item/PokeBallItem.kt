@@ -42,7 +42,7 @@ class PokeBallItem(
     }
 
     private fun throwPokeBall(world: World, player: ServerPlayerEntity) {
-        val pokeBallEntity = EmptyPokeBallEntity(pokeBall, player.level(), player).apply {
+        val pokeBallEntity = EmptyPokeBallEntity(pokeBall, player.world, player).apply {
             val overhandFactor: Float = if (player.xRot < 0) {
                 5f * cos(player.xRot.toRadians())
             } else {

@@ -29,7 +29,7 @@ class PlantTumblestoneCriterion(
     }
 
     override fun matches(player: ServerPlayerEntity, context: PlantTumblestoneContext): Boolean {
-        return context.block.canGrow(context.pos, player.level())
+        return context.block.canGrow(context.pos, player.world)
     }
 }
 
@@ -58,7 +58,7 @@ class PlantTumblestoneCriterion(
 //     * @return True if the tumblestone block can grow at the given position, false otherwise
 //     */
 //    override fun matches(player: ServerPlayerEntity, context: PlantTumblestoneContext): Boolean {
-//        return context.tumbleStoneBlock.canGrow(context.pos, player.level())
+//        return context.tumbleStoneBlock.canGrow(context.pos, player.world)
 //    }
 //}
 //
