@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.events.Cancelable
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.ItemStack
 

@@ -79,7 +79,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer
 import net.minecraft.client.renderer.entity.LivingEntityRenderer
 import net.minecraft.client.resources.PlayerSkin
 import net.minecraft.server.packs.resources.ResourceManager
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.AABB
 

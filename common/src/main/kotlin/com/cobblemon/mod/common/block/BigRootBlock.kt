@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.block
 
 import com.mojang.serialization.MapCodec
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.entity.player.Player

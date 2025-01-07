@@ -40,7 +40,7 @@ import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.util.Identifier
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.Vec3

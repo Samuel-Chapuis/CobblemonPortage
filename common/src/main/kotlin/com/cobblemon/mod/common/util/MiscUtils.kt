@@ -24,7 +24,7 @@ import net.minecraft.client.util.ModelIdentifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.phys.shapes.VoxelShape
 import org.joml.Vector4f

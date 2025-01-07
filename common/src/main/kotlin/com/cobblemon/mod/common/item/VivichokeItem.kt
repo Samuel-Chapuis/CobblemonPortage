@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.item
 import com.cobblemon.mod.common.block.VivichokeBlock
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.InteractionResultHolder
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemNameBlockItem
 import net.minecraft.world.item.ItemStack

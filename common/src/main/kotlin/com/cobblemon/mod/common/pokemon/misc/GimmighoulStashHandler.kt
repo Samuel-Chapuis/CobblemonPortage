@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 
 /**
  * Handles logic relating to Gimmighoul's Coin Stash and Scrap Stash bars.

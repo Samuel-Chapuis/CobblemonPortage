@@ -65,7 +65,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerEntity
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.AgeableMob

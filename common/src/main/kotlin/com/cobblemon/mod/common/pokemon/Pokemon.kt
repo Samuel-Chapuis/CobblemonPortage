@@ -140,7 +140,7 @@ import net.minecraft.tags.FluidTags
 import net.minecraft.util.Mth.ceil
 import net.minecraft.util.Mth.clamp
 import net.minecraft.util.StringRepresentable
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack

@@ -20,7 +20,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.ContainerHelper
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.WorldlyContainer
 import net.minecraft.world.entity.player.Player

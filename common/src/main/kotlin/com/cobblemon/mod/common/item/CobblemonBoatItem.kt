@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.entity.boat.CobblemonBoatEntity
 import com.cobblemon.mod.common.entity.boat.CobblemonBoatType
 import com.cobblemon.mod.common.entity.boat.CobblemonChestBoatEntity
 import net.minecraft.stats.Stats
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntitySelector

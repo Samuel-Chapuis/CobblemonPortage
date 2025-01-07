@@ -53,7 +53,7 @@ import net.minecraft.sounds.SoundSource
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.RandomSource
 import net.minecraft.world.Containers
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.entity.player.Player

@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.item
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.block.MedicinalLeekBlock
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.player.Player

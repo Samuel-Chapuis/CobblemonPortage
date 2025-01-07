@@ -22,7 +22,7 @@ import net.minecraft.util.math.Direction
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.player.Player

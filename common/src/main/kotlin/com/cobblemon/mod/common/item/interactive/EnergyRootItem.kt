@@ -25,7 +25,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.genericRuntime
 import com.cobblemon.mod.common.util.resolveInt
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemNameBlockItem

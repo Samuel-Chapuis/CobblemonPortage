@@ -31,7 +31,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sounds.SoundSource
 import net.minecraft.stats.Stats
-import net.minecraft.world.InteractionHand
+import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.SlotAccess
