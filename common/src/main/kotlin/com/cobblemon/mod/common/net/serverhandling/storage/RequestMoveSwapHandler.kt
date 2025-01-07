@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.net.ServerNetworkPacketHandler
 import com.cobblemon.mod.common.net.messages.server.RequestMoveSwapPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object RequestMoveSwapHandler : ServerNetworkPacketHandler<RequestMoveSwapPacket> {
     override fun handle(packet: RequestMoveSwapPacket, server: MinecraftServer, player: ServerPlayer) {

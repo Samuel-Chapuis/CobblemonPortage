@@ -24,7 +24,7 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.random.Random
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * An implementation of the capture calculator used in the generation 8 games.

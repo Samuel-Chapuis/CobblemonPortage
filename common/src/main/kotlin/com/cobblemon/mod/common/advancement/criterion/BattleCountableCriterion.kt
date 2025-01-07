@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.advancements.critereon.ContextAwarePredicate
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import java.util.Optional
 
 open class BattleCountableContext(var battle : PokemonBattle, times : Int) : CountableContext(times)

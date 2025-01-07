@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.util.DataKeys
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * An [NPCInteractConfiguration] which starts a dialogue when the player interacts with the NPC.

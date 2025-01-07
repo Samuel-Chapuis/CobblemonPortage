@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.storage.party.NPCPartyStore
 import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.util.toProperties
 import com.google.gson.JsonElement
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A basic party provider that just produces a [NPCPartyStore] based on a simple list of [PokemonProperties].

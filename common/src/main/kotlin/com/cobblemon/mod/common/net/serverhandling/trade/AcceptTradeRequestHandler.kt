@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.trade.TradeManager.TradeRequest
 import com.cobblemon.mod.common.net.messages.server.trade.AcceptTradeRequestPacket
 import com.cobblemon.mod.common.trade.TradeManager
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Processes a player's acceptance of a [TradeRequest].

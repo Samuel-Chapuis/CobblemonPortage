@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.pasture
 
 import com.cobblemon.mod.common.api.PrioritizedList
 import com.cobblemon.mod.common.block.entity.PokemonPastureBlockEntity
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Contains a list of [PasturePermissionController]s to control what kind of access a player

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.CobblemonNetwork
 import com.cobblemon.mod.common.util.server
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.registry.RegistryKey
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
 

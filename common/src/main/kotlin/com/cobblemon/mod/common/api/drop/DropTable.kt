@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import kotlin.random.Random
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.phys.Vec3
 

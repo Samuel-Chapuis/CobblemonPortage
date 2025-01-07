@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.server.trade.OfferTradePacket
 import com.cobblemon.mod.common.trade.TradeManager
 import com.cobblemon.mod.common.util.getPlayer
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Processes a player's interaction request to trade with another player. If valid, creates a respective [TradeRequest]

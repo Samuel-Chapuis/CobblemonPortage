@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import kotlin.math.max
 import kotlin.math.round
 import kotlin.random.Random
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 class PoisonStatus : PersistentStatus(
     name = cobblemonResource("poison"),
     showdownName = "psn",

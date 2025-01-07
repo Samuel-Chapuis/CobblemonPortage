@@ -26,7 +26,7 @@ import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.net.messages.client.dialogue.DialogueOpenedPacket
 import java.util.UUID
 import java.util.concurrent.CompletableFuture
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * An active instance of [Dialogue]. Bound to a player. These all need to be created through DialogueManager

@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.*
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.party
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.network.chat.Component
 
 /**

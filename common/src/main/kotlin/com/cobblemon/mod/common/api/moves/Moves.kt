@@ -21,7 +21,7 @@ import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.ResourceManager
 

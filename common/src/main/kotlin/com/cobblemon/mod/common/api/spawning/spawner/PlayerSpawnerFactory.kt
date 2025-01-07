@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.api.spawning.influence.RestrictedSpawnBlocksInfl
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import com.cobblemon.mod.common.api.spawning.rules.SpawnRule
 import com.cobblemon.mod.common.util.mutableLazy
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Responsible for creating [PlayerSpawner]s with whatever appropriate settings. You can

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.status.PersistentStatusContainer
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.entity.ai.goal.Goal
 import net.minecraft.world.entity.player.Player

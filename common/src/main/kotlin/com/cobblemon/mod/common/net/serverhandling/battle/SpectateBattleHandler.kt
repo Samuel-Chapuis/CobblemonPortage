@@ -22,7 +22,7 @@ import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.traceFirstEntityCollision
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.ClipContext
 import org.apache.logging.log4j.LogManager

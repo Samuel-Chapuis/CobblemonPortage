@@ -48,7 +48,7 @@ import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sounds.SoundSource
 import net.minecraft.stats.Stats
 import net.minecraft.tags.FluidTags

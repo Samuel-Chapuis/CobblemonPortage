@@ -22,7 +22,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleChallengeNotifi
 import com.cobblemon.mod.common.util.canInteractWith
 import com.cobblemon.mod.common.util.getBattleTeam
 import com.cobblemon.mod.common.util.party
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.phys.Vec3
 import java.util.*
 

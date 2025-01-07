@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.platform.events
 import com.cobblemon.mod.common.api.events.Cancelable
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.ItemStack

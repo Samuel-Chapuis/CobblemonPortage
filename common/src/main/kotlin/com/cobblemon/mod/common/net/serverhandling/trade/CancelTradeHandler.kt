@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeCancelledPacket
 import com.cobblemon.mod.common.net.messages.server.trade.CancelTradePacket
 import com.cobblemon.mod.common.trade.TradeManager
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object CancelTradeHandler : ServerNetworkPacketHandler<CancelTradePacket> {
     override fun handle(packet: CancelTradePacket, server: MinecraftServer, player: ServerPlayer) {

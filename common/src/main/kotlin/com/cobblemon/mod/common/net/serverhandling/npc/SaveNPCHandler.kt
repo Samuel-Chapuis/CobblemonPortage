@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ServerNetworkPacketHandler
 import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.net.messages.server.npc.SaveNPCPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object SaveNPCHandler : ServerNetworkPacketHandler<SaveNPCPacket> {
     override fun handle(packet: SaveNPCPacket, server: MinecraftServer, player: ServerPlayer) {

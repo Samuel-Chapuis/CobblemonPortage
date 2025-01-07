@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.text
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.*
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 import java.util.*

@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.network.chat.MutableComponent
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Used for opening a party select screen for players which routes to move selection when they choose a Pokémon.

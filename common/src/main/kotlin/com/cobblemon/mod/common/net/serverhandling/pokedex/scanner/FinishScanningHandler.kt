@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.pokedex.scanner.PokedexUsageContext
 import com.cobblemon.mod.common.pokedex.scanner.PokemonScanner
 import com.cobblemon.mod.common.pokedex.scanner.ScannableEntity
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Calls [POKEMON_SCANNED] event when Pokémon is finished scanning

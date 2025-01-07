@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.net.messages.server.pokedex.scanner.StartScannin
 import com.cobblemon.mod.common.pokedex.scanner.PlayerScanningDetails
 import com.cobblemon.mod.common.pokedex.scanner.PokemonScanner
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object StartScanningHandler : ServerNetworkPacketHandler<StartScanningPacket> {
     override fun handle(

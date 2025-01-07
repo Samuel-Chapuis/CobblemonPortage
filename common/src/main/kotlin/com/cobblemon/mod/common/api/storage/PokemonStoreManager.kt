@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.block.entity.PCBlockEntity
 import com.cobblemon.mod.common.net.messages.client.storage.party.SetPartyReferencePacket
 import java.util.UUID
 import net.minecraft.core.RegistryAccess
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Manages the providing of [PokemonStore]s for party, PC, and custom use. The main utilities of this class

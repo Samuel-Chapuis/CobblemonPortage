@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.util.server
 import com.cobblemon.mod.common.world.gamerules.CobblemonGameRules
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * The [SpawnerManager] that handles Cobblemon's world spawner, which is made up

@@ -168,7 +168,7 @@ import com.cobblemon.mod.common.net.serverhandling.storage.pc.SwapPCPokemonHandl
 import com.cobblemon.mod.common.net.serverhandling.storage.pc.UnlinkPlayerFromPCHandler
 import com.cobblemon.mod.common.net.serverhandling.trade.*
 import com.cobblemon.mod.common.util.server
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Registers Cobblemon network packets.

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ServerNetworkPacketHandler
 import com.cobblemon.mod.common.net.messages.server.pokemon.update.evolution.AcceptEvolutionPacket
 import com.cobblemon.mod.common.util.party
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object AcceptEvolutionHandler : ServerNetworkPacketHandler<AcceptEvolutionPacket> {
     override fun handle(packet: AcceptEvolutionPacket, server: MinecraftServer, player: ServerPlayer) {

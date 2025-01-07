@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.drop.DropEntry
 import com.cobblemon.mod.common.api.drop.DropTable
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.api.events.CobblemonEvents
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 
 /**

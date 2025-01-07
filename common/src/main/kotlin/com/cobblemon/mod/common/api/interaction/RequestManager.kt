@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.text.aqua
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.battles.TeamManager
 import com.cobblemon.mod.common.util.*
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import java.util.*
 
 /**

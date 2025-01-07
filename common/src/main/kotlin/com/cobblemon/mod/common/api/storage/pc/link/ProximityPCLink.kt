@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.block.entity.PCBlockEntity
 import com.cobblemon.mod.common.util.toVec3d
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A [PCLink] that is based on proximity to a specific PC. If the PC is broken or the player is moved

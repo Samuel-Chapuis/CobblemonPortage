@@ -13,7 +13,7 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.advancements.critereon.ContextAwarePredicate
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import java.util.Optional
 
 class PlantTumblestoneContext(val pos: BlockPos, val block: TumblestoneBlock)

@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.entity.pokeball.EmptyPokeBallEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.itemRegistry
 import net.minecraft.core.registries.Registries
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 data class PokemonCapturedEvent (
     val pokemon: Pokemon,

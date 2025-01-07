@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.permission
 import com.cobblemon.mod.common.Cobblemon
 import net.minecraft.commands.CommandSource
 import net.minecraft.commands.CommandSourceStack
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Responsible for evaluating permissions for a given player or command source.

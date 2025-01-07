@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.storage.PokemonStore
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * The base of the events around the release of Pokémon from pc or party.

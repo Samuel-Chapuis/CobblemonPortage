@@ -27,7 +27,7 @@ import java.util.UUID
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.registry.RegistryKey
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.util.Identifier
 import net.minecraft.world.World

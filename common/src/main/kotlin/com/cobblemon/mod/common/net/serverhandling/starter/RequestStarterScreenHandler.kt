@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.net.messages.server.starter.RequestStarterScreenPacket
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object RequestStarterScreenHandler : ServerNetworkPacketHandler<RequestStarterScreenPacket> {
     override fun handle(packet: RequestStarterScreenPacket, server: MinecraftServer, player: ServerPlayer) {

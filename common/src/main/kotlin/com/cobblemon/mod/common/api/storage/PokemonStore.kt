@@ -18,7 +18,7 @@ import com.google.gson.JsonObject
 import java.util.UUID
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * The base class for all stores of [Pokemon]. A store specifies the kind of coordinate it needs to be given

@@ -23,7 +23,7 @@ import com.cobblemon.mod.common.util.subscribeOnServer
 import java.util.UUID
 import java.util.concurrent.Executors
 import net.minecraft.core.RegistryAccess
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A [PokemonStoreFactory] that is backed by a file. This implementation will now handle persistence and scheduling

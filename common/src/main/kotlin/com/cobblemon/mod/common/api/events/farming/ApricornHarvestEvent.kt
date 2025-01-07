@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.events.farming
 import com.cobblemon.mod.common.api.apricorn.Apricorn
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.level.block.state.BlockState
 
 /**

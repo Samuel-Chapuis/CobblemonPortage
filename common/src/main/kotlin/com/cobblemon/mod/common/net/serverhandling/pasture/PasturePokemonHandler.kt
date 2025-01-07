@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.net.messages.client.pasture.ClosePasturePacket
 import com.cobblemon.mod.common.net.messages.server.pasture.PasturePokemonPacket
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object PasturePokemonHandler : ServerNetworkPacketHandler<PasturePokemonPacket> {
     override fun handle(packet: PasturePokemonPacket, server: MinecraftServer, player: ServerPlayer) {

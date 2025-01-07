@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.storage.pc.link
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.permission.Permission
 import com.cobblemon.mod.common.api.storage.pc.PCStore
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A [PCLink] tied to a player that must have a permission.

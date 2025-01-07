@@ -21,7 +21,7 @@ import com.cobblemon.mod.common.battles.runner.ShowdownService
 import com.google.gson.GsonBuilder
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object BattleRegistry {
 

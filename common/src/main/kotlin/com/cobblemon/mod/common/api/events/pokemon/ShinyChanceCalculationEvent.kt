@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.events.pokemon
 
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * An event to modify the shiny chance of a Pokémon.

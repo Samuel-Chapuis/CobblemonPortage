@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.block.entity.PCBlockEntity
 import java.util.UUID
 import net.minecraft.core.RegistryAccess
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A provider for [PokemonStore]'s when given a player UUID. An implementation of this interface

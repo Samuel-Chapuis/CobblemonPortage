@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.toast.ToastPacket
 import com.cobblemon.mod.common.platform.events.PlatformEvents
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Mth
 import net.minecraft.world.item.ItemStack
 import java.util.*

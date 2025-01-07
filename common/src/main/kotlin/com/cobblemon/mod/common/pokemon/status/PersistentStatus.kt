@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.asTranslated
 import com.mojang.serialization.Codec
 import com.mojang.serialization.DataResult
 import kotlin.random.Random
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 
 /**

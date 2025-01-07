@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.util.writeIdentifier
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * An [NPCInteractConfiguration] which runs a referenced MoLang script from [CobblemonScripts].

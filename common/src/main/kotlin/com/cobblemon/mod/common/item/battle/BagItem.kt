@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.ItemStack
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A bag item effect that links to a script in Showdown. Implementations must be added to

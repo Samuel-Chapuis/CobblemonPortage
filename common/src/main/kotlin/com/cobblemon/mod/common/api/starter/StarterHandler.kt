@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.starter
 
 import com.cobblemon.mod.common.config.starter.StarterCategory
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 interface StarterHandler {
     fun getStarterList(player: ServerPlayer): List<StarterCategory>

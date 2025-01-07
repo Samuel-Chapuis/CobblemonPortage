@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.events.item
 
 import com.cobblemon.mod.common.api.events.Cancelable
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.item.ItemStack
 
 /**

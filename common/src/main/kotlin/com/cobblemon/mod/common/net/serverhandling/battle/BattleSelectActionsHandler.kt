@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleMakeChoicePacke
 import com.cobblemon.mod.common.net.messages.client.battle.BattleQueueRequestPacket
 import com.cobblemon.mod.common.net.messages.server.battle.BattleSelectActionsPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object BattleSelectActionsHandler : ServerNetworkPacketHandler<BattleSelectActionsPacket> {
     override fun handle(packet: BattleSelectActionsPacket, server: MinecraftServer, player: ServerPlayer) {

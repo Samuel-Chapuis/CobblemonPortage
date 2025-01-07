@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.util.math.intersection
 import com.cobblemon.mod.common.util.server
 import kotlin.math.max
 import kotlin.math.min
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A [SpawningInfluence] that tends spawns around a player to be within their level range.

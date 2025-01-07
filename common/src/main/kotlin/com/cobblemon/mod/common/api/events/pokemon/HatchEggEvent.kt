@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.events.pokemon
 
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 interface HatchEggEvent {
     val egg: PokemonProperties

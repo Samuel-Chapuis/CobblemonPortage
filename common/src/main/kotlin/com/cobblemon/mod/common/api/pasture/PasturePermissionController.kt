@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.pasture
 
 import com.cobblemon.mod.common.block.entity.PokemonPastureBlockEntity
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Interface for a route to which a player might be permitted to use a pasture block. This is registered

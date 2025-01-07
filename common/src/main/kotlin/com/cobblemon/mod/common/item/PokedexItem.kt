@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.isLookingAt
 import com.cobblemon.mod.common.util.isServerSide
 import com.cobblemon.mod.common.util.traceFirstEntityCollision
 import net.minecraft.client.player.LocalPlayer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.LivingEntity

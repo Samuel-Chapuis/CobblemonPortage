@@ -24,7 +24,7 @@ import com.google.gson.reflect.TypeToken
 import net.minecraft.advancements.critereon.MinMaxBounds
 import net.minecraft.core.registries.Registries
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
 import net.minecraft.tags.TagKey
 import net.minecraft.world.level.biome.Biome

@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.battles.TeamManager
 import com.cobblemon.mod.common.battles.TeamManager.MultiBattleTeam
 import com.cobblemon.mod.common.net.messages.server.battle.BattleTeamLeavePacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Processes a player's request to leave an active [MultiBattleTeam].

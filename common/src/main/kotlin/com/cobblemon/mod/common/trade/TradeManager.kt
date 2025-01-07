@@ -24,7 +24,7 @@ import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
 import com.cobblemon.mod.common.util.canInteractWith
 import com.cobblemon.mod.common.util.party
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Responsible for managing [ActiveTrade]s and the respective [TradeRequest]s that create them.

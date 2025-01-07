@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.nextBetween
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Mth.PI
 import net.minecraft.util.Mth.ceil
 import java.util.*

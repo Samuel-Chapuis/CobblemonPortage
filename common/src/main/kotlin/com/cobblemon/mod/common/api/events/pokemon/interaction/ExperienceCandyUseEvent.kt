@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.item.interactive.CandyItem
 import com.cobblemon.mod.common.pokemon.AddExperienceResult
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * The base of the [CandyItem] related events.

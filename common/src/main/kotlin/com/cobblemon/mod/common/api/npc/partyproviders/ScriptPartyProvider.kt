@@ -24,7 +24,7 @@ import com.cobblemon.mod.common.util.toProperties
 import com.cobblemon.mod.common.util.withQueryValue
 import com.google.gson.JsonElement
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 class ScriptPartyProvider : NPCPartyProvider {
     companion object {

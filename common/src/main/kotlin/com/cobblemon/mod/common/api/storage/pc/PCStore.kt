@@ -28,7 +28,7 @@ import java.util.UUID
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * The store used for PCs. It is divided into some number of [PCBox]es, and can

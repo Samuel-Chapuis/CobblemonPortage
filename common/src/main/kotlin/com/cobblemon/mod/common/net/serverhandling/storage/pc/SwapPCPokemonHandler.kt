@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.storage.pc.link.PCLinkManager
 import com.cobblemon.mod.common.net.messages.client.storage.pc.ClosePCPacket
 import com.cobblemon.mod.common.net.messages.server.storage.pc.SwapPCPokemonPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object SwapPCPokemonHandler : ServerNetworkPacketHandler<SwapPCPokemonPacket> {
     override fun handle(packet: SwapPCPokemonPacket, server: MinecraftServer, player: ServerPlayer) {

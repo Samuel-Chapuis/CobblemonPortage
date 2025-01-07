@@ -30,7 +30,7 @@ import com.cobblemon.mod.common.util.update
 import com.cobblemon.mod.common.util.*
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
 import kotlin.collections.HashMap

@@ -40,7 +40,7 @@ import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.NbtUtils
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.entity.item.ItemEntity

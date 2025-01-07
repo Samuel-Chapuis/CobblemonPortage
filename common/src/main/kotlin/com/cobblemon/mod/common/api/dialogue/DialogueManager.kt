@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.dialogue.DialogueOpenedPacke
 import com.cobblemon.mod.common.util.activeDialogue
 import com.cobblemon.mod.common.util.withNPCValue
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Manages the active dialogues for players. Map is indexed by player UUID.

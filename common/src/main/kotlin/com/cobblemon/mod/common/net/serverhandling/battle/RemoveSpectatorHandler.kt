@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.ServerNetworkPacketHandler
 import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.net.messages.server.battle.RemoveSpectatorPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object RemoveSpectatorHandler : ServerNetworkPacketHandler<RemoveSpectatorPacket> {
     override fun handle(

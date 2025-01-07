@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.entity.npc.NPCEntity
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A type of interaction handler for when a player right-clicks the NPC.

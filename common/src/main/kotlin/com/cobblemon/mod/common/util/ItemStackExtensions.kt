@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.util
 
 import com.google.gson.JsonElement
 import com.mojang.serialization.JsonOps
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack

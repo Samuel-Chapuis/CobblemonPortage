@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.net.messages.server.RequestPlayerInteractionsPac
 import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.traceFirstEntityCollision
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.ClipContext
 import java.util.*

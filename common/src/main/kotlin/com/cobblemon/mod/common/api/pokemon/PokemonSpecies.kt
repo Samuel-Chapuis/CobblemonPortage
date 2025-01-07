@@ -54,7 +54,7 @@ import com.google.gson.reflect.TypeToken
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.util.Identifier
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
 import net.minecraft.world.effect.MobEffect
 import net.minecraft.world.entity.EntityDimensions

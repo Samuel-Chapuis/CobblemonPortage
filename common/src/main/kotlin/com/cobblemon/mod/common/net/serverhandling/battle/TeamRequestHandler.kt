@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.messages.client.battle.TeamRequestNotificationPacket
 import com.cobblemon.mod.common.net.messages.server.battle.BattleTeamRequestPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Processes a player's interaction request to form a team with another player. If valid, creates a respective [TeamRequest]

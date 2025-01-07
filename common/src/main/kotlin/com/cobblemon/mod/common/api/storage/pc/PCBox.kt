@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.util.DataKeys
 import com.google.gson.JsonObject
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A single box of a PC. The list of Pokémon is strictly sized at [POKEMON_PER_BOX] - 30.

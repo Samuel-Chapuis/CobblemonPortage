@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.events.pokemon
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * Event fired when a player attempts to nickname a Pokémon. The nickname that will be applied can be edited, or

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.net.ServerNetworkPacketHandler
 import com.cobblemon.mod.common.net.messages.server.SelectStarterPacket
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 object SelectStarterPacketHandler : ServerNetworkPacketHandler<SelectStarterPacket> {
     override fun handle(packet: SelectStarterPacket, server: MinecraftServer, player: ServerPlayer) {

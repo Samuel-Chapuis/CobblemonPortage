@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.removeIf
 import net.minecraft.core.BlockPos
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.level.ServerLevel
 
 // Need to use this in the interact with pasture block then use links when handling server-side packets

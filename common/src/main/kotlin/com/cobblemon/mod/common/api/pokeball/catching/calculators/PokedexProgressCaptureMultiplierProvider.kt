@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.pokeball.catching.calculators
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.pokedex.CaughtCount
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A provider for multiplier in the catch rate formula based on the number of species caught and registered to the Pokédex.

@@ -20,7 +20,7 @@ import com.google.gson.reflect.TypeToken
 import net.minecraft.client.model.geom.ModelPart
 
 import net.minecraft.server.packs.PackType
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 
 /**

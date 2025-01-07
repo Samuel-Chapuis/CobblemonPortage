@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.storage.pc.link
 
 import com.cobblemon.mod.common.api.storage.pc.PCStore
 import java.util.UUID
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 
 /**
  * A registered connection from a UUID to a specific PC. The purpose of this interface

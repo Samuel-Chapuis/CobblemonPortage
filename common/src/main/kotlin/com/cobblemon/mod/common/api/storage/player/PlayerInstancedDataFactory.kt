@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.api.storage.player
 
 import net.minecraft.server.MinecraftServer
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.player.Player
 import java.util.UUID
 

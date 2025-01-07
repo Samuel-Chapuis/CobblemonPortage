@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.pokemon.activestate.ShoulderedState
 import com.cobblemon.mod.common.pokemon.effects.PotionBaseEffect
 import com.cobblemon.mod.common.util.party
-import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.network.ServerPlayerEntity
 import org.jetbrains.annotations.ApiStatus
 
 /**
