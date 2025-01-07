@@ -32,7 +32,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.Camera
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.world.phys.AABB
 import net.minecraft.util.Mth
 import net.minecraft.world.phys.Vec3

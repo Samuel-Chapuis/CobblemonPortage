@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.fossil.NaturalMaterials
 import com.cobblemon.mod.common.api.multiblock.builder.MultiblockStructureBuilder
 import com.cobblemon.mod.common.block.multiblock.FossilMultiblockStructure
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.NonNullList
 import net.minecraft.core.registries.BuiltInRegistries

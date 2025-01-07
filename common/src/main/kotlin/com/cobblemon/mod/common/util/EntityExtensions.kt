@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.util
 import com.google.common.collect.ImmutableMap
 import com.mojang.serialization.Dynamic
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.nbt.NbtOps
 import net.minecraft.nbt.Tag
 import net.minecraft.network.syncher.EntityDataAccessor

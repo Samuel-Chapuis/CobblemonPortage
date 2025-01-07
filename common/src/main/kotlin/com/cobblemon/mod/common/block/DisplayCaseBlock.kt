@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.block.entity.DisplayCaseBlockEntity
 import com.cobblemon.mod.common.item.PokeBallItem
 import com.mojang.serialization.MapCodec
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult

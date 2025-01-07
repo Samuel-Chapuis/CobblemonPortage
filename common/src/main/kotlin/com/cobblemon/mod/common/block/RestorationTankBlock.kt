@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.block.entity.RestorationTankBlockEntity
 import com.cobblemon.mod.common.block.multiblock.FossilMultiblockBuilder
 import com.mojang.serialization.MapCodec
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.util.StringRepresentable

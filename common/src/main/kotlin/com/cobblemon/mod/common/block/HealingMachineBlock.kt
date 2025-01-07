@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.party
 import com.mojang.serialization.MapCodec
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.network.chat.Component
 import net.minecraft.server.network.ServerPlayerEntity

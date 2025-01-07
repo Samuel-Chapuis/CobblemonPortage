@@ -23,7 +23,7 @@ import com.cobblemon.mod.common.util.toVec3d
 import com.cobblemon.mod.common.util.voxelShape
 import com.mojang.serialization.MapCodec
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.network.ServerPlayerEntity

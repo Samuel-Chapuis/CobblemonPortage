@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.blockPositionsAsList
 import net.minecraft.advancements.critereon.BlockPredicate
 import net.minecraft.advancements.critereon.StatePropertiesPredicate
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundSource

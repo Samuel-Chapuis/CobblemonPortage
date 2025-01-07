@@ -8,10 +8,10 @@
 
 package com.cobblemon.mod.common.util
 
-import net.minecraft.core.Direction
-import net.minecraft.core.Direction.EAST
-import net.minecraft.core.Direction.NORTH
-import net.minecraft.core.Direction.SOUTH
+import net.minecraft.util.math.Direction
+import net.minecraft.util.math.Direction.EAST
+import net.minecraft.util.math.Direction.NORTH
+import net.minecraft.util.math.Direction.SOUTH
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 

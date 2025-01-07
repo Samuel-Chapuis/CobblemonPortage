@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.block
 
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.item.context.BlockPlaceContext

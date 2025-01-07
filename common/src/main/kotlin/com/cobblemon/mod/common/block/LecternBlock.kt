@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
 import com.mojang.serialization.MapCodec
 import net.minecraft.util.math.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.util.math.Direction
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
