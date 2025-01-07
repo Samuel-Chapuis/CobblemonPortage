@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.entity.PosableEntity
 import com.cobblemon.mod.common.net.messages.client.spawn.SpawnGenericBedrockPacket
 import com.cobblemon.mod.common.util.DataKeys
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.StringTag
@@ -33,7 +33,7 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerEntity
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.World
 

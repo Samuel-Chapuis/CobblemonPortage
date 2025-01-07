@@ -25,7 +25,7 @@ import com.mojang.serialization.DynamicOps
 import com.mojang.serialization.codecs.PrimitiveCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.phys.AABB
 import kotlin.math.cos
 import kotlin.math.sin

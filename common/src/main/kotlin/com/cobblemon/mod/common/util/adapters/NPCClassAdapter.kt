@@ -27,7 +27,7 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import java.lang.reflect.Type
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 
 /**
  * Manually deserializes an NPCClass from JSON. Searches for [NPCPreset]s to apply as a base before applying the

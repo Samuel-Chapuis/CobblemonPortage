@@ -69,8 +69,8 @@ import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.AgeableMob
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityDimensions
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.entity.ai.Brain
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier

@@ -13,7 +13,7 @@ import net.minecraft.core.NonNullList
 import net.minecraft.registry.RegistryKey
 import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
-import net.minecraft.world.entity.EntityType
+import net.minecraft.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.monster.piglin.PiglinAi
 import net.minecraft.world.entity.player.Inventory

@@ -50,7 +50,7 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderStateShard
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.util.Identifier
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.phys.Vec3
 
 /**

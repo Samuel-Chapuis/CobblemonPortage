@@ -39,7 +39,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 import net.minecraft.world.entity.schedule.Activity
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.biome.Biome

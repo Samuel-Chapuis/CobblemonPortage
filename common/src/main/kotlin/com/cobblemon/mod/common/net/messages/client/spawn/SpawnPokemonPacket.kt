@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.util.*
 import java.util.UUID
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket

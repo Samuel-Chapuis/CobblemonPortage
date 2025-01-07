@@ -12,7 +12,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.resources.sounds.SoundInstance
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.Identifier
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.level.block.entity.BlockEntity
 
 /**

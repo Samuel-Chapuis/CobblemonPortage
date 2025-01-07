@@ -36,7 +36,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.protocol.game.ClientboundSoundPacket
 import net.minecraft.sounds.SoundSource
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.item.ItemStack
 
 /**

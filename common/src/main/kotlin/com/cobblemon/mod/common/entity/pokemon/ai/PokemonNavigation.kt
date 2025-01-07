@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.Mth
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation
 import net.minecraft.world.World
 import net.minecraft.world.level.pathfinder.Node

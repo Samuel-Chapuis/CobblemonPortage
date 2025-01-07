@@ -41,7 +41,7 @@ import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.phys.Vec3
 import org.joml.Matrix4f
 import java.util.concurrent.ConcurrentLinkedQueue

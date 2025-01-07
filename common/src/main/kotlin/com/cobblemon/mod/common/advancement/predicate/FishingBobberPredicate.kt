@@ -14,7 +14,7 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.advancements.critereon.EntitySubPredicate
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.phys.Vec3
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")

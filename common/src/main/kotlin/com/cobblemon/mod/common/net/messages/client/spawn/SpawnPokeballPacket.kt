@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.util.Identifier
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 class SpawnPokeballPacket(
     val pokeBall: PokeBall,

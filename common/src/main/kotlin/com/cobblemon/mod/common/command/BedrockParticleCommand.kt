@@ -20,7 +20,7 @@ import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import net.minecraft.commands.CommandSourceStack
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.commands.Commands
 import net.minecraft.commands.arguments.DimensionArgument
 import net.minecraft.commands.arguments.EntityArgument

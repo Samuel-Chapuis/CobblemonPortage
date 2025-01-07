@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Registry
 import net.minecraft.core.SectionPos
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.item.Item
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.registries.Registries

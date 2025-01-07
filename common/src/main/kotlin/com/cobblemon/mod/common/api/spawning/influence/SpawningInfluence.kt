@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.api.spawning.detail.SpawnAction
 import com.cobblemon.mod.common.api.spawning.detail.SpawnDetail
 import net.minecraft.util.math.BlockPos
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * An influence over spawning that can affect various parts of the spawning process. These can be attached to

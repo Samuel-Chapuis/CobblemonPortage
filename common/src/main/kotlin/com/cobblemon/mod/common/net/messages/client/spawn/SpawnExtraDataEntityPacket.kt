@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.mixin.invoker.ClientPlayNetworkHandlerInvoker
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.multiplayer.ClientLevel
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.protocol.PacketUtils
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket

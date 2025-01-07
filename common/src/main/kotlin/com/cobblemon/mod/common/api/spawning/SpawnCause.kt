@@ -11,8 +11,8 @@ package com.cobblemon.mod.common.api.spawning
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import com.cobblemon.mod.common.api.spawning.spawner.Spawner
 import com.cobblemon.mod.common.util.server
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityType
 
 open class SpawnCause(
     val spawner: Spawner,

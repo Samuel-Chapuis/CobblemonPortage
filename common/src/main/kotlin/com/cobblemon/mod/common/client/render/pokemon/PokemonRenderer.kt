@@ -54,7 +54,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Style
 import net.minecraft.util.Identifier
 import net.minecraft.util.Mth
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.phys.Vec3
 import org.joml.Math
 import org.joml.Quaternionf

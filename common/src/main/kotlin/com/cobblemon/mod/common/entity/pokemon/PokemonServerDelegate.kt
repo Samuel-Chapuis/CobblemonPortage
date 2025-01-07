@@ -27,7 +27,7 @@ import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.update
 import com.cobblemon.mod.common.world.gamerules.CobblemonGameRules
 import java.util.Optional
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.network.chat.Component

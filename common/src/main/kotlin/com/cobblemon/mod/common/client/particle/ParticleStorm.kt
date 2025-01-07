@@ -30,7 +30,7 @@ import com.cobblemon.mod.common.util.resolve
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.particle.NoRenderParticle
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.Vec3
 import kotlin.random.Random

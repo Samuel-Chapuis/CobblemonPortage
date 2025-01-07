@@ -16,7 +16,7 @@ import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
 import java.lang.reflect.Type
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 
 /**
  * An adapter for [EntityDimensions]. This isn't technically needed on newer versions of Gson because

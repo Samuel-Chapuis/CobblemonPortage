@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.moves.animations.keyframes.ActionEffectKeyfr
 import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.util.asExpressionLike
 import com.cobblemon.mod.common.util.resolveBoolean
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.World
 import java.util.concurrent.CompletableFuture
 

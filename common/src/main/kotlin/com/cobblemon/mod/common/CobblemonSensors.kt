@@ -11,7 +11,7 @@ package com.cobblemon.mod.common
 import com.cobblemon.mod.common.entity.sensor.BattlingPokemonSensor
 import com.cobblemon.mod.common.entity.sensor.NPCBattlingSensor
 import java.util.function.Supplier
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.entity.ai.sensing.Sensor
 import net.minecraft.world.entity.ai.sensing.SensorType
 

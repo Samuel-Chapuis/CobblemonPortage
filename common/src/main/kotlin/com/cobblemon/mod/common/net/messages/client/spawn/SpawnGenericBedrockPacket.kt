@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.util.Identifier
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * Spawn packet for [GenericBedrockEntity]. Wraps around vanilla spawn packet behaviour.

@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.platform.events
 
 import net.minecraft.client.multiplayer.ClientLevel
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * Events fired for client side [Entity]s.

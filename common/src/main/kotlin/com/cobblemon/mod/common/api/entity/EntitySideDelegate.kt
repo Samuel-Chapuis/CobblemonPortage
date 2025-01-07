@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.entity
 
 import com.bedrockk.molang.runtime.struct.QueryStruct
 import net.minecraft.network.syncher.EntityDataAccessor
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * Represents a delegation of a portion of an entity's logic to a particular side.

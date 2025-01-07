@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.render.models.blockbench
 import com.cobblemon.mod.common.client.render.MatrixWrapper
 import com.cobblemon.mod.common.client.render.models.blockbench.pose.Bone
 import com.mojang.blaze3d.vertex.PoseStack
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * A storage of locator information for a model, attached to its [joint].

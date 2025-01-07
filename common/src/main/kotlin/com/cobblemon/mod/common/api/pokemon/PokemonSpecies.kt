@@ -57,7 +57,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
 import net.minecraft.world.effect.MobEffect
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.block.Block

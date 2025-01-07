@@ -55,8 +55,8 @@ import net.minecraft.tags.FluidTags
 import net.minecraft.tags.ItemTags
 import net.minecraft.util.Mth
 import net.minecraft.util.RandomSource
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityType
 import net.minecraft.world.entity.ExperienceOrb
 import net.minecraft.world.entity.MoverType
 import net.minecraft.world.entity.item.ItemEntity

@@ -22,7 +22,7 @@ import com.cobblemon.mod.common.util.*
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 
 /**
  * A class of NPC. This can contain a lot of preset information about the NPC's behaviour. Consider this the Pokémon

@@ -21,7 +21,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.util.Identifier
 import net.minecraft.util.Mth
-import net.minecraft.world.entity.EntityAttachment
+import net.minecraft.entity.EntityAttachment
 import net.minecraft.world.entity.player.Player
 import org.joml.Matrix4f
 import java.util.*

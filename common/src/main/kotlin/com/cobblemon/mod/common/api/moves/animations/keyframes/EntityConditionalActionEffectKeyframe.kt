@@ -14,7 +14,7 @@ import com.bedrockk.molang.runtime.value.StringValue
 import com.cobblemon.mod.common.api.molang.ExpressionLike
 import com.cobblemon.mod.common.api.moves.animations.ActionEffectContext
 import com.cobblemon.mod.common.entity.PosableEntity
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * An action effect keyframe that plays for all entities for which the condition is true.

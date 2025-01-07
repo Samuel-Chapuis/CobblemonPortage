@@ -24,7 +24,7 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.util.Identifier
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.TagKey
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.level.ChunkPos
 import net.minecraft.world.level.StructureManager

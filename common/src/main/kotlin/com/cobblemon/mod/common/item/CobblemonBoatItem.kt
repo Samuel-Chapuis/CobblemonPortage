@@ -14,8 +14,8 @@ import com.cobblemon.mod.common.entity.boat.CobblemonChestBoatEntity
 import net.minecraft.stats.Stats
 import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResultHolder
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntitySelector
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntitySelector
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.ClipContext

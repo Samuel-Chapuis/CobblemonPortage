@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.pokedex.scanner
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.pokedex.scanner.PokedexUsageContext.Companion.BLOCK_LENGTH_PER_ZOOM_STAGE
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.level.ClipContext
 import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.HitResult

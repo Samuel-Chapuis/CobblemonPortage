@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.events.entity.SpawnEvent
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.api.spawning.context.SpawningContext
 import com.cobblemon.mod.common.util.toVec3d
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * A spawn action that spawns a single entity. This is the most common type of spawn action.

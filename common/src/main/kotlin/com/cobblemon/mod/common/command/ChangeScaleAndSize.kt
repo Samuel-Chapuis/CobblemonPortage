@@ -18,7 +18,7 @@ import com.mojang.brigadier.arguments.FloatArgumentType
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
-import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.entity.EntityDimensions
 
 object ChangeScaleAndSize {
     fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {

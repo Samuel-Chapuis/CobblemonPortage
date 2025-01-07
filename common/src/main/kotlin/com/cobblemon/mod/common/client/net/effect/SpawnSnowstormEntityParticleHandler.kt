@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
 import com.cobblemon.mod.common.entity.PosableEntity
 import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket
 import net.minecraft.client.MinecraftClient
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 object SpawnSnowstormEntityParticleHandler : ClientNetworkPacketHandler<SpawnSnowstormEntityParticlePacket> {
     override fun handle(packet: SpawnSnowstormEntityParticlePacket, client: MinecraftClient) {

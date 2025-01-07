@@ -10,7 +10,7 @@ package com.cobblemon.mod.common
 
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.util.RandomSource
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 import net.minecraft.world.entity.npc.VillagerData
 import net.minecraft.world.entity.npc.VillagerProfession
 import net.minecraft.world.entity.npc.VillagerTrades

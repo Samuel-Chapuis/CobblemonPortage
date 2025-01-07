@@ -27,7 +27,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.util.Identifier
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 class SpawnNPCPacket(
     private val npcClass: Identifier,

@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.PosableModel
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
 import com.cobblemon.mod.common.util.resolveBoolean
-import net.minecraft.world.entity.Entity
+import net.minecraft.entity.Entity
 
 /**
  * Represents an animation that is shared across every instance of a model. This means that
