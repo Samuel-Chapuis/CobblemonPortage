@@ -38,7 +38,7 @@ class BigRootBlock(settings: Properties) : RootBlock(settings) {
         blockHitResult: BlockHitResult
     ): InteractionResult {
         val stack = player.getStackInHand(Hand.MAIN_HAND)
-        if (stack.`is`(Items.SHEARS)) {
+        if (stack.isIn(Items.SHEARS)) {
             this.attemptShear(world, state, pos) {
                 player.onEquippedItemBroken(stack.item, EquipmentSlot.MAINHAND)
                 stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND)

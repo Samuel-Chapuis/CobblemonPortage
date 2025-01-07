@@ -126,10 +126,10 @@ fun BlockGetter.getWaterAndLavaIn(box: AABB): Pair<Boolean, Boolean> {
     var hasLava = false
 
     doForAllBlocksIn(box) { state, _ ->
-        if (!hasWater && state.fluidState.`is`(FluidTags.WATER)) {
+        if (!hasWater && state.fluidState.isIn(FluidTags.WATER)) {
             hasWater = true
         }
-        if (!hasLava && state.fluidState.`is`(FluidTags.LAVA)) {
+        if (!hasLava && state.fluidState.isIn(FluidTags.LAVA)) {
             hasLava = true
         }
     }

@@ -20,7 +20,7 @@ import org.jetbrains.annotations.ApiStatus
 class CobblemonPotionIngredient(val potion: Holder<Potion>) : CobblemonIngredient {
 
     override fun matches(stack: ItemStack): Boolean {
-        return stack.get(DataComponents.POTION_CONTENTS)?.`is`(potion) ?: false
+        return stack.get(DataComponents.POTION_CONTENTS)?.isIn(potion) ?: false
     }
 
     override fun matchingStacks(): List<ItemStack> {

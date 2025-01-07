@@ -91,7 +91,7 @@ class BerryGroveFeature : Feature<NoneFeatureConfiguration>(NoneFeatureConfigura
                     worldGenLevel.blockUpdated(dir, worldGenLevel.getBlockState(dir).block)
                     numTreesLeftToGen--
                     val below = worldGenLevel.getBlockState(dir.below())
-                    if (below.`is`(Blocks.GRASS_BLOCK) && below.getValue(GrassBlock.SNOWY)) {
+                    if (below.isIn(Blocks.GRASS_BLOCK) && below.getValue(GrassBlock.SNOWY)) {
                         worldGenLevel.setBlock(dir.below(), below.setValue(GrassBlock.SNOWY, false), 2)
                     }
                     worldGenLevel.setBlock(dir.above(), Blocks.AIR.defaultBlockState(), 2)

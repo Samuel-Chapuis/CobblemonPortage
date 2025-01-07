@@ -61,7 +61,7 @@ class TumblestoneBlock(
         var blockPos: BlockPos
         do { if (!iterator.hasNext()) { return false }
             blockPos = iterator.next()
-        } while (!world.getBlockState(blockPos).`is`(CobblemonBlockTags.TUMBLESTONE_HEAT_SOURCE))
+        } while (!world.getBlockState(blockPos).isIn(CobblemonBlockTags.TUMBLESTONE_HEAT_SOURCE))
 
         return true
     }

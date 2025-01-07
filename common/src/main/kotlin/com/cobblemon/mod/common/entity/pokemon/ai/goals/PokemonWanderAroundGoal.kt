@@ -82,7 +82,7 @@ class PokemonWanderAroundGoal(val entity: PokemonEntity) : RandomStrollGoal(enti
                         continue@position
                     }
                     blockState = entity.level().getBlockState(pos)
-                    if (blockState.isSolid && !blockState.`is`(BlockTags.LEAVES) && previousWasAir) {
+                    if (blockState.isSolid && !blockState.isIn(BlockTags.LEAVES) && previousWasAir) {
                         pos.move(0, 1, 0)
                         blockState = entity.level().getBlockState(pos)
                         good = true
@@ -93,7 +93,7 @@ class PokemonWanderAroundGoal(val entity: PokemonEntity) : RandomStrollGoal(enti
                     pos.move(0, -1, 0)
                 }
             } else {
-                var previousWasSolid = blockState.isSolid && !blockState.`is`(BlockTags.LEAVES)
+                var previousWasSolid = blockState.isSolid && !blockState.isIn(BlockTags.LEAVES)
                 pos.move(0, 1, 0)
                 while (steps++ < maxSteps) {
                     if (pos.y >= entity.level().maxBuildHeight) {
@@ -104,7 +104,7 @@ class PokemonWanderAroundGoal(val entity: PokemonEntity) : RandomStrollGoal(enti
                         good = true
                         break
                     }
-                    previousWasSolid = blockState.isSolid && !blockState.`is`(BlockTags.LEAVES)
+                    previousWasSolid = blockState.isSolid && !blockState.isIn(BlockTags.LEAVES)
                     pos.move(0, 1, 0)
                 }
             }
@@ -122,12 +122,12 @@ class PokemonWanderAroundGoal(val entity: PokemonEntity) : RandomStrollGoal(enti
         val roamDistanceCondition: (BlockPos) -> Boolean = { entity.tethering?.canRoamTo(it) != false }
         val walksOnFloor = !entity.behaviour.moving.swim.canSwimInFluid(fluidTag)
         var iterable: Iterable<BlockPos> = BlockPos.randomInCube(entity.random, 32, entity.blockPosition(), 12)
-        var condition: (BlockState, BlockPos) -> Boolean = { blockState, pos -> roamDistanceCondition(pos) && blockState.fluidState.`is`(fluidTag) && entity.canFit(pos) }
+        var condition: (BlockState, BlockPos) -> Boolean = { blockState, pos -> roamDistanceCondition(pos) && blockState.fluidState.isIn(fluidTag) && entity.canFit(pos) }
         if (walksOnFloor) {
             condition = { blockState, blockPos ->
                 val down = blockPos.below()
                 val below = entity.level().getBlockState(down)
-                roamDistanceCondition(blockPos) && blockState.fluidState.`is`(fluidTag) && below.isRedstoneConductor(entity.level(), down) && entity.canFit(blockPos)
+                roamDistanceCondition(blockPos) && blockState.fluidState.isIn(fluidTag) && below.isRedstoneConductor(entity.level(), down) && entity.canFit(blockPos)
             }
         }
         if (entity.level().isEmptyBlock(entity.blockPosition().above())) {

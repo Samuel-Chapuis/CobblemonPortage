@@ -43,11 +43,11 @@ class ApricornTreeFeature : Feature<BlockStateConfiguration>(BlockStateConfigura
 
         if (isGenerating) {
             val biome = worldGenLevel.getBiome(origin)
-            val multiplier = if (biome.`is`(CobblemonBiomeTags.HAS_APRICORNS_SPARSE)) {
+            val multiplier = if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_SPARSE)) {
                 0.1F
-            } else if (biome.`is`(CobblemonBiomeTags.HAS_APRICORNS_DENSE)) {
+            } else if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_DENSE)) {
                 10F
-            } else if (biome.`is`(CobblemonBiomeTags.HAS_APRICORNS_NORMAL)) {
+            } else if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_NORMAL)) {
                 1.0F
             } else {
                 return false
@@ -58,7 +58,7 @@ class ApricornTreeFeature : Feature<BlockStateConfiguration>(BlockStateConfigura
             }
         }
 
-        if (!worldGenLevel.getBlockState(origin.below()).`is`(BlockTags.DIRT)) {
+        if (!worldGenLevel.getBlockState(origin.below()).isIn(BlockTags.DIRT)) {
             return false
         }
 
@@ -227,7 +227,7 @@ class ApricornTreeFeature : Feature<BlockStateConfiguration>(BlockStateConfigura
 
     private fun isAir(testableWorld: TestableWorld, blockPos: BlockPos?): Boolean {
         return testableWorld.isStateAtPosition(blockPos) { blockState: BlockState ->
-            blockState.`is`(Blocks.AIR)
+            blockState.isIn(Blocks.AIR)
         }
     }
 

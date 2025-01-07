@@ -134,7 +134,7 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
     }
 
     override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
-        if (!state.`is`(newState.block)) super.onRemove(state, world, pos, newState, moved)
+        if (!state.isIn(newState.block)) super.onRemove(state, world, pos, newState, moved)
     }
 
     override fun useWithoutItem(blockState: BlockState, world: World, blockPos: BlockPos, player: Player, hit: BlockHitResult): InteractionResult {

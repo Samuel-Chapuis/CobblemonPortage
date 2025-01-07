@@ -203,9 +203,9 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
             var blockPos: BlockPos = BlockPos.ZERO
             var blockState: BlockState = state
             val part = state.getValue(PART)
-            if (part == PasturePart.TOP && world.getBlockState(pos.below().also { blockPos = it }).also { blockState = it }.`is`(state.block) && blockState.getValue(PART) == PasturePart.BOTTOM) {
+            if (part == PasturePart.TOP && world.getBlockState(pos.below().also { blockPos = it }).also { blockState = it }.isIn(state.block) && blockState.getValue(PART) == PasturePart.BOTTOM) {
                 checkBreakEntity(world, blockState, blockPos)
-                val blockState2 = if (blockState.fluidState.`is`(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
+                val blockState2 = if (blockState.fluidState.isIn(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
                 world.setBlock(blockPos, blockState2, UPDATE_ALL or UPDATE_SUPPRESS_DROPS)
                 world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
             }
@@ -321,7 +321,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
     }
 
     override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
-        if (!state.`is`(newState.block)) super.onRemove(state, world, pos, newState, moved)
+        if (!state.isIn(newState.block)) super.onRemove(state, world, pos, newState, moved)
     }
 
     override fun getFluidState(state: BlockState): FluidState {
@@ -342,7 +342,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world))
         }
 
-        val isPasture = neighborState.`is`(this)
+        val isPasture = neighborState.isIn(this)
         val part = state.getValue(PART)
         if (!isPasture && part == PasturePart.TOP && neighborPos == pos.below()) {
             return Blocks.AIR.defaultBlockState()

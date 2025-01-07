@@ -152,7 +152,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
         variant: MulchVariant
     ): Boolean {
         val underBlockState = world.getBlockState(pos.below())
-        val validSoil = state.getValue(IS_ROOTED) || underBlockState.`is`(CobblemonBlockTags.BERRY_SOIL)
+        val validSoil = state.getValue(IS_ROOTED) || underBlockState.isIn(CobblemonBlockTags.BERRY_SOIL)
         val treeEntity = world.getBlockEntity(pos) as? BerryBlockEntity ?: return false
         return getMulch(treeEntity) == MulchVariant.NONE && state.getValue(AGE) < FLOWER_AGE && validSoil
     }
@@ -184,7 +184,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
             return InteractionResult.SUCCESS
         }
 
-        if (player.getStackInHand(Hand.MAIN_HAND).`is`(Items.BONE_MEAL) && !this.isMaxAge(state)) {
+        if (player.getStackInHand(Hand.MAIN_HAND).isIn(Items.BONE_MEAL) && !this.isMaxAge(state)) {
             return InteractionResult.PASS
         } else if (this.isMaxAge(state)) {
             return if (harvestBerry(world, state, pos, player)) {
@@ -199,8 +199,8 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
     @Deprecated("Deprecated in Java")
     override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val below = world.getBlockState(pos.below())
-        return (state.getValue(WAS_GENERATED) && below.`is`(CobblemonBlockTags.BERRY_WILD_SOIL))
-                || below.`is`(CobblemonBlockTags.BERRY_SOIL)
+        return (state.getValue(WAS_GENERATED) && below.isIn(CobblemonBlockTags.BERRY_WILD_SOIL))
+                || below.isIn(CobblemonBlockTags.BERRY_SOIL)
                 || state.getValue(IS_ROOTED)
     }
 

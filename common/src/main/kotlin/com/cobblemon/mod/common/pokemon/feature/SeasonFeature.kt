@@ -62,13 +62,13 @@ object SeasonFeatureHandler {
 object TagSeasonResolver : SeasonResolver {
     override fun invoke(world: WorldAccess, pos: BlockPos): CobblemonSeason? {
         val biome = world.getBiome(pos)
-        return if (biome.`is`(CobblemonBiomeTags.IS_WINTER)) {
+        return if (biome.isIn(CobblemonBiomeTags.IS_WINTER)) {
             CobblemonSeason.WINTER
-        } else if (biome.`is`(CobblemonBiomeTags.IS_SPRING)) {
+        } else if (biome.isIn(CobblemonBiomeTags.IS_SPRING)) {
             CobblemonSeason.SPRING
-        } else if (biome.`is`(CobblemonBiomeTags.IS_AUTUMN)) {
+        } else if (biome.isIn(CobblemonBiomeTags.IS_AUTUMN)) {
             CobblemonSeason.AUTUMN
-        } else if (biome.`is`(CobblemonBiomeTags.IS_SUMMER)) {
+        } else if (biome.isIn(CobblemonBiomeTags.IS_SUMMER)) {
             CobblemonSeason.SUMMER
         } else {
             null

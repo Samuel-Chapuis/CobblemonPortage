@@ -168,8 +168,8 @@ object CobblemonClient {
             if (player !== null) {
                 var selectedItem = player.inventory.getItem(player.inventory.selected)
                 if (pokedexUsageContext.scanningGuiOpen &&
-                    !(selectedItem.`is`(CobblemonItemTags.POKEDEX)) &&
-                    !(player.offhandItem.`is`(CobblemonItemTags.POKEDEX) &&
+                    !(selectedItem.isIn(CobblemonItemTags.POKEDEX)) &&
+                    !(player.offhandItem.isIn(CobblemonItemTags.POKEDEX) &&
                         player.isUsingItem == true &&
                         player.usedItemHand == Hand.OFF_HAND
                     )

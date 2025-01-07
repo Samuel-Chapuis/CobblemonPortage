@@ -128,7 +128,7 @@ abstract class SpawningContext {
             }
 
             structures.forEach { structure ->
-                if (structure.`is`(tagKey)) {
+                if (structure.isIn(tagKey)) {
                     foundTags.add(tagKey)
                     return true
                 }

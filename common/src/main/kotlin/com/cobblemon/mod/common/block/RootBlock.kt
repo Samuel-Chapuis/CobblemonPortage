@@ -47,7 +47,7 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
         val nearbyPositions = BlockPos.betweenClosed(pos.offset(-4, -1, -4), pos.offset(4, 1, 4)).iterator()
         while (nearbyPositions.hasNext()) {
             val blockPos = nearbyPositions.next()
-            if (world.getBlockState(blockPos).`is`(CobblemonBlockTags.ROOTS)) {
+            if (world.getBlockState(blockPos).isIn(CobblemonBlockTags.ROOTS)) {
                 nearby++
                 if (nearby >= Cobblemon.config.maxRootsInArea) {
                     return true
@@ -144,7 +144,7 @@ abstract class RootBlock(settings: Properties) : Block(settings), BonemealableBl
     protected fun canSpreadTo(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val existingState = world.getBlockState(pos)
         // Isn't this useless since it's always air or replaceable if this is happening, not! See the spread implementation for the need of a valid block in the target pos as well.
-        return (existingState.isAir || existingState.canBeReplaced()) && this.canGoOn(state, world, pos) { ceiling -> ceiling.`is`(CobblemonBlockTags.ROOTS_SPREADABLE) }
+        return (existingState.isAir || existingState.canBeReplaced()) && this.canGoOn(state, world, pos) { ceiling -> ceiling.isIn(CobblemonBlockTags.ROOTS_SPREADABLE) }
     }
 
     /**

@@ -29,7 +29,7 @@ class PreferredBiomeGrowthFactor(
         val block = state.block as BerryBlock
         val biomeTags = block.berry()?.preferredBiomeTags ?: emptyList()
 
-        return biomeTags.any { biome.`is`(it) }
+        return biomeTags.any { biome.isIn(it) }
     }
 
     override fun yield() = this.bonusYield.random()

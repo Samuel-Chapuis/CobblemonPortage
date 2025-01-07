@@ -75,7 +75,7 @@ open class SeafloorSpawningContext(
     nearbyBlocks: List<BlockState>,
     slice: WorldSlice
 ) : FlooredSpawningContext(cause, world, position, light, skyLight, canSeeSky, influences, height, nearbyBlocks, slice) {
-    override fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState) = state.fluidState.`is`(FluidTags.WATER)
+    override fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState) = state.fluidState.isIn(FluidTags.WATER)
 }
 
 /**
@@ -96,7 +96,7 @@ open class LavafloorSpawningContext(
     nearbyBlocks: List<BlockState>,
     slice: WorldSlice
 ) : FlooredSpawningContext(cause, world, position, light, skyLight, canSeeSky, influences, height, nearbyBlocks, slice) {
-    override fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState) = state.fluidState.`is`(FluidTags.LAVA)
+    override fun isSafeSpace(world: ServerLevel, pos: BlockPos, state: BlockState) = state.fluidState.isIn(FluidTags.LAVA)
 }
 
 open class SurfaceSpawningContext(

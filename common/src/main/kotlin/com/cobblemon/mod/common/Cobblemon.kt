@@ -221,7 +221,7 @@ object Cobblemon {
         }
 
         PlatformEvents.RIGHT_CLICK_ENTITY.subscribe { event ->
-            if (event.player.getStackInHand(event.hand).item is NameTagItem && event.entity.type.`is`(CobblemonEntityTypeTags.CANNOT_HAVE_NAME_TAG)) {
+            if (event.player.getStackInHand(event.hand).item is NameTagItem && event.entity.type.isIn(CobblemonEntityTypeTags.CANNOT_HAVE_NAME_TAG)) {
                 event.cancel()
             }
         }
@@ -245,7 +245,7 @@ object Cobblemon {
         CobblemonEvents.FRIENDSHIP_UPDATED.subscribe(Priority.LOWEST) { event ->
             var increment = (event.newFriendship - event.pokemon.friendship).toFloat()
             // Our Luxury ball spec is diff from official, but we will still assume these stack
-            if (event.pokemon.heldItemNoCopy().`is`(CobblemonItemTags.IS_FRIENDSHIP_BOOSTER)) {
+            if (event.pokemon.heldItemNoCopy().isIn(CobblemonItemTags.IS_FRIENDSHIP_BOOSTER)) {
                 increment += increment * 0.5F
             }
             event.newFriendship = event.pokemon.friendship + increment.roundToInt()

@@ -171,7 +171,7 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
             battle.isPvN -> CobblemonItemTags.CONSUMED_IN_NPC_BATTLE
             else -> CobblemonItemTags.CONSUMED_IN_WILD_BATTLE
         }
-        return pokemon.effectedPokemon.heldItem().`is`(tag)
+        return pokemon.effectedPokemon.heldItem().isIn(tag)
     }
 
     /**

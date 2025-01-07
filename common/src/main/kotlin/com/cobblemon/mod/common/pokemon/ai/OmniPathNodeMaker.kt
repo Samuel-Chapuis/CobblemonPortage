@@ -221,8 +221,8 @@ class OmniPathNodeMaker : NodeEvaluator() {
         val blockState = pfContext.getBlockState(pos)
         val blockStateBelow = pfContext.getBlockState(below)
         val belowSolid = blockStateBelow.isSolid
-        val isWater = blockState.fluidState.`is`(FluidTags.WATER)
-        val isLava = blockState.fluidState.`is`(FluidTags.LAVA)
+        val isWater = blockState.fluidState.isIn(FluidTags.WATER)
+        val isLava = blockState.fluidState.isIn(FluidTags.LAVA)
         val canBreatheUnderFluid = canSwimUnderFluid(blockState.fluidState)
         val solid = blockState.isSolid
 
@@ -237,7 +237,7 @@ class OmniPathNodeMaker : NodeEvaluator() {
          * It seems to work now but nothing works forever so my other attempts are here for reference.
          */
 
-        val figuredNode = if (blockStateBelow.`is`(BlockTags.FENCES) || blockStateBelow.`is`(BlockTags.WALLS) || (blockStateBelow.block is FenceGateBlock && !blockStateBelow.getValue(FenceGateBlock.OPEN))) {
+        val figuredNode = if (blockStateBelow.isIn(BlockTags.FENCES) || blockStateBelow.isIn(BlockTags.WALLS) || (blockStateBelow.block is FenceGateBlock && !blockStateBelow.getValue(FenceGateBlock.OPEN))) {
             PathType.FENCE
         } else if (isWater && belowSolid && !canSwimInWater() && canBreatheUnderFluid) {
             PathType.WALKABLE
@@ -349,7 +349,7 @@ class OmniPathNodeMaker : NodeEvaluator() {
         val blockState = pfContext.getBlockState(pos)
         val block = blockState.block
 
-        if (blockState.`is`(Blocks.CACTUS) || blockState.`is`(Blocks.SWEET_BERRY_BUSH)) {
+        if (blockState.isIn(Blocks.CACTUS) || blockState.isIn(Blocks.SWEET_BERRY_BUSH)) {
             return PathType.DANGER_OTHER
         }
 
@@ -357,11 +357,11 @@ class OmniPathNodeMaker : NodeEvaluator() {
             return PathType.DANGER_FIRE
         }
 
-        if (pfContext.getBlockState(pos).fluidState.`is`(FluidTags.WATER)) {
+        if (pfContext.getBlockState(pos).fluidState.isIn(FluidTags.WATER)) {
             return PathType.WATER_BORDER
         }
 
-        if (blockState.`is`(Blocks.WITHER_ROSE) || blockState.`is`(Blocks.POINTED_DRIPSTONE)) {
+        if (blockState.isIn(Blocks.WITHER_ROSE) || blockState.isIn(Blocks.POINTED_DRIPSTONE)) {
             return PathType.DAMAGE_CAUTIOUS
         }
 
@@ -402,9 +402,9 @@ class OmniPathNodeMaker : NodeEvaluator() {
 
     fun canSwimUnderFluid(fluidState: FluidState): Boolean {
         return if (this.mob is PokemonEntity) {
-            if (fluidState.`is`(FluidTags.LAVA)) {
+            if (fluidState.isIn(FluidTags.LAVA)) {
                 (this.mob as PokemonEntity).behaviour.moving.swim.canBreatheUnderlava
-            } else if (fluidState.`is`(FluidTags.WATER)) {
+            } else if (fluidState.isIn(FluidTags.WATER)) {
                 (this.mob as PokemonEntity).behaviour.moving.swim.canBreatheUnderwater
             } else {
                 false

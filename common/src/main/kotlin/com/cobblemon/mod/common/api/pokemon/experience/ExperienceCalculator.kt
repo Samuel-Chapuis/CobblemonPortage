@@ -33,7 +33,7 @@ object StandardExperienceCalculator : ExperienceCalculator {
         // ToDo 1.7 if pokemon was traded with someone of different locale/language
         val nonOtBonus = if (battlePokemon.effectedPokemon.originalTrainerType == OriginalTrainerType.PLAYER &&
                 battlePokemon.effectedPokemon.originalTrainer.equals(battlePokemon.actor.uuid.toString())) 1.0 else 1.5
-        val luckyEggMultiplier = if (battlePokemon.effectedPokemon.heldItemNoCopy().`is`(CobblemonItemTags.LUCKY_EGG)) Cobblemon.config.luckyEggMultiplier else 1.0
+        val luckyEggMultiplier = if (battlePokemon.effectedPokemon.heldItemNoCopy().isIn(CobblemonItemTags.LUCKY_EGG)) Cobblemon.config.luckyEggMultiplier else 1.0
         val evolutionMultiplier = if (battlePokemon.effectedPokemon.evolutionProxy.server().any { evolution ->
             val requirements = evolution.requirements.asSequence()
             requirements.any { it is LevelRequirement } && requirements.all { it.check(battlePokemon.effectedPokemon) }

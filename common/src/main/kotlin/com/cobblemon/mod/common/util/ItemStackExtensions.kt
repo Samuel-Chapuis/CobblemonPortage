@@ -20,4 +20,4 @@ fun ItemStack.saveToJson(): JsonElement = JsonOps.INSTANCE.withEncoder(
     return@getOrThrow IllegalStateException("Cant serialize ItemStack")
 }
 fun ItemStack.isHeld(player: ServerPlayerEntity) = this in player.handSlots && !isEmpty
-fun ItemStack.isOf(tag: TagKey<Item>) = `is`(tag)
+fun ItemStack.isOf(tag: TagKey<Item>) = isIn(tag)

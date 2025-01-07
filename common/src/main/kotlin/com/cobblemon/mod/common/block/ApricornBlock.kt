@@ -74,7 +74,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
     @Deprecated("Deprecated in Java")
     override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val blockState = world.getBlockState(pos.relative(state.getValue(FACING) as Direction))
-        return blockState.`is`(CobblemonBlockTags.APRICORN_LEAVES)
+        return blockState.isIn(CobblemonBlockTags.APRICORN_LEAVES)
     }
 
     override fun getShape(state: BlockState, world: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape {
@@ -95,7 +95,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
         pos: BlockPos,
         context: CollisionContext
     ): VoxelShape {
-        if (context is EntityCollisionContext && (context.entity as? ItemEntity)?.item?.`is`(CobblemonItemTags.APRICORNS) == true) {
+        if (context is EntityCollisionContext && (context.entity as? ItemEntity)?.item?.isIn(CobblemonItemTags.APRICORNS) == true) {
             return Shapes.empty()
         }
         return super.getCollisionShape(state, world, pos, context)

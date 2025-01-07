@@ -55,7 +55,7 @@ class RevivalHerbBlock(settings: Properties) : CropBlock(settings), Mulchable {
         val floor = world.getBlockState(pos.below())
         val block = world.getBlockState(pos)
         // A bit of a copy pasta but we don't have access to the BlockState being attempted to be placed above on the canPlantOnTop
-        return (block.`is`(BlockTags.REPLACEABLE_BY_TREES) || block.`is`(Blocks.AIR) || block.`is`(this)) && ((state.getValue(IS_WILD) && floor.`is`(BlockTags.DIRT)) || this.mayPlaceOn(floor, world, pos))
+        return (block.isIn(BlockTags.REPLACEABLE_BY_TREES) || block.isIn(Blocks.AIR) || block.isIn(this)) && ((state.getValue(IS_WILD) && floor.isIn(BlockTags.DIRT)) || this.mayPlaceOn(floor, world, pos))
     }
 
     override fun getShape(
@@ -118,7 +118,7 @@ class RevivalHerbBlock(settings: Properties) : CropBlock(settings), Mulchable {
             for(z in -1..1) {
                 var nearbyFarmLandBoost = 0.0F
                 var blockState = level.getBlockState(ground.offset(x, 0, z))
-                if (blockState.`is`(Blocks.FARMLAND)) {
+                if (blockState.isIn(Blocks.FARMLAND)) {
                     nearbyFarmLandBoost = 1.0F
                     if (blockState.getValue(FarmBlock.MOISTURE) > 0) {
                         nearbyFarmLandBoost = 3.0F
@@ -137,15 +137,15 @@ class RevivalHerbBlock(settings: Properties) : CropBlock(settings), Mulchable {
         var south = pos.south()
         var west = pos.west()
         var east = pos.east()
-        var sameBlockDirectNeighborXAxis = level.getBlockState(west).`is`(block) || level.getBlockState(east).`is`(block)
-        var sameBlockDirectNeighborZAxis = level.getBlockState(north).`is`(block) || level.getBlockState(south).`is`(block)
+        var sameBlockDirectNeighborXAxis = level.getBlockState(west).isIn(block) || level.getBlockState(east).isIn(block)
+        var sameBlockDirectNeighborZAxis = level.getBlockState(north).isIn(block) || level.getBlockState(south).isIn(block)
         if (sameBlockDirectNeighborZAxis && sameBlockDirectNeighborXAxis) {
             growthSpeed /= 2.0F
         } else {
-            var sameBlockDiagonallyPresent = level.getBlockState(west.north()).`is`(block) ||
-                    level.getBlockState(east.north()).`is`(block) ||
-                    level.getBlockState(east.south()).`is`(block) ||
-                    level.getBlockState(west.south()).`is`(block)
+            var sameBlockDiagonallyPresent = level.getBlockState(west.north()).isIn(block) ||
+                    level.getBlockState(east.north()).isIn(block) ||
+                    level.getBlockState(east.south()).isIn(block) ||
+                    level.getBlockState(west.south()).isIn(block)
             if (sameBlockDiagonallyPresent) {
                 growthSpeed /= 2.0F
             }

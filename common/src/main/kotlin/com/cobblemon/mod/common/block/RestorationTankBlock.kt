@@ -143,7 +143,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
     override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val blockPos = pos.below()
         val blockState = world.getBlockState(blockPos)
-        return if (state.getValue(PART) == TankPart.BOTTOM) true else blockState.`is`(this)
+        return if (state.getValue(PART) == TankPart.BOTTOM) true else blockState.isIn(this)
     }
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(HorizontalDirectionalBlock.FACING)
@@ -232,7 +232,7 @@ class RestorationTankBlock(settings: Properties) : MultiblockBlock(settings), Wo
             pos: BlockPos,
             neighborPos: BlockPos
     ): BlockState {
-        val isTank = neighborState.`is`(this)
+        val isTank = neighborState.isIn(this)
         val part = state.getValue(PART)
         if (!isTank && part == TankPart.TOP && neighborPos == pos.below()) {
             return Blocks.AIR.defaultBlockState()

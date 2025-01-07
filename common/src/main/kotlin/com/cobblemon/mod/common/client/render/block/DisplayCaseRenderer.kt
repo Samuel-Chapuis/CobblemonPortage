@@ -42,7 +42,7 @@ class DisplayCaseRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEntit
         light: Int,
         overlay: Int
     ) {
-        val stack: ItemStack = if (entity.getStack().`is`(CobblemonItems.RELIC_COIN_POUCH)) {
+        val stack: ItemStack = if (entity.getStack().isIn(CobblemonItems.RELIC_COIN_POUCH)) {
             coinPouchStack
         } else {
             entity.getStack()
@@ -159,7 +159,7 @@ class DisplayCaseRenderer(ctx: BlockEntityRendererProvider.Context) : BlockEntit
             mobHeads.contains(stack.item) -> PositioningType.MOB_HEAD
             stack.item is BedItem -> PositioningType.BED
             stack.item is BannerItem -> PositioningType.BANNER
-            stack.`is`(CobblemonItemTags.POKE_BALLS) -> PositioningType.POKE_BALL
+            stack.isIn(CobblemonItemTags.POKE_BALLS) -> PositioningType.POKE_BALL
             stack.item is PokedexItem -> PositioningType.POKEDEX
             stack.item == CobblemonItems.RELIC_COIN_POUCH -> PositioningType.COIN_POUCH
             stack.item == CobblemonItems.PASTURE -> PositioningType.PASTURE

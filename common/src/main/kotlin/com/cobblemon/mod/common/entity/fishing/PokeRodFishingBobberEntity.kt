@@ -243,9 +243,9 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
 
     private fun getPositionType(pos: BlockPos): PositionType {
         val blockState = level().getBlockState(pos)
-        return if (!blockState.isAir && !blockState.`is`(Blocks.LILY_PAD)) {
+        return if (!blockState.isAir && !blockState.isIn(Blocks.LILY_PAD)) {
             val fluidState = blockState.fluidState
-            if (fluidState.`is`(FluidTags.WATER) && fluidState.isSource && blockState.getCollisionShape(level(), pos).isEmpty) PositionType.INSIDE_WATER else PositionType.INVALID
+            if (fluidState.isIn(FluidTags.WATER) && fluidState.isSource && blockState.getCollisionShape(level(), pos).isEmpty) PositionType.INSIDE_WATER else PositionType.INVALID
         } else {
             PositionType.ABOVE_WATER
         }
@@ -302,7 +302,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 val j = this.z + (h * this.fishTravelCountdown.toFloat() * 0.1f).toDouble()
                 val blockState = serverWorld.getBlockState(BlockPos.containing(offsetX, offsetY - 1.0, j))
                 //val blockState = serverWorld.getBlockState(BlockPos.containing(offsetX, (Mth.floor(this.y).toFloat() + 1.0f).toDouble().also { offsetY = it } - 1.0, this.z + (h * this.fishTravelCountdown.toFloat() * 0.1f).toDouble().also { j = it }))
-                if (blockState.`is`(Blocks.WATER)) {
+                if (blockState.isIn(Blocks.WATER)) {
                     if (random.nextFloat() < 0.15f) {
                         // random bubble particles that spawn around
                         //serverWorld.spawnParticles(ParticleTypes.BUBBLE, this.x, this.y, this.z, 3, g.toDouble(), 0.1, h.toDouble(), 0.0)
@@ -370,7 +370,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 val e = (Mth.floor(this.y).toFloat() + 1.0f).toDouble() // Y
                 val j = this.z + (Mth.cos(g) * h).toDouble() * 0.1 // randomized Z value
                 val blockState = serverWorld.getBlockState(BlockPos.containing(d, e - 1.0, j))
-                if (blockState.`is`(Blocks.WATER)) {
+                if (blockState.isIn(Blocks.WATER)) {
                     val currentTime = serverWorld.gameTime
                     if (currentTime - lastRippleSpawnTime >= rippleCooldown) {
                         particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon", "fishing_bobber_ripple"))
@@ -477,7 +477,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
             var f = 0.0f
             val blockPos = blockPosition()
             val fluidState = level().getFluidState(blockPos)
-            if (fluidState.`is`(FluidTags.WATER)) {
+            if (fluidState.isIn(FluidTags.WATER)) {
                 f = fluidState.getHeight(level(), blockPos)
             }
             val bl = f > 0.0f
@@ -541,7 +541,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                     }
                 }
             }
-            if (!fluidState.`is`(FluidTags.WATER)) {
+            if (!fluidState.isIn(FluidTags.WATER)) {
                 deltaMovement = deltaMovement.add(0.0, -0.03, 0.0)
             }
             move(MoverType.SELF, deltaMovement)
@@ -605,7 +605,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                                     random.nextInt(6) + 1
                                 )
                             )
-                            if (itemStack.`is`(ItemTags.FISHES)) {
+                            if (itemStack.isIn(ItemTags.FISHES)) {
                                 playerEntity.awardStat(Stats.FISH_CAUGHT, 1)
                             }
                         }

@@ -371,9 +371,9 @@ open class PokemonEntity(
 //        val node = navigation.currentPath?.currentNode
 //        val targetPos = node?.blockPos
 //        if (targetPos == null || world.getBlockState(targetPos.up()).isAir) {
-        return if (state.`is`(FluidTags.WATER) && !isEyeInFluid(FluidTags.WATER)) {
+        return if (state.isIn(FluidTags.WATER) && !isEyeInFluid(FluidTags.WATER)) {
             behaviour.moving.swim.canWalkOnWater || platform != PlatformType.NONE
-        } else if (state.`is`(FluidTags.LAVA) && !isEyeInFluid(FluidTags.LAVA)) {
+        } else if (state.isIn(FluidTags.LAVA) && !isEyeInFluid(FluidTags.LAVA)) {
             behaviour.moving.swim.canWalkOnLava
         } else {
             super.canStandOnFluid(state)
@@ -511,7 +511,7 @@ open class PokemonEntity(
         }
 
         // Owned Pokémon cannot be hurt by players or suffocation
-        if (ownerUUID != null && (damageSource.entity is Player || damageSource.`is`(DamageTypes.IN_WALL))) {
+        if (ownerUUID != null && (damageSource.entity is Player || damageSource.isIn(DamageTypes.IN_WALL))) {
             return true
         }
 
@@ -817,19 +817,19 @@ open class PokemonEntity(
         val colorFeature = pokemon.getFeature<StringSpeciesFeature>(DataKeys.CAN_BE_COLORED)
 
         if (ownerUUID == player.uuid || ownerUUID == null) {
-            if (itemStack.`is`(Items.SHEARS) && this.readyForShearing()) {
+            if (itemStack.isIn(Items.SHEARS) && this.readyForShearing()) {
                 this.shear(SoundSource.PLAYERS)
                 this.gameEvent(GameEvent.SHEAR, player)
                 itemStack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND)
                 return InteractionResult.SUCCESS
-            } else if (itemStack.`is`(Items.BUCKET)) {
+            } else if (itemStack.isIn(Items.BUCKET)) {
                 if (pokemon.aspects.any { it.contains(DataKeys.CAN_BE_MILKED) }) {
                     player.playSound(SoundEvents.GOAT_MILK, 1.0f, 1.0f)
                     val milkBucket = ItemUtils.createFilledResult(itemStack, player, Items.MILK_BUCKET.defaultInstance)
                     player.setItemInHand(hand, milkBucket)
                     return InteractionResult.sidedSuccess(level().isClientSide)
                 }
-            } else if (itemStack.`is`(Items.BOWL)) {
+            } else if (itemStack.isIn(Items.BOWL)) {
                 if (pokemon.aspects.any { it.contains("mooshtank") }) {
                     player.playSound(SoundEvents.MOOSHROOM_MILK, 1.0f, 1.0f)
                     // if the Mooshtank ate a Flower beforehand
@@ -865,21 +865,21 @@ open class PokemonEntity(
                 }
             }
             // Flowers used on brown MooshTanks
-            else if (itemStack.`is`(Items.ALLIUM) ||
-                itemStack.`is`(Items.AZURE_BLUET) ||
-                itemStack.`is`(Items.BLUE_ORCHID) ||
-                itemStack.`is`(Items.DANDELION) ||
-                itemStack.`is`(Items.CORNFLOWER) ||
-                itemStack.`is`(Items.LILY_OF_THE_VALLEY) ||
-                itemStack.`is`(Items.OXEYE_DAISY) ||
-                itemStack.`is`(Items.POPPY) ||
-                itemStack.`is`(Items.TORCHFLOWER) ||
-                itemStack.`is`(Items.PINK_TULIP) ||
-                itemStack.`is`(Items.RED_TULIP) ||
-                itemStack.`is`(Items.WHITE_TULIP) ||
-                itemStack.`is`(Items.ORANGE_TULIP) ||
-                itemStack.`is`(Items.WITHER_ROSE) ||
-                itemStack.`is`(CobblemonItems.PEP_UP_FLOWER)
+            else if (itemStack.isIn(Items.ALLIUM) ||
+                itemStack.isIn(Items.AZURE_BLUET) ||
+                itemStack.isIn(Items.BLUE_ORCHID) ||
+                itemStack.isIn(Items.DANDELION) ||
+                itemStack.isIn(Items.CORNFLOWER) ||
+                itemStack.isIn(Items.LILY_OF_THE_VALLEY) ||
+                itemStack.isIn(Items.OXEYE_DAISY) ||
+                itemStack.isIn(Items.POPPY) ||
+                itemStack.isIn(Items.TORCHFLOWER) ||
+                itemStack.isIn(Items.PINK_TULIP) ||
+                itemStack.isIn(Items.RED_TULIP) ||
+                itemStack.isIn(Items.WHITE_TULIP) ||
+                itemStack.isIn(Items.ORANGE_TULIP) ||
+                itemStack.isIn(Items.WITHER_ROSE) ||
+                itemStack.isIn(CobblemonItems.PEP_UP_FLOWER)
             ) {
                 if (pokemon.aspects.any { it.contains("mooshtank") }) {
                     player.playSound(SoundEvents.MOOSHROOM_EAT, 1.0f, 1.0f)

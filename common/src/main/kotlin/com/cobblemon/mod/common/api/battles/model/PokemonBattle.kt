@@ -262,7 +262,7 @@ open class PokemonBattle(
                         }
                         val multiplier = when {
                             // ToDo when Exp. All is implement if enabled && !facedFainted return 2.0, probably should be a configurable value too, this will have priority over the Exp. Share
-                            !facedFainted && pokemon.heldItemNoCopy().`is`(CobblemonItemTags.EXPERIENCE_SHARE) -> Cobblemon.config.experienceShareMultiplier
+                            !facedFainted && pokemon.heldItemNoCopy().isIn(CobblemonItemTags.EXPERIENCE_SHARE) -> Cobblemon.config.experienceShareMultiplier
                             // ToDo when Exp. All is implemented the facedFainted and else can be collapsed into the 1.0 return value
                             facedFainted -> 1.0
                             else -> continue

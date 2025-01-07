@@ -48,7 +48,7 @@ open class RegistryLikeTagCondition<T : Any>(val tag: TagKey<T>) : RegistryLikeC
 
         return registry.getRegistryKey(t)
             .flatMap(registry::getHolder)
-            .map { entry -> entry.`is`(tag) }
+            .map { entry -> entry.isIn(tag) }
             .orElse(false)
     }
 }

@@ -71,7 +71,7 @@ class MedicinalLeekBlock(settings: Properties) : CropBlock(settings) {
         val down = pos.below()
         val floor = world.getBlockState(down)
         val fluidState = world.getFluidState(down)
-        return floor.`is`(CobblemonBlockTags.MEDICINAL_LEEK_PLANTABLE) && fluidState.amount == 8 && fluidState.`is`(FluidTags.WATER)
+        return floor.isIn(CobblemonBlockTags.MEDICINAL_LEEK_PLANTABLE) && fluidState.amount == 8 && fluidState.isIn(FluidTags.WATER)
     }
 
     override fun codec(): MapCodec<out CropBlock> {

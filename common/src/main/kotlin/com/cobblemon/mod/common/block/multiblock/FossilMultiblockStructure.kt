@@ -106,7 +106,7 @@ class FossilMultiblockStructure (
     ): InteractionResult {
         val stack = player.getStackInHand(Hand.MAIN_HAND)
 
-        if(stack.`is`(CobblemonItemTags.POKE_BALLS) || stack.item is PokeBallItem) {
+        if(stack.isIn(CobblemonItemTags.POKE_BALLS) || stack.item is PokeBallItem) {
             if (player !is ServerPlayerEntity) {
                 return InteractionResult.SUCCESS
             }
@@ -218,7 +218,7 @@ class FossilMultiblockStructure (
         }
 
         // pure client instances dont know what a valid fossil is so this is my janky workaround
-        if (stack.`is`(CobblemonItemTags.FOSSILS)) return InteractionResult.SUCCESS
+        if (stack.isIn(CobblemonItemTags.FOSSILS)) return InteractionResult.SUCCESS
 
         return InteractionResult.PASS
     }
@@ -255,10 +255,10 @@ class FossilMultiblockStructure (
             false
         } else if (state.entityCanStandOn(world, pos, entity) || state.entityCanStandOnFace(world, pos, entity, Direction.DOWN)) {
             true
-        } else if ((entity.behaviour.moving.swim.canWalkOnWater || entity.behaviour.moving.swim.canSwimInWater) && state.fluidState.`is`(FluidTags.WATER)) {
+        } else if ((entity.behaviour.moving.swim.canWalkOnWater || entity.behaviour.moving.swim.canSwimInWater) && state.fluidState.isIn(FluidTags.WATER)) {
             true
         } else {
-            (entity.behaviour.moving.swim.canWalkOnLava || entity.behaviour.moving.swim.canSwimInLava) && state.fluidState.`is`(FluidTags.LAVA)
+            (entity.behaviour.moving.swim.canWalkOnLava || entity.behaviour.moving.swim.canSwimInLava) && state.fluidState.isIn(FluidTags.LAVA)
         }
     }
 

@@ -31,7 +31,7 @@ object PastureLinkManager {
     fun getLinkByPlayer(player: ServerPlayerEntity): PastureLink? {
         val link = getLinkByPlayerId(player.uuid)
         if (link != null) {
-            if (!player.level().dimensionTypeRegistration().`is`(link.dimension) || !link.pos.closerToCenterThan(player.position(), 10.0)) {
+            if (!player.level().dimensionTypeRegistration().isIn(link.dimension) || !link.pos.closerToCenterThan(player.position(), 10.0)) {
                 links.remove(player.uuid)
                 return null
             }
@@ -42,7 +42,7 @@ object PastureLinkManager {
 
     fun removeAt(world: ServerLevel, pos: BlockPos) {
         links.removeIf { (uuid, pastureLink) ->
-            val shouldRemove = world.dimensionTypeRegistration().`is`(pastureLink.dimension) && pastureLink.pos == pos
+            val shouldRemove = world.dimensionTypeRegistration().isIn(pastureLink.dimension) && pastureLink.pos == pos
             uuid.getPlayer()?.sendPacket(ClosePasturePacket())
             return@removeIf shouldRemove
         }

@@ -213,7 +213,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
     override fun canSurvive(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         val blockPos = pos.below()
         val blockState = world.getBlockState(blockPos)
-        return if (state.getValue(PART) == PCPart.BOTTOM) blockState.isFaceSturdy(world, blockPos, Direction.UP) else blockState.`is`(this)// todo (techdaan): ensure this is the right mapping
+        return if (state.getValue(PART) == PCPart.BOTTOM) blockState.isFaceSturdy(world, blockPos, Direction.UP) else blockState.isIn(this)// todo (techdaan): ensure this is the right mapping
     }
 
     override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
@@ -221,8 +221,8 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
             var blockPos: BlockPos = BlockPos.ZERO
             var blockState: BlockState = state
             val part = state.getValue(PART)
-            if (part == PCPart.TOP && world.getBlockState(pos.below().also { blockPos = it }).also { blockState = it }.`is`(state.block) && blockState.getValue(PART) == PCPart.BOTTOM) {
-                val blockState2 = if (blockState.fluidState.`is`(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
+            if (part == PCPart.TOP && world.getBlockState(pos.below().also { blockPos = it }).also { blockState = it }.isIn(state.block) && blockState.getValue(PART) == PCPart.BOTTOM) {
+                val blockState2 = if (blockState.fluidState.isIn(Fluids.WATER)) Blocks.WATER.defaultBlockState() else Blocks.AIR.defaultBlockState()
                 world.setBlock(blockPos, blockState2, UPDATE_ALL or UPDATE_SUPPRESS_DROPS)
                 world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, getId(blockState))
             }
@@ -257,7 +257,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
     }
 
     override fun onRemove(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
-        if (!state.`is`(newState.block)) super.onRemove(state, world, pos, newState, moved)
+        if (!state.isIn(newState.block)) super.onRemove(state, world, pos, newState, moved)
     }
 
     override fun useWithoutItem(
@@ -321,7 +321,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world))
         }
 
-        val isPC = neighborState.`is`(this)
+        val isPC = neighborState.isIn(this)
         val part = state.getValue(PART)
         if (!isPC && part == PCPart.TOP && neighborPos == pos.below()) {
             return Blocks.AIR.defaultBlockState()

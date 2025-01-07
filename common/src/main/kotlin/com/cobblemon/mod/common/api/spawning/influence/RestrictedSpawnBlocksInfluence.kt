@@ -46,6 +46,6 @@ open class RestrictedSpawnBlocksInfluence
 
         // Examine the block immediately above the spawn block to check for a rail
         // Potentially need a refactor if we ever want to check the spawn block itself.
-        return ctx.world.getBlockState(pokemonSpawnPos.atY(pokemonSpawnPos.y + 1)).`is`(restrictedBlocks).not()
+        return ctx.world.getBlockState(pokemonSpawnPos.atY(pokemonSpawnPos.y + 1)).isIn(restrictedBlocks).not()
     }
 }

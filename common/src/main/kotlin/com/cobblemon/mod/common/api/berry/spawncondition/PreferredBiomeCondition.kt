@@ -22,7 +22,7 @@ class PreferredBiomeCondition(val minGroveSize: Int, val maxGroveSize: Int) : Be
 
     override fun canSpawn(berry: Berry, biome: Holder<Biome>): Boolean {
         val preferredBiomeTags = berry.preferredBiomeTags
-        return preferredBiomeTags.any {biome.`is`(it)}
+        return preferredBiomeTags.any {biome.isIn(it)}
     }
 
     companion object {

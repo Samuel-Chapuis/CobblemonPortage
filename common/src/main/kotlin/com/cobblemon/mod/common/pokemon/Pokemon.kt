@@ -841,7 +841,7 @@ open class Pokemon : ShowdownIdentifiable {
                     if (block is FireBlock ||
                         block is MagmaBlock ||
                         block is CampfireBlock ||
-                        world.getBlockState(pos).fluidState.`is`(FluidTags.LAVA)
+                        world.getBlockState(pos).fluidState.isIn(FluidTags.LAVA)
                     ) {
                         isSafe = false
                     }

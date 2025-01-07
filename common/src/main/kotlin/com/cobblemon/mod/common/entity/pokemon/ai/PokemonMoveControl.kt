@@ -165,8 +165,8 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
                 if (tooBigToStep &&
                     closeEnoughToJump ||
                     !voxelShape.isEmpty && mob.y < voxelShape.max(Direction.Axis.Y) + blockPos.y.toDouble() &&
-                    !blockState.`is`(BlockTags.DOORS) &&
-                    !blockState.`is`(BlockTags.FENCES)
+                    !blockState.isIn(BlockTags.DOORS) &&
+                    !blockState.isIn(BlockTags.FENCES)
                 ) {
                     mob.jumpControl.jump()
                     operation = Operation.JUMPING
@@ -253,7 +253,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
                 for (q in m until n) {
                     mutableBlockPos[o, p] = q
                     val fluidState: FluidState = mob.level().getFluidState(mutableBlockPos)
-                    if (fluidState.`is`(FluidTags.WATER)) {
+                    if (fluidState.isIn(FluidTags.WATER)) {
                         val f = p.toFloat() + fluidState.getHeight(mob.level(), mutableBlockPos)
                         this.waterLevel = max(f.toDouble(), waterLevel)
                         bl = bl or (aABB.minY < f.toDouble())
@@ -284,7 +284,7 @@ class PokemonMoveControl(val pokemonEntity: PokemonEntity) : MoveControl(pokemon
                 for (q in m until n) {
                     mutableBlockPos[o, p] = q
                     val fluidState: FluidState = mob.level().getFluidState(mutableBlockPos)
-                    if (fluidState.`is`(FluidTags.WATER) && d < (mutableBlockPos.y.toFloat() + fluidState.getHeight(mob.level(), mutableBlockPos)).toDouble()) {
+                    if (fluidState.isIn(FluidTags.WATER) && d < (mutableBlockPos.y.toFloat() + fluidState.getHeight(mob.level(), mutableBlockPos)).toDouble()) {
                         return true
                     }
                 }

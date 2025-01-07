@@ -120,7 +120,7 @@ interface Evolution : EvolutionLike {
         if (!owner.isCreative) {
             for (i in 0 until owner.inventory.containerSize) {
                 val stackI = owner.inventory.getItem(i)
-                if (stackI.`is`(CobblemonItemTags.POKE_BALLS)) {
+                if (stackI.isIn(CobblemonItemTags.POKE_BALLS)) {
                     pokeballStack = stackI
                 }
             }

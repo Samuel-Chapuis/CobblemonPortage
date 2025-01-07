@@ -98,7 +98,7 @@ open class CobblemonBoatEntity(entityType: EntityType<out Boat>, world: World) :
         if (!this.isPassenger()) {
             return
         }
-        if (!this.level().getFluidState(this.blockPosition().below()).`is`(FluidTags.WATER) && heightDifference < 0.0) {
+        if (!this.level().getFluidState(this.blockPosition().below()).isIn(FluidTags.WATER) && heightDifference < 0.0) {
             this.fallDistance -= heightDifference.toFloat()
         }
         if (!onGround) {

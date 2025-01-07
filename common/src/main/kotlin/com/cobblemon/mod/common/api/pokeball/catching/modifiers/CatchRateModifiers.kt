@@ -120,7 +120,7 @@ object CatchRateModifiers {
      * If yes boosts the catch rate by *2.5
      */
     val PARK = WorldStateModifier { _, entity ->
-        if (entity.level().getBiome(entity.blockPosition()).`is`(CobblemonBiomeTags.IS_TEMPERATE))
+        if (entity.level().getBiome(entity.blockPosition()).isIn(CobblemonBiomeTags.IS_TEMPERATE))
             2.5F
         else
             1F

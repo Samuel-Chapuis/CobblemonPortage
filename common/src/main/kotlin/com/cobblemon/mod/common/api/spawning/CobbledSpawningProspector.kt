@@ -101,7 +101,7 @@ object CobblemonSpawningProspector : SpawningProspector {
                     if (canSeeSky) {
                         skyLevel[x - area.baseX][z - area.baseZ] = y
                     }
-                    if (state.fluidState.isEmpty && !state.`is`(CobblemonBlockTags.SEES_SKY)) {
+                    if (state.fluidState.isEmpty && !state.isIn(CobblemonBlockTags.SEES_SKY)) {
                         canSeeSky = false
                     }
                 }

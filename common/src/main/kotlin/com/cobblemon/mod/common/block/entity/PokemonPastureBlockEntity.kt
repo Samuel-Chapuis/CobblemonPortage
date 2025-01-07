@@ -237,10 +237,10 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
             )
         ) {
             true
-        } else if ((entity.behaviour.moving.swim.canWalkOnWater || entity.behaviour.moving.swim.canSwimInWater) && state.fluidState.`is`(FluidTags.WATER)) {
+        } else if ((entity.behaviour.moving.swim.canWalkOnWater || entity.behaviour.moving.swim.canSwimInWater) && state.fluidState.isIn(FluidTags.WATER)) {
             true
         } else {
-            (entity.behaviour.moving.swim.canWalkOnLava || entity.behaviour.moving.swim.canSwimInLava) && state.fluidState.`is`(FluidTags.LAVA)
+            (entity.behaviour.moving.swim.canWalkOnLava || entity.behaviour.moving.swim.canSwimInLava) && state.fluidState.isIn(FluidTags.LAVA)
         }
     }
 

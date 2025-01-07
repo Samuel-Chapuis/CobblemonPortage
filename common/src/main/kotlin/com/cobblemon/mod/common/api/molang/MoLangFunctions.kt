@@ -497,7 +497,7 @@ object MoLangFunctions {
                 val isTag = type.path.startsWith("#")
                 val range = params.getDoubleOrNull(1) ?: 10
                 val blockPos = entity.level().getBlockStatesWithPos(AABB.ofSize(entity.position(), range.toDouble(), range.toDouble(), range.toDouble()))
-                    .filter { it.first.blockHolder.let { if (isTag) it.`is`(TagKey.create(Registries.BLOCK, type)) else it.`is`(type) } }
+                    .filter { it.first.blockHolder.let { if (isTag) it.isIn(TagKey.create(Registries.BLOCK, type)) else it.isIn(type) } }
                     .minByOrNull { it.second.distSqr(entity.blockPosition()) }
                     ?.second
                 if (blockPos != null) {
@@ -1106,11 +1106,11 @@ object MoLangFunctions {
         )
         value.functions.put("is_in") {
             val tag = TagKey.create(key, Identifier.parse(it.getString(0).replace("#", "")))
-            return@put DoubleValue(if (value.obj.`is`(tag)) 1.0 else 0.0)
+            return@put DoubleValue(if (value.obj.isIn(tag)) 1.0 else 0.0)
         }
         value.functions.put("is_of") {
             val identifier = Identifier.parse(it.getString(0))
-            return@put DoubleValue(if (value.obj.`is`(identifier)) 1.0 else 0.0)
+            return@put DoubleValue(if (value.obj.isIn(identifier)) 1.0 else 0.0)
         }
         return value
     }

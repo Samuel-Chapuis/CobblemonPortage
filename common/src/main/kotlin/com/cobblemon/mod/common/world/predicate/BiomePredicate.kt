@@ -34,8 +34,8 @@ class BiomePredicate(
         val biome = world.getBiome(block)
         // If biomes are not specified, default to true -- exclusions override inclusions
         return (
-                (includedBiomes.getOrNull()?.any { biome.`is`(it) } ?: true) &&
-                !(excludedBiomes.getOrNull()?.any { biome.`is`(it) } ?: false))
+                (includedBiomes.getOrNull()?.any { biome.isIn(it) } ?: true) &&
+                !(excludedBiomes.getOrNull()?.any { biome.isIn(it) } ?: false))
     }
 
     override fun type() = CobblemonBlockPredicates.BIOME

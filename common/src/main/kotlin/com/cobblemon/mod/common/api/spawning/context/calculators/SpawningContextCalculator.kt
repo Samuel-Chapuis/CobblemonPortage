@@ -29,10 +29,10 @@ import net.minecraft.world.level.block.state.BlockState
  */
 interface SpawningContextCalculator<I : SpawningContextInput, O : SpawningContext> {
     companion object {
-        val isAirCondition: (BlockState) -> Boolean = { it.isAir || (!it.isSolid && !it.fluidState.`is`(FluidTags.WATER)) }
+        val isAirCondition: (BlockState) -> Boolean = { it.isAir || (!it.isSolid && !it.fluidState.isIn(FluidTags.WATER)) }
         val isSolidCondition: (BlockState) -> Boolean = { it.isSolid }
-        val isWaterCondition: (BlockState) -> Boolean = { it.fluidState.`is`(FluidTags.WATER) && it.fluidState.isSource  }
-        val isLavaCondition: (BlockState) -> Boolean = { it.fluidState.`is`(FluidTags.LAVA) && it.fluidState.isSource }
+        val isWaterCondition: (BlockState) -> Boolean = { it.fluidState.isIn(FluidTags.WATER) && it.fluidState.isSource  }
+        val isLavaCondition: (BlockState) -> Boolean = { it.fluidState.isIn(FluidTags.LAVA) && it.fluidState.isSource }
 
         private val calculators = PrioritizedList<SpawningContextCalculator<*, *>>()
         val prioritizedAreaCalculators: List<AreaSpawningContextCalculator<*>>

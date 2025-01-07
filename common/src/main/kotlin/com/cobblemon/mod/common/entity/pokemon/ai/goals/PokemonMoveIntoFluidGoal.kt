@@ -57,7 +57,7 @@ class PokemonMoveIntoFluidGoal(private val mob: PokemonEntity) : Goal() {
                 }
                 for (y in mob.blockY..ceil(mob.boundingBox.maxY).toInt()) {
                     val fluidState = mob.level().getFluidState(mutablePos.set(blockX, y, blockZ))
-                    if (allowedFluids.any { fluidState.`is`(it) }) {
+                    if (allowedFluids.any { fluidState.isIn(it) }) {
                         return false
                     } else if (mob.y > 62.0) {
                     }
@@ -92,7 +92,7 @@ class PokemonMoveIntoFluidGoal(private val mob: PokemonEntity) : Goal() {
                 return@closestPosition false
             }
             val fluid = mob.level().getFluidState(pos)
-            return@closestPosition appropriateFluids.any { fluid.`is`(it) } &&
+            return@closestPosition appropriateFluids.any { fluid.isIn(it) } &&
                     mob.level().noCollision(
                         AABB.ofSize(
                             Vec3(

@@ -45,7 +45,7 @@ class SleepOnTrainerGoal(private val pokemonEntity: PokemonEntity) : Goal() {
             }
             val blockPos = owner!!.blockPosition()
             val blockState = pokemonEntity.level().getBlockState(blockPos)
-            if (blockState.`is`(BlockTags.BEDS)) {
+            if (blockState.isIn(BlockTags.BEDS)) {
                 bedPos = blockState.getOptionalValue(BedBlock.FACING).orElse(null)
                     ?.let { direction -> blockPos.relative(direction.opposite) }
                     ?: BlockPos(blockPos)
