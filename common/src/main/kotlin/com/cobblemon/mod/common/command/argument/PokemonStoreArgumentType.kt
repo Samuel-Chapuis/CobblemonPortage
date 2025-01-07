@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.pc
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.commands.arguments.StringRepresentableArgument
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.StringRepresentable

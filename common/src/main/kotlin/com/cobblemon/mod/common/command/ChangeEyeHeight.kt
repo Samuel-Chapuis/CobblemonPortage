@@ -17,7 +17,7 @@ import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.FloatArgumentType
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.commands.Commands
 
 object ChangeEyeHeight {

@@ -9,8 +9,8 @@
 package com.cobblemon.mod.common.api.permission
 
 import com.cobblemon.mod.common.Cobblemon
-import net.minecraft.commands.CommandSource
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSource
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.server.network.ServerPlayerEntity
 
 /**

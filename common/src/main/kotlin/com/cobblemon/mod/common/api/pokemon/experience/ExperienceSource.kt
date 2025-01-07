@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.pokemon.experience
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.item.ItemStack
 

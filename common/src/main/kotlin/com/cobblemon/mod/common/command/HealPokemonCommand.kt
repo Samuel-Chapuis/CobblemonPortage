@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.util.*
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.commands.Commands.literal
 import net.minecraft.commands.arguments.EntityArgument

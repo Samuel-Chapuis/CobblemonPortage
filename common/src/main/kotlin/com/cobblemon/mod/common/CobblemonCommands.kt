@@ -11,7 +11,7 @@ package com.cobblemon.mod.common
 import com.cobblemon.mod.common.command.*
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.commands.CommandBuildContext
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.commands.Commands
 
 object CobblemonCommands {

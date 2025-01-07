@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.permission
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.permission.Permission
 import com.cobblemon.mod.common.api.permission.PermissionValidator
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.server.network.ServerPlayerEntity
 
 /**

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.text.textClickHandlers
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.server.network.ServerPlayerEntity
 import java.util.*

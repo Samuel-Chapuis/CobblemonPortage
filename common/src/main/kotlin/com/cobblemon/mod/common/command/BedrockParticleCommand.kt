@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.util.toBlockPos
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
-import net.minecraft.commands.CommandSourceStack
+import net.minecraft.command.CommandSourceStack
 import net.minecraft.entity.Entity
 import net.minecraft.commands.Commands
 import net.minecraft.commands.arguments.DimensionArgument
