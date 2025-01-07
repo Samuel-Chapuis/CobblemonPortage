@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.item.battle
 
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * A type of [BagItemLike] that just checks the item type of the stack.

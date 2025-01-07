@@ -15,7 +15,7 @@ import net.minecraft.core.component.DataComponentPatch
 import net.minecraft.core.registries.Registries
 import net.minecraft.util.Identifier
 import net.minecraft.tags.TagKey
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.item.Items
 
 class PossibleHeldItem(

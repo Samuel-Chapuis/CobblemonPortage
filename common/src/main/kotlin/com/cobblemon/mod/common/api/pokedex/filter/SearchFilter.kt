@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.pokemon.abilities.HiddenAbility
 import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.itemRegistry
 import net.minecraft.client.MinecraftClient
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * A Pokedex [EntryFilter] that filters out entries that do not contain the current search.

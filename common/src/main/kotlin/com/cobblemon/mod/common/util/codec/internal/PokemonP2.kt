@@ -25,7 +25,7 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.UUIDUtil
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import java.util.*
 
 internal data class PokemonP2(

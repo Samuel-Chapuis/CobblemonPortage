@@ -14,7 +14,7 @@ import net.fabricmc.api.Environment
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.toasts.Toast
 import net.minecraft.client.gui.components.toasts.ToastComponent
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
 import net.minecraft.util.Mth

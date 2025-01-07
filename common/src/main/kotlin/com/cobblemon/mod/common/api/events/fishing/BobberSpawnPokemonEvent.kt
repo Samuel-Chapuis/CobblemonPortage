@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.api.spawning.SpawnBucket
 import com.cobblemon.mod.common.entity.fishing.PokeRodFishingBobberEntity
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Event that is fired when a Pokemon is spawned by a bobber.

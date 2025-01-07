@@ -27,7 +27,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import java.util.*
 import net.minecraft.core.UUIDUtil
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 internal data class ClientPokemonP2(
     val state: Optional<ShoulderedState>,

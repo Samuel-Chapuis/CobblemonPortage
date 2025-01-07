@@ -14,7 +14,7 @@ import net.minecraft.world.InteractionResultHolder
 import net.minecraft.util.Hand
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemNameBlockItem
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.item.PlaceOnWaterBlockItem
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.ClipContext

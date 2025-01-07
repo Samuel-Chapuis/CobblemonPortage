@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.util
 
 import net.minecraft.world.entity.player.Inventory
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import java.util.function.Predicate
 import java.util.stream.Collectors
 

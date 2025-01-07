@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.util.Identifier
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 
 object StashHandler {

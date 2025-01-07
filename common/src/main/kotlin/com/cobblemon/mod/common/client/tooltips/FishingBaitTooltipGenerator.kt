@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.item.interactive.PokerodItem
 import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import java.text.DecimalFormat
 
 object FishingBaitTooltipGenerator : TooltipGenerator() {

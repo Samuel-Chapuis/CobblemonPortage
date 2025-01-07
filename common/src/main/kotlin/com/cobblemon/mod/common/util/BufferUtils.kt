@@ -29,7 +29,7 @@ import net.minecraft.network.codec.StreamEncoder
 import net.minecraft.util.Identifier
 import net.minecraft.util.Mth
 import net.minecraft.entity.EntityDimensions
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import java.io.IOException
 import java.util.*
 

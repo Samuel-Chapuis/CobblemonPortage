@@ -29,7 +29,7 @@ import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.components.Button.CreateNarration
 import net.minecraft.client.sounds.SoundManager
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import org.joml.Quaternionf
 import org.joml.Vector3f
 

@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.giveOrDropItemStack
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Format: |bagitem|POKEMON|ITEM

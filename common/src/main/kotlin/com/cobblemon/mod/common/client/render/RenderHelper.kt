@@ -28,7 +28,7 @@ import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Identifier
 import net.minecraft.util.FormattedCharSequence
 import net.minecraft.world.item.ItemDisplayContext
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 fun renderScaledGuiItemIcon(itemStack: ItemStack, x: Double, y: Double, scale: Double = 1.0, zTranslation: Float = 100.0F, matrixStack: PoseStack? = null) {
     val itemRenderer = MinecraftClient.getInstance().itemRenderer

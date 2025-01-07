@@ -21,7 +21,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 object FishingBaits : JsonDataRegistry<FishingBait>{
     override val id = cobblemonResource("fishing_baits")

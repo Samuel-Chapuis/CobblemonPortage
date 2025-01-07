@@ -33,7 +33,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
 import com.cobblemon.mod.common.pokemon.status.PersistentStatusContainer
 import com.cobblemon.mod.common.util.party
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import kotlin.random.Random
 import java.util.*
 

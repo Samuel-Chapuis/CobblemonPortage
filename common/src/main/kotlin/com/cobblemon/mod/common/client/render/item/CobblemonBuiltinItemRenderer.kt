@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.render.item
 import net.minecraft.client.renderer.MultiBufferSource
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.world.item.ItemDisplayContext
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * A custom renderer for an item.

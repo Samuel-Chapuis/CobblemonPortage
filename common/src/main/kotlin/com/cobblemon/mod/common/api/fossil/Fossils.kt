@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 object Fossils: JsonDataRegistry<Fossil> {
 

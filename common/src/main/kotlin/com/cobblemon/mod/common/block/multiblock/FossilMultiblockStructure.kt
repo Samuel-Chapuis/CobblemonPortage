@@ -57,7 +57,7 @@ import net.minecraft.util.Hand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.HorizontalDirectionalBlock

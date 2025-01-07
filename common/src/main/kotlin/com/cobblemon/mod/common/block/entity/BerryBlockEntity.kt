@@ -30,7 +30,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.CropBlock.UPDATE_CLIENTS

@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.pokemon.evolution.predicate.NbtItemPredicate
 import com.cobblemon.mod.common.registry.ItemIdentifierCondition
 import net.minecraft.core.registries.Registries
 import net.minecraft.util.Identifier
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 
 /**

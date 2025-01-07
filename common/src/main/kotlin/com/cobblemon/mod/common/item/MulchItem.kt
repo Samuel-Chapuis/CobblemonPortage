@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.mulch.Mulchable
 import net.minecraft.util.math.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionResult
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.World
 import net.minecraft.world.level.block.LevelEvent

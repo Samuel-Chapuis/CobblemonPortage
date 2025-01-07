@@ -18,7 +18,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Mth
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import java.util.*
 import kotlin.properties.Delegates
 

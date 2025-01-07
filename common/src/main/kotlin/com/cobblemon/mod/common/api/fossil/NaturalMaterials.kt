@@ -22,7 +22,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 import net.minecraft.server.packs.PackType
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 object NaturalMaterials : JsonDataRegistry<List<NaturalMaterial>>{
     override val id = cobblemonResource("natural_materials")

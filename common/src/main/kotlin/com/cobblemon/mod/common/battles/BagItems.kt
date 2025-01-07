@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.ResourceManager
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import java.io.File
 
 /**

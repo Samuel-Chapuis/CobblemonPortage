@@ -21,7 +21,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
 import java.util.UUID
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Used for opening party Pokémon selection screens for players and handling their choice. Currently

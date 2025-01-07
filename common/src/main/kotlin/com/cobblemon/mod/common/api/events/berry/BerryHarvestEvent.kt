@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.berry.Berry
 import com.cobblemon.mod.common.block.entity.BerryBlockEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraft.world.level.block.state.BlockState
 

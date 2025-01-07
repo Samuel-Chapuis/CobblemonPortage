@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.util.asTranslated
 import net.minecraft.core.component.DataComponents
 import net.minecraft.locale.Language
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 object CobblemonTooltipGenerator : TooltipGenerator() {
     @Suppress("DEPRECATION")

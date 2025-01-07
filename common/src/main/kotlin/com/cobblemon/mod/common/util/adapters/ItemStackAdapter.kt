@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.util.adapters
 
 import com.google.gson.*
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Saves and loads an [ItemStack] with JSON.

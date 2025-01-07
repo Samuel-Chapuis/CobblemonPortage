@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.client.tooltips
 
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 abstract class TooltipGenerator {
     open fun generateTooltip(stack: ItemStack, lines: MutableList<Component>): MutableList<Component>? {

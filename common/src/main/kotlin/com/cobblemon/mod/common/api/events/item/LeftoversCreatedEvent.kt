@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.events.item
 
 import com.cobblemon.mod.common.api.events.Cancelable
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Fired when eating an apple triggers the creation of a Leftovers. The stack that will be given

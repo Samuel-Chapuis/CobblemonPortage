@@ -20,7 +20,7 @@ import net.minecraft.core.Registry
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.util.Identifier
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 data class FishingBait(
     val item: Identifier,

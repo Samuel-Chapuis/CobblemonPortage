@@ -34,7 +34,7 @@ import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.pokemon.abilities.HiddenAbility
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.entity.Entity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import kotlin.random.Random.Default.nextInt
 
 /**

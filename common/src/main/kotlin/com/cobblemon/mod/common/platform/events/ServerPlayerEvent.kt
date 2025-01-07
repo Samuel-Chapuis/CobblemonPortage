@@ -14,7 +14,7 @@ import net.minecraft.util.math.Direction
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Hand
 import net.minecraft.entity.Entity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Events related to a [ServerPlayerEntity].

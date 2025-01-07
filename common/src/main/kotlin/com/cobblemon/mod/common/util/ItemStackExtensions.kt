@@ -13,7 +13,7 @@ import com.mojang.serialization.JsonOps
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 fun ItemStack.saveToJson(): JsonElement = JsonOps.INSTANCE.withEncoder(
     ItemStack.CODEC).apply(this).getOrThrow {

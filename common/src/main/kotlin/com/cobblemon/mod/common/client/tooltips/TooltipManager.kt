@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.client.tooltips
 import com.cobblemon.mod.common.api.text.yellow
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 object TooltipManager {
     private val tooltipGenerators = mutableListOf<TooltipGenerator>()

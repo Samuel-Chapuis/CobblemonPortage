@@ -17,7 +17,7 @@ import com.google.common.collect.HashBiMap
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * The base Cobblemon implementation of an [HeldItemManager].

@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.events.pokemon.interaction
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Event published when a held item is being updated on a [Pokemon].

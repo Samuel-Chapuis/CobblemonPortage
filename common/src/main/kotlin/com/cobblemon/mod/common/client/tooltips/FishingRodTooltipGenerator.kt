@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.item.interactive.PokerodItem
 import net.minecraft.client.MinecraftClient
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 object FishingRodTooltipGenerator : TooltipGenerator() {
     override fun generateTooltip(stack: ItemStack, lines: MutableList<Component>): MutableList<Component>? {

@@ -27,7 +27,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.FastColor
 import net.minecraft.util.Mth
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 class DropsScrollingWidget(val pX: Int, val pY: Int): ScrollingWidget<DropsScrollingWidget.DropWidgetEntry>(
     width = PokedexGUIConstants.HALF_OVERLAY_WIDTH - 2,

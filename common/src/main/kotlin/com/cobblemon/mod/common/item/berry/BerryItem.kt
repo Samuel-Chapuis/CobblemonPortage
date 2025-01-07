@@ -23,7 +23,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemNameBlockItem
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
 import java.math.BigDecimal
 import java.text.DecimalFormat

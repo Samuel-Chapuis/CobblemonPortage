@@ -61,7 +61,7 @@ import java.util.concurrent.ConcurrentLinkedDeque
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Individual battle instance

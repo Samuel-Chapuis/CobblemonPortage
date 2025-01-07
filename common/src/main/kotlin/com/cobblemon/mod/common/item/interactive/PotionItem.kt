@@ -26,7 +26,7 @@ import com.cobblemon.mod.common.util.giveOrDropItemStack
 import com.cobblemon.mod.common.util.resolveInt
 import java.lang.Integer.min
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Hand

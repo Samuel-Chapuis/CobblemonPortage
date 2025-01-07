@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.ItemLike
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.registry.RegistryKey
 import net.minecraft.network.chat.Component

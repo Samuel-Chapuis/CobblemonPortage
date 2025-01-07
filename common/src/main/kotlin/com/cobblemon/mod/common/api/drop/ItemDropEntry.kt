@@ -23,7 +23,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.item.ItemEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.phys.Vec3
 

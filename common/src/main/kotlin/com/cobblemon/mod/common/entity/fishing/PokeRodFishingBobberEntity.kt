@@ -63,7 +63,7 @@ import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.projectile.FishingHook
 import net.minecraft.world.entity.projectile.ProjectileUtil
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.storage.loot.LootParams

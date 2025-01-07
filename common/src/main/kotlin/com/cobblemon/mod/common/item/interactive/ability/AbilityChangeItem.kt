@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.lang
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 
 open class AbilityChangeItem<T : PotentialAbility>(val changer: AbilityChanger<T>) : CobblemonItem(Properties()), PokemonEntityInteraction {

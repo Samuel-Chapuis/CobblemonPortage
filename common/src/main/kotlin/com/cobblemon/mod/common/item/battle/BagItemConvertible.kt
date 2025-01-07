@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.util.battleLang
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Something that can be a bag item. This needs to be registered in [BagItems]

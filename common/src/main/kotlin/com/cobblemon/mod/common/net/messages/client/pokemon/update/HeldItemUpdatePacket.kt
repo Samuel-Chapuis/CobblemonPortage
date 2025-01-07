@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.readItemStack
 import com.cobblemon.mod.common.util.writeItemStack
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 class HeldItemUpdatePacket(pokemon: () -> Pokemon, value: ItemStack): SingleUpdatePacket<ItemStack, HeldItemUpdatePacket>(pokemon, value) {
 

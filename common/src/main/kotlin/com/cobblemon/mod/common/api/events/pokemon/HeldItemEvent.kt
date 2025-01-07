@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent.Post
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent.Pre
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * The base for all the events related to held items.

@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import net.minecraft.advancements.critereon.NbtPredicate
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 data class NbtItemPredicate(
     val item: RegistryLikeCondition<Item>,

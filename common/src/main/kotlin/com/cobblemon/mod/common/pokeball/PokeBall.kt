@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.item.PokeBallItem
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.codec.CodecUtils
 import com.mojang.serialization.Codec
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 
 /**

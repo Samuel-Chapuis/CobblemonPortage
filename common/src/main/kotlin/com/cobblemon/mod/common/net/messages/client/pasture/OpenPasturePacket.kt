@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.pasture.PasturePermissions
 import com.cobblemon.mod.common.net.IntSize
 import com.cobblemon.mod.common.util.*
 import java.util.UUID
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier

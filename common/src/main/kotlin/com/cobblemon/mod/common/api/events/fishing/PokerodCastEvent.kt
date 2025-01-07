@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.events.fishing
 
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.entity.fishing.PokeRodFishingBobberEntity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * Event that is fired when a fishing rod is cast.

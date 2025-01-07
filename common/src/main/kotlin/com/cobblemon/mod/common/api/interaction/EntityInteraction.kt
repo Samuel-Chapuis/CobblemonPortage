@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.interaction
 
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.entity.Entity
-import net.minecraft.world.item.ItemStack
+import net.minecraft.item.ItemStack
 
 /**
  * An interaction that will affect an [Entity].
