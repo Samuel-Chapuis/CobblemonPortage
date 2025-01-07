@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.battles
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.interaction.RequestManager
-import com.cobblemon.mod.common.api.interaction.ServerPlayerEntityActionRequest
+import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest
 import com.cobblemon.mod.common.api.interaction.ServerTeamActionRequest
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.api.text.aqua
@@ -52,7 +52,7 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
      * @param battleFormat
      * @param expiryTime How long (in seconds) this request is active.
      */
-    abstract class BattleChallenge : ServerPlayerEntityActionRequest {
+    abstract class BattleChallenge : ServerPlayerActionRequest {
         abstract val selectedPokemonId: UUID
         abstract val battleFormat: BattleFormat
         override val requestID: UUID = UUID.randomUUID()

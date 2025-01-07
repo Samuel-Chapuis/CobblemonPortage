@@ -41,7 +41,7 @@ interface PlayerActionRequest {
  * @author Segfault Guy
  * @since September 29th, 2024
  */
-interface ServerPlayerEntityActionRequest : PlayerActionRequest {
+interface ServerPlayerActionRequest : PlayerActionRequest {
 
     /** The subkey identifying lang entries associated with this request. */
     val key: String
@@ -82,7 +82,7 @@ interface ServerPlayerEntityActionRequest : PlayerActionRequest {
  * @author Segfault Guy
  * @since October 29th, 2024
  */
-interface ServerTeamActionRequest : ServerPlayerEntityActionRequest {
+interface ServerTeamActionRequest : ServerPlayerActionRequest {
 
     /** The team initiating this request. */
     val senderTeam: TeamManager.MultiBattleTeam

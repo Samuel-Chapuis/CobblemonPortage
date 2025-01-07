@@ -23,7 +23,7 @@ import com.cobblemon.mod.common.api.events.pokemon.*
 import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionCompleteEvent
 import com.cobblemon.mod.common.block.TumblestoneBlock
 import com.cobblemon.mod.common.item.TumblestoneItem
-import com.cobblemon.mod.common.platform.events.ServerPlayerEntityEvent
+import com.cobblemon.mod.common.platform.events.ServerPlayerEvent
 import com.cobblemon.mod.common.api.storage.player.PlayerInstancedDataStoreTypes
 import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.util.effectiveName
@@ -174,7 +174,7 @@ object AdvancementHandler : EventHandler {
      *
      * @param event the event to trigger the advancement from
      */
-    fun onTumbleStonePlaced(event: ServerPlayerEntityEvent.RightClickBlock) {
+    fun onTumbleStonePlaced(event: ServerPlayerEvent.RightClickBlock) {
         if (event.player.getItemInHand(event.hand).item is TumblestoneItem) {
             val block = ((event.player.getItemInHand(event.hand).item as TumblestoneItem).block as TumblestoneBlock)
             CobblemonCriteria.PLANT_TUMBLESTONE.trigger(event.player, PlantTumblestoneContext(event.pos, block))

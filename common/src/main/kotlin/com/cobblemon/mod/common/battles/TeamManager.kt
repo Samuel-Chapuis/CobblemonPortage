@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.battles
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonNetwork
 import com.cobblemon.mod.common.api.interaction.RequestManager
-import com.cobblemon.mod.common.api.interaction.ServerPlayerEntityActionRequest
+import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.api.text.aqua
 import com.cobblemon.mod.common.net.messages.client.battle.*
@@ -44,7 +44,7 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
         override val sender: ServerPlayerEntity,
         override val receiver: ServerPlayerEntity,
         override val expiryTime: Int = 60
-    ) : ServerPlayerEntityActionRequest
+    ) : ServerPlayerActionRequest
     {
         override val key: String = "team"
         override val requestID: UUID = UUID.randomUUID()
@@ -108,8 +108,8 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
         val notificationPacket = TeamMemberRemoveNotificationPacket(player.uuid)
         CobblemonNetwork.sendPacketToPlayer(player, notificationPacket)
         // Notify remaining members that the player has left the group
-        val teamServerPlayerEntitys = teamEntry.teamPlayersUUID.mapNotNull { it.getPlayer() }
-        CobblemonNetwork.sendPacketToPlayers(teamServerPlayerEntitys, notificationPacket)
+        val teamServerPlayers = teamEntry.teamPlayersUUID.mapNotNull { it.getPlayer() }
+        CobblemonNetwork.sendPacketToPlayers(teamServerPlayers, notificationPacket)
 
         if (teamEntry.teamPlayersUUID.count() == 1)  this.disbandTeam(teamEntry)
     }

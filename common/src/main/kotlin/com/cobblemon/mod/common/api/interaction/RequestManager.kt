@@ -29,17 +29,17 @@ import java.util.*
  * @author Segfault Guy
  * @since October 26th, 2024
  */
-abstract class RequestManager<T : ServerPlayerEntityActionRequest> {
+abstract class RequestManager<T : ServerPlayerActionRequest> {
 
     /**
-     * Tracking of the active [ServerPlayerEntityActionRequest]s by their sender.
+     * Tracking of the active [ServerPlayerActionRequest]s by their sender.
      *
      * NOTE: only 1 request can be sent by a sender at a time.
      */
     private val outboundRequests = mutableMapOf<UUID, T>()
 
     /**
-     * Tracking of the active [ServerPlayerEntityActionRequest]s by their recipient.
+     * Tracking of the active [ServerPlayerActionRequest]s by their recipient.
      *
      * NOTE: a recipient can receive multiple requests from different senders at the same time.
      */
@@ -107,7 +107,7 @@ abstract class RequestManager<T : ServerPlayerEntityActionRequest> {
         return isRemoved
     }
 
-    /** Notifies and removes an outbound request [T] sent by [ServerPlayerEntityActionRequest.sender] to [ServerPlayerEntityActionRequest.receiver]. */
+    /** Notifies and removes an outbound request [T] sent by [ServerPlayerActionRequest.sender] to [ServerPlayerActionRequest.receiver]. */
     open fun cancelRequest(request: T, expired: Boolean = false) {
         if (!this.removeRequest(request)) return
         // canceled by expiration
@@ -129,7 +129,7 @@ abstract class RequestManager<T : ServerPlayerEntityActionRequest> {
         request.notifyReceiver(false, "received", request.sender.name.copy().aqua())
     }
 
-    /** Sends an outbound request [T] from [ServerPlayerEntityActionRequest.sender] to [ServerPlayerEntityActionRequest.receiver]. */
+    /** Sends an outbound request [T] from [ServerPlayerActionRequest.sender] to [ServerPlayerActionRequest.receiver]. */
     fun sendRequest(request: T): Boolean {
         val existingRequest = this.getOutboundRequest(request.senderID)
         val pendingRequest = this.getInboundRequestBySender(request.senderID, request.receiverID)

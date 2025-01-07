@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.interaction.RequestManager
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent
-import com.cobblemon.mod.common.api.interaction.ServerPlayerEntityActionRequest
+import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.api.text.aqua
 import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferExpiredPacket
@@ -49,7 +49,7 @@ object TradeManager : RequestManager<TradeManager.TradeRequest>() {
         override val sender: ServerPlayerEntity,
         override val receiver: ServerPlayerEntity,
         override val expiryTime: Int = 20
-    ) : ServerPlayerEntityActionRequest {
+    ) : ServerPlayerActionRequest {
         override val key: String = "trade"
         override val requestID: UUID = UUID.randomUUID()
     }
