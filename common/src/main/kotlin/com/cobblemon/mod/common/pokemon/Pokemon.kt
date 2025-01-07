@@ -124,7 +124,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 import kotlin.random.Random
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtOps

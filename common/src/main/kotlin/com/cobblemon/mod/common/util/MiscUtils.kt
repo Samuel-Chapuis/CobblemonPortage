@@ -21,7 +21,7 @@ import java.util.function.Consumer
 import kotlin.math.min
 import kotlin.random.Random
 import net.minecraft.client.util.ModelIdentifier
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Identifier
 import net.minecraft.world.InteractionHand

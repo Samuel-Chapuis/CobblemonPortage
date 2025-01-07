@@ -20,7 +20,7 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.StringRepresentable

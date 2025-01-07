@@ -17,7 +17,7 @@ import kotlin.math.floor
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 /**
  * A [SpawningContext] that is for a particular area, and therefore has spatial properties.

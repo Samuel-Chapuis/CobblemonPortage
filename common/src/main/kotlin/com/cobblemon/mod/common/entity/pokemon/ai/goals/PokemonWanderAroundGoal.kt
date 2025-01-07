@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.util.canFit
 import com.cobblemon.mod.common.util.toVec3d
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.tags.TagKey
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.tags.BlockTags
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal

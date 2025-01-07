@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.world.feature
 
 import com.cobblemon.mod.common.block.MintBlock
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.block.CropBlock.UPDATE_CLIENTS

@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.spawning.prospecting.SpawningProspector
 import com.cobblemon.mod.common.api.spawning.spawner.Spawner
 import com.cobblemon.mod.common.api.spawning.spawner.SpawningArea
 import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.SectionPos.blockToSectionCoord
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.LightLayer

@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.multiblock
 
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.player.Player

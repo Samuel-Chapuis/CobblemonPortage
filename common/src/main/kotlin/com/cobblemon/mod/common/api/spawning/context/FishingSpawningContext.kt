@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import com.cobblemon.mod.common.util.toVec3d
 import net.minecraft.world.level.block.Block
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.phys.AABB
 
 /**

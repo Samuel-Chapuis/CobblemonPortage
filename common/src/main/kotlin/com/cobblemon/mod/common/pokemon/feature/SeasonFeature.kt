@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.SeasonResolver
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature
 import com.cobblemon.mod.common.api.tags.CobblemonBiomeTags
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.WorldAccess
 import java.util.*
 

@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.net.messages.client.ui.PokedexUIPacket
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
 import com.mojang.serialization.MapCodec
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sounds.SoundEvents

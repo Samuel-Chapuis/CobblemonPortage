@@ -38,7 +38,7 @@ import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.server
 import java.util.UUID
 import kotlin.math.ceil
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.BuiltInRegistries

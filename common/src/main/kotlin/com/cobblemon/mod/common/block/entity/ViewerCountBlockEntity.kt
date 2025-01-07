@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.block.entity
 
 import com.cobblemon.mod.common.util.DataKeys
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet

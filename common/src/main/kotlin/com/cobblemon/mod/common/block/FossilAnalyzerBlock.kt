@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.block.entity.FossilMultiblockEntity
 import com.cobblemon.mod.common.block.multiblock.FossilMultiblockBuilder
 import com.cobblemon.mod.common.block.multiblock.FossilMultiblockStructure
 import com.mojang.serialization.MapCodec
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.world.WorldlyContainer
 import net.minecraft.world.WorldlyContainerHolder

@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.util
 
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Registry
 import net.minecraft.core.SectionPos
 import net.minecraft.world.level.block.state.BlockState

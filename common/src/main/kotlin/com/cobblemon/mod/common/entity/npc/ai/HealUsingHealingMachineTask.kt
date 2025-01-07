@@ -19,7 +19,7 @@ import com.cobblemon.mod.common.util.asExpression
 import com.cobblemon.mod.common.util.getNearbyBlockEntities
 import com.cobblemon.mod.common.util.resolveDouble
 import com.cobblemon.mod.common.util.withQueryValue
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.ai.behavior.Behavior

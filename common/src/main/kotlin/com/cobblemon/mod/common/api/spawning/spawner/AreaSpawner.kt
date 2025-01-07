@@ -22,7 +22,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.util.isBoxLoaded
 import com.cobblemon.mod.common.util.squeezeWithinBounds
 import com.cobblemon.mod.common.util.toVec3f
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.SectionPos
 import net.minecraft.world.level.ChunkPos
 import net.minecraft.world.World

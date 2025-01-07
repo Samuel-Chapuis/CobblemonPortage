@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.entity.pokemon.ai.goals
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.status.PersistentStatusContainer
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.entity.ai.goal.Goal

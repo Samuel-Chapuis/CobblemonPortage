@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.berry.GrowthFactor
 import com.cobblemon.mod.common.block.BerryBlock
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.BlockView
 
 class PreferredBiomeGrowthFactor(

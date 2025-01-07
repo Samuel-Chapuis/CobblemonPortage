@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.block.sign.CobblemonWallHangingSignBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 class CobblemonHangingSignBlockEntity(pos: BlockPos, state: BlockState) : HangingSignBlockEntity(pos, state) {
 

@@ -31,7 +31,7 @@ import com.cobblemon.mod.common.util.writeEnumSet
 import com.cobblemon.mod.common.util.writeIdentifier
 import com.cobblemon.mod.common.util.writeMap
 import com.google.gson.annotations.SerializedName
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.network.RegistryFriendlyByteBuf
 import java.awt.Color
 import java.util.EnumSet

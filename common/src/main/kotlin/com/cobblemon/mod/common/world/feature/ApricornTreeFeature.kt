@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.tags.CobblemonBiomeTags
 import com.cobblemon.mod.common.block.ApricornBlock
 import com.cobblemon.mod.common.util.randomNoCopy
 import com.google.common.collect.Lists
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.Direction.*
 import net.minecraft.tags.BlockTags

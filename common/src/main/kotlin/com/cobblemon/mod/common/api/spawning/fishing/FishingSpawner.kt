@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.spawning.context.FishingSpawningContext
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
 import com.cobblemon.mod.common.api.spawning.spawner.TriggerSpawner
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 /**
  * A spawner that takes in a [FishingSpawnCause] and spawns things.

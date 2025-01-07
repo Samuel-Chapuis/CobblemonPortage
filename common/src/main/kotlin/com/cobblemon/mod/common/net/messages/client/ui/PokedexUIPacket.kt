@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.client.net.gui.PokedexUIPacketHandler
 import com.cobblemon.mod.common.client.pokedex.PokedexType
 import com.cobblemon.mod.common.util.*
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.util.Identifier
 

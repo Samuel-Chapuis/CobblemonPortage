@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.entity.ai
 
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.PathfinderMob
 import net.minecraft.world.entity.ai.behavior.Behavior

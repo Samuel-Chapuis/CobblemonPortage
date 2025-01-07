@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.spawning.context
 import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 /**
  * A spawning context relating to triggered spawning. Uses a single-point structure cache which is

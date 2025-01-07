@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.pasture
 
 import com.cobblemon.mod.common.Cobblemon
 import java.util.*
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.RegistryAccess
 import net.minecraft.util.Identifier
 

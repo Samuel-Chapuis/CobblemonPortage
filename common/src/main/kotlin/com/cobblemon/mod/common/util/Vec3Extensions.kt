@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.util
 
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.phys.Vec3
 import org.joml.Vector3f
 

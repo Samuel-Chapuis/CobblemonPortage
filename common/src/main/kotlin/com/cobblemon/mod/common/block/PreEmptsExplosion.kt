@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.block
 
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 interface PreEmptsExplosion {

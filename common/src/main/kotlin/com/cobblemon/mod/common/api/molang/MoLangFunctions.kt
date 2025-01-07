@@ -68,7 +68,7 @@ import java.util.UUID
 import kotlin.math.sqrt
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.commands.arguments.EntityAnchorArgument
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Holder
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries

@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.berry
 import com.cobblemon.mod.common.api.berry.GrowthFactor
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.advancements.critereon.MinMaxBounds
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.BlockView
 import net.minecraft.world.level.block.state.BlockState
 

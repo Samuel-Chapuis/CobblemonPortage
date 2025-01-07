@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.entity.boat
 
 import com.cobblemon.mod.common.CobblemonEntities
 import com.cobblemon.mod.common.mixin.accessor.BoatEntityAccessor
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.StringTag
 import net.minecraft.nbt.Tag

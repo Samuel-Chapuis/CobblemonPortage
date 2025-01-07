@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.block.TumblestoneBlock
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.advancements.critereon.ContextAwarePredicate
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.server.network.ServerPlayerEntity
 import java.util.Optional
 

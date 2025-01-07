@@ -13,7 +13,7 @@ import com.cobblemon.mod.common.api.spawning.WorldSlice
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 /**
  * A type of area based spawning context with a fluid base block.

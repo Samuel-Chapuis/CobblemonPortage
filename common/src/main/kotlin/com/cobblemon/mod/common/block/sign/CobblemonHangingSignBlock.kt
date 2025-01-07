@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.block.sign
 
 import com.cobblemon.mod.common.block.entity.CobblemonHangingSignBlockEntity
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.level.block.CeilingHangingSignBlock
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState

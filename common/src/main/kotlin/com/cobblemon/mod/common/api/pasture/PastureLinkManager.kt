@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
 import com.cobblemon.mod.common.net.messages.client.pasture.ClosePasturePacket
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.removeIf
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import java.util.UUID
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.level.ServerLevel

@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.api.spawning.selection.FlatContextWeightedSelect
 import com.cobblemon.mod.common.api.spawning.selection.SpawningSelector
 import java.util.concurrent.CompletableFuture
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 /**
  * A type of spawner that occurs at a single point and provides its own means of generating a

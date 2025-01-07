@@ -31,7 +31,7 @@ import com.cobblemon.mod.common.util.server
 import com.cobblemon.mod.common.util.toVec3d
 import java.util.*
 import kotlin.math.ceil
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.Vec3i

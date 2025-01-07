@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.world.placementmodifier
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.PrimitiveCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.levelgen.Heightmap
 import net.minecraft.world.level.levelgen.placement.PlacementContext

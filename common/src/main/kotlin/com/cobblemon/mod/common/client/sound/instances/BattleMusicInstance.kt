@@ -16,7 +16,7 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.client.resources.sounds.SoundInstance
 import net.minecraft.client.resources.sounds.TickableSoundInstance
 import net.minecraft.sounds.SoundSource
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.util.Mth
 

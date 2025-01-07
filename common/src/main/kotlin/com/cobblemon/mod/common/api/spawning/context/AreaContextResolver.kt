@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.spawning.context.calculators.AreaSpawningCon
 import com.cobblemon.mod.common.api.spawning.context.calculators.AreaSpawningInput
 import com.cobblemon.mod.common.api.spawning.spawner.Spawner
 import com.cobblemon.mod.common.util.toVec3d
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 
 /**
  * Interface responsible for drawing a list of spawn contexts from a slice of the world,

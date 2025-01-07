@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.events.world
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.block.BigRootBlock
 import com.cobblemon.mod.common.block.EnergyRootBlock
-import net.minecraft.core.BlockPos
+import net.minecraft.util.math.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.block.state.BlockState
 
