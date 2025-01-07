@@ -17,7 +17,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object CancelTradeHandler : ServerNetworkPacketHandler<CancelTradePacket> {
-    override fun handle(packet: CancelTradePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: CancelTradePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val trade = TradeManager.getActiveTrade(player.uuid) ?: return player.sendPacket(TradeCancelledPacket())
         trade.cancelTrade()
     }

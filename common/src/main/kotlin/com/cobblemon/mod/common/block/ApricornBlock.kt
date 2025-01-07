@@ -175,7 +175,7 @@ class ApricornBlock(settings: Properties, val apricorn: Apricorn) : HorizontalDi
         if (!world.isClientSide) {
             world.playSoundServer(position = pos.toVec3d(), sound = SoundEvents.ITEM_PICKUP, volume = 0.7F, pitch = 1.4F)
 
-            if (world is ServerLevel && player is ServerPlayer) {
+            if (world is ServerLevel && player is ServerPlayerEntity) {
                 CobblemonEvents.APRICORN_HARVESTED.post(ApricornHarvestEvent(player, apricorn, world, pos))
             }
         }

@@ -17,34 +17,34 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.item.ItemStack
 
 /**
- * Events related to a [ServerPlayer].
+ * Events related to a [ServerPlayerEntity].
  * As implied by the name these are fired on the server side.
  *
  * @author Licious
  * @since February 15th, 2023
  */
-interface ServerPlayerEvent {
+interface ServerPlayerEntityEvent {
 
     /**
-     * The [ServerPlayer] triggering the platform specific events.
+     * The [ServerPlayerEntity] triggering the platform specific events.
      */
-    val player: ServerPlayer
+    val player: ServerPlayerEntity
 
     /**
      * Fired when the [player] logs in.
      */
-    data class Login(override val player: ServerPlayer) : ServerPlayerEvent
+    data class Login(override val player: ServerPlayerEntity) : ServerPlayerEntityEvent
 
     /**
      * Fired when the [player] logs out.
      */
-    data class Logout(override val player: ServerPlayer) : ServerPlayerEvent
+    data class Logout(override val player: ServerPlayerEntity) : ServerPlayerEntityEvent
 
     /**
      * Fired when the [player] dies.
      * If canceled the death will be prevented but healing is required in order to not be stuck in a loop.
      */
-    data class Death(override val player: ServerPlayer) : ServerPlayerEvent, Cancelable()
+    data class Death(override val player: ServerPlayerEntity) : ServerPlayerEntityEvent, Cancelable()
 
     /**
      * Fired when the [player] right clicks a block.
@@ -54,7 +54,7 @@ interface ServerPlayerEvent {
      * @property hand The [Hand] that hit the block.
      * @property face The [Direction] of the block if any.
      */
-    data class RightClickBlock(override val player: ServerPlayer, val pos: BlockPos, val hand: InteractionHand, val face: Direction?) : ServerPlayerEvent, Cancelable()
+    data class RightClickBlock(override val player: ServerPlayerEntity, val pos: BlockPos, val hand: InteractionHand, val face: Direction?) : ServerPlayerEntityEvent, Cancelable()
 
     /**
      * Fired when the [player] right clicks an entity.
@@ -64,5 +64,5 @@ interface ServerPlayerEvent {
      * @property hand The [Hand] that clicked the [entity].
      * @property entity The [Entity] the [player] clicked.
      */
-    data class RightClickEntity(override val player: ServerPlayer, val item: ItemStack, val hand: InteractionHand, val entity: Entity): ServerPlayerEvent, Cancelable()
+    data class RightClickEntity(override val player: ServerPlayerEntity, val item: ItemStack, val hand: InteractionHand, val entity: Entity): ServerPlayerEntityEvent, Cancelable()
 }

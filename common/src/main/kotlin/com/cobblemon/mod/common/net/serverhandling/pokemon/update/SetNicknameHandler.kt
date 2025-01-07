@@ -26,7 +26,7 @@ object SetNicknameHandler : ServerNetworkPacketHandler<SetNicknamePacket> {
 
     const val MAX_NAME_LENGTH = 12
 
-    override fun handle(packet: SetNicknamePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: SetNicknamePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pokemonStore: PokemonStore<*> = if (packet.isParty) {
             player.party()
         } else {

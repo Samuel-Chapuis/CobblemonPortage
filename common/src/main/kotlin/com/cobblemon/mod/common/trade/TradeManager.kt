@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.interaction.RequestManager
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent
-import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest
+import com.cobblemon.mod.common.api.interaction.ServerPlayerEntityActionRequest
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.api.text.aqua
 import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferExpiredPacket
@@ -46,10 +46,10 @@ object TradeManager : RequestManager<TradeManager.TradeRequest>() {
      * @param expiryTime How long (in seconds) this request is active.
      */
     data class TradeRequest(
-        override val sender: ServerPlayer,
-        override val receiver: ServerPlayer,
+        override val sender: ServerPlayerEntity,
+        override val receiver: ServerPlayerEntity,
         override val expiryTime: Int = 20
-    ) : ServerPlayerActionRequest {
+    ) : ServerPlayerEntityActionRequest {
         override val key: String = "trade"
         override val requestID: UUID = UUID.randomUUID()
     }
@@ -85,9 +85,9 @@ object TradeManager : RequestManager<TradeManager.TradeRequest>() {
         return false
     }
 
-    override fun isValidInteraction(player: ServerPlayer, target: ServerPlayer): Boolean = player.canInteractWith(target, Cobblemon.config.tradeMaxDistance)
+    override fun isValidInteraction(player: ServerPlayerEntity, target: ServerPlayerEntity): Boolean = player.canInteractWith(target, Cobblemon.config.tradeMaxDistance)
 
-    override fun onLogoff(player: ServerPlayer) {
+    override fun onLogoff(player: ServerPlayerEntity) {
         super.onLogoff(player)
         val trade = this.getActiveTrade(player.uuid)
         if (trade != null) {

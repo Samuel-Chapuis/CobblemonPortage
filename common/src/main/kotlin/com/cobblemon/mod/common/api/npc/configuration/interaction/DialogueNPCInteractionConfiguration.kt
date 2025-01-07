@@ -30,7 +30,7 @@ class DialogueNPCInteractionConfiguration : NPCInteractConfiguration {
     override val type: String = "dialogue"
     var dialogue = Identifier.fromNamespaceAndPath("cobblemon", "dialogues/test.json")
 
-    override fun interact(npc: NPCEntity, player: ServerPlayer): Boolean {
+    override fun interact(npc: NPCEntity, player: ServerPlayerEntity): Boolean {
         val dialogue = Dialogues.dialogues[this.dialogue] ?: return false
         val currentDialogues = npc.brain.getMemory(CobblemonMemories.DIALOGUES).orElse(mutableListOf())
         val activeDialogue = DialogueManager.startDialogue(player, npc, dialogue)

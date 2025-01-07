@@ -34,11 +34,11 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since April 23rd, 2022
  */
 object ChallengeHandler : ServerNetworkPacketHandler<BattleChallengePacket> {
-    override fun handle(packet: BattleChallengePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: BattleChallengePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val targetedEntity = player.level().getEntity(packet.targetedEntityId)?.let {
             when (it) {
                 is PokemonEntity -> it.owner ?: it
-                is ServerPlayer -> it
+                is ServerPlayerEntity -> it
                 else -> null
             }
         } ?: return
@@ -47,7 +47,7 @@ object ChallengeHandler : ServerNetworkPacketHandler<BattleChallengePacket> {
         if (targetedEntity is PokemonEntity && player.canInteractWith(targetedEntity, Cobblemon.config.battleWildMaxDistance) && targetedEntity.canBattle(player)) {
             BattleBuilder.pve(player, targetedEntity, leadingPokemon).ifErrored { it.sendTo(player) { it.red() } }
         }
-        else if (targetedEntity is ServerPlayer) {
+        else if (targetedEntity is ServerPlayerEntity) {
             ChallengeManager.setLead(player, leadingPokemon)
             val challenge =
                 if (packet.battleFormat.battleType.name == BattleTypes.MULTI.name)

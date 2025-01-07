@@ -267,7 +267,7 @@ class PCBlock(properties: Properties): BaseEntityBlock(properties), SimpleWaterl
         player: Player,
         blockHitResult: BlockHitResult
     ): InteractionResult {
-        if (player !is ServerPlayer) return InteractionResult.SUCCESS
+        if (player !is ServerPlayerEntity) return InteractionResult.SUCCESS
 
         val basePos = getBasePosition(blockState, blockPos)
 

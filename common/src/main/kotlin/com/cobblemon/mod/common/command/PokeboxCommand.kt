@@ -79,7 +79,7 @@ object PokeboxCommand {
 
     private fun execute(
         context: CommandContext<CommandSourceStack>,
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         pokemons: Collection<Pokemon>,
         box: Int? = null,
     ): Int {

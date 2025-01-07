@@ -17,7 +17,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object MovePCPokemonToPartyHandler : ServerNetworkPacketHandler<MovePCPokemonToPartyPacket> {
-    override fun handle(packet: MovePCPokemonToPartyPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: MovePCPokemonToPartyPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val party = Cobblemon.storage.getParty(player)
         val pc = PCLinkManager.getPC(player) ?: return run { ClosePCPacket(null).sendToPlayer(player) }
         val pokemon = pc[packet.pcPosition] ?: return

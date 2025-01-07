@@ -24,9 +24,9 @@ import net.minecraft.server.network.ServerPlayerEntity
 interface ReleasePokemonEvent {
 
     /**
-     * The [ServerPlayer] that is releasing the Pokémon.
+     * The [ServerPlayerEntity] that is releasing the Pokémon.
      */
-    val player: ServerPlayer
+    val player: ServerPlayerEntity
 
     /**
      * The [Pokemon] being released.
@@ -45,7 +45,7 @@ interface ReleasePokemonEvent {
      * For the event that is fired after all the calculations took place see [ReleasePokemonEvent.Post].
      */
     class Pre(
-        override val player: ServerPlayer,
+        override val player: ServerPlayerEntity,
         override val pokemon: Pokemon,
         override val storage: PokemonStore<*>
     ) : ReleasePokemonEvent, Cancelable()
@@ -54,7 +54,7 @@ interface ReleasePokemonEvent {
      * Fired after a player released a Pokémon from their pc or party.
      */
     class Post(
-        override val player: ServerPlayer,
+        override val player: ServerPlayerEntity,
         override val pokemon: Pokemon,
         override val storage: PokemonStore<*>
     ) : ReleasePokemonEvent

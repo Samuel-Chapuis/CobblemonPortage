@@ -58,7 +58,7 @@ object PokemonEditCommand {
         dispatcher.register(otherCommand.alias(ALIAS_OTHER))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer): Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity): Int {
         val pokemon = PartySlotArgumentType.getPokemonOf(context, SLOT, player)
         val oldName = pokemon.species.translatedName
         val properties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)

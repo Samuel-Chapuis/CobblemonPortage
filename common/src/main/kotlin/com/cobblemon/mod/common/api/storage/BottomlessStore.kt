@@ -39,8 +39,8 @@ open class BottomlessStore(override val uuid: UUID) : PokemonStore<BottomlessPos
     override fun getFirstAvailablePosition() = BottomlessPosition(pokemon.size)
     override fun isValidPosition(position: BottomlessPosition) = position.currentIndex >= 0
     operator fun get(index: Int) = index.takeIf { it in pokemon.indices }?.let { pokemon[it] }
-    override fun getObservingPlayers() = emptySet<ServerPlayer>()
-    override fun sendTo(player: ServerPlayer) {}
+    override fun getObservingPlayers() = emptySet<ServerPlayerEntity>()
+    override fun sendTo(player: ServerPlayerEntity) {}
 
     override fun initialize() {
         pokemon.forEachIndexed { index, pokemon ->

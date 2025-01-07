@@ -18,7 +18,7 @@ import com.cobblemon.mod.common.api.storage.adapter.flatfile.FileStoreAdapter
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore
 import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.platform.events.PlatformEvents
-import com.cobblemon.mod.common.platform.events.ServerPlayerEvent
+import com.cobblemon.mod.common.platform.events.ServerPlayerEntityEvent
 import com.cobblemon.mod.common.util.subscribeOnServer
 import java.util.UUID
 import java.util.concurrent.Executors
@@ -125,7 +125,7 @@ open class FileBackedPokemonStoreFactory<S>(
         saveExecutor.shutdown()
     }
 
-    override fun onPlayerDisconnect(player: ServerPlayer) {
+    override fun onPlayerDisconnect(player: ServerPlayerEntity) {
         dirtyStores.filter { it.uuid == player.uuid }.forEach { save(it, player.registryAccess()) }
         storeCaches.forEach { (_, cache) -> cache.cacheMap.remove(player.uuid) }
     }

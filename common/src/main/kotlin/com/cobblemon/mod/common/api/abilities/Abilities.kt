@@ -47,7 +47,7 @@ object Abilities : DataRegistry {
         this.observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         AbilityRegistrySyncPacket(all()).sendToPlayer(player)
     }
 

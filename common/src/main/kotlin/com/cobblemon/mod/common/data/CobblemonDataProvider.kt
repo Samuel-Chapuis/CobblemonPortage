@@ -124,7 +124,7 @@ object CobblemonDataProvider : DataProvider {
 
     override fun fromIdentifier(registryIdentifier: Identifier): DataRegistry? = this.registries.find { it.id == registryIdentifier }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         if (!player.connection.connection.isMemoryConnection) {
             this.registries.forEach { registry ->
                 registry.sync(player)
@@ -136,7 +136,7 @@ object CobblemonDataProvider : DataProvider {
         waitingActions.forEach { it() }
     }
 
-    override fun doAfterSync(player: ServerPlayer, action: () -> Unit) {
+    override fun doAfterSync(player: ServerPlayerEntity, action: () -> Unit) {
         if (player.uuid in synchronizedPlayerIds) {
             action()
         } else {

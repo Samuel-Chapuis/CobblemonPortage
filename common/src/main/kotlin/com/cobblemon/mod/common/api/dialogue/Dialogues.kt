@@ -46,7 +46,7 @@ object Dialogues : JsonDataRegistry<Dialogue> {
     /** If you need custom adapters registered, subscribe to this and register them. */
     val gsonObservable: SimpleObservable<GsonBuilder> = SimpleObservable()
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
 
     override val gson = GsonBuilder()
         .registerTypeAdapter(DialogueAction::class.java, DialogueActionAdapter)

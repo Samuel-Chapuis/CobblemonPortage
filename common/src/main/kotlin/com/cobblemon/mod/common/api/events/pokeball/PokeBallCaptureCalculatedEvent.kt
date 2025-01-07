@@ -27,8 +27,8 @@ class PokeBallCaptureCalculatedEvent(
     val pokeBallEntity: EmptyPokeBallEntity,
     var captureResult: CaptureContext
 ) {
-    fun ifPlayer(action: PokeBallCaptureCalculatedEvent.(player: ServerPlayer) -> Unit) {
-        if (thrower is ServerPlayer) {
+    fun ifPlayer(action: PokeBallCaptureCalculatedEvent.(player: ServerPlayerEntity) -> Unit) {
+        if (thrower is ServerPlayerEntity) {
             action(this, thrower)
         }
     }

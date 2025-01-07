@@ -41,7 +41,7 @@ class StatusCuringBerryItem(block: BerryBlock, vararg val status: Status): Berry
 
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.status?.let { it.status in status || status.isEmpty() } == true && pokemon.currentHealth > 0
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack>? {
@@ -58,13 +58,13 @@ class StatusCuringBerryItem(block: BerryBlock, vararg val status: Status): Berry
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return super<BerryItem>.use(world, user, hand)

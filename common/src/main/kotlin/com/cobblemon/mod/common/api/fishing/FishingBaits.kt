@@ -36,7 +36,7 @@ object FishingBaits : JsonDataRegistry<FishingBait>{
 
     private val itemMap = mutableMapOf<Identifier, FishingBait>()
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         FishingBaitRegistrySyncPacket(this.itemMap.values.toList()).sendToPlayer(player)
     }
 

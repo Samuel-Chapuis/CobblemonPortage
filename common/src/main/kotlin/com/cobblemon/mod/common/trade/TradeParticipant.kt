@@ -68,7 +68,7 @@ interface TradeParticipant {
  * @author Hiroku
  * @since May 12th, 2023
  */
-class PlayerTradeParticipant(val player: ServerPlayer): TradeParticipant {
+class PlayerTradeParticipant(val player: ServerPlayerEntity): TradeParticipant {
     override val name = player.name
     override val uuid = player.uuid
     override val party = player.party()

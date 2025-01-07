@@ -33,7 +33,7 @@ class PokeBallItem(
     override fun use(world: World, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
         val itemStack = player.getItemInHand(usedHand)
         if (world.isServerSide()) {
-            throwPokeBall(world, player as ServerPlayer)
+            throwPokeBall(world, player as ServerPlayerEntity)
         }
         if (!player.abilities.instabuild) {
             itemStack.shrink(1)
@@ -41,7 +41,7 @@ class PokeBallItem(
         return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide)
     }
 
-    private fun throwPokeBall(world: World, player: ServerPlayer) {
+    private fun throwPokeBall(world: World, player: ServerPlayerEntity) {
         val pokeBallEntity = EmptyPokeBallEntity(pokeBall, player.level(), player).apply {
             val overhandFactor: Float = if (player.xRot < 0) {
                 5f * cos(player.xRot.toRadians())

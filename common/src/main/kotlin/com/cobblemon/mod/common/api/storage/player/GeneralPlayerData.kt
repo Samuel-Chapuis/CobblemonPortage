@@ -32,7 +32,7 @@ data class GeneralPlayerData(
 ) : InstancedPlayerData {
     var advancementData: PlayerAdvancementData = PlayerAdvancementData()
 
-    fun sendToPlayer(player: ServerPlayer) {
+    fun sendToPlayer(player: ServerPlayerEntity) {
         player.sendPacket(SetClientPlayerDataPacket(PlayerInstancedDataStoreTypes.GENERAL, this.toClientData()))
     }
 

@@ -69,7 +69,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
         val box = AABB(minRoamPos.toVec3d(), maxRoamPos.toVec3d())
         open fun canRoamTo(pos: BlockPos) = box.contains(pos.center)
 
-        fun toDTO(player: ServerPlayer): OpenPasturePacket.PasturePokemonDataDTO? {
+        fun toDTO(player: ServerPlayerEntity): OpenPasturePacket.PasturePokemonDataDTO? {
             val pokemon = getPokemon() ?: return null
             return OpenPasturePacket.PasturePokemonDataDTO(
                 pokemonId = pokemonId,
@@ -115,7 +115,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
 
     fun getMaxTethered() = Cobblemon.config.defaultPasturedPokemonLimit
 
-    fun canAddPokemon(player: ServerPlayer, pokemon: Pokemon, maxPerPlayer: Int): Boolean {
+    fun canAddPokemon(player: ServerPlayerEntity, pokemon: Pokemon, maxPerPlayer: Int): Boolean {
         val forThisPlayer = tetheredPokemon.count { it.playerId == player.uuid }
         // Shouldn't be possible, client should've prevented it
         if (forThisPlayer >= maxPerPlayer || tetheredPokemon.size >= getMaxTethered() || pokemon.isFainted()) {
@@ -138,7 +138,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
     }
 
 
-    fun tether(player: ServerPlayer, pokemon: Pokemon, directionToBehind: Direction): Boolean {
+    fun tether(player: ServerPlayerEntity, pokemon: Pokemon, directionToBehind: Direction): Boolean {
         val world = level ?: return false
         val entity = PokemonEntity(world, pokemon = pokemon)
         entity.refreshDimensions()
@@ -318,10 +318,10 @@ class PokemonPastureBlockEntity(pos: BlockPos, state: BlockState) :
             (pos.z + 1).toDouble() + range
         )
 
-        return world.getEntities(EntityTypeTest.forClass(ServerPlayer::class.java), box, this::isPlayerViewing).size
+        return world.getEntities(EntityTypeTest.forClass(ServerPlayerEntity::class.java), box, this::isPlayerViewing).size
     }
 
-    private fun isPlayerViewing(player: ServerPlayer): Boolean {
+    private fun isPlayerViewing(player: ServerPlayerEntity): Boolean {
         val pastureLink = PastureLinkManager.getLinkByPlayer(player)
         return pastureLink != null && pastureLink.pos == blockPos && pastureLink.dimension == Identifier.tryParse(
             player.level().dimensionTypeRegistration().registeredName // todo (techdaan): confirm this is good

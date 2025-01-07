@@ -18,7 +18,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object UpdateTradeOfferHandler : ServerNetworkPacketHandler<UpdateTradeOfferPacket> {
-    override fun handle(packet: UpdateTradeOfferPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: UpdateTradeOfferPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val trade = TradeManager.getActiveTrade(player.uuid) ?: return player.sendPacket(CancelTradePacket())
         val tradeParticipant = trade.getTradeParticipant(player.uuid)
         val newOffer = packet.newOffer

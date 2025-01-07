@@ -47,7 +47,7 @@ object CobblemonBrainConfigs : JsonDataRegistry<List<BrainConfig>> {
 
     val presets = mutableMapOf<Identifier, List<BrainConfig>>()
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         // TODO implement probs ay
     }
 

@@ -52,7 +52,7 @@ class NPCServerDelegate : NPCSideDelegate {
             .addFunction("is_in_battle_with") { params ->
                 val opponentValue = params.get<MoValue>(0)
                 val opponent = if (opponentValue is ObjectValue<*>) {
-                    opponentValue.obj as ServerPlayer
+                    opponentValue.obj as ServerPlayerEntity
                 } else {
                     val paramString = opponentValue.asString()
                     val playerUUID = paramString.asUUID
@@ -68,7 +68,7 @@ class NPCServerDelegate : NPCSideDelegate {
             .addFunction("start_battle") { params ->
                 val opponentValue = params.get<MoValue>(0)
                 val opponent = if (opponentValue is ObjectValue<*>) {
-                    opponentValue.obj as ServerPlayer
+                    opponentValue.obj as ServerPlayerEntity
                 } else {
                     val paramString = opponentValue.asString()
                     val playerUUID = paramString.asUUID
@@ -90,7 +90,7 @@ class NPCServerDelegate : NPCSideDelegate {
             .addFunction("run_dialogue") { params ->
                 val playerValue = params.get<MoValue>(0)
                 val player = if (playerValue is ObjectValue<*>) {
-                    playerValue.obj as ServerPlayer
+                    playerValue.obj as ServerPlayerEntity
                 } else {
                     val paramString = playerValue.asString()
                     val playerUUID = paramString.asUUID

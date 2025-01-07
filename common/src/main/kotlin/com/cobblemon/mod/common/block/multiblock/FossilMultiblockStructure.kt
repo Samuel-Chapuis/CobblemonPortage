@@ -107,7 +107,7 @@ class FossilMultiblockStructure (
         val stack = player.getItemInHand(InteractionHand.MAIN_HAND)
 
         if(stack.`is`(CobblemonItemTags.POKE_BALLS) || stack.item is PokeBallItem) {
-            if (player !is ServerPlayer) {
+            if (player !is ServerPlayerEntity) {
                 return InteractionResult.SUCCESS
             }
             if (this.hasCreatedPokemon) {
@@ -179,7 +179,7 @@ class FossilMultiblockStructure (
                 if (fossilInventory.size > Cobblemon.config.maxInsertedFossilItems) {
                     return InteractionResult.FAIL
                 }
-                if (player is ServerPlayer) {
+                if (player is ServerPlayerEntity) {
                     val copyFossilStack = stack.copyWithCount(1)
                     if (!player.isCreative) {
                         stack?.shrink(1)
@@ -197,7 +197,7 @@ class FossilMultiblockStructure (
 
         // Check if the player is holding a natural material and if so, feed it to the machine.
         if (NaturalMaterials.isNaturalMaterial(stack)) {
-            if (player is ServerPlayer
+            if (player is ServerPlayerEntity
                     && !this.isRunning()
                     && !this.hasCreatedPokemon
                     && this.organicMaterialInside < MATERIAL_TO_START

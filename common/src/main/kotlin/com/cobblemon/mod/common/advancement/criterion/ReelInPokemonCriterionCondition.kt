@@ -33,7 +33,7 @@ class ReelInPokemonCriterionCondition(
         ).apply(it, { playerCtx, pokemonId, baitId -> ReelInPokemonCriterionCondition(playerCtx, pokemonId, baitId.ifEmpty { "empty_bait" }) }) }
     }
 
-    override fun matches(player: ServerPlayer, context: ReelInPokemonContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: ReelInPokemonContext): Boolean {
         return (context.pokemonId == this.pokemonId.asIdentifierDefaultingNamespace() || this.pokemonId == "any") && (context.baitId == this.baitId.asIdentifierDefaultingNamespace() || this.baitId == "empty_bait")
     }
 }

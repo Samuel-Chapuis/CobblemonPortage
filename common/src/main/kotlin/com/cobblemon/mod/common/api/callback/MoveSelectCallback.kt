@@ -38,11 +38,11 @@ object MoveSelectCallbacks {
 
     @JvmOverloads
     fun create(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         title: Component = "".text(),
         possibleMoves: List<MoveSelectDTO>,
-        cancel: (ServerPlayer) -> Unit = {},
-        handler: (ServerPlayer, index: Int, MoveSelectDTO) -> Unit
+        cancel: (ServerPlayerEntity) -> Unit = {},
+        handler: (ServerPlayerEntity, index: Int, MoveSelectDTO) -> Unit
     ) {
         val callback = MoveSelectCallback(
             shownMoves = possibleMoves,
@@ -57,10 +57,10 @@ object MoveSelectCallbacks {
 
     @JvmOverloads
     fun create(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         moves: List<Move>,
         canSelect: (Move) -> Boolean = { true },
-        cancel: (ServerPlayer) -> Unit = {},
+        cancel: (ServerPlayerEntity) -> Unit = {},
         handler: (Move) -> Unit
     ) = create(
         player = player,
@@ -71,10 +71,10 @@ object MoveSelectCallbacks {
 
     @JvmOverloads
     fun createBattleSelect(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         moves: List<InBattleMove>,
         canSelect: (InBattleMove) -> Boolean = { true },
-        cancel: (ServerPlayer) -> Unit = {},
+        cancel: (ServerPlayerEntity) -> Unit = {},
         handler: (InBattleMove) -> Unit
     ) = create(
         player = player,
@@ -83,7 +83,7 @@ object MoveSelectCallbacks {
         handler = { _, index, _ -> handler(moves[index]) }
     )
 
-    fun handleCancelled(player: ServerPlayer, uuid: UUID) {
+    fun handleCancelled(player: ServerPlayerEntity, uuid: UUID) {
         val callback = callbacks[player.uuid] ?: return
         if (callback.uuid != uuid) {
             return
@@ -92,7 +92,7 @@ object MoveSelectCallbacks {
         callback.cancel(player)
     }
 
-    fun handleCallback(player: ServerPlayer, uuid: UUID, index: Int) {
+    fun handleCallback(player: ServerPlayerEntity, uuid: UUID, index: Int) {
         val callback = callbacks[player.uuid] ?: return
         callbacks.remove(player.uuid)
         if (callback.uuid != uuid) {
@@ -110,8 +110,8 @@ object MoveSelectCallbacks {
 class MoveSelectCallback(
     val uuid: UUID = UUID.randomUUID(),
     val shownMoves: List<MoveSelectDTO>,
-    val cancel: (ServerPlayer) -> Unit = {},
-    val handler: (ServerPlayer, Int, MoveSelectDTO) -> Unit
+    val cancel: (ServerPlayerEntity) -> Unit = {},
+    val handler: (ServerPlayerEntity, Int, MoveSelectDTO) -> Unit
 )
 
 class MoveSelectDTO(val moveTemplate: MoveTemplate, var enabled: Boolean, val pp: Int = -1, val ppMax: Int = -1) {

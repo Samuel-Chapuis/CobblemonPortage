@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object AdjustBlockEntityViewerCountHandler : ServerNetworkPacketHandler<AdjustBlockEntityViewerCountPacket> {
-    override fun handle(packet: AdjustBlockEntityViewerCountPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: AdjustBlockEntityViewerCountPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val blockEntity = player.level().getBlockEntity(packet.blockPos)
         if (blockEntity != null && blockEntity is ViewerCountBlockEntity) {
             if (packet.increment) blockEntity.incrementViewerCount()

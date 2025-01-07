@@ -50,7 +50,7 @@ interface BagItem {
      * hands, is non-zero on size, that the battle is still tolerant of a forced action for bag use, and that this
      * bag item can still be used.
      */
-    fun canStillUse(player: ServerPlayer, battle: PokemonBattle, actor: BattleActor, target: BattlePokemon, stack: ItemStack): Boolean {
+    fun canStillUse(player: ServerPlayerEntity, battle: PokemonBattle, actor: BattleActor, target: BattlePokemon, stack: ItemStack): Boolean {
         return stack in player.handSlots && stack.count > 0 && canUse(battle, target) && actor.canFitForcedAction()
     }
 }

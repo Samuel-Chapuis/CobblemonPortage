@@ -99,7 +99,7 @@ open class PCBox(val pc: PCStore) : Iterable<Pokemon> {
             .subscribe { boxChangeEmitter.emit(Unit) }
     }
 
-    fun sendTo(player: ServerPlayer) {
+    fun sendTo(player: ServerPlayerEntity) {
         SetPCBoxPokemonPacket(this).sendToPlayer(player)
     }
 

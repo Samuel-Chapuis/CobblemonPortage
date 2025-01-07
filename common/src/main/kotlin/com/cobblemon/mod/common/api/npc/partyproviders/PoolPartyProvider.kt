@@ -103,7 +103,7 @@ class PoolPartyProvider : NPCPartyProvider {
         }
     }
 
-    fun formulateParty(npc: NPCEntity, level: Int, players: List<ServerPlayer>, party: NPCPartyStore) {
+    fun formulateParty(npc: NPCEntity, level: Int, players: List<ServerPlayerEntity>, party: NPCPartyStore) {
         val runtime = MoLangRuntime().setup().withQueryValue("npc", npc.struct)
         val random = if (useFixedRandom) Random(npc.uuid.hashCode()) else Random.Default
         runtime.withQueryValue("level", DoubleValue(level))
@@ -139,7 +139,7 @@ class PoolPartyProvider : NPCPartyProvider {
         }
     }
 
-    override fun provide(npc: NPCEntity, level: Int, players: List<ServerPlayer>): NPCPartyStore {
+    override fun provide(npc: NPCEntity, level: Int, players: List<ServerPlayerEntity>): NPCPartyStore {
         val party = NPCPartyStore(npc)
         formulateParty(npc, level, players, party)
         return party

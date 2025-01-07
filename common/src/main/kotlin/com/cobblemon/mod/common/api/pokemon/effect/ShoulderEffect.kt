@@ -18,6 +18,6 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since 2022-01-26
  */
 interface ShoulderEffect {
-    fun applyEffect(pokemon: Pokemon, player: ServerPlayer, isLeft: Boolean)
-    fun removeEffect(pokemon: Pokemon, player: ServerPlayer, isLeft: Boolean)
+    fun applyEffect(pokemon: Pokemon, player: ServerPlayerEntity, isLeft: Boolean)
+    fun removeEffect(pokemon: Pokemon, player: ServerPlayerEntity, isLeft: Boolean)
 }

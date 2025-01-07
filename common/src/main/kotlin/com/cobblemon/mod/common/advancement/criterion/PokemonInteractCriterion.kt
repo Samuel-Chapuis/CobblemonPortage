@@ -32,7 +32,7 @@ class PokemonInteractCriterion(
         ).apply(it, ::PokemonInteractCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: PokemonInteractContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: PokemonInteractContext): Boolean {
         return (context.type == this.type.asIdentifierDefaultingNamespace() || this.type == "any") && (context.item == this.item.asIdentifierDefaultingNamespace() || this.item == "any")
     }
 }

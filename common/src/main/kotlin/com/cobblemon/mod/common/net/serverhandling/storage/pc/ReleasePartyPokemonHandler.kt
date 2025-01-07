@@ -18,7 +18,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object ReleasePartyPokemonHandler : ServerNetworkPacketHandler<ReleasePartyPokemonPacket> {
-    override fun handle(packet: ReleasePartyPokemonPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: ReleasePartyPokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val party = player.party()
         val pokemon = party[packet.position] ?: return
         if (pokemon.uuid != packet.pokemonID) {

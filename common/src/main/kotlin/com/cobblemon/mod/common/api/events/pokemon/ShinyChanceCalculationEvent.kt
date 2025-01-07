@@ -21,7 +21,7 @@ class ShinyChanceCalculationEvent(
     val chance: Float = baseChance
     var isShiny: Boolean = false
     private val modifiers = mutableListOf<Float>()
-    private val modificationFunctions = mutableListOf<(Float, ServerPlayer?, Pokemon) -> Float>()
+    private val modificationFunctions = mutableListOf<(Float, ServerPlayerEntity?, Pokemon) -> Float>()
 
     /**
      * Adds a modifier to the shiny chance.
@@ -33,14 +33,14 @@ class ShinyChanceCalculationEvent(
     /**
      * Adds a function to modify the shiny chance.
      */
-    fun addModificationFunction(function: (Float, ServerPlayer?, Pokemon) -> Float) {
+    fun addModificationFunction(function: (Float, ServerPlayerEntity?, Pokemon) -> Float) {
         modificationFunctions.add(function)
     }
 
     /**
      * Calculates the shiny chance of a Pokémon.
      */
-    fun calculate(player: ServerPlayer?): Float {
+    fun calculate(player: ServerPlayerEntity?): Float {
         var result = baseChance
         for (modifier in modifiers) {
             result += modifier
@@ -51,7 +51,7 @@ class ShinyChanceCalculationEvent(
         return result
     }
 
-    fun isShiny(player: ServerPlayer?): Boolean {
+    fun isShiny(player: ServerPlayerEntity?): Boolean {
         return calculate(player) >= chance || isShiny
     }
 }

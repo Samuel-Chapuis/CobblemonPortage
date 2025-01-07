@@ -49,7 +49,7 @@ object PokeRods : JsonDataRegistry<PokeRod> {
         this.observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         PokeRodRegistrySyncPacket(rods.values).sendToPlayer(player)
     }
 

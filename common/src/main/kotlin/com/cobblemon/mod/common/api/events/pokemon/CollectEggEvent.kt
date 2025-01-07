@@ -17,5 +17,5 @@ class CollectEggEvent (
     val egg : PokemonProperties,
     val maleParent : Pokemon,
     val femaleParent : Pokemon,
-    val player : ServerPlayer
+    val player : ServerPlayerEntity
 ) : Cancelable()

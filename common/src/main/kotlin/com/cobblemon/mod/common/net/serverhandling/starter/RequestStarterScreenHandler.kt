@@ -17,7 +17,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object RequestStarterScreenHandler : ServerNetworkPacketHandler<RequestStarterScreenPacket> {
-    override fun handle(packet: RequestStarterScreenPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: RequestStarterScreenPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val playerData = Cobblemon.playerDataManager.getGenericData(player)
         if (playerData.starterSelected) {
             return player.sendSystemMessage(lang("ui.starter.alreadyselected").red())

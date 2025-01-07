@@ -38,14 +38,14 @@ object LevelUp {
             )
             .then(
                 Commands.argument("slot", IntegerArgumentType.integer(1, 99))
-                    .requires { it.entity is ServerPlayer && it.player != null }
+                    .requires { it.entity is ServerPlayerEntity && it.player != null }
                     .executes { execute(it, it.source.playerOrException) }
             )
 
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer) : Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
         val slot = IntegerArgumentType.getInteger(context, "slot")
         val party = player.party()
         if (slot > party.size()) {

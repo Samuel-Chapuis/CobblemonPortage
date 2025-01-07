@@ -52,5 +52,5 @@ interface DropEntry {
      */
     val maxSelectableTimes: Int
     /** The logic to use to actually drop the thing. */
-    fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayer?)
+    fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayerEntity?)
 }

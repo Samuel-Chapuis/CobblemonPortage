@@ -220,7 +220,7 @@ class PokemonServerDelegate : PokemonSideDelegate {
     }
 
     override fun drop(source: DamageSource?) {
-        val player = source?.directEntity as? ServerPlayer
+        val player = source?.directEntity as? ServerPlayerEntity
         if (entity.pokemon.isWild()) {
             entity.killer = player
         }

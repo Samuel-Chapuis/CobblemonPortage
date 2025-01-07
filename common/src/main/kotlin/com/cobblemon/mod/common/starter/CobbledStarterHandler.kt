@@ -23,11 +23,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 open class CobblemonStarterHandler : StarterHandler {
 
-    override fun getStarterList(player: ServerPlayer) = Cobblemon.starterConfig.starters
+    override fun getStarterList(player: ServerPlayerEntity) = Cobblemon.starterConfig.starters
 
-    override fun handleJoin(player: ServerPlayer) {}
+    override fun handleJoin(player: ServerPlayerEntity) {}
 
-    override fun requestStarterChoice(player: ServerPlayer) {
+    override fun requestStarterChoice(player: ServerPlayerEntity) {
         val playerData = Cobblemon.playerDataManager.getGenericData(player)
         if (playerData.starterSelected) {
             playerData.sendToPlayer(player)
@@ -41,7 +41,7 @@ open class CobblemonStarterHandler : StarterHandler {
         }
     }
 
-    override fun chooseStarter(player: ServerPlayer, categoryName: String, index: Int) {
+    override fun chooseStarter(player: ServerPlayerEntity, categoryName: String, index: Int) {
         val playerData = Cobblemon.playerDataManager.getGenericData(player)
         if (playerData.starterSelected) {
             return player.sendSystemMessage(lang("ui.starter.alreadyselected").red(), true)

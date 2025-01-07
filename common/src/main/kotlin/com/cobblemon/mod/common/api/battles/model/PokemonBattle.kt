@@ -183,7 +183,7 @@ open class PokemonBattle(
     /**
      * Gets the first battle actor whom the given player controls, or null if there is no such actor.
      */
-    fun getActor(player: ServerPlayer) = actors.firstOrNull { it.isForPlayer(player) }
+    fun getActor(player: ServerPlayerEntity) = actors.firstOrNull { it.isForPlayer(player) }
 
     /**
      * Gets the first battle actor whom the given NPC controls, or null if there is no such actor.

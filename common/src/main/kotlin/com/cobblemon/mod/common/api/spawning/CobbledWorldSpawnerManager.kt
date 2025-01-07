@@ -34,7 +34,7 @@ object CobblemonWorldSpawnerManager : SpawnerManager() {
         PlatformEvents.SERVER_PLAYER_LOGOUT.subscribe { this.onPlayerLogout(it.player) }
     }
 
-    fun onPlayerLogin(player: ServerPlayer) {
+    fun onPlayerLogin(player: ServerPlayerEntity) {
         // Disables spawning
         if (!Cobblemon.config.enableSpawning || server()?.gameRules?.getBoolean(CobblemonGameRules.DO_POKEMON_SPAWNING) == false) {
             return;
@@ -45,7 +45,7 @@ object CobblemonWorldSpawnerManager : SpawnerManager() {
         registerSpawner(spawner)
     }
 
-    fun onPlayerLogout(player: ServerPlayer) {
+    fun onPlayerLogout(player: ServerPlayerEntity) {
         val spawner = spawnersForPlayers[player.uuid]
         if (spawner != null) {
             spawnersForPlayers.remove(player.uuid)

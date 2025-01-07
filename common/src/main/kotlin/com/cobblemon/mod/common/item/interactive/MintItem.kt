@@ -26,7 +26,7 @@ class MintItem(val nature: Nature) : CobblemonItem(Properties()), PokemonSelecti
     override val bagItem = null
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.effectiveNature != nature
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack> {
@@ -45,7 +45,7 @@ class MintItem(val nature: Nature) : CobblemonItem(Properties()), PokemonSelecti
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))

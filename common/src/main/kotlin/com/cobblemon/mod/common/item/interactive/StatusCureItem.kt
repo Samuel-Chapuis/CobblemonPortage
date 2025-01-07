@@ -42,7 +42,7 @@ class StatusCureItem(val itemName: String, vararg val status: Status) : Cobblemo
 
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.status?.let { it.status in status || status.isEmpty() } == true && pokemon.currentHealth > 0
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack>? {
@@ -60,13 +60,13 @@ class StatusCureItem(val itemName: String, vararg val status: Status) : Cobblemo
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_SPRAY_USE, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))

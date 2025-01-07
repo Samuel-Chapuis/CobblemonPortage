@@ -46,7 +46,7 @@ class HealingBerryItem(block: BerryBlock, val amount: () -> ExpressionLike): Ber
 
     override fun canUseOnPokemon(pokemon: Pokemon) = !pokemon.isFainted() && !pokemon.isFullHealth()
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack>? {
@@ -62,13 +62,13 @@ class HealingBerryItem(block: BerryBlock, val amount: () -> ExpressionLike): Ber
         return InteractionResultHolder.success(stack)
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world is ServerLevel && user is ServerPlayer) {
+        if (world is ServerLevel && user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return super<BerryItem>.use(world, user, hand)

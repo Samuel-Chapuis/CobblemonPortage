@@ -12,5 +12,5 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 interface ServerNetworkPacketHandler<T: NetworkPacket<T>>: PacketHandler<T> {
-    fun handle(packet: T, server: MinecraftServer, player: ServerPlayer)
+    fun handle(packet: T, server: MinecraftServer, player: ServerPlayerEntity)
 }

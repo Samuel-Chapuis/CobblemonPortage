@@ -31,11 +31,11 @@ object PartyMoveSelectCallbacks {
 
     @JvmOverloads
     fun create(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         partyTitle: MutableComponent = lang("ui.party"),
         pokemon: List<Pair<PartySelectPokemonDTO, List<MoveSelectDTO>>>,
-        cancel: (ServerPlayer) -> Unit = {},
-        handler: (ServerPlayer, pokemonIndex: Int, PartySelectPokemonDTO, moveIndex: Int, MoveSelectDTO) -> Unit
+        cancel: (ServerPlayerEntity) -> Unit = {},
+        handler: (ServerPlayerEntity, pokemonIndex: Int, PartySelectPokemonDTO, moveIndex: Int, MoveSelectDTO) -> Unit
     ) {
         val callback = PartyMoveSelectCallback(
             pokemon = pokemon,
@@ -48,13 +48,13 @@ object PartyMoveSelectCallbacks {
 
     @JvmOverloads
     fun createFromPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         partyTitle: MutableComponent = lang("ui.party"),
         pokemon: List<Pokemon>,
         moves: (Pokemon) -> List<Move> = { it.moveSet.getMoves() },
         canSelectPokemon: (Pokemon) -> Boolean = { true },
         canSelectMove: (Pokemon, Move) -> Boolean = { _, _ -> true },
-        cancel: (ServerPlayer) -> Unit = {},
+        cancel: (ServerPlayerEntity) -> Unit = {},
         handler: (Pokemon, Move) -> Unit
     ) {
         val pokemonList = mutableListOf<Pair<PartySelectPokemonDTO, List<MoveSelectDTO>>>()
@@ -75,7 +75,7 @@ object PartyMoveSelectCallbacks {
         )
     }
 
-    fun handleCancelled(player: ServerPlayer, uuid: UUID) {
+    fun handleCancelled(player: ServerPlayerEntity, uuid: UUID) {
         val callback = callbacks[player.uuid] ?: return
         if (callback.uuid != uuid) {
             return
@@ -84,7 +84,7 @@ object PartyMoveSelectCallbacks {
         callback.cancel(player)
     }
 
-    fun handleCallback(player: ServerPlayer, uuid: UUID, pokemonIndex: Int, moveIndex: Int) {
+    fun handleCallback(player: ServerPlayerEntity, uuid: UUID, pokemonIndex: Int, moveIndex: Int) {
         val callback = callbacks[player.uuid] ?: return
         callbacks.remove(player.uuid)
         if (callback.uuid != uuid) {
@@ -114,6 +114,6 @@ object PartyMoveSelectCallbacks {
 class PartyMoveSelectCallback(
     val uuid: UUID = UUID.randomUUID(),
     val pokemon: List<Pair<PartySelectPokemonDTO, List<MoveSelectDTO>>>,
-    val cancel: (ServerPlayer) -> Unit = {},
-    val handler: (ServerPlayer, pokemonIndex: Int, PartySelectPokemonDTO, moveIndex: Int, MoveSelectDTO) -> Unit
+    val cancel: (ServerPlayerEntity) -> Unit = {},
+    val handler: (ServerPlayerEntity, pokemonIndex: Int, PartySelectPokemonDTO, moveIndex: Int, MoveSelectDTO) -> Unit
 )

@@ -46,13 +46,13 @@ object ShoulderEffectRegistry {
 
     // It was removed by a source such as milk, reapply
     @ApiStatus.Internal
-    fun onEffectEnd(player: ServerPlayer) {
+    fun onEffectEnd(player: ServerPlayerEntity) {
         // Do this next tick so the client syncs correctly.
         // While it is a ticks worth of downtime it's still 1/20th of a second, doubt they'll notice.
         ServerTaskTracker.momentarily { this.refreshEffects(player) }
     }
 
-    private fun refreshEffects(player: ServerPlayer) {
+    private fun refreshEffects(player: ServerPlayerEntity) {
         player.party().filter { it.state is ShoulderedState }.forEach { pkm ->
             pkm.form.shoulderEffects.forEach {
                 it.applyEffect(

@@ -36,7 +36,7 @@ class FriendshipRaisingBerryItem(block: BerryBlock, val stat: Stat) : BerryItem(
     override val bagItem = null
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.evs.getOrDefault(stat) > 0 || pokemon.friendship < Cobblemon.config.maxPokemonFriendship
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack> {
@@ -61,7 +61,7 @@ class FriendshipRaisingBerryItem(block: BerryBlock, val stat: Stat) : BerryItem(
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world is ServerLevel && user is ServerPlayer) {
+        if (world is ServerLevel && user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return super<BerryItem>.use(world, user, hand)

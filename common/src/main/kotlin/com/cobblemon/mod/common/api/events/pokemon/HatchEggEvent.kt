@@ -14,9 +14,9 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 interface HatchEggEvent {
     val egg: PokemonProperties
-    val player: ServerPlayer
+    val player: ServerPlayerEntity
 
-    data class Pre(override var egg : PokemonProperties, override var player: ServerPlayer) : HatchEggEvent, Cancelable()
+    data class Pre(override var egg : PokemonProperties, override var player: ServerPlayerEntity) : HatchEggEvent, Cancelable()
 
-    data class Post(override var egg : PokemonProperties, override var player: ServerPlayer) : HatchEggEvent
+    data class Post(override var egg : PokemonProperties, override var player: ServerPlayerEntity) : HatchEggEvent
 }

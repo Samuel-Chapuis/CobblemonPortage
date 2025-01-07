@@ -150,7 +150,7 @@ object NPCClasses : JsonDataRegistry<NPCClass> {
         }
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         NPCRegistrySyncPacket(npcClassesByIdentifier.values.toList()).sendToPlayer(player)
     }
 }

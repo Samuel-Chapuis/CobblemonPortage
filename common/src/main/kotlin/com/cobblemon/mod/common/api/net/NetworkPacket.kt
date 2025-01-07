@@ -35,14 +35,14 @@ interface NetworkPacket<T: NetworkPacket<T>> : CustomPacketPayload, Encodable {
      *
      * @param player
      */
-    fun sendToPlayer(player: ServerPlayer) = CobblemonNetwork.sendPacketToPlayer(player, this)
+    fun sendToPlayer(player: ServerPlayerEntity) = CobblemonNetwork.sendPacketToPlayer(player, this)
 
     /**
      * TODO
      *
      * @param players
      */
-    fun sendToPlayers(players: Iterable<ServerPlayer>) {
+    fun sendToPlayers(players: Iterable<ServerPlayerEntity>) {
         if (players.any()) {
             CobblemonNetwork.sendPacketToPlayers(players, this)
         }
@@ -71,7 +71,7 @@ interface NetworkPacket<T: NetworkPacket<T>> : CustomPacketPayload, Encodable {
      * @param worldKey
      * @param exclusionCondition
      */
-    fun sendToPlayersAround(x: Double, y: Double, z: Double, distance: Double, worldKey: RegistryKey<World>, exclusionCondition: (ServerPlayer) -> Boolean = { false }) {
+    fun sendToPlayersAround(x: Double, y: Double, z: Double, distance: Double, worldKey: RegistryKey<World>, exclusionCondition: (ServerPlayerEntity) -> Boolean = { false }) {
         val server = server() ?: return
         server.playerList.players.filter { player ->
             if (exclusionCondition.invoke(player))

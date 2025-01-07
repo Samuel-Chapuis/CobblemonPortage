@@ -39,7 +39,7 @@ object CobblemonFlows : DataRegistry {
     override val id = cobblemonResource("flows")
     override val observable = SimpleObservable<CobblemonFlows>()
     override val type = PackType.SERVER_DATA
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         player.sendPacket(FlowRegistrySyncPacket(clientFlows.entries))
     }
 

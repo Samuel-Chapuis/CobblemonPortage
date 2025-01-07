@@ -68,7 +68,7 @@ object DexAdditions : JsonDataRegistry<DexAddition> {
         observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {} // Will be synced as part of the dexes
+    override fun sync(player: ServerPlayerEntity) {} // Will be synced as part of the dexes
 
     class DexAddition {
         val dexId: Identifier = Identifier.parse("cobblemon:national")

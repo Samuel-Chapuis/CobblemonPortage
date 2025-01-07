@@ -48,7 +48,7 @@ object DexEntryAdditions : JsonDataRegistry<DexEntryAdditions.DexEntryAddition> 
         observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {} // It'd be synced as part of the DexEntries
+    override fun sync(player: ServerPlayerEntity) {} // It'd be synced as part of the DexEntries
 
     class DexEntryAddition {
         val entryId: Identifier = cobblemonResource("some_addition")

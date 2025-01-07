@@ -17,7 +17,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object ReleasePCPokemonHandler : ServerNetworkPacketHandler<ReleasePCPokemonPacket> {
-    override fun handle(packet: ReleasePCPokemonPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: ReleasePCPokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pc = PCLinkManager.getPC(player) ?: return
         val pokemon = pc[packet.position] ?: return
         if (pokemon.uuid != packet.pokemonID) {

@@ -31,5 +31,5 @@ open class PCLink(
      * to check if the link is still valid, and you may choose to remove the link
      * using [PCLinkManager.removeLink] if you find that it's no longer valid.
      */
-    open fun isPermitted(player: ServerPlayer) = true
+    open fun isPermitted(player: ServerPlayerEntity) = true
 }

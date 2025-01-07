@@ -28,7 +28,7 @@ object PastureLinkManager {
         links[playerId] = link
     }
 
-    fun getLinkByPlayer(player: ServerPlayer): PastureLink? {
+    fun getLinkByPlayer(player: ServerPlayerEntity): PastureLink? {
         val link = getLinkByPlayerId(player.uuid)
         if (link != null) {
             if (!player.level().dimensionTypeRegistration().`is`(link.dimension) || !link.pos.closerToCenterThan(player.position(), 10.0)) {

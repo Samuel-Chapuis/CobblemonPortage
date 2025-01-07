@@ -47,7 +47,7 @@ class CustomScriptNPCInteractionConfiguration : NPCInteractConfiguration {
         script = compoundTag.getString(DataKeys.NPC_INTERACT_CUSTOM_SCRIPT).asExpressionLike()
     }
 
-    override fun interact(npc: NPCEntity, player: ServerPlayer): Boolean {
+    override fun interact(npc: NPCEntity, player: ServerPlayerEntity): Boolean {
         val context = mapOf(
             "npc" to npc.struct,
             "player" to player.asMoLangValue()

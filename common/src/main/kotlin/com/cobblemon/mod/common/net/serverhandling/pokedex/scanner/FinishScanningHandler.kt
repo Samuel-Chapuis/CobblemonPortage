@@ -32,7 +32,7 @@ object FinishScanningHandler : ServerNetworkPacketHandler<FinishScanningPacket> 
     override fun handle(
         packet: FinishScanningPacket,
         server: MinecraftServer,
-        player: ServerPlayer
+        player: ServerPlayerEntity
     ) {
         val targetEntity = player.level().getEntity(packet.targetedId) ?: return
         if (PokemonScanner.isEntityInRange(player, targetEntity, packet.zoomLevel)) {

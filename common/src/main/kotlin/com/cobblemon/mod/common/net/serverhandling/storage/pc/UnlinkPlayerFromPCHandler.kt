@@ -16,7 +16,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object UnlinkPlayerFromPCHandler : ServerNetworkPacketHandler<UnlinkPlayerFromPCPacket> {
-    override fun handle(packet: UnlinkPlayerFromPCPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: UnlinkPlayerFromPCPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         PCLinkManager.removeLink(player.uuid)
         PastureLinkManager.links.remove(player.uuid) // Can remove this if same logic is done in closing a pasture GUI
     }

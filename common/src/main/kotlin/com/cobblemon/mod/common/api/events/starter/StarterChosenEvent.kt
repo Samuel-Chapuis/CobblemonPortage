@@ -19,4 +19,4 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @author Hiroku
  * @since August 1st, 2022
  */
-data class StarterChosenEvent(val player: ServerPlayer, val properties: PokemonProperties, var pokemon: Pokemon) : Cancelable()
+data class StarterChosenEvent(val player: ServerPlayerEntity, val properties: PokemonProperties, var pokemon: Pokemon) : Cancelable()

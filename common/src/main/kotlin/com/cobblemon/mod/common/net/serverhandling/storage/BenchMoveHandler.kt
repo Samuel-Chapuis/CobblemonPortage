@@ -19,7 +19,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object BenchMoveHandler : ServerNetworkPacketHandler<BenchMovePacket> {
-    override fun handle(packet: BenchMovePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: BenchMovePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pokemonStore: PokemonStore<*> = if (packet.isParty) {
             player.party()
         } else {

@@ -28,7 +28,7 @@ object RequestInteractionsHandler : ServerNetworkPacketHandler<RequestPlayerInte
     override fun handle(
         packet: RequestPlayerInteractionsPacket,
         server: MinecraftServer,
-        player: ServerPlayer
+        player: ServerPlayerEntity
     ) {
         val world = player.level()
         val targetPlayerEntity = world.getPlayerByUUID(packet.targetId)
@@ -42,7 +42,7 @@ object RequestInteractionsHandler : ServerNetworkPacketHandler<RequestPlayerInte
             val squaredDistance = targetPlayerEntity.position().distanceToSqr(player.position())
             if (squaredDistance <= Cobblemon.config.tradeMaxDistance.pow(2)) {
                 val playerPartyCount = player.party().count()
-                val targetPartyCount = (targetPlayerEntity as ServerPlayer).party().count()
+                val targetPartyCount = (targetPlayerEntity as ServerPlayerEntity).party().count()
                 if (playerPartyCount >= 1 && targetPartyCount >= 1) {
                     options[PlayerInteractOptionsPacket.Options.TRADE] = PlayerInteractOptionsPacket.OptionStatus.AVAILABLE
                 }
@@ -59,7 +59,7 @@ object RequestInteractionsHandler : ServerNetworkPacketHandler<RequestPlayerInte
             } else if (squaredDistance <= Cobblemon.config.battlePvPMaxDistance.pow(2)) {
                 // LOS and distance checks passed, now check parties and add appropriate options
                 val playerPartyCount = player.party().count { pokemon -> !pokemon.isFainted() }
-                val targetPartyCount = (targetPlayerEntity as ServerPlayer).party().count { pokemon -> !pokemon.isFainted() }
+                val targetPartyCount = (targetPlayerEntity as ServerPlayerEntity).party().count { pokemon -> !pokemon.isFainted() }
                 if (playerPartyCount >= 1 && targetPartyCount >= 1) {
                     options[PlayerInteractOptionsPacket.Options.SINGLE_BATTLE] = PlayerInteractOptionsPacket.OptionStatus.AVAILABLE
                     //options[PlayerInteractOptionsPacket.Options.ROYAL_BATTLE] = PlayerInteractOptionsPacket.OptionStatus.AVAILABLE

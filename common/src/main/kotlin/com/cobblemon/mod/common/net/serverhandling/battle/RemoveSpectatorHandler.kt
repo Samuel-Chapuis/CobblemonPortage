@@ -18,7 +18,7 @@ object RemoveSpectatorHandler : ServerNetworkPacketHandler<RemoveSpectatorPacket
     override fun handle(
         packet: RemoveSpectatorPacket,
         server: MinecraftServer,
-        player: ServerPlayer
+        player: ServerPlayerEntity
     ) {
         BattleRegistry.getBattle(packet.battleId)?.spectators?.remove(player.uuid)
     }

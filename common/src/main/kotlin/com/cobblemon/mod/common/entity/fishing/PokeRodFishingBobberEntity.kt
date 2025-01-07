@@ -566,7 +566,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
             var i = 0
             if (this.hookedEntity != null) {
                 pullEntity(this.hookedEntity!!)
-                (playerEntity as ServerPlayer?)?.let { CriteriaTriggers.FISHING_ROD_HOOKED.trigger(it, usedItem, this, emptyList()) }
+                (playerEntity as ServerPlayerEntity?)?.let { CriteriaTriggers.FISHING_ROD_HOOKED.trigger(it, usedItem, this, emptyList()) }
                 level().broadcastEntityEvent(this, 31.toByte())
                 i = if (this.hookedEntity is ItemEntity) 3 else 5
             } else if (this.hookCountdown > 0) {
@@ -582,7 +582,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                             .create(LootContextParamSets.FISHING)
                         val lootTable = level().server!!.reloadableRegistries().getLootTable(LOOT_TABLE_ID)
                         val list: List<ItemStack> = lootTable.getRandomItems(lootContextParameterSet)
-                        CriteriaTriggers.FISHING_ROD_HOOKED.trigger(playerEntity as ServerPlayer, usedItem, this, list)
+                        CriteriaTriggers.FISHING_ROD_HOOKED.trigger(playerEntity as ServerPlayerEntity, usedItem, this, list)
                         val var7: Iterator<*> = list.iterator()
                         while (var7.hasNext()) {
                             val itemStack = var7.next() as ItemStack
@@ -612,7 +612,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                         i = 1
                     }
                 } else { // logic for spawning Pokemon using rarity
-                    val bobberOwner = playerOwner as ServerPlayer
+                    val bobberOwner = playerOwner as ServerPlayerEntity
 
                     CobblemonEvents.BOBBER_SPAWN_POKEMON_PRE.postThen(BobberSpawnPokemonEvent.Pre(this, chosenBucket, rodStack!!),
                         { event ->
@@ -694,7 +694,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
             cause = spawnCause,
             world = level() as ServerLevel,
             pos = position().toBlockPos(),
-            influences = listOf(PlayerLevelRangeInfluence(player as ServerPlayer, TYPICAL_VARIATION))
+            influences = listOf(PlayerLevelRangeInfluence(player as ServerPlayerEntity, TYPICAL_VARIATION))
         )
 
         // This has a chance to fail, if the position has no suitability for a fishing context
@@ -718,7 +718,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
                 // create accessory splash particle when you fish something up
                 particleEntityHandler(this, Identifier.fromNamespaceAndPath("cobblemon","accessory_fish_splash"))
 
-                if (player is ServerPlayer) {
+                if (player is ServerPlayerEntity) {
                     var baitId = FishingBaits.getFromBaitItemStack(this.bobberBait)?.item
                     val pokemonId = spawnedPokemon.pokemon.species.resourceIdentifier
                     if (bobberBait.isEmpty) {
@@ -756,7 +756,7 @@ class PokeRodFishingBobberEntity(type: EntityType<out PokeRodFishingBobberEntity
             if (player !in player.level().players()) {
                 return@afterOnServer
             }
-            spawnedPokemon?.forceBattle(player as ServerPlayer)
+            spawnedPokemon?.forceBattle(player as ServerPlayerEntity)
         }
 
         return true

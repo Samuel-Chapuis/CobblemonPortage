@@ -36,7 +36,7 @@ object GimmighoulStashHandler {
     fun interactMob(player: Player, hand: InteractionHand, pokemon:Pokemon) : Boolean {
         val itemStack = player.getItemInHand(hand)
         var success = false
-        if(player is ServerPlayer && pokemon.getOwnerPlayer() == player) {
+        if(player is ServerPlayerEntity && pokemon.getOwnerPlayer() == player) {
             success = handleItem(pokemon, itemStack.item)
             if(success) {
                 itemStack.shrink(1)

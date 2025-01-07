@@ -70,7 +70,7 @@ abstract class BattleActor(
     fun getSide() = if (this in battle.side1.actors) battle.side1 else battle.side2
     open fun getPlayerUUIDs(): Iterable<UUID> = emptyList()
 
-    open fun isForPlayer(serverPlayerEntity: ServerPlayer) = serverPlayerEntity.uuid in getPlayerUUIDs()
+    open fun isForPlayer(serverPlayerEntity: ServerPlayerEntity) = serverPlayerEntity.uuid in getPlayerUUIDs()
     open fun isForPokemon(pokemonEntity: PokemonEntity) = activePokemon.any { it.battlePokemon?.effectedPokemon?.entity == pokemonEntity }
 
   fun turn() {

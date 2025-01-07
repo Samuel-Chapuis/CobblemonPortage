@@ -23,10 +23,10 @@ interface PokedexProgressCaptureMultiplierProvider {
     /**
      * Resolves the multiplier based on the Pokedex progression of the given [player].
      *
-     * @param player The [ServerPlayer] being queried.
+     * @param player The [ServerPlayerEntity] being queried.
      * @return The multiplier based on the caught count.
      */
-    fun caughtMultiplierFor(player: ServerPlayer): Float {
+    fun caughtMultiplierFor(player: ServerPlayerEntity): Float {
         val caughtCount = Cobblemon.playerDataManager.getPokedexData(player).getGlobalCalculatedValue(CaughtCount)
         return when {
             caughtCount < 30 -> 1229F / 4096F

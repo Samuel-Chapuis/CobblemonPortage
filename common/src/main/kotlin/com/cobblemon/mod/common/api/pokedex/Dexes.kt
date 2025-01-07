@@ -46,7 +46,7 @@ object Dexes : JsonDataRegistry<PokedexDef> {
         observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         PokedexDexSyncPacket(dexEntryMap.values).sendToPlayer(player)
     }
 }

@@ -47,7 +47,7 @@ interface NPCInteractConfiguration {
     }
 
     val type: String
-    fun interact(npc: NPCEntity, player: ServerPlayer): Boolean
+    fun interact(npc: NPCEntity, player: ServerPlayerEntity): Boolean
     /** Don't add anything to this if you aren't registering the thing on the client as well. */
     fun encode(buffer: RegistryFriendlyByteBuf)
     /** Don't add anything to this if you aren't registering the thing on the client as well. */

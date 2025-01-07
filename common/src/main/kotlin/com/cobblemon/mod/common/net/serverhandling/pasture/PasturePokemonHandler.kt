@@ -20,7 +20,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object PasturePokemonHandler : ServerNetworkPacketHandler<PasturePokemonPacket> {
-    override fun handle(packet: PasturePokemonPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: PasturePokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pastureLink = PastureLinkManager.getLinkByPlayer(player) ?: return
         if (pastureLink.linkId != packet.pastureId) {
             return player.sendPacket(ClosePasturePacket())

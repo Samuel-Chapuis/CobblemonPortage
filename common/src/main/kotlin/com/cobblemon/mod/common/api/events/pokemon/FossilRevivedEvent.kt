@@ -13,5 +13,5 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 data class FossilRevivedEvent (
     val pokemon: Pokemon,
-    val player: ServerPlayer?
+    val player: ServerPlayerEntity?
 )

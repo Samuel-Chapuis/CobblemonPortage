@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState
  * An event fired when [BerryBlockEntity.harvest] is invoked.
  *
  * @property berry The [Berry] the tree is attached to.
- * @property player The [ServerPlayer] harvesting the tree.
+ * @property player The [ServerPlayerEntity] harvesting the tree.
  * @property world The [World] the tree is in.
  * @property pos The [BlockPos] of the tree.
  * @property state The [BlockState] of the tree.
@@ -32,7 +32,7 @@ import net.minecraft.world.level.block.state.BlockState
  */
 data class BerryHarvestEvent(
     override val berry: Berry,
-    val player: ServerPlayer,
+    val player: ServerPlayerEntity,
     val world: World,
     val pos: BlockPos,
     val state: BlockState,

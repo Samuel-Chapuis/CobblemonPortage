@@ -24,7 +24,7 @@ import net.minecraft.util.Identifier
  */
 class PlayerHasAdvancementRequirement(val requiredAdvancement: Identifier) : EntityQueryRequirement {
     override fun check(pokemon: Pokemon, queriedEntity: LivingEntity): Boolean {
-        val player = queriedEntity as? ServerPlayer ?: return false
+        val player = queriedEntity as? ServerPlayerEntity ?: return false
         for (entry in player.advancements.progress) {
             if (entry.key.id == requiredAdvancement && entry.value.isDone) {
                 return true

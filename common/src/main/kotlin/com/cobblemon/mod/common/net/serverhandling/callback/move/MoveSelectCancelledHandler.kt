@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object MoveSelectCancelledHandler : ServerNetworkPacketHandler<MoveSelectCancelledPacket> {
-    override fun handle(packet: MoveSelectCancelledPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: MoveSelectCancelledPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         MoveSelectCallbacks.handleCancelled(player, packet.uuid)
     }
 }

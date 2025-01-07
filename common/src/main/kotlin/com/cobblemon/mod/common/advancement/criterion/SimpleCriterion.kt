@@ -19,7 +19,7 @@ class SimpleCriterionTrigger<T, C : SimpleCriterionCondition<T>>(
 ) : SimpleCriterionTrigger<C>() {
     override fun codec() = codec
 
-    fun trigger(player: ServerPlayer, context: T) {
+    fun trigger(player: ServerPlayerEntity, context: T) {
         return this.trigger(player) {
             it.matches(player, context)
         }
@@ -31,5 +31,5 @@ abstract class SimpleCriterionCondition<T>(
 ) : SimpleCriterionTrigger.SimpleInstance {
     override fun player() = playerCtx
 
-    abstract fun matches(player: ServerPlayer, context: T): Boolean
+    abstract fun matches(player: ServerPlayerEntity, context: T): Boolean
 }

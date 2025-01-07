@@ -25,9 +25,9 @@ import net.minecraft.server.network.ServerPlayerEntity
 interface ExperienceCandyUseEvent {
 
     /**
-     * The [ServerPlayer] that fired the interaction.
+     * The [ServerPlayerEntity] that fired the interaction.
      */
-    val player: ServerPlayer
+    val player: ServerPlayerEntity
 
     /**
      * The [Pokemon] being targeted.
@@ -48,7 +48,7 @@ interface ExperienceCandyUseEvent {
      * @property experienceYield The current amount of experience the [pokemon] will earn.
      */
     class Pre(
-        override val player: ServerPlayer,
+        override val player: ServerPlayerEntity,
         override val pokemon: Pokemon,
         override val item: CandyItem,
         val baseExperienceYield: Int,
@@ -61,7 +61,7 @@ interface ExperienceCandyUseEvent {
      * @property experienceResult The resulting [AddExperienceResult] of the interaction.
      */
     class Post(
-        override val player: ServerPlayer,
+        override val player: ServerPlayerEntity,
         override val pokemon: Pokemon,
         override val item: CandyItem,
         val experienceResult: AddExperienceResult

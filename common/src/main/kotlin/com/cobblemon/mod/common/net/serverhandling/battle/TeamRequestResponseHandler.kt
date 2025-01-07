@@ -23,16 +23,16 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since April 15th, 2024
  */
 object TeamRequestResponseHandler : ServerNetworkPacketHandler<BattleTeamResponsePacket> {
-    override fun handle(packet: BattleTeamResponsePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: BattleTeamResponsePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val targetedEntity = player.level().getEntity(packet.targetedEntityId)?.let {
             when (it) {
                 is PokemonEntity -> it.owner
-                is ServerPlayer -> it
+                is ServerPlayerEntity -> it
                 else -> null
             }
         } ?: return
 
-        if (targetedEntity !is ServerPlayer)
+        if (targetedEntity !is ServerPlayerEntity)
             return
         else if (packet.accept)
             TeamManager.acceptRequest(player, packet.requestID)

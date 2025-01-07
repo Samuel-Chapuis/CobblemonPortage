@@ -86,7 +86,7 @@ class DropTable {
         entity: LivingEntity?,
         world: ServerLevel,
         pos: Vec3,
-        player: ServerPlayer?,
+        player: ServerPlayerEntity?,
         amount: IntRange = this.amount
     ) {
         val drops = getDrops(amount).toMutableList()

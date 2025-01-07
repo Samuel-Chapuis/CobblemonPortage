@@ -38,7 +38,7 @@ object CobblemonMechanics : DataRegistry {
     var berries = BerriesMechanic()
     var potions = PotionsMechanic()
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
     override fun reload(manager: ResourceManager) {
         remedies = loadMechanic(manager, "remedies", RemediesMechanic::class.java)
         berries = loadMechanic(manager, "berries", BerriesMechanic::class.java)

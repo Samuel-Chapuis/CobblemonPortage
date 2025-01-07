@@ -36,13 +36,13 @@ class CandyItem(val calculator: Calculator) : CobblemonItem(Properties()), Pokem
     override val bagItem = null
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))
     }
 
-    override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon): InteractionResultHolder<ItemStack>? {
+    override fun applyToPokemon(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon): InteractionResultHolder<ItemStack>? {
         val experience = this.calculator.calculate(player, pokemon)
         CobblemonEvents.EXPERIENCE_CANDY_USE_PRE.postThen(
                 event = ExperienceCandyUseEvent.Pre(player, pokemon, this, experience, experience),
@@ -85,11 +85,11 @@ class CandyItem(val calculator: Calculator) : CobblemonItem(Properties()), Pokem
         /**
          * Resolves the experience the [CandyItem] will give.
          *
-         * @param player The [ServerPlayer] using the candy.
+         * @param player The [ServerPlayerEntity] using the candy.
          * @param pokemon The [Pokemon] receiving experience.
          * @return The experience that will be received
          */
-        fun calculate(player: ServerPlayer, pokemon: Pokemon): Int
+        fun calculate(player: ServerPlayerEntity, pokemon: Pokemon): Int
 
     }
 

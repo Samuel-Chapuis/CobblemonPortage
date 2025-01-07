@@ -35,7 +35,7 @@ object BagItems : DataRegistry {
     override val id = cobblemonResource("bag_items")
     override val type = PackType.SERVER_DATA
     override val observable = SimpleObservable<BagItems>()
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
 
     val bagItems = PrioritizedList<BagItemLike>()
     internal val bagItemsScripts = mutableMapOf<String, String>() // itemId to JavaScript

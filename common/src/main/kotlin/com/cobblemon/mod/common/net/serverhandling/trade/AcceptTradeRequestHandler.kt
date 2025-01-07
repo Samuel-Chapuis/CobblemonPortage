@@ -22,7 +22,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since March 12th, 2023
  */
 object AcceptTradeRequestHandler : ServerNetworkPacketHandler<AcceptTradeRequestPacket> {
-    override fun handle(packet: AcceptTradeRequestPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: AcceptTradeRequestPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         TradeManager.acceptRequest(player, packet.tradeOfferId)
     }
 }

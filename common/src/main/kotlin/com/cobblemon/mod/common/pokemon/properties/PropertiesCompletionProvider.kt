@@ -52,7 +52,7 @@ internal object PropertiesCompletionProvider : DataRegistry {
         this.reload()
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         PropertiesCompletionRegistrySyncPacket(this.providers).sendToPlayer(player)
     }
 

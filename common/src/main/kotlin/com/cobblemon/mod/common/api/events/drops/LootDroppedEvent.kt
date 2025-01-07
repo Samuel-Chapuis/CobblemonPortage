@@ -35,7 +35,7 @@ import net.minecraft.world.entity.LivingEntity
  */
 class LootDroppedEvent(
     val table: DropTable,
-    val player: ServerPlayer?,
+    val player: ServerPlayerEntity?,
     val entity: LivingEntity?,
     val drops: MutableList<DropEntry>
 ) : Cancelable()

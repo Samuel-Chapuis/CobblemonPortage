@@ -24,8 +24,8 @@ class LaxPermissionValidator : PermissionValidator {
         Cobblemon.LOGGER.info("Booting LaxPermissionValidator, permissions will be checked using MinecraftClients permission level system, see https://minecraft.fandom.com/wiki/Permission_level")
     }
 
-    override fun hasPermission(player: ServerPlayer, permission: Permission) = player.hasPermissions(permission.level.numericalValue)
+    override fun hasPermission(player: ServerPlayerEntity, permission: Permission) = player.hasPermissions(permission.level.numericalValue)
     override fun hasPermission(source: CommandSourceStack, permission: Permission) = source.hasPermission(permission.level.numericalValue)
-    override fun hasPermission(player: ServerPlayer, permission: String, level: Int) = player.hasPermissions(level)
+    override fun hasPermission(player: ServerPlayerEntity, permission: String, level: Int) = player.hasPermissions(level)
     override fun hasPermission(source: CommandSourceStack, permission: String, level: Int) = source.hasPermission(level)
 }

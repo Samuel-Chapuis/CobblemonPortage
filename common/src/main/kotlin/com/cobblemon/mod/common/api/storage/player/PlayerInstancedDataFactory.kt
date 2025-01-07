@@ -36,7 +36,7 @@ interface PlayerInstancedDataFactory<T : InstancedPlayerData> {
 
     fun saveSingle(playerId: UUID)
 
-    fun onPlayerDisconnect(player: ServerPlayer)
+    fun onPlayerDisconnect(player: ServerPlayerEntity)
 
-    fun sendToPlayer(player: ServerPlayer)
+    fun sendToPlayer(player: ServerPlayerEntity)
 }

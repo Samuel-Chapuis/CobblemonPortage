@@ -76,9 +76,9 @@ class Toast(
     var progressColor: Int by Delegates.observable(progressColor) { _, old, new -> if (old != new) this.launchUpdate() }
 
     /**
-     * The online listeners mapped to the [ServerPlayer].
+     * The online listeners mapped to the [ServerPlayerEntity].
      */
-    val listeners: Collection<ServerPlayer> get() = this.listenerUuids.mapNotNull { Cobblemon.implementation.server()?.playerList?.getPlayer(it) }
+    val listeners: Collection<ServerPlayerEntity> get() = this.listenerUuids.mapNotNull { Cobblemon.implementation.server()?.playerList?.getPlayer(it) }
 
     /**
      * Used internally to track this toast on the client.
@@ -87,7 +87,7 @@ class Toast(
 
     /**
      * The listeners to this toast.
-     * This contains all of them regardless of online status for online mapped to [ServerPlayer] use [listeners].
+     * This contains all of them regardless of online status for online mapped to [ServerPlayerEntity] use [listeners].
      */
     private val listenerUuids = hashSetOf<UUID>()
 
@@ -105,9 +105,9 @@ class Toast(
      * Add listeners to this toast.
      * They will be automatically synced with the current object status.
      *
-     * @param listeners The [ServerPlayer] being added.
+     * @param listeners The [ServerPlayerEntity] being added.
      */
-    fun addListeners(vararg listeners: ServerPlayer) {
+    fun addListeners(vararg listeners: ServerPlayerEntity) {
         val packet = this.toPacket(ToastPacket.Behaviour.SHOW_OR_UPDATE)
         listeners.forEach { listener ->
             if (this.listenerUuids.add(listener.uuid)) {
@@ -122,9 +122,9 @@ class Toast(
      * Please note this will not consider the lifecycle of the toast as ended.
      * To properly do that use [expire].
      *
-     * @param listeners The [ServerPlayer] being removed.
+     * @param listeners The [ServerPlayerEntity] being removed.
      */
-    fun removeListeners(vararg listeners: ServerPlayer) {
+    fun removeListeners(vararg listeners: ServerPlayerEntity) {
         val packet = this.toPacket(ToastPacket.Behaviour.HIDE)
         listeners.forEach { listener ->
             if (this.listenerUuids.remove(listener.uuid)) {
@@ -170,10 +170,10 @@ class Toast(
     /**
      * Updates the given player with the packet state.
      *
-     * @param player The [ServerPlayer] being updated.
+     * @param player The [ServerPlayerEntity] being updated.
      * @param packet The outbound [ToastPacket].
      */
-    private fun updateFor(player: ServerPlayer, packet: ToastPacket) {
+    private fun updateFor(player: ServerPlayerEntity, packet: ToastPacket) {
         Cobblemon.implementation.networkManager.sendPacketToPlayer(player, packet)
     }
 

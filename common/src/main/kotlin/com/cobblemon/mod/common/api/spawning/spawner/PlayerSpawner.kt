@@ -31,7 +31,7 @@ import kotlin.random.Random
  * @author Hiroku
  * @since February 14th, 2022
  */
-class PlayerSpawner(player: ServerPlayer, spawns: SpawnPool, manager: SpawnerManager) : AreaSpawner(player.name.string, spawns, manager) {
+class PlayerSpawner(player: ServerPlayerEntity, spawns: SpawnPool, manager: SpawnerManager) : AreaSpawner(player.name.string, spawns, manager) {
     val uuid: UUID = player.uuid
     override var ticksBetweenSpawns = config.ticksBetweenSpawnAttempts
     override fun getCauseEntity() = uuid.getPlayer()

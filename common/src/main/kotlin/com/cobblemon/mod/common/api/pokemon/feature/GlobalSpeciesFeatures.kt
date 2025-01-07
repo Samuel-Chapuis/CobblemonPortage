@@ -53,7 +53,7 @@ object GlobalSpeciesFeatures : JsonDataRegistry<SpeciesFeatureProvider<*>> {
     override val typeToken: TypeToken<SpeciesFeatureProvider<*>> = TypeToken.get(SpeciesFeatureProvider::class.java)
     override val resourcePath: String = "global_species_features"
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         player.sendPacket(GlobalSpeciesFeatureSyncPacket(codeFeatures + resourceFeatures))
     }
 

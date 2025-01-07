@@ -48,7 +48,7 @@ object TeachCommand {
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer) : Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
         val pokemon = PartySlotArgumentType.getPokemonOf(context, SLOT, player)
         val move = MoveArgumentType.getMove(context, MOVE)
 

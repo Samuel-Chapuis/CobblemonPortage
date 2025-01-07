@@ -240,7 +240,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
             }
         }
         this.berry()?.let { berry ->
-            if (player is ServerPlayer) {
+            if (player is ServerPlayerEntity) {
                 CobblemonEvents.BERRY_HARVEST.post(BerryHarvestEvent(berry, player, world, pos, state, this, drops))
             }
         }

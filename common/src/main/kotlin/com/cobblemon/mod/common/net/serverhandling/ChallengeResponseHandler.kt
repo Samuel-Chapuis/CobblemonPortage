@@ -23,16 +23,16 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since March 12th, 2024
  */
 object ChallengeResponseHandler : ServerNetworkPacketHandler<BattleChallengeResponsePacket> {
-    override fun handle(packet: BattleChallengeResponsePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: BattleChallengeResponsePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val targetedEntity = player.level().getEntity(packet.targetedEntityId)?.let {
             when (it) {
                 is PokemonEntity -> it.owner
-                is ServerPlayer -> it
+                is ServerPlayerEntity -> it
                 else -> null
             }
         } ?: return
 
-        if (targetedEntity !is ServerPlayer) return
+        if (targetedEntity !is ServerPlayerEntity) return
 
         val leadingPokemon = player.party()[packet.selectedPokemonId]?.uuid ?: return   // server-side validation
         ChallengeManager.setLead(player, leadingPokemon)

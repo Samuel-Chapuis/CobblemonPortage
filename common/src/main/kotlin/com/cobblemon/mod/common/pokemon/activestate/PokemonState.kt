@@ -207,7 +207,7 @@ class ShoulderedState() : ActivePokemonState() {
         }
     }
 
-    private fun removeShoulderEffects(player: ServerPlayer) {
+    private fun removeShoulderEffects(player: ServerPlayerEntity) {
         val partyPokemon = player.party().find { pokemon -> pokemon.uuid == this.pokemonUUID }
         partyPokemon?.form?.shoulderEffects?.forEach { effect -> effect.removeEffect(partyPokemon, player, isLeftShoulder) }
     }
@@ -217,7 +217,7 @@ class ShoulderedState() : ActivePokemonState() {
             .getCompound(DataKeys.POKEMON_STATE)
             .getUUID(DataKeys.POKEMON_STATE_ID) == this.stateId
 
-    fun isStillShouldered(player: ServerPlayer) = isShoulderedPokemon(if (isLeftShoulder) player.shoulderEntityLeft else player.shoulderEntityRight)
+    fun isStillShouldered(player: ServerPlayerEntity) = isShoulderedPokemon(if (isLeftShoulder) player.shoulderEntityLeft else player.shoulderEntityRight)
 
     companion object {
 

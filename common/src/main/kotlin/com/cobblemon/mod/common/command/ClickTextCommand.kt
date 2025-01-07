@@ -21,12 +21,12 @@ object ClickTextCommand {
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(
             Commands.literal("cobblemonclicktext")
-                .requires { src -> src.entity is ServerPlayer }
+                .requires { src -> src.entity is ServerPlayerEntity }
                 .then(
                     RequiredArgumentBuilder
                         .argument<CommandSourceStack, String>("callback", StringArgumentType.greedyString())
                         .executes { ctx ->
-                            val player = ctx.source.entity as ServerPlayer
+                            val player = ctx.source.entity as ServerPlayerEntity
                             textClickHandlers[UUID.fromString(ctx.getArgument("callback", String::class.java))]?.invoke(player)
                             return@executes 1
                         }

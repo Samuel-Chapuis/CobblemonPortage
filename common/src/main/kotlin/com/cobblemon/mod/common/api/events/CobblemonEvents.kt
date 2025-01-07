@@ -59,7 +59,7 @@ object CobblemonEvents {
     @JvmField
     val COBBLEMON_INITIALISED = SimpleObservable<Unit>()
     @JvmField
-    val DATA_SYNCHRONIZED = SimpleObservable<ServerPlayer>()
+    val DATA_SYNCHRONIZED = SimpleObservable<ServerPlayerEntity>()
     @JvmField
     val SHOULDER_MOUNT = CancelableObservable<ShoulderMountEvent>()
     @JvmField

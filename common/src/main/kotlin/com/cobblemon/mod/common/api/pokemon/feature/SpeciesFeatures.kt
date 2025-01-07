@@ -59,7 +59,7 @@ object SpeciesFeatures : JsonDataRegistry<SpeciesFeatureProvider<*>> {
     override val typeToken: TypeToken<SpeciesFeatureProvider<*>> = TypeToken.get(SpeciesFeatureProvider::class.java)
     override val resourcePath: String = "species_features"
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         player.sendPacket(StandardSpeciesFeatureSyncPacket(codeFeatures + resourceFeatures))
     }
 

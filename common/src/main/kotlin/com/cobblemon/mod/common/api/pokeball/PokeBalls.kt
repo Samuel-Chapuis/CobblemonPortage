@@ -215,7 +215,7 @@ object PokeBalls : JsonDataRegistry<PokeBall> {
         // ToDo once datapack pokeball is implemented load them here, we will want datapacks to be able to override our default pokeballs too, however they will never be able to disable them
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         // ToDo once datapack pokeball is implemented sync them here
     }
 

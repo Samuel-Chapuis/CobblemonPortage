@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object MoveSelectedHandler : ServerNetworkPacketHandler<MoveSelectedPacket> {
-    override fun handle(packet: MoveSelectedPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: MoveSelectedPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         MoveSelectCallbacks.handleCallback(player, packet.uuid, packet.index)
     }
 }

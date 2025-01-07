@@ -29,17 +29,17 @@ import java.util.*
  * @author Segfault Guy
  * @since October 26th, 2024
  */
-abstract class RequestManager<T : ServerPlayerActionRequest> {
+abstract class RequestManager<T : ServerPlayerEntityActionRequest> {
 
     /**
-     * Tracking of the active [ServerPlayerActionRequest]s by their sender.
+     * Tracking of the active [ServerPlayerEntityActionRequest]s by their sender.
      *
      * NOTE: only 1 request can be sent by a sender at a time.
      */
     private val outboundRequests = mutableMapOf<UUID, T>()
 
     /**
-     * Tracking of the active [ServerPlayerActionRequest]s by their recipient.
+     * Tracking of the active [ServerPlayerEntityActionRequest]s by their recipient.
      *
      * NOTE: a recipient can receive multiple requests from different senders at the same time.
      */
@@ -57,7 +57,7 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
     fun getOutboundRequestByRecipient(senderID: UUID, receiverID: UUID) = this.getOutboundRequest(senderID)?.takeIf { it.receiverID == receiverID }
 
     /** Queries the pending request of [requestID] that was sent by [sender] or their team. */
-    fun getOutboundRequest(sender: ServerPlayer, requestID: UUID) = TeamManager.getTeam(sender)?.let { this.getOutboundRequest(it.teamID, requestID) }
+    fun getOutboundRequest(sender: ServerPlayerEntity, requestID: UUID) = TeamManager.getTeam(sender)?.let { this.getOutboundRequest(it.teamID, requestID) }
         ?: this.getOutboundRequest(sender.uuid, requestID)
 
     /** Queries all pending requests that were received by [receiverID]. */
@@ -70,14 +70,14 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
     fun getInboundRequestBySender(receiverID: UUID, senderID: UUID) = this.getInboundRequests(receiverID)?.find { it.senderID == senderID }
 
     /** Queries the pending request of [requestID] that was received by [receiver] or their team. */
-    fun getInboundRequest(receiver: ServerPlayer, requestID: UUID) = TeamManager.getTeam(receiver)?.let { this.getInboundRequest(it.teamID, requestID) }
+    fun getInboundRequest(receiver: ServerPlayerEntity, requestID: UUID) = TeamManager.getTeam(receiver)?.let { this.getInboundRequest(it.teamID, requestID) }
         ?: this.getInboundRequest(receiver.uuid, requestID)
 
     /** Determines whether [player] can receive a [T]. */
-    open fun isBusy(player: ServerPlayer): Boolean = player.isInBattle() || player.isTrading() || player.party().find { it.entity?.isBusy == true } != null
+    open fun isBusy(player: ServerPlayerEntity): Boolean = player.isInBattle() || player.isTrading() || player.party().find { it.entity?.isBusy == true } != null
 
     /** Determines if the [target] is a valid interaction request target. */
-    abstract fun isValidInteraction(player: ServerPlayer, target: ServerPlayer): Boolean
+    abstract fun isValidInteraction(player: ServerPlayerEntity, target: ServerPlayerEntity): Boolean
 
     /** Determines whether [request] response is valid and can be accepted. If invalid, notifies the sender and receiver of the request why. */
     protected abstract fun canAccept(request: T): Boolean
@@ -107,7 +107,7 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
         return isRemoved
     }
 
-    /** Notifies and removes an outbound request [T] sent by [ServerPlayerActionRequest.sender] to [ServerPlayerActionRequest.receiver]. */
+    /** Notifies and removes an outbound request [T] sent by [ServerPlayerEntityActionRequest.sender] to [ServerPlayerEntityActionRequest.receiver]. */
     open fun cancelRequest(request: T, expired: Boolean = false) {
         if (!this.removeRequest(request)) return
         // canceled by expiration
@@ -129,7 +129,7 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
         request.notifyReceiver(false, "received", request.sender.name.copy().aqua())
     }
 
-    /** Sends an outbound request [T] from [ServerPlayerActionRequest.sender] to [ServerPlayerActionRequest.receiver]. */
+    /** Sends an outbound request [T] from [ServerPlayerEntityActionRequest.sender] to [ServerPlayerEntityActionRequest.receiver]. */
     fun sendRequest(request: T): Boolean {
         val existingRequest = this.getOutboundRequest(request.senderID)
         val pendingRequest = this.getInboundRequestBySender(request.senderID, request.receiverID)
@@ -165,7 +165,7 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
     }
 
     /** Accepts a pending inbound [requestID] for [player]. */
-    fun acceptRequest(player: ServerPlayer, requestID: UUID, target: ServerPlayer? = null): Boolean {
+    fun acceptRequest(player: ServerPlayerEntity, requestID: UUID, target: ServerPlayerEntity? = null): Boolean {
         var accepted = false
         val request = this.getInboundRequest(player, requestID)
 
@@ -202,13 +202,13 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
     }
 
     /** Declines an inbound request [requestID] for [receiver]. */
-    fun declineRequest(receiver: ServerPlayer, requestID: UUID) {
+    fun declineRequest(receiver: ServerPlayerEntity, requestID: UUID) {
         val request = this.getInboundRequest(receiver, requestID) ?: return
         this.declineRequest(request)
     }
 
     /** Cancels pending outbound requests sent from, and pending inbound request sent to, [player]. */
-    protected open fun onLogoff(player: ServerPlayer) {
+    protected open fun onLogoff(player: ServerPlayerEntity) {
         // ONLY regarding the player. see TeamManager for how team requests are canceled on team disband.
         outboundRequests.get(player.uuid)?.let { request ->
             this.cancelRequest(request)
@@ -225,6 +225,6 @@ abstract class RequestManager<T : ServerPlayerActionRequest> {
 
         fun register(manager: RequestManager<*>) = managers.add(manager)
 
-        fun onLogoff(player: ServerPlayer) = managers.forEach { it.onLogoff(player) }
+        fun onLogoff(player: ServerPlayerEntity) = managers.forEach { it.onLogoff(player) }
     }
 }

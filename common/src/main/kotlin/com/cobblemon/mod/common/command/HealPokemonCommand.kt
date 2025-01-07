@@ -36,7 +36,7 @@ object HealPokemonCommand {
         dispatcher.register(command.alias("pokeheal"))
     }
 
-    private fun execute(source: CommandSourceStack, target: ServerPlayer) : Int {
+    private fun execute(source: CommandSourceStack, target: ServerPlayerEntity) : Int {
         if (target.isInBattle()) {
             throw IN_BATTLE_EXCEPTION.create()
         }

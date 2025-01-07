@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object PartySelectCancelledHandler : ServerNetworkPacketHandler<PartySelectCancelledPacket> {
-    override fun handle(packet: PartySelectCancelledPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: PartySelectCancelledPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         PartySelectCallbacks.handleCancelled(player, packet.uuid)
     }
 }

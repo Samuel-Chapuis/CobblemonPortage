@@ -40,14 +40,14 @@ object PlayerSpawnerFactory {
      * [PlayerLevelRangeInfluence] adjusts the level range of Pokémon that can spawn based on the player's level.
      * [RestrictedSpawnBlocksInfluence] prevents Pokémon from spawning on certain blocks.
      */
-    var influenceBuilders = mutableListOf<(player: ServerPlayer) -> SpawningInfluence?>({
+    var influenceBuilders = mutableListOf<(player: ServerPlayerEntity) -> SpawningInfluence?>({
         PlayerLevelRangeInfluence(
             it,
             variation = TYPICAL_VARIATION
         )
     }, { RestrictedSpawnBlocksInfluence() })
 
-    fun create(spawnerManager: SpawnerManager, player: ServerPlayer): PlayerSpawner {
+    fun create(spawnerManager: SpawnerManager, player: ServerPlayerEntity): PlayerSpawner {
         val influences = influenceBuilders.mapNotNull { it(player) }
         return PlayerSpawner(player, spawns, spawnerManager).also {
             it.influences.addAll(influences)

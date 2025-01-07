@@ -183,7 +183,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                 level().sendParticlesServer(ParticleTypes.CLOUD, hitResult.location, 2, hitResult.location.subtract(position()).normalize().scale(-0.1), 0.0)
                 level().playSoundServer(position(), SoundEvents.WOOD_PLACE, pitch = 2.5F)
                 discard()
-                val player = this.owner as? ServerPlayer
+                val player = this.owner as? ServerPlayerEntity
                 if (player?.isCreative == false) {
                     spawnAtLocation(defaultItem)
                 }
@@ -252,7 +252,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                 } else if (pokemonEntity.isBusy) {
                     owner?.sendSystemMessage(lang("capture.busy", pokemonEntity.exposedSpecies.translatedName).red())
                     return drop()
-                } else if (owner is ServerPlayer && BattleRegistry.getBattleByParticipatingPlayer(owner) != null) {
+                } else if (owner is ServerPlayerEntity && BattleRegistry.getBattleByParticipatingPlayer(owner) != null) {
                     owner.sendSystemMessage(lang("you_in_battle").red())
                     return drop()
                 }
@@ -280,7 +280,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
     private fun drop() {
         val owner = owner
         discard()
-        val player = owner?.takeIf { it is ServerPlayer } as? ServerPlayer
+        val player = owner?.takeIf { it is ServerPlayerEntity } as? ServerPlayerEntity
         if (player?.isCreative != true) spawnAtLocation(defaultItem)
         return
     }
@@ -342,7 +342,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                 captureState = if (captureResult.isCriticalCapture) CaptureState.CAPTURED_CRITICAL else CaptureState.CAPTURED
                 // Do a capture
                 val pokemon = capturingPokemon ?: return
-                val player = this.owner as? ServerPlayer ?: return
+                val player = this.owner as? ServerPlayerEntity ?: return
                 val captureTime = if (pokeBall.ancient == true) 1.8F else 1F
 
                 after(seconds = captureTime) {

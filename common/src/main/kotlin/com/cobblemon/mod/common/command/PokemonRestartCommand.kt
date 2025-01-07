@@ -75,13 +75,13 @@ object PokemonRestartCommand {
         dispatcher.register(otherCommandWithoutStarters.alias(ALIAS_OTHER))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer, resetStarters: Boolean): Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity, resetStarters: Boolean): Int {
         resetPlayerPokemonData(player, resetStarters)
         context.source.sendSuccess({ commandLang(NAME, player.name) }, true)
         return Command.SINGLE_SUCCESS
     }
 
-    private fun resetPlayerPokemonData(player: ServerPlayer, resetStarters: Boolean) {
+    private fun resetPlayerPokemonData(player: ServerPlayerEntity, resetStarters: Boolean) {
         player.party().clearParty()
         player.pc().clearPC()
         player.sendPacket(InitializePartyPacket(true, player.uuid, player.party().size()))

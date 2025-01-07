@@ -95,7 +95,7 @@ object Moves : DataRegistry {
         this.observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         MovesRegistrySyncPacket(all()).sendToPlayer(player)
     }
 

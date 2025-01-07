@@ -36,10 +36,10 @@ class VolatileCuringBerryItem(block: BerryBlock, val volatileStatus: String): Be
     }
 
     override fun canUseOnPokemon(pokemon: Pokemon) = false
-    override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon) = null
-    override fun interactGeneral(player: ServerPlayer, stack: ItemStack) = InteractionResultHolder.pass(stack)
+    override fun applyToPokemon(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon) = null
+    override fun interactGeneral(player: ServerPlayerEntity, stack: ItemStack) = InteractionResultHolder.pass(stack)
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
     }

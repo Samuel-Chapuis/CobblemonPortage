@@ -63,7 +63,7 @@ class SleepOnTrainerGoal(private val pokemonEntity: PokemonEntity) : Goal() {
 
     override fun canContinueToUse(): Boolean {
         val owner = owner
-        return owner is ServerPlayer && owner.isSleeping && bedPos != null && !cannotSleep()
+        return owner is ServerPlayerEntity && owner.isSleeping && bedPos != null && !cannotSleep()
     }
 
     override fun start() {

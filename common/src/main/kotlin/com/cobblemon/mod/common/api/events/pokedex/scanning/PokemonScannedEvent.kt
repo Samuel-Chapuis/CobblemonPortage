@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.pokedex.scanner.PokedexEntityData
 import com.cobblemon.mod.common.pokedex.scanner.ScannableEntity
 import net.minecraft.server.network.ServerPlayerEntity
 
-data class PokemonScannedEvent(val player: ServerPlayer, val scannedPokemonEntityData: PokedexEntityData, val scannedEntity: ScannableEntity) {
+data class PokemonScannedEvent(val player: ServerPlayerEntity, val scannedPokemonEntityData: PokedexEntityData, val scannedEntity: ScannableEntity) {
     val pokedexEntityData: PokedexEntityData
         get() = scannedPokemonEntityData
 

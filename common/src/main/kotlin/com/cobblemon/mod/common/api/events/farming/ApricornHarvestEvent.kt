@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState
  * Event fired when an Apricorn is harvested.
  */
 class ApricornHarvestEvent(
-    val player: ServerPlayer,
+    val player: ServerPlayerEntity,
     val apricorn: Apricorn,
     val world: ServerLevel,
     val pos: BlockPos

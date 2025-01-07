@@ -24,7 +24,7 @@ class PokemonStoreArgumentType : StringRepresentableArgument<StoreType>(StoreTyp
     }
 }
 
-enum class StoreType(val storeFetcher: (ServerPlayer) -> Collection<Pokemon>) : StringRepresentable {
+enum class StoreType(val storeFetcher: (ServerPlayerEntity) -> Collection<Pokemon>) : StringRepresentable {
 
     PARTY({ player -> player.party().filterNotNull() }),
     PC({ player -> player.pc().filterNotNull() }),

@@ -35,7 +35,7 @@ object BattleRegistry {
         battleMap.clear()
     }
 
-    fun onPlayerDisconnect(player: ServerPlayer) {
+    fun onPlayerDisconnect(player: ServerPlayerEntity) {
         // Stop battles
         getBattleByParticipatingPlayer(player)?.stop()
     }
@@ -223,7 +223,7 @@ object BattleRegistry {
         return battleMap[id]
     }
 
-    fun getBattleByParticipatingPlayer(serverPlayer: ServerPlayer) : PokemonBattle? {
+    fun getBattleByParticipatingPlayer(serverPlayer: ServerPlayerEntity) : PokemonBattle? {
         return battleMap.values.find { it.getActor(serverPlayer) != null }
     }
 

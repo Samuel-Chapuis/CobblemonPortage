@@ -32,7 +32,7 @@ object SpectateBattleHandler : ServerNetworkPacketHandler<SpectateBattlePacket> 
     override fun handle(
         packet: SpectateBattlePacket,
         server: MinecraftServer,
-        player: ServerPlayer
+        player: ServerPlayerEntity
     ) {
         val battle = BattleRegistry.getBattleByParticipatingPlayerId(packet.targetedEntityId)
         if (battle != null && Cobblemon.config.allowSpectating) {

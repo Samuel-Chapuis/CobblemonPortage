@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object PartyPokemonSelectedHandler : ServerNetworkPacketHandler<PartyPokemonSelectedPacket> {
-    override fun handle(packet: PartyPokemonSelectedPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: PartyPokemonSelectedPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         PartySelectCallbacks.handleCallback(player, packet.uuid, packet.index)
     }
 }

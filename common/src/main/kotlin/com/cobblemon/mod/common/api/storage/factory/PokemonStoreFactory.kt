@@ -32,9 +32,9 @@ import net.minecraft.server.network.ServerPlayerEntity
 interface PokemonStoreFactory {
     fun getPlayerParty(playerID: UUID, registryAccess: RegistryAccess): PlayerPartyStore?
     fun getPC(playerID: UUID, registryAccess: RegistryAccess): PCStore?
-    fun getPCForPlayer(player: ServerPlayer, pcBlockEntity: PCBlockEntity): PCStore? = getPC(player.uuid, player.registryAccess())
+    fun getPCForPlayer(player: ServerPlayerEntity, pcBlockEntity: PCBlockEntity): PCStore? = getPC(player.uuid, player.registryAccess())
 
     fun <E : StorePosition, T : PokemonStore<E>> getCustomStore(storeClass: Class<T>, uuid: UUID, registryAccess: RegistryAccess): T?
     fun shutdown(registryAccess: RegistryAccess)
-    fun onPlayerDisconnect(player: ServerPlayer)
+    fun onPlayerDisconnect(player: ServerPlayerEntity)
 }

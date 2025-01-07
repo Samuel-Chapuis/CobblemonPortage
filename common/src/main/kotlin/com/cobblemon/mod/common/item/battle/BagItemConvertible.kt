@@ -38,7 +38,7 @@ interface BagItemLike {
      */
     fun getBagItem(stack: ItemStack): BagItem?
 
-    fun handleInteraction(player: ServerPlayer, battlePokemon: BattlePokemon, stack: ItemStack): Boolean {
+    fun handleInteraction(player: ServerPlayerEntity, battlePokemon: BattlePokemon, stack: ItemStack): Boolean {
         val battle = battlePokemon.actor.battle
         val bagItem = getBagItem(stack) ?: return false
         if (!battlePokemon.actor.canFitForcedAction()) {

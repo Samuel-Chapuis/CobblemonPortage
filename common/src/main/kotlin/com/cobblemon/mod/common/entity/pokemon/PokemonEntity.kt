@@ -209,7 +209,7 @@ open class PokemonEntity(
     var despawner: Despawner<PokemonEntity> = Cobblemon.bestSpawner.defaultPokemonDespawner
 
     /** The player that caused this Pokémon to faint. */
-    var killer: ServerPlayer? = null
+    var killer: ServerPlayerEntity? = null
 
     val isEvolving: Boolean
         get() = entityData.get(EVOLUTION_STARTED)
@@ -455,7 +455,7 @@ open class PokemonEntity(
         if (this.tethering != null && age % 20 == 0) {
             // Only for online players
             this.ownerUUID?.let { ownerUUID ->
-                val player = level().getPlayerByUUID(ownerUUID) as? ServerPlayer
+                val player = level().getPlayerByUUID(ownerUUID) as? ServerPlayerEntity
                 if (player != null) {
                     val actualPokemon = Cobblemon.storage.getPC(player)[this.pokemon.uuid]
                     actualPokemon?.let {
@@ -772,7 +772,7 @@ open class PokemonEntity(
         }
 
         goalSelector.addGoal(6, PokemonWanderAroundGoal(this))
-        goalSelector.addGoal(7, PokemonLookAtEntityGoal(this, ServerPlayer::class.java, 5F))
+        goalSelector.addGoal(7, PokemonLookAtEntityGoal(this, ServerPlayerEntity::class.java, 5F))
         goalSelector.addGoal(8, PokemonPointAtSpawnGoal(this))
     }
 
@@ -892,7 +892,7 @@ open class PokemonEntity(
                 val currentColor = colorFeature?.value ?: ""
                 val item = itemStack.item as DyeItem
                 if (!item.dyeColor.name.equals(currentColor, ignoreCase = true)) {
-                    if (player is ServerPlayer) {
+                    if (player is ServerPlayerEntity) {
                         if (colorFeature != null) {
                             colorFeature.value = item.dyeColor.name.lowercase()
                             this.pokemon.markFeatureDirty(colorFeature)
@@ -911,7 +911,7 @@ open class PokemonEntity(
                     return InteractionResult.sidedSuccess(level().isClientSide)
                 }
             } else if (itemStack.item.equals(Items.WATER_BUCKET) && colorFeatureType != null) {
-                if (player is ServerPlayer) {
+                if (player is ServerPlayerEntity) {
                     if (colorFeature != null) {
                         if (!player.isCreative) {
                             itemStack.shrink(1)
@@ -926,7 +926,7 @@ open class PokemonEntity(
             }
         }
 
-        if (hand == InteractionHand.MAIN_HAND && player is ServerPlayer && pokemon.getOwnerPlayer() == player) {
+        if (hand == InteractionHand.MAIN_HAND && player is ServerPlayerEntity && pokemon.getOwnerPlayer() == player) {
             if (player.isShiftKeyDown) {
                 InteractPokemonUIPacket(this.getUUID(), canSitOnShoulder() && pokemon in player.party()).sendToPlayer(
                     player
@@ -1039,7 +1039,7 @@ open class PokemonEntity(
             return false
         }
 
-        if (player is ServerPlayer && isBattling) {
+        if (player is ServerPlayerEntity && isBattling) {
             val battle = battleId?.let(BattleRegistry::getBattle) ?: return false
 
             val bagItemLike = BagItems.getConvertibleForStack(stack) ?: return false
@@ -1053,7 +1053,7 @@ open class PokemonEntity(
 
             return bagItemLike.handleInteraction(player, battlePokemon, stack)
         }
-        if (player !is ServerPlayer || this.isBusy) {
+        if (player !is ServerPlayerEntity || this.isBusy) {
             return false
         }
 
@@ -1099,7 +1099,7 @@ open class PokemonEntity(
     }
 
     fun offerHeldItem(player: Player, stack: ItemStack): Boolean {
-        if (player !is ServerPlayer || this.isBusy || this.pokemon.getOwnerPlayer() != player) {
+        if (player !is ServerPlayerEntity || this.isBusy || this.pokemon.getOwnerPlayer() != player) {
             return false
         }
         // We want the count of 1 in order to match the ItemStack#areEqual
@@ -1129,7 +1129,7 @@ open class PokemonEntity(
         return true
     }
 
-    fun tryMountingShoulder(player: ServerPlayer): Boolean {
+    fun tryMountingShoulder(player: ServerPlayerEntity): Boolean {
         if (this.pokemon.belongsTo(player) && this.hasRoomToMount(player)) {
             CobblemonEvents.SHOULDER_MOUNT.postThen(
                 ShoulderMountEvent(
@@ -1166,7 +1166,7 @@ open class PokemonEntity(
         return false
     }
 
-    override fun setEntityOnShoulder(player: ServerPlayer): Boolean {
+    override fun setEntityOnShoulder(player: ServerPlayerEntity): Boolean {
         if (!super.setEntityOnShoulder(player)) {
             return false
         }
@@ -1301,7 +1301,7 @@ open class PokemonEntity(
     fun cry() {
         if (this.isSilent) return
         val pkt = PlayPosableAnimationPacket(id, setOf("cry"), emptyList())
-        level().getEntitiesOfClass(ServerPlayer::class.java, AABB.ofSize(position(), 64.0, 64.0, 64.0)) { true }.forEach {
+        level().getEntitiesOfClass(ServerPlayerEntity::class.java, AABB.ofSize(position(), 64.0, 64.0, 64.0)) { true }.forEach {
             it.sendPacket(pkt)
         }
     }
@@ -1452,7 +1452,7 @@ open class PokemonEntity(
      * @param player The player to attempt a battle with.
      * @return Whether the battle was successfully started.
      */
-    fun forceBattle(player: ServerPlayer): Boolean {
+    fun forceBattle(player: ServerPlayerEntity): Boolean {
         if (!canBattle(player)) {
             return false
         }
@@ -1538,7 +1538,7 @@ open class PokemonEntity(
         super.setAirSupply(air)
     }
 
-    override fun stopSeenByPlayer(player: ServerPlayer) {
+    override fun stopSeenByPlayer(player: ServerPlayerEntity) {
         if (player == null) {
             return
         }

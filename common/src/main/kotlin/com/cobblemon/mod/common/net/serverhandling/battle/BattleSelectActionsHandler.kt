@@ -19,7 +19,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object BattleSelectActionsHandler : ServerNetworkPacketHandler<BattleSelectActionsPacket> {
-    override fun handle(packet: BattleSelectActionsPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: BattleSelectActionsPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val battle = BattleRegistry.getBattle(packet.battleId) ?: return
         val actor = battle.actors.find { player.uuid in it.getPlayerUUIDs() } ?: return
         if (!actor.mustChoose) {

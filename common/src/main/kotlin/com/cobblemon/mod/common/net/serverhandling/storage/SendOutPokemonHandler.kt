@@ -25,7 +25,7 @@ object SendOutPokemonHandler : ServerNetworkPacketHandler<SendOutPokemonPacket> 
     const val SEND_OUT_STAGGER_BASE_DURATION = 0.35F
     const val SEND_OUT_STAGGER_RANDOM_MAX_DURATION = 0.15F
 
-    override fun handle(packet: SendOutPokemonPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: SendOutPokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val slot = packet.slot.takeIf { it >= 0 } ?: return
         val party = Cobblemon.storage.getParty(player)
         val pokemon = party.get(slot) ?: return

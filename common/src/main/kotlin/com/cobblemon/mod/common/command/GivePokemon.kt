@@ -49,7 +49,7 @@ object GivePokemon {
         dispatcher.register(otherCommand.alias(ALIAS_OTHER))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer): Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity): Int {
         try {
             val pokemonProperties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)
             if (pokemonProperties.species == null) {

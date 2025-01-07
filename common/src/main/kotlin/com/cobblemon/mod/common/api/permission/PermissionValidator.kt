@@ -28,21 +28,21 @@ interface PermissionValidator {
     fun initialize()
 
     /**
-     * Validates a permission for [ServerPlayer].
+     * Validates a permission for [ServerPlayerEntity].
      *
-     * @param player The target [ServerPlayer].
+     * @param player The target [ServerPlayerEntity].
      * @param permission The [Permission] being queried.
      * @return If the [player] has the [permission].
      */
-    fun hasPermission(player: ServerPlayer, permission: Permission): Boolean
+    fun hasPermission(player: ServerPlayerEntity, permission: Permission): Boolean
     /**
-     * Validates a permission for [ServerPlayer] based only on a permission string and a permission level.
+     * Validates a permission for [ServerPlayerEntity] based only on a permission string and a permission level.
      *
-     * @param player The target [ServerPlayer].
+     * @param player The target [ServerPlayerEntity].
      * @param permission The permission string being queried such as cobblemon.command.giveallpokemon.
      * @param level The permission level being queried. 4 is generally used for cheats.
      */
-    fun hasPermission(player: ServerPlayer, permission: String, level: Int): Boolean = hasPermission(player, CobblemonPermission(permission, PermissionLevel.byNumericValue(level)))
+    fun hasPermission(player: ServerPlayerEntity, permission: String, level: Int): Boolean = hasPermission(player, CobblemonPermission(permission, PermissionLevel.byNumericValue(level)))
 
     /**
      * Validates a permission for [CommandSource].

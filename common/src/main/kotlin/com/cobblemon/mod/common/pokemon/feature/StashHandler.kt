@@ -22,7 +22,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 object StashHandler {
     fun interactMob(player: Player, pokemon: Pokemon, itemStack: ItemStack?): Boolean {
-        if (itemStack == null || player !is ServerPlayer|| pokemon.getOwnerPlayer() !== player) return false
+        if (itemStack == null || player !is ServerPlayerEntity|| pokemon.getOwnerPlayer() !== player) return false
         val success = handleItem(pokemon, itemStack.item)
         if (success) {
             itemStack.shrink(1)

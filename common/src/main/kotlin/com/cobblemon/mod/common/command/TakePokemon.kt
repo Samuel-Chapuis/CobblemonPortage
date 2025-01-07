@@ -56,7 +56,7 @@ object TakePokemon {
 
             party.remove(pokemon)
             if (context.source.entity != target) {
-                if (context.source.entity is ServerPlayer) {
+                if (context.source.entity is ServerPlayerEntity) {
                     val player = context.source.player ?: return Command.SINGLE_SUCCESS
                     val toParty = player.party()
                     toParty.add(pokemon)

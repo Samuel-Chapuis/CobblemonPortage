@@ -32,7 +32,7 @@ class LevelUpCriterion(
         ).apply(it, ::LevelUpCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: LevelUpContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: LevelUpContext): Boolean {
         val preEvo = context.pokemon.preEvolution == null
         val hasEvolution = !context.pokemon.evolutions.none()
         var evolutionCheck = true
@@ -57,7 +57,7 @@ class LevelUpCriterion(
         evolved = json.get("has_evolved")?.asBoolean ?: true
     }
 
-    override fun matches(player: ServerPlayer, context: LevelUpContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: LevelUpContext): Boolean {
         val preEvo = context.pokemon.preEvolution == null
         val hasEvolution = !context.pokemon.evolutions.none()
         var evolutionCheck = true

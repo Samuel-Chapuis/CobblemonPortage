@@ -106,7 +106,7 @@ class PlayerAdvancementData {
         }
     }
 
-    fun updateAspectsCollected(player: ServerPlayer, pokemon: Pokemon) {
+    fun updateAspectsCollected(player: ServerPlayerEntity, pokemon: Pokemon) {
         //TODO: take another look at using the Advancement progress
         /*val aspectConditions = player.advancements.progress.keys
             .flatMap { it.value.criteria.values }

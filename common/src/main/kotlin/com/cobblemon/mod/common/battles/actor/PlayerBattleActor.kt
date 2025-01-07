@@ -30,10 +30,10 @@ import net.minecraft.world.phys.Vec3
 class PlayerBattleActor(
     uuid: UUID,
     pokemonList: List<BattlePokemon>,
-) : BattleActor(uuid, pokemonList.toMutableList()), EntityBackedBattleActor<ServerPlayer> {
+) : BattleActor(uuid, pokemonList.toMutableList()), EntityBackedBattleActor<ServerPlayerEntity> {
 
     override val initialPos: Vec3?
-    override val entity: ServerPlayer?
+    override val entity: ServerPlayerEntity?
         get() = this.uuid.getPlayer()
     init {
         initialPos = entity?.position();

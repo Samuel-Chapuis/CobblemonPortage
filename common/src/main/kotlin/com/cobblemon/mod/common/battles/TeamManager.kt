@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.battles
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonNetwork
 import com.cobblemon.mod.common.api.interaction.RequestManager
-import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest
+import com.cobblemon.mod.common.api.interaction.ServerPlayerEntityActionRequest
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.api.text.aqua
 import com.cobblemon.mod.common.net.messages.client.battle.*
@@ -41,10 +41,10 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
      * @param expiryTime How long (in seconds) this request is active.
      */
     data class TeamRequest(
-        override val sender: ServerPlayer,
-        override val receiver: ServerPlayer,
+        override val sender: ServerPlayerEntity,
+        override val receiver: ServerPlayerEntity,
         override val expiryTime: Int = 60
-    ) : ServerPlayerActionRequest
+    ) : ServerPlayerEntityActionRequest
     {
         override val key: String = "team"
         override val requestID: UUID = UUID.randomUUID()
@@ -56,9 +56,9 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
      *
      * @param teamPlayers The players that form this team.
      */
-    data class MultiBattleTeam(val teamPlayers: MutableList<ServerPlayer>)
+    data class MultiBattleTeam(val teamPlayers: MutableList<ServerPlayerEntity>)
     {
-        constructor(vararg teamPlayers: ServerPlayer) : this(teamPlayers.toMutableList())
+        constructor(vararg teamPlayers: ServerPlayerEntity) : this(teamPlayers.toMutableList())
         val teamID: UUID = UUID.randomUUID()
         val teamPlayersUUID get() = this.teamPlayers.map { it.uuid }
     }
@@ -67,7 +67,7 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
     private val playerToTeam = mutableMapOf<UUID, MultiBattleTeam>()
     private val multiBattleTeams = mutableMapOf<UUID, MultiBattleTeam>()
 
-    fun getTeam(player: ServerPlayer) = playerToTeam.get(player.uuid)
+    fun getTeam(player: ServerPlayerEntity) = playerToTeam.get(player.uuid)
 
     fun getTeam(teamID: UUID) = multiBattleTeams.get(teamID)
 
@@ -100,7 +100,7 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
     }
 
     /** Removes a [player] from their [MultiBattleTeam]. Will disband the team if the last remaining member. */
-    fun removeTeamMember(player: ServerPlayer) {
+    fun removeTeamMember(player: ServerPlayerEntity) {
         val teamEntry = playerToTeam.get(player.uuid) ?: return
         teamEntry.teamPlayers.remove(player)
         playerToTeam.remove(player.uuid)
@@ -108,14 +108,14 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
         val notificationPacket = TeamMemberRemoveNotificationPacket(player.uuid)
         CobblemonNetwork.sendPacketToPlayer(player, notificationPacket)
         // Notify remaining members that the player has left the group
-        val teamServerPlayers = teamEntry.teamPlayersUUID.mapNotNull { it.getPlayer() }
-        CobblemonNetwork.sendPacketToPlayers(teamServerPlayers, notificationPacket)
+        val teamServerPlayerEntitys = teamEntry.teamPlayersUUID.mapNotNull { it.getPlayer() }
+        CobblemonNetwork.sendPacketToPlayers(teamServerPlayerEntitys, notificationPacket)
 
         if (teamEntry.teamPlayersUUID.count() == 1)  this.disbandTeam(teamEntry)
     }
 
     /** Adds [player] as a member of existing [team]. */
-    fun joinTeam(player: ServerPlayer, team: MultiBattleTeam) {
+    fun joinTeam(player: ServerPlayerEntity, team: MultiBattleTeam) {
         // decline any other incoming requests to team up
         this.getInboundRequests(player.uuid)?.forEach { this.cancelRequest(it) }    // this is guaranteed to not contain the request currently being accepted
 
@@ -138,7 +138,7 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
     }
 
     /** Creates and registers a [MultiBattleTeam] from [players]. */
-    fun createTeam(vararg players: ServerPlayer): MultiBattleTeam {
+    fun createTeam(vararg players: ServerPlayerEntity): MultiBattleTeam {
         // decline any other incoming requests to team up
         players.forEach {
             this.getInboundRequests(it.uuid)?.forEach { this.cancelRequest(it) }    // this is guaranteed to not contain the request currently being accepted
@@ -191,9 +191,9 @@ object TeamManager : RequestManager<TeamManager.TeamRequest>() {
         return false
     }
 
-    override fun isValidInteraction(player: ServerPlayer, target: ServerPlayer): Boolean = player.canInteractWith(target, Cobblemon.config.tradeMaxDistance)
+    override fun isValidInteraction(player: ServerPlayerEntity, target: ServerPlayerEntity): Boolean = player.canInteractWith(target, Cobblemon.config.tradeMaxDistance)
 
-    override fun onLogoff(sender: ServerPlayer) {
+    override fun onLogoff(sender: ServerPlayerEntity) {
         super.onLogoff(sender)
         // Remove player from any teams they may be a part of
         this.removeTeamMember(sender)

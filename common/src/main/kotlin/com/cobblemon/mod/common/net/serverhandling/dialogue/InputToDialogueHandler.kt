@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object InputToDialogueHandler : ServerNetworkPacketHandler<InputToDialoguePacket> {
-    override fun handle(packet: InputToDialoguePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: InputToDialoguePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val dialogue = player.activeDialogue ?: return
         val input = packet.input
         val activeInput = dialogue.activeInput

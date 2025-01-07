@@ -40,10 +40,10 @@ abstract class PokemonStore<T : StorePosition> : Iterable<Pokemon> {
     abstract operator fun get(position: T): Pokemon?
     /** Gets the first empty position that a [Pokemon] might be put. */
     abstract fun getFirstAvailablePosition(): T?
-    /** Gets an iterable of all [ServerPlayer]s that should be notified of any changes to the Pokémon in this store. */
-    abstract fun getObservingPlayers(): Iterable<ServerPlayer>
+    /** Gets an iterable of all [ServerPlayerEntity]s that should be notified of any changes to the Pokémon in this store. */
+    abstract fun getObservingPlayers(): Iterable<ServerPlayerEntity>
     /** Sends the contents of this store to a player as if they've never seen it before. This initializes the store then sends each contained Pokémon. */
-    abstract fun sendTo(player: ServerPlayer)
+    abstract fun sendTo(player: ServerPlayerEntity)
 
     /**
      * Runs initialization logic for this store, knowing that it has just been constructed in a [PokemonStoreFactory].

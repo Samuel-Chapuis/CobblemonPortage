@@ -82,13 +82,13 @@ class PlayerInstancedDataStoreManager {
         return factories[dataType]!!.saveSingle(playerData.uuid)
     }
 
-    fun onPlayerDisconnect(player: ServerPlayer) {
+    fun onPlayerDisconnect(player: ServerPlayerEntity) {
         factories.values.forEach {
             it.onPlayerDisconnect(player)
         }
     }
 
-    fun syncAllToPlayer(player: ServerPlayer) {
+    fun syncAllToPlayer(player: ServerPlayerEntity) {
         factories.values.forEach {
             it.sendToPlayer(player)
         }
@@ -100,7 +100,7 @@ class PlayerInstancedDataStoreManager {
         }
     }
 
-    fun getGenericData(player: ServerPlayer): GeneralPlayerData {
+    fun getGenericData(player: ServerPlayerEntity): GeneralPlayerData {
         return getGenericData(player.uuid)
     }
 
@@ -108,7 +108,7 @@ class PlayerInstancedDataStoreManager {
         return get(playerId, PlayerInstancedDataStoreTypes.GENERAL) as GeneralPlayerData
     }
 
-    fun getPokedexData(player: ServerPlayer): PokedexManager {
+    fun getPokedexData(player: ServerPlayerEntity): PokedexManager {
         return getPokedexData(player.uuid)
     }
 

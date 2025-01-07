@@ -233,7 +233,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         world.blockUpdated(pos, Blocks.AIR)
         state.updateNeighbourShapes(world, pos, 3)
 
-        if (world is ServerLevel && placer is ServerPlayer) {
+        if (world is ServerLevel && placer is ServerPlayerEntity) {
             val blockEntity = world.getBlockEntity(pos) as? PokemonPastureBlockEntity ?: return
             blockEntity.ownerId = placer.uuid
             blockEntity.ownerName = placer.gameProfile.name
@@ -248,7 +248,7 @@ class PastureBlock(settings: Properties): BaseEntityBlock(settings), SimpleWater
         player: Player,
         hit: BlockHitResult
     ): InteractionResult {
-        if (player is ServerPlayer && !player.isInBattle()) {
+        if (player is ServerPlayerEntity && !player.isInBattle()) {
             val basePos = getBasePosition(state, pos)
 
             // Remove any duplicate block entities that may exist

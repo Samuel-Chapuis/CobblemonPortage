@@ -28,7 +28,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 object PasturePermissionControllers {
     val controllers = PrioritizedList<PasturePermissionController>()
 
-    fun permit(player: ServerPlayer, pastureBlockEntity: PokemonPastureBlockEntity): PasturePermissions {
+    fun permit(player: ServerPlayerEntity, pastureBlockEntity: PokemonPastureBlockEntity): PasturePermissions {
         return controllers.firstNotNullOfOrNull { it.permit(player, pastureBlockEntity) }
             ?: PasturePermissions(
                 canUnpastureOthers = true,

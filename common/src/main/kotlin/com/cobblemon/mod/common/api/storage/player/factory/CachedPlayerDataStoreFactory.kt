@@ -51,12 +51,12 @@ class CachedPlayerDataStoreFactory<T : InstancedPlayerData>(val backend: PlayerD
         backend.save(getForPlayer(playerId))
     }
 
-    override fun onPlayerDisconnect(player: ServerPlayer) {
+    override fun onPlayerDisconnect(player: ServerPlayerEntity) {
         saveSingle(player.uuid)
         cache.remove(player.uuid)
     }
 
-    override fun sendToPlayer(player: ServerPlayer) {
+    override fun sendToPlayer(player: ServerPlayerEntity) {
         player.sendPacket(SetClientPlayerDataPacket(backend.dataType, getForPlayer(player).toClientData()))
     }
 

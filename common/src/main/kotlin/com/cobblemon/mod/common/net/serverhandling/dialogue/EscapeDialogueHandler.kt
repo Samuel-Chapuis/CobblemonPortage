@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object EscapeDialogueHandler : ServerNetworkPacketHandler<EscapeDialoguePacket> {
-    override fun handle(packet: EscapeDialoguePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: EscapeDialoguePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val dialogue = player.activeDialogue ?: return
         dialogue.escape()
     }

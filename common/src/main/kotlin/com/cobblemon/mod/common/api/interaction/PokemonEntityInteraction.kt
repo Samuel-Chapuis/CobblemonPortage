@@ -27,7 +27,7 @@ interface PokemonEntityInteraction : EntityInteraction<PokemonEntity> {
     val sound: SoundEvent?
         get() = CobblemonSounds.ITEM_USE
 
-    override fun onInteraction(player: ServerPlayer, entity: PokemonEntity, stack: ItemStack): Boolean {
+    override fun onInteraction(player: ServerPlayerEntity, entity: PokemonEntity, stack: ItemStack): Boolean {
         val pokemon = entity.pokemon
         val storeCoordinates = pokemon.storeCoordinates.get()
         val ownership = when {
@@ -45,12 +45,12 @@ interface PokemonEntityInteraction : EntityInteraction<PokemonEntity> {
     /**
      * Fired after [EntityInteraction.onInteraction] the [Ownership] is checked if contained in [accepted].
      *
-     * @param player The [ServerPlayer] interacting with the [entity].
+     * @param player The [ServerPlayerEntity] interacting with the [entity].
      * @param entity The [PokemonEntity] being interacted with.
      * @param stack The [ItemStack] used in this interaction.
      * @return true if the interaction was successful and no further interactions should be processed.
      */
-    fun processInteraction(player: ServerPlayer, entity: PokemonEntity, stack: ItemStack): Boolean
+    fun processInteraction(player: ServerPlayerEntity, entity: PokemonEntity, stack: ItemStack): Boolean
 
     /**
      * Represents the ownership status of a Pokemon relative to a Player.

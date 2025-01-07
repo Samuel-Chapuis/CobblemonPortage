@@ -237,7 +237,7 @@ class PokerodItem(val pokeRodId: Identifier, settings: Properties) : FishingRodI
                     { event ->
                         world.addFreshEntity(bobberEntity)
                         var baitId = getBaitOnRod(itemStack)?.item ?: cobblemonResource("empty_bait")
-                        CobblemonCriteria.CAST_POKE_ROD.trigger(user as ServerPlayer, CastPokeRodContext(baitId))
+                        CobblemonCriteria.CAST_POKE_ROD.trigger(user as ServerPlayerEntity, CastPokeRodContext(baitId))
 
                         CobblemonEvents.POKEROD_CAST_POST.post(
                             PokerodCastEvent.Post(itemStack, bobberEntity, getBaitStackOnRod(itemStack))

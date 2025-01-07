@@ -54,7 +54,7 @@ class ReviveItem(val max: Boolean): CobblemonItem(Properties()), HealingSource {
         if (world !is ServerLevel) {
             return InteractionResultHolder.success(user.getItemInHand(hand))
         } else {
-            val player = user as ServerPlayer
+            val player = user as ServerPlayerEntity
             val stack = user.getItemInHand(hand)
             val battle = BattleRegistry.getBattleByParticipatingPlayer(player)
             if (battle != null) {

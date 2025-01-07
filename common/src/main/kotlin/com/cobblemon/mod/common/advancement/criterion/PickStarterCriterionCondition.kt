@@ -29,7 +29,7 @@ class PokemonCriterion(
         ).apply(it, ::PokemonCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: Pokemon): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: Pokemon): Boolean {
         return properties.matches(context)
     }
 }

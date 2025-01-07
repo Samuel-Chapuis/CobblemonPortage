@@ -91,7 +91,7 @@ object SpawnDetailPresets : JsonDataRegistry<SpawnDetailPreset> {
 
     var presets = mutableMapOf<Identifier, SpawnDetailPreset>()
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
     override fun reload(data: Map<Identifier, SpawnDetailPreset>) {
         this.presets = data.toMutableMap()
         Cobblemon.LOGGER.info("Loaded ${presets.size} spawn detail presets.")

@@ -35,7 +35,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @author Hiroku
  * @since December 27th, 2023
  */
-class ActiveDialogue(var playerEntity: ServerPlayer, var dialogueReference: Dialogue) {
+class ActiveDialogue(var playerEntity: ServerPlayerEntity, var dialogueReference: Dialogue) {
     var initialized = false
     val dialogueId = UUID.randomUUID()
     val runtime = MoLangRuntime().setup()

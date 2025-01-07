@@ -47,8 +47,8 @@ interface DataRegistry {
     /**
      * Syncs this registry to a player when requested by the server.
      *
-     * @param player The [ServerPlayer] being synchronized to the server.
+     * @param player The [ServerPlayerEntity] being synchronized to the server.
      */
-    fun sync(player: ServerPlayer)
+    fun sync(player: ServerPlayerEntity)
 
 }

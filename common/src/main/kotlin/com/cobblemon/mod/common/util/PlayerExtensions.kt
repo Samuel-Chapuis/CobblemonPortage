@@ -49,27 +49,27 @@ import java.util.*
 import kotlin.math.min
 
 // Stuff like getting their party
-fun ServerPlayer.party() = Cobblemon.storage.getParty(this)
-fun ServerPlayer.pc() = Cobblemon.storage.getPC(this)
-fun ServerPlayer.pokedex() = Cobblemon.playerDataManager.getPokedexData(this)
-val ServerPlayer.activeDialogue: ActiveDialogue?
+fun ServerPlayerEntity.party() = Cobblemon.storage.getParty(this)
+fun ServerPlayerEntity.pc() = Cobblemon.storage.getPC(this)
+fun ServerPlayerEntity.pokedex() = Cobblemon.playerDataManager.getPokedexData(this)
+val ServerPlayerEntity.activeDialogue: ActiveDialogue?
     get() = DialogueManager.activeDialogues[uuid]
-val ServerPlayer.isInDialogue: Boolean
+val ServerPlayerEntity.isInDialogue: Boolean
     get() = DialogueManager.activeDialogues.containsKey(uuid)
-fun ServerPlayer.closeDialogue() {
+fun ServerPlayerEntity.closeDialogue() {
     activeDialogue?.close()
 }
-fun ServerPlayer.openDialogue(dialogue: Dialogue) {
+fun ServerPlayerEntity.openDialogue(dialogue: Dialogue) {
     DialogueManager.startDialogue(this, dialogue)
 }
-fun ServerPlayer.openDialogue(activeDialogue: ActiveDialogue) {
+fun ServerPlayerEntity.openDialogue(activeDialogue: ActiveDialogue) {
     DialogueManager.startDialogue(activeDialogue)
 }
-fun ServerPlayer.extraData(key: String) = Cobblemon.playerDataManager.getGenericData(this).extraData[key]
-fun ServerPlayer.hasKeyItem(key: Identifier) = Cobblemon.playerDataManager.getGenericData(this).keyItems.contains(key)
+fun ServerPlayerEntity.extraData(key: String) = Cobblemon.playerDataManager.getGenericData(this).extraData[key]
+fun ServerPlayerEntity.hasKeyItem(key: Identifier) = Cobblemon.playerDataManager.getGenericData(this).keyItems.contains(key)
 fun UUID.getPlayer() = server()?.playerList?.getPlayer(this)
 
-fun ServerPlayer.onLogout(handler: () -> Unit) {
+fun ServerPlayerEntity.onLogout(handler: () -> Unit) {
     PlatformEvents.SERVER_PLAYER_LOGOUT.pipe(filter { it.player.uuid == uuid }, takeFirst()).subscribe { handler() }
 }
 
@@ -79,7 +79,7 @@ fun ServerPlayer.onLogout(handler: () -> Unit) {
  *
  * @return If the attempt to heal was successful.
  */
-fun ServerPlayer.didSleep(): Boolean {
+fun ServerPlayerEntity.didSleep(): Boolean {
     if (sleepTimer != 100 || level().dayTime.toInt() % 24000 != 0 || this.isInBattle()) {
         return false
     }
@@ -87,8 +87,8 @@ fun ServerPlayer.didSleep(): Boolean {
     return true
 }
 
-fun ServerPlayer.isInBattle() = BattleRegistry.getBattleByParticipatingPlayer(this) != null
-fun ServerPlayer.getBattleState(): Pair<PokemonBattle, BattleActor>? {
+fun ServerPlayerEntity.isInBattle() = BattleRegistry.getBattleByParticipatingPlayer(this) != null
+fun ServerPlayerEntity.getBattleState(): Pair<PokemonBattle, BattleActor>? {
     val battle = BattleRegistry.getBattleByParticipatingPlayer(this)
     if (battle != null) {
         val actor = battle.getActor(this)
@@ -99,11 +99,11 @@ fun ServerPlayer.getBattleState(): Pair<PokemonBattle, BattleActor>? {
     return null
 }
 
-fun ServerPlayer.getBattleTeam() = TeamManager.getTeam(this)
+fun ServerPlayerEntity.getBattleTeam() = TeamManager.getTeam(this)
 
-fun ServerPlayer.isTrading() = TradeManager.getActiveTrade(this.uuid) != null
+fun ServerPlayerEntity.isTrading() = TradeManager.getActiveTrade(this.uuid) != null
 
-fun ServerPlayer.canInteractWith(target: LivingEntity, maxDistance: Float) = target != this && !this.isSpectator && !target.isSpectator &&
+fun ServerPlayerEntity.canInteractWith(target: LivingEntity, maxDistance: Float) = target != this && !this.isSpectator && !target.isSpectator &&
     this.traceFirstEntityCollision(
         entityClass = LivingEntity::class.java,
         ignoreEntity = this,
@@ -289,7 +289,7 @@ fun findDirectionForIntercept(p0: Vec3, p1: Vec3, blockPos: BlockPos): Direction
     return minDirection
 }
 
-fun ServerPlayer.raycast(maxDistance: Float, fluidHandling: ClipContext.Fluid?): BlockHitResult {
+fun ServerPlayerEntity.raycast(maxDistance: Float, fluidHandling: ClipContext.Fluid?): BlockHitResult {
     val f = xRot
     val g = yRot
     val vec3d = eyePosition
@@ -303,7 +303,7 @@ fun ServerPlayer.raycast(maxDistance: Float, fluidHandling: ClipContext.Fluid?):
     return level().clip(ClipContext(vec3d, vec3d2, ClipContext.Block.OUTLINE, fluidHandling, this))
 }
 
-fun ServerPlayer.raycastSafeSendout(pokemon: Pokemon, maxDistance: Double, dropHeight: Double, fluidHandling: ClipContext.Fluid?): Vec3? {
+fun ServerPlayerEntity.raycastSafeSendout(pokemon: Pokemon, maxDistance: Double, dropHeight: Double, fluidHandling: ClipContext.Fluid?): Vec3? {
     // Crazy math stuff, don't worry about it
     val f = xRot
     val g = yRot
@@ -411,7 +411,7 @@ fun Player.giveOrDropItemStack(stack: ItemStack, playSound: Boolean = true) {
 }
 
 /** Retrieves the battle theme associated with this player, or the default PVP theme if null. */
-fun ServerPlayer.getBattleTheme() = Cobblemon.playerDataManager.getGenericData(this).battleTheme?.let { BuiltInRegistries.SOUND_EVENT.get(it) } ?: CobblemonSounds.PVP_BATTLE
+fun ServerPlayerEntity.getBattleTheme() = Cobblemon.playerDataManager.getGenericData(this).battleTheme?.let { BuiltInRegistries.SOUND_EVENT.get(it) } ?: CobblemonSounds.PVP_BATTLE
 
 
 /** Checks if any [PokemonEntity]s belonging to a player's party has any busy locks. */

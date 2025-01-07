@@ -91,5 +91,5 @@ object ActionEffects : JsonDataRegistry<ActionEffectTimeline> {
         observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
 }

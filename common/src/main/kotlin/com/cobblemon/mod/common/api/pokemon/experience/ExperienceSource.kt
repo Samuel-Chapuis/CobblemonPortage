@@ -32,7 +32,7 @@ open class SidemodExperienceSource(
 ) : ExperienceSource
 
 open class CandyExperienceSource(
-    val player: ServerPlayer,
+    val player: ServerPlayerEntity,
     val stack: ItemStack
 ) : ExperienceSource
 

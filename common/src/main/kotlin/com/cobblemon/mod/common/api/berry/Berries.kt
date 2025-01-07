@@ -81,7 +81,7 @@ object Berries : JsonDataRegistry<Berry> {
         this.observable.emit(this)
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         BerryRegistrySyncPacket(this.all()).sendToPlayer(player)
     }
 

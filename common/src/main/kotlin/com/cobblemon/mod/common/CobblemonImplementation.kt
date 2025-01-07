@@ -204,7 +204,7 @@ enum class ModAPI {
 }
 
 interface NetworkManager {
-    fun sendPacketToPlayer(player: ServerPlayer, packet: NetworkPacket<*>)
+    fun sendPacketToPlayer(player: ServerPlayerEntity, packet: NetworkPacket<*>)
 
     fun sendToServer(packet: NetworkPacket<*>)
 }

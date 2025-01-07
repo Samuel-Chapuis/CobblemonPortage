@@ -54,7 +54,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
         if (world.isClientSide && player is LocalPlayer) {
             CobblemonClient.pokedexUsageContext.type = type
         }
-        if (player !is ServerPlayer) return InteractionResultHolder.consume(itemStack)
+        if (player !is ServerPlayerEntity) return InteractionResultHolder.consume(itemStack)
         //Disables breaking blocks and damaging entities
         player.startUsingItem(usedHand)
         return InteractionResultHolder.fail(itemStack)
@@ -66,7 +66,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
         stack: ItemStack,
         remainingUseTicks: Int
     ) {
-        if (world.isServerSide() && user is ServerPlayer && user.isChangingDimension) {
+        if (world.isServerSide() && user is ServerPlayerEntity && user.isChangingDimension) {
             user.stopUsingItem()
             return
         }

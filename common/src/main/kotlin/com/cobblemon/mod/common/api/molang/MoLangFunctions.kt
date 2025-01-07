@@ -274,7 +274,7 @@ object MoLangFunctions {
                     if (it is StringValue) world.getPlayerByUUID(UUID.fromString(it.value))
                     else if (it is ObjectValue<*>) it.obj
                     else null
-                } as? ServerPlayer
+                } as? ServerPlayerEntity
                 val pos = Vec3(x, y, z)
 
                 if (world !is ClientLevel) {
@@ -339,7 +339,7 @@ object MoLangFunctions {
                 environment
             }
             map.put("is_player") { DoubleValue.ONE }
-            if (player is ServerPlayer) {
+            if (player is ServerPlayerEntity) {
                 map.put("run_command") { params ->
                     val command = params.getString(0)
                     player.server.commands.performPrefixedCommand(player.createCommandSourceStack(), command)
@@ -532,7 +532,7 @@ object MoLangFunctions {
                     val target = params.getStringOrNull(1)
                     if (target != null) {
                         val targetPlayer = if (target.asUUID != null) {
-                            entity.level().getPlayerByUUID(target.asUUID!!) as ServerPlayer
+                            entity.level().getPlayerByUUID(target.asUUID!!) as ServerPlayerEntity
                         } else if (entity.level() is ServerLevel) {
                             entity.level().server!!.playerList.getPlayerByName(target)
                         } else {
@@ -558,7 +558,7 @@ object MoLangFunctions {
                     if (it is StringValue) entity.level().getPlayerByUUID(UUID.fromString(it.value))
                     else if (it is ObjectValue<*>) it.obj
                     else null
-                } as? ServerPlayer
+                } as? ServerPlayerEntity
 
                 val packet = SpawnSnowstormEntityParticlePacket(particle, entity.id, listOf(locator))
                 if (player == null) {
@@ -858,7 +858,7 @@ object MoLangFunctions {
             map.put("bucket") { _ -> StringValue(spawningContext.cause.bucket.name) }
             map.put("player") { _ ->
                 val causeEntity = spawningContext.cause.entity ?: return@put DoubleValue.ZERO
-                if (causeEntity is ServerPlayer) {
+                if (causeEntity is ServerPlayerEntity) {
                     return@put causeEntity.asMoLangValue()
                 } else {
                     return@put DoubleValue.ZERO

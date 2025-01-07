@@ -142,14 +142,14 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
 
     override fun playerWillDestroy(world: World, pos: BlockPos, state: BlockState, player: Player): BlockState {
         if (!world.isClientSide) {
-            if (isFake() && (player is ServerPlayer)) {
+            if (isFake() && (player is ServerPlayerEntity)) {
                 spawnPokemon(world, pos, state, player)
             }
         }
         return super.playerWillDestroy(world, pos, state, player)
     }
 
-    private fun spawnPokemon(world: World, pos: BlockPos, state: BlockState, player: ServerPlayer): InteractionResult {
+    private fun spawnPokemon(world: World, pos: BlockPos, state: BlockState, player: ServerPlayerEntity): InteractionResult {
         val properties = "$POKEMON_ARGS lvl=${LEVEL_RANGE.random()}"
         val pokemon = PokemonProperties.parse(properties)
         val entity = pokemon.createEntity(world)
@@ -186,7 +186,7 @@ class GildedChestBlock(settings: Properties, val type: Type = Type.RED) : BaseEn
         hit: BlockHitResult
     ): InteractionResult {
         if (isFake()) {
-            if (player is ServerPlayer) {
+            if (player is ServerPlayerEntity) {
                 return spawnPokemon(world, pos, state, player)
             } else {
                 return InteractionResult.SUCCESS

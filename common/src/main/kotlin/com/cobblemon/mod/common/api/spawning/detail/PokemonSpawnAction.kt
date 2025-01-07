@@ -45,7 +45,7 @@ class PokemonSpawnAction(
         } else {
             null
         }?.createStack(ctx)
-        val sourcePlayer = ctx.cause.entity as? ServerPlayer
+        val sourcePlayer = ctx.cause.entity as? ServerPlayerEntity
         val entity = props.createEntity(ctx.world, sourcePlayer)
         entity.spawnCause = ctx.cause
         SeasonFeatureHandler.updateSeason(entity.pokemon, Cobblemon.seasonResolver(ctx.world, ctx.position))

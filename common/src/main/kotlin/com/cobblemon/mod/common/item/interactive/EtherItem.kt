@@ -44,7 +44,7 @@ class EtherItem(val max: Boolean): CobblemonItem(Properties()), PokemonAndMoveSe
 
     override fun canUseOnMove(move: Move) = move.currentPp < move.maxPp
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.moveSet.any(::canUseOnMove)
-    override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon, move: Move) {
+    override fun applyToPokemon(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon, move: Move) {
         val moveToRecover = pokemon.moveSet.find { it.template == move.template }
         if (moveToRecover != null && moveToRecover.currentPp < moveToRecover.maxPp) {
             moveToRecover.currentPp = if (max) moveToRecover.maxPp else min(moveToRecover.maxPp, moveToRecover.currentPp + 10)
@@ -56,13 +56,13 @@ class EtherItem(val max: Boolean): CobblemonItem(Properties()), PokemonAndMoveSe
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon, move: Move) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon, move: Move) {
         super.applyToBattlePokemon(player, stack, battlePokemon, move)
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_LIQUID_USE, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world is ServerLevel && user is ServerPlayer) {
+        if (world is ServerLevel && user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand)) ?: InteractionResultHolder.pass(user.getItemInHand(hand))
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))

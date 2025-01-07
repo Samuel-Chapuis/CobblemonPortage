@@ -41,16 +41,16 @@ interface PlayerActionRequest {
  * @author Segfault Guy
  * @since September 29th, 2024
  */
-interface ServerPlayerActionRequest : PlayerActionRequest {
+interface ServerPlayerEntityActionRequest : PlayerActionRequest {
 
     /** The subkey identifying lang entries associated with this request. */
     val key: String
 
     /** The player initiating this interaction request. */
-    val sender: ServerPlayer
+    val sender: ServerPlayerEntity
 
     /** The player that's the target of this interaction request. */
-    val receiver: ServerPlayer
+    val receiver: ServerPlayerEntity
 
     /** The unique ID of the party that's the target of this request. */
     val receiverID: UUID get() = receiver.uuid
@@ -70,7 +70,7 @@ interface ServerPlayerActionRequest : PlayerActionRequest {
     fun notifyReceiver(error: Boolean, langKey: String, vararg params: Any) = notify(receiver, error, "$key.$langKey", *params)
 
     /** System message to inform individual [player] about [langKey]. */
-    fun notify(player: ServerPlayer, error: Boolean, langKey: String, vararg params: Any) {
+    fun notify(player: ServerPlayerEntity, error: Boolean, langKey: String, vararg params: Any) {
         val lang = lang(langKey, *params).apply { if (error) red() else yellow() }
         player.sendSystemMessage(lang, false)
     }
@@ -82,7 +82,7 @@ interface ServerPlayerActionRequest : PlayerActionRequest {
  * @author Segfault Guy
  * @since October 29th, 2024
  */
-interface ServerTeamActionRequest : ServerPlayerActionRequest {
+interface ServerTeamActionRequest : ServerPlayerEntityActionRequest {
 
     /** The team initiating this request. */
     val senderTeam: TeamManager.MultiBattleTeam

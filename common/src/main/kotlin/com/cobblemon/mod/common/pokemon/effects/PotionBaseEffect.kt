@@ -28,7 +28,7 @@ class PotionBaseEffect(
     val showIcon: Boolean
 ) : ShoulderEffect {
 
-    override fun applyEffect(pokemon: Pokemon, player: ServerPlayer, isLeft: Boolean) {
+    override fun applyEffect(pokemon: Pokemon, player: ServerPlayerEntity, isLeft: Boolean) {
         val effect = player.getEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))
         // We handle part of our own type.
         if (effect is ShoulderStatusEffectInstance && effect.amplifier >= this.amplifier) {
@@ -44,7 +44,7 @@ class PotionBaseEffect(
         player.addEffect(this.createStatus(pokemon))
     }
 
-    override fun removeEffect(pokemon: Pokemon, player: ServerPlayer, isLeft: Boolean) {
+    override fun removeEffect(pokemon: Pokemon, player: ServerPlayerEntity, isLeft: Boolean) {
         val effect = player.getEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect)) as? ShoulderStatusEffectInstance ?: return
         if (effect.amplifier == this.amplifier && effect.ambient == this.ambient && effect.isVisible() == this.showParticles && effect.showIcon() == this.showIcon) {
             effect.shoulderSources.remove(pokemon.uuid)

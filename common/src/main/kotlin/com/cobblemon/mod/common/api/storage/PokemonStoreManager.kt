@@ -46,7 +46,7 @@ open class PokemonStoreManager {
         factories.toList().forEach { unregisterFactory(it, registryAccess) }
     }
 
-    open fun getParty(player: ServerPlayer) = getParty(player.uuid, player.registryAccess())
+    open fun getParty(player: ServerPlayerEntity) = getParty(player.uuid, player.registryAccess())
 
     open fun getParty(playerID: UUID, registryAccess: RegistryAccess): PlayerPartyStore {
         return factories.firstNotNullOfOrNull { it.getPlayerParty(playerID, registryAccess) }
@@ -55,7 +55,7 @@ open class PokemonStoreManager {
             )
     }
 
-    open fun getPC(player: ServerPlayer) = getPC(player.uuid, player.registryAccess())
+    open fun getPC(player: ServerPlayerEntity) = getPC(player.uuid, player.registryAccess())
 
     open fun getPC(playerID: UUID, registryAccess: RegistryAccess): PCStore {
         return factories.firstNotNullOfOrNull { it.getPC(playerID, registryAccess) }
@@ -64,7 +64,7 @@ open class PokemonStoreManager {
             )
     }
 
-    open fun getPCForPlayer(player: ServerPlayer, pcBlockEntity: PCBlockEntity): PCStore? {
+    open fun getPCForPlayer(player: ServerPlayerEntity, pcBlockEntity: PCBlockEntity): PCStore? {
         return factories.firstNotNullOfOrNull { it.getPCForPlayer(player, pcBlockEntity) }
     }
 
@@ -96,14 +96,14 @@ open class PokemonStoreManager {
         return null
     }
 
-    open fun onPlayerDataSync(player: ServerPlayer) {
+    open fun onPlayerDataSync(player: ServerPlayerEntity) {
         val parties = getParties(player.uuid, player.registryAccess())
         parties.forEach { party -> party.sendTo(player) }
         getPCs(player.uuid, player.registryAccess()).forEach { pc -> pc.sendTo(player) }
         player.sendPacket(SetPartyReferencePacket(parties.first().uuid))
     }
 
-    open fun onPlayerDisconnect(player: ServerPlayer) {
+    open fun onPlayerDisconnect(player: ServerPlayerEntity) {
         for (factory in factories) {
             factory.onPlayerDisconnect(player)
         }

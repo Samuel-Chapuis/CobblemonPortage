@@ -39,14 +39,14 @@ class BerryJuiceItem : CobblemonItem(Properties()), PokemonSelectingItem, Healin
 
     override fun canUseOnPokemon(pokemon: Pokemon) = !pokemon.isFullHealth() && pokemon.currentHealth > 0
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))
     }
 
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack>? {
@@ -70,7 +70,7 @@ class BerryJuiceItem : CobblemonItem(Properties()), PokemonSelectingItem, Healin
         return InteractionResultHolder.success(stack)
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
         if (!player.isCreative)  {

@@ -39,7 +39,7 @@ object NaturalMaterials : JsonDataRegistry<List<NaturalMaterial>>{
 
     private val itemMap = mutableMapOf<Identifier, NaturalMaterial>()
     private val tagMap = mutableMapOf<ItemTagCondition, NaturalMaterial>()
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         NaturalMaterialRegistrySyncPacket(this.itemMap.values.toList() + this.tagMap.values.toList()).sendToPlayer(player)
     }
 

@@ -42,7 +42,7 @@ open class ItemDropEntry : DropEntry {
     open var item = Identifier.parse("minecraft:fish")
     open val components: DataComponentMap? = null
 
-    override fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayer?) {
+    override fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayerEntity?) {
         val item = world.registryAccess().registryOrThrow(Registries.ITEM).get(item) ?: return LOGGER.error("Unable to load drop item: $item")
         val stack = ItemStack(item, quantityRange?.random() ?: quantity)
         val inLava = world.getBlockState(pos.toBlockPos()).block == Blocks.LAVA

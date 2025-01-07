@@ -34,7 +34,7 @@ object MiscModelRepository : JsonDataRegistry<TexturedModel> {
     override val resourcePath = "bedrock/misc"
     private val models = hashMapOf<Identifier, ModelPart>()
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
 
     override fun reload(data: Map<Identifier, TexturedModel>) {
         data.forEach { (identifier, model) ->

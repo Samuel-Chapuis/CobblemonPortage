@@ -42,7 +42,7 @@ class SpawnPool(val name: String) : JsonDataRegistry<SpawnSet>, Iterable<SpawnDe
     override val gson: Gson = SpawnLoader.gson
     override val typeToken = TypeToken.get(SpawnSet::class.java)
     override val resourcePath = id.path
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
     override fun reload(data: Map<Identifier, SpawnSet>) {
         details.clear()
         for (set in data.values) {

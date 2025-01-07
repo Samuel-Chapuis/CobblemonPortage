@@ -39,7 +39,7 @@ class HealPowderItem : CobblemonItem(Properties()), PokemonSelectingItem {
 
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.status != null && pokemon.currentHealth > 0
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack>? {
@@ -56,13 +56,13 @@ class HealPowderItem : CobblemonItem(Properties()), PokemonSelectingItem {
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_HERB_USE, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))

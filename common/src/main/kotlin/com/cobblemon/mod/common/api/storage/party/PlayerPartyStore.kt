@@ -95,7 +95,7 @@ open class PlayerPartyStore(
      * Called on the party every second for routine party updates
      * ex: Passive healing, statuses, etc
      */
-    fun onSecondPassed(player: ServerPlayer) {
+    fun onSecondPassed(player: ServerPlayerEntity) {
         // Passive healing and passive statuses require the player be out of battle
         if (BattleRegistry.getBattleByParticipatingPlayer(player) == null) {
             val random = Random.Default

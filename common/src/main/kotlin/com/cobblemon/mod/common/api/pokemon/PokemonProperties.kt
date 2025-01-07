@@ -577,7 +577,7 @@ open class PokemonProperties {
     }
 
     @JvmOverloads
-    fun create(player: ServerPlayer? = null): Pokemon {
+    fun create(player: ServerPlayerEntity? = null): Pokemon {
         val pokemon = Pokemon()
         apply(pokemon)
         pokemon.initialize()
@@ -587,7 +587,7 @@ open class PokemonProperties {
 
     // TEST YOUR LUCK!
     @JvmOverloads
-    fun roll(pokemon: Pokemon, player: ServerPlayer? = null) {
+    fun roll(pokemon: Pokemon, player: ServerPlayerEntity? = null) {
         val baseTypes = pokemon.form.types.toList()
         var shinyRate = Cobblemon.config.shinyRate
         CobblemonEvents.SHINY_CHANCE_CALCULATION.post(ShinyChanceCalculationEvent(shinyRate, pokemon)) { event ->
@@ -606,7 +606,7 @@ open class PokemonProperties {
     }
 
     @JvmOverloads
-    fun createEntity(world: World, player: ServerPlayer? = null): PokemonEntity {
+    fun createEntity(world: World, player: ServerPlayerEntity? = null): PokemonEntity {
         return PokemonEntity(world, create(player)).also { applyCustomProperties(it) }
     }
 

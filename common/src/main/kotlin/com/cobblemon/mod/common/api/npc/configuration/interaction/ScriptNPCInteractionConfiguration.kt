@@ -38,7 +38,7 @@ class ScriptNPCInteractionConfiguration : NPCInteractConfiguration {
         script = buffer.readIdentifier()
     }
 
-    override fun interact(npc: NPCEntity, player: ServerPlayer): Boolean {
+    override fun interact(npc: NPCEntity, player: ServerPlayerEntity): Boolean {
         val script = CobblemonScripts.scripts[script] ?: return false
         val context = mapOf(
             "npc" to npc.struct,

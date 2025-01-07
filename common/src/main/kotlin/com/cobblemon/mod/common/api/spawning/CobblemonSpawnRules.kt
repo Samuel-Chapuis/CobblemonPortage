@@ -73,5 +73,5 @@ object CobblemonSpawnRules : JsonDataRegistry<SpawnRule> {
     override val type: PackType = PackType.SERVER_DATA
     override val observable = SimpleObservable<CobblemonSpawnRules>()
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
 }

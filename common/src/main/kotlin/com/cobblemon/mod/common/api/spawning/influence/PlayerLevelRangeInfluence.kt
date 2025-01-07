@@ -28,7 +28,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since February 14th, 2022
  */
 open class PlayerLevelRangeInfluence(
-    player: ServerPlayer,
+    player: ServerPlayerEntity,
     val variation: Int,
     val noPokemonRange: IntRange = 1 .. config.minimumLevelRangeMax,
     val recalculationMillis: Long = 5000L

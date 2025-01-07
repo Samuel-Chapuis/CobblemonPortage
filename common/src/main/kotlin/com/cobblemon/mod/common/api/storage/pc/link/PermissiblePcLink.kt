@@ -17,12 +17,12 @@ import net.minecraft.server.network.ServerPlayerEntity
  * A [PCLink] tied to a player that must have a permission.
  *
  * @param pc The [PCStore] being opened.
- * @param player The [ServerPlayer] opening the PC.
+ * @param player The [ServerPlayerEntity] opening the PC.
  * @param permission The [Permission] required for this link to work.
  */
-class PermissiblePcLink(pc: PCStore, player: ServerPlayer, private val permission: Permission) : PCLink(pc, player.uuid) {
+class PermissiblePcLink(pc: PCStore, player: ServerPlayerEntity, private val permission: Permission) : PCLink(pc, player.uuid) {
 
-    override fun isPermitted(player: ServerPlayer): Boolean {
+    override fun isPermitted(player: ServerPlayerEntity): Boolean {
         val result = Cobblemon.permissionValidator.hasPermission(player, this.permission)
         if (!result) {
             PCLinkManager.removeLink(player.uuid)

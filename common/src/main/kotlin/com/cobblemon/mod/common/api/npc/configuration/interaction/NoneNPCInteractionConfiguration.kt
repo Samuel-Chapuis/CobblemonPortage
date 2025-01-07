@@ -29,6 +29,6 @@ class NoneNPCInteractionConfiguration : NPCInteractConfiguration {
     override fun decode(buffer: RegistryFriendlyByteBuf) {}
     override fun writeToNBT(compoundTag: CompoundTag) {}
     override fun readFromNBT(compoundTag: CompoundTag) {}
-    override fun interact(npc: NPCEntity, player: ServerPlayer) = false
+    override fun interact(npc: NPCEntity, player: ServerPlayerEntity) = false
     override fun isDifferentTo(other: NPCInteractConfiguration) = other !is NoneNPCInteractionConfiguration
 }

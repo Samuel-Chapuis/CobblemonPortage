@@ -28,13 +28,13 @@ import net.minecraft.server.network.ServerPlayerEntity
 object DialogueManager {
     val activeDialogues = mutableMapOf<UUID, ActiveDialogue>()
 
-    fun startDialogue(playerEntity: ServerPlayer, dialogue: Dialogue): ActiveDialogue {
+    fun startDialogue(playerEntity: ServerPlayerEntity, dialogue: Dialogue): ActiveDialogue {
         val activeDialogue = ActiveDialogue(playerEntity, dialogue)
         startDialogue(activeDialogue)
         return activeDialogue
     }
 
-    fun startDialogue(playerEntity: ServerPlayer, npcEntity: NPCEntity, dialogue: Dialogue): ActiveDialogue {
+    fun startDialogue(playerEntity: ServerPlayerEntity, npcEntity: NPCEntity, dialogue: Dialogue): ActiveDialogue {
         val activeDialogue = ActiveDialogue(playerEntity, dialogue)
         activeDialogue.runtime.withNPCValue("npc", npcEntity)
         activeDialogue.npc = npcEntity
@@ -49,7 +49,7 @@ object DialogueManager {
         }
     }
 
-    fun stopDialogue(playerEntity: ServerPlayer) {
+    fun stopDialogue(playerEntity: ServerPlayerEntity) {
         val activeDialogue = playerEntity.activeDialogue ?: return
         DialogueClosedPacket(activeDialogue.dialogueId).sendToPlayer(playerEntity)
         activeDialogues.remove(activeDialogue.dialogueId)

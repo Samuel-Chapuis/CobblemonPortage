@@ -40,7 +40,7 @@ class ScriptPartyProvider : NPCPartyProvider {
         script = json.asJsonObject.get("script").asString.asIdentifierDefaultingNamespace()
     }
 
-    override fun provide(npc: NPCEntity, level: Int, players: List<ServerPlayer>): NPCPartyStore {
+    override fun provide(npc: NPCEntity, level: Int, players: List<ServerPlayerEntity>): NPCPartyStore {
         val runtime = MoLangRuntime().setup().withQueryValue("npc", npc.struct)
         runtime.withQueryValue("level", DoubleValue(level))
         runtime.withQueryValue("players", players.asArrayValue { it.asMoLangValue() })

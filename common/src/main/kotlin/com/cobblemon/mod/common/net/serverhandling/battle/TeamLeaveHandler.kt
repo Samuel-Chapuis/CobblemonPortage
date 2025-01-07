@@ -22,7 +22,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since April 15th, 2024
  */
 object TeamLeaveHandler : ServerNetworkPacketHandler<BattleTeamLeavePacket> {
-    override fun handle(packet: BattleTeamLeavePacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: BattleTeamLeavePacket, server: MinecraftServer, player: ServerPlayerEntity) {
         TeamManager.removeTeamMember(player)
     }
 

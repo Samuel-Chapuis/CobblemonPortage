@@ -28,9 +28,9 @@ object PCLinkManager {
         links[pcLink.playerID] = pcLink
     }
 
-    fun addLink(playerID: UUID, pcStore: PCStore, condition: (ServerPlayer) -> Boolean = { true }) {
+    fun addLink(playerID: UUID, pcStore: PCStore, condition: (ServerPlayerEntity) -> Boolean = { true }) {
         links[playerID] = object : PCLink(playerID = playerID, pc = pcStore) {
-            override fun isPermitted(player: ServerPlayer) = condition(player)
+            override fun isPermitted(player: ServerPlayerEntity) = condition(player)
         }
     }
 
@@ -38,5 +38,5 @@ object PCLinkManager {
         links.remove(playerID)
     }
 
-    fun getPC(player: ServerPlayer) = getLink(player.uuid)?.takeIf { it.isPermitted(player) }?.pc
+    fun getPC(player: ServerPlayerEntity) = getLink(player.uuid)?.takeIf { it.isPermitted(player) }?.pc
 }

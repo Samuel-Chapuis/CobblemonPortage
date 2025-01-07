@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object RequestMoveSwapHandler : ServerNetworkPacketHandler<RequestMoveSwapPacket> {
-    override fun handle(packet: RequestMoveSwapPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: RequestMoveSwapPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val pokemon = Cobblemon.storage.getParty(player).get(packet.slot) ?: return
         val move1 = pokemon.moveSet[packet.move1] ?: return
         val move2 = pokemon.moveSet[packet.move2] ?: return

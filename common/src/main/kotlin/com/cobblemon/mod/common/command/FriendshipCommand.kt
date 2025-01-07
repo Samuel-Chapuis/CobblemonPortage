@@ -30,7 +30,7 @@ object FriendshipCommand {
             ))
     }
 
-    private fun execute(source: CommandSourceStack, target: ServerPlayer, pokemon: Pokemon) : Int {
+    private fun execute(source: CommandSourceStack, target: ServerPlayerEntity, pokemon: Pokemon) : Int {
         source.sendSuccess({ commandLang("friendship", pokemon.getDisplayName(), pokemon.friendship) }, true)
         return Command.SINGLE_SUCCESS
     }

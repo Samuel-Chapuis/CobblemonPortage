@@ -83,7 +83,7 @@ object NPCPresets : JsonDataRegistry<NPCPreset> {
     override val observable = SimpleObservable<NPCPresets>()
     private val npcPresetsByIdentifier = mutableMapOf<Identifier, NPCPreset>()
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         // TODO probably do want to sync the presets
     }
 

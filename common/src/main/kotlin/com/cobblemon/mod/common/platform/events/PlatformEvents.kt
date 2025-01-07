@@ -39,19 +39,19 @@ object PlatformEvents {
     val CLIENT_TICK_POST = EventObservable<ClientTickEvent.Post>()
 
     @JvmField
-    val SERVER_PLAYER_LOGIN = EventObservable<ServerPlayerEvent.Login>()
+    val SERVER_PLAYER_LOGIN = EventObservable<ServerPlayerEntityEvent.Login>()
     @JvmField
-    val SERVER_PLAYER_LOGOUT = EventObservable<ServerPlayerEvent.Logout>()
+    val SERVER_PLAYER_LOGOUT = EventObservable<ServerPlayerEntityEvent.Logout>()
     @JvmField
     val CLIENT_PLAYER_LOGIN = EventObservable<ClientPlayerEvent.Login>()
     @JvmField
     val CLIENT_PLAYER_LOGOUT = EventObservable<ClientPlayerEvent.Logout>()
     @JvmField
-    val PLAYER_DEATH = CancelableObservable<ServerPlayerEvent.Death>()
+    val PLAYER_DEATH = CancelableObservable<ServerPlayerEntityEvent.Death>()
     @JvmField
-    val RIGHT_CLICK_BLOCK = CancelableObservable<ServerPlayerEvent.RightClickBlock>()
+    val RIGHT_CLICK_BLOCK = CancelableObservable<ServerPlayerEntityEvent.RightClickBlock>()
     @JvmField
-    val RIGHT_CLICK_ENTITY = CancelableObservable<ServerPlayerEvent.RightClickEntity>()
+    val RIGHT_CLICK_ENTITY = CancelableObservable<ServerPlayerEntityEvent.RightClickEntity>()
 
     @JvmField
     val CHANGE_DIMENSION = EventObservable<ChangeDimensionEvent>()

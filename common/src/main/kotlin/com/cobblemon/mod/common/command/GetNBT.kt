@@ -24,7 +24,7 @@ object GetNBT {
             .executes { execute(it, it.source.playerOrException) })
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer) : Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
         /*
         val stack = player.getItemInHand(Hand.MAIN_HAND)
         try {

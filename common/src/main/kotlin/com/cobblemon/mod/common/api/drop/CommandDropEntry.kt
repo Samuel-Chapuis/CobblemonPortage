@@ -34,7 +34,7 @@ class CommandDropEntry : DropEntry {
     override val quantity = 1
     override val maxSelectableTimes = 1
 
-    override fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayer?) {
+    override fun drop(entity: LivingEntity?, world: ServerLevel, pos: Vec3, player: ServerPlayerEntity?) {
         if (requiresPlayer && player == null) {
             return
         }

@@ -203,7 +203,7 @@ object PokemonSpecies : JsonDataRegistry<Species> {
         }
     }
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         SpeciesRegistrySyncPacket(species.toList()).sendToPlayer(player)
     }
 

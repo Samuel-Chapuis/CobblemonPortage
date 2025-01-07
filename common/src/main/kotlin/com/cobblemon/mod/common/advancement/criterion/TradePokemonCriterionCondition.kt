@@ -37,7 +37,7 @@ class TradePokemonCriterion(
         ).apply(it, ::TradePokemonCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: TradePokemonContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: TradePokemonContext): Boolean {
         val heldItem1 = context.traded.heldItem().item.builtInRegistryHolder().key().location()
         val heldItem2 = context.received.heldItem().item.builtInRegistryHolder().key().location()
 
@@ -80,7 +80,7 @@ class TradePokemonCriterion(
         receivedHeldItem = json.get("received_held_item")?.asString ?: "minecraft:air"
     }
 
-    override fun matches(player: ServerPlayer, context: TradePokemonContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: TradePokemonContext): Boolean {
         val heldItem1 = context.traded.heldItem().item.registryEntry.RegistryKey().value
         val heldItem2 = context.received.heldItem().item.registryEntry.RegistryKey().value
         return (context.traded.species.resourceIdentifier == traded.asIdentifierDefaultingNamespace() || traded == "any") &&

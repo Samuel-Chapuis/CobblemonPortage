@@ -60,13 +60,13 @@ object TestCommand {
 
     @Suppress("SameReturnValue")
     private fun execute(context: CommandContext<CommandSourceStack>): Int {
-        if (context.source.entity !is ServerPlayer) {
+        if (context.source.entity !is ServerPlayerEntity) {
             return Command.SINGLE_SUCCESS
         }
 
         try {
             //this.testCodecOutput(context)
-            val player = context.source.entity as ServerPlayer
+            val player = context.source.entity as ServerPlayerEntity
             player.party().forEach { it.currentHealth = it.hp / 2 }
             val npc = NPCEntity(player.level())
             npc.setPos(player.x, player.y, player.z)
@@ -153,7 +153,7 @@ object TestCommand {
         )
     }
 
-    private fun testTrade(playerEntity: ServerPlayer) {
+    private fun testTrade(playerEntity: ServerPlayerEntity) {
         val trade = ActiveTrade(
             player1 = PlayerTradeParticipant(playerEntity),
             player2 = DummyTradeParticipant(

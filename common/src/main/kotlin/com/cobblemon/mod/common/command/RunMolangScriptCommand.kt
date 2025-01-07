@@ -70,7 +70,7 @@ object RunMolangScriptCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, scriptId: Identifier, player: ServerPlayer?, npcId: UUID?, pokemonId: UUID? = null): Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, scriptId: Identifier, player: ServerPlayerEntity?, npcId: UUID?, pokemonId: UUID? = null): Int {
         try {
             val runtime = MoLangRuntime().setup()
             val npc = npcId?.let { context.source.level.getEntity(it) as? NPCEntity }

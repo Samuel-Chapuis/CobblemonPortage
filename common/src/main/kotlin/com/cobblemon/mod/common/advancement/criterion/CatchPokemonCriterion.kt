@@ -37,7 +37,7 @@ class CaughtPokemonCriterion(
         ).apply(it, ::CaughtPokemonCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: CountablePokemonTypeContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: CountablePokemonTypeContext): Boolean {
         return super.matches(player, context) && (context.type == type || type == "any")
     }
 }
@@ -54,7 +54,7 @@ class CaughtPokemonCriterion(
 //        type = json.get("type")?.asString ?: "any"
 //    }
 //
-//    override fun matches(player: ServerPlayer, context: CountablePokemonTypeContext): Boolean {
+//    override fun matches(player: ServerPlayerEntity, context: CountablePokemonTypeContext): Boolean {
 //        return super.matches(player, context) && (context.type == type || type == "any")
 //    }
 //}

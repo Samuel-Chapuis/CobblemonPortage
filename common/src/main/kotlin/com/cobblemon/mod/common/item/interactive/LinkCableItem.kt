@@ -17,7 +17,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 class LinkCableItem : CobblemonItem(Properties()), PokemonEntityInteraction {
     override val accepted = setOf(PokemonEntityInteraction.Ownership.OWNER)
-    override fun processInteraction(player: ServerPlayer, entity: PokemonEntity, stack: ItemStack): Boolean {
+    override fun processInteraction(player: ServerPlayerEntity, entity: PokemonEntity, stack: ItemStack): Boolean {
         val pokemon = entity.pokemon
         pokemon.lockedEvolutions.filterIsInstance<TradeEvolution>().forEach { evolution ->
             // If an evolution is possible non-optional or has been successfully queued we will consume the item and stop

@@ -43,7 +43,7 @@ class ElixirItem(val max: Boolean) : CobblemonItem(Properties()), PokemonSelecti
     }
 
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.moveSet.any { it.currentPp < it.maxPp }
-    override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon): InteractionResultHolder<ItemStack> {
+    override fun applyToPokemon(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon): InteractionResultHolder<ItemStack> {
         var changed = false
         pokemon.moveSet.doWithoutEmitting {
             pokemon.moveSet.getMoves().forEach {
@@ -71,13 +71,13 @@ class ElixirItem(val max: Boolean) : CobblemonItem(Properties()), PokemonSelecti
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_LIQUID_USE, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world is ServerLevel && user is ServerPlayer) {
+        if (world is ServerLevel && user is ServerPlayerEntity) {
             val stack = user.getItemInHand(hand)
             return use(user, stack)
         }

@@ -51,7 +51,7 @@ object CheckSpawnsCommand {
             ))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer) : Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
         if (!config.enableSpawning) {
             return 0
         }

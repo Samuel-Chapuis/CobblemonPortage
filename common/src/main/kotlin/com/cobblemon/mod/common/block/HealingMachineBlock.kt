@@ -147,7 +147,7 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
             return InteractionResult.SUCCESS
         }
 
-        val serverPlayerEntity = player as ServerPlayer
+        val serverPlayerEntity = player as ServerPlayerEntity
 
         if (blockEntity.isInUse) {
             player.sendSystemMessage(lang("healingmachine.alreadyinuse").red(), true)
@@ -188,7 +188,7 @@ class HealingMachineBlock(settings: Properties) : BaseEntityBlock(settings) {
     override fun setPlacedBy(world: World, blockPos: BlockPos, blockState: BlockState, livingEntity: LivingEntity?, itemStack: ItemStack) {
         super.setPlacedBy(world, blockPos, blockState, livingEntity, itemStack)
 
-        if (!world.isClientSide && livingEntity is ServerPlayer && livingEntity.isCreative) {
+        if (!world.isClientSide && livingEntity is ServerPlayerEntity && livingEntity.isCreative) {
             val blockEntity = world.getBlockEntity(blockPos)
             if (blockEntity !is HealingMachineBlockEntity) {
                 return

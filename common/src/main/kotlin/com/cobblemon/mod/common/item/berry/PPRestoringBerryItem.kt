@@ -48,7 +48,7 @@ class PPRestoringBerryItem(block: BerryBlock, val amount: () -> ExpressionLike):
 
     override fun canUseOnMove(move: Move) = move.currentPp < move.maxPp
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.moveSet.any(::canUseOnMove)
-    override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon, move: Move) {
+    override fun applyToPokemon(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon, move: Move) {
         val moveToRecover = pokemon.moveSet.find { it.template == move.template }
         if (moveToRecover != null && moveToRecover.currentPp < moveToRecover.maxPp) {
             moveToRecover.currentPp = min(moveToRecover.maxPp, moveToRecover.currentPp + genericRuntime.resolveInt(amount(), pokemon))
@@ -59,13 +59,13 @@ class PPRestoringBerryItem(block: BerryBlock, val amount: () -> ExpressionLike):
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon, move: Move) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon, move: Move) {
         super.applyToBattlePokemon(player, stack, battlePokemon, move)
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (world is ServerLevel && user is ServerPlayer) {
+        if (world is ServerLevel && user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand)) ?: InteractionResultHolder.pass(user.getItemInHand(hand))
         }
         return super<BerryItem>.use(world, user, hand)

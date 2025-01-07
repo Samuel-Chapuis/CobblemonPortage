@@ -36,7 +36,7 @@ object FreezePokemonCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer, freezeFrame: Float = 0F) : Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity, freezeFrame: Float = 0F) : Int {
         val targetEntity = player.traceFirstEntityCollision(entityClass = PokemonEntity::class.java)
         if (targetEntity == null) {
             player.sendSystemMessage(commandLang("freezepokemon.non_pokemon").red())

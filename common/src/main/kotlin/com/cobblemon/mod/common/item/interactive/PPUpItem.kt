@@ -25,7 +25,7 @@ class PPUpItem(val amount: Int) : CobblemonItem(Properties()), PokemonAndMoveSel
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.moveSet.any(::canUseOnMove)
     override fun canUseOnMove(move: Move) = move.raisedPpStages < 3
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon,
         move: Move
@@ -39,7 +39,7 @@ class PPUpItem(val amount: Int) : CobblemonItem(Properties()), PokemonAndMoveSel
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             use(user, user.getItemInHand(hand))?.let { return it }
         }
         return InteractionResultHolder.success(user.getItemInHand(hand))

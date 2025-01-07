@@ -126,7 +126,7 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
                     if (player.isCrouching) takeStoredItem(blockEntity, blockState, level, blockPos, player)
                     else {
                         blockEntity.incrementViewerCount()
-                        PokedexUIPacket(type = (blockEntity.getItemStack().item as PokedexItem).type, blockPos = blockPos).sendToPlayer(player as ServerPlayer)
+                        PokedexUIPacket(type = (blockEntity.getItemStack().item as PokedexItem).type, blockPos = blockPos).sendToPlayer(player as ServerPlayerEntity)
                         level.playSoundServer(position = blockPos.toVec3d(), sound = CobblemonSounds.POKEDEX_OPEN, volume = 0.25F)
                     }
                 }

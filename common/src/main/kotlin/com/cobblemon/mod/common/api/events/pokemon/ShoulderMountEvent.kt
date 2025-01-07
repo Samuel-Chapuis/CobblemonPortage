@@ -19,7 +19,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @since 2022-01-26
  */
 data class ShoulderMountEvent(
-    val player: ServerPlayer,
+    val player: ServerPlayerEntity,
     val pokemon: Pokemon,
     val isLeft: Boolean
 ) : Cancelable()

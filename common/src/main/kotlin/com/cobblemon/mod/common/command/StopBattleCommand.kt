@@ -33,7 +33,7 @@ object StopBattleCommand {
 
     private fun execute(context: CommandContext<CommandSourceStack>) : Int {
         val entity = context.source.entity
-        val player = context.player("player") ?: (if (entity is ServerPlayer) entity else return 0)
+        val player = context.player("player") ?: (if (entity is ServerPlayerEntity) entity else return 0)
         if (!player.level().isClientSide) {
             val battle = BattleRegistry.getBattleByParticipatingPlayer(player) ?: return 0
             battle.stop()

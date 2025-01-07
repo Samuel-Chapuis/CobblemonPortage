@@ -43,7 +43,7 @@ object SpeciesFeatureAssignments : JsonDataRegistry<SpeciesFeatureAssignment> {
 
     private val assignments = mutableMapOf<Identifier, MutableSet<String>>()
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         player.sendPacket(SpeciesFeatureAssignmentSyncPacket(assignments))
     }
     override fun reload(data: Map<Identifier, SpeciesFeatureAssignment>) {

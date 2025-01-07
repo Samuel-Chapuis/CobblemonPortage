@@ -596,7 +596,7 @@ open class Pokemon : ShowdownIdentifiable {
 
         // Handle special case of shouldered Cobblemon
         if (this.state is ShoulderedState) {
-            return sendOutFromShoulder(source as ServerPlayer, level, position, battleId, doCry, illusion, mutation)
+            return sendOutFromShoulder(source as ServerPlayerEntity, level, position, battleId, doCry, illusion, mutation)
         }
 
         // Proceed as normal for non-shouldered Cobblemon
@@ -701,7 +701,7 @@ open class Pokemon : ShowdownIdentifiable {
      * Send out the Pokémon from the player's shoulder.
      */
     fun sendOutFromShoulder(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         level: ServerLevel,
         targetPosition: Vec3,
         battleId: UUID? = null,
@@ -1068,8 +1068,8 @@ open class Pokemon : ShowdownIdentifiable {
         }
     }
 
-    fun getOwnerPlayer(): ServerPlayer? {
-        return getOwnerEntity() as? ServerPlayer
+    fun getOwnerPlayer(): ServerPlayerEntity? {
+        return getOwnerEntity() as? ServerPlayerEntity
     }
 
     fun getOwnerNPC(): NPCEntity? {
@@ -1405,7 +1405,7 @@ open class Pokemon : ShowdownIdentifiable {
         }
     }
 
-    fun addExperienceWithPlayer(player: ServerPlayer, source: ExperienceSource, xp: Int): AddExperienceResult {
+    fun addExperienceWithPlayer(player: ServerPlayerEntity, source: ExperienceSource, xp: Int): AddExperienceResult {
         val result = addExperience(source, xp)
         if (result.experienceAdded <= 0) {
             return result

@@ -52,14 +52,14 @@ import kotlin.collections.sortedBy
 object BattleBuilder {
     @JvmOverloads
     fun pvp1v1(
-        player1: ServerPlayer,
-        player2: ServerPlayer,
+        player1: ServerPlayerEntity,
+        player2: ServerPlayerEntity,
         leadingPokemonPlayer1: UUID? = null,
         leadingPokemonPlayer2: UUID? = null,
         battleFormat: BattleFormat = BattleFormat.GEN_9_SINGLES,
         cloneParties: Boolean = false,
         healFirst: Boolean = false,
-        partyAccessor: (ServerPlayer) -> PartyStore = { it.party() }
+        partyAccessor: (ServerPlayerEntity) -> PartyStore = { it.party() }
     ): BattleStartResult {
 
         val adjustLevel = battleFormat.adjustLevel
@@ -127,12 +127,12 @@ object BattleBuilder {
 
     @JvmOverloads
     fun pvp2v2(
-        players: List<ServerPlayer> = emptyList(),
+        players: List<ServerPlayerEntity> = emptyList(),
         leadingPokemon: List<UUID> = emptyList(),
         battleFormat: BattleFormat = BattleFormat.GEN_9_MULTI,
         cloneParties: Boolean = false,
         healFirst: Boolean = false,
-        partyAccessor: (ServerPlayer) -> PartyStore = { it.party() }
+        partyAccessor: (ServerPlayerEntity) -> PartyStore = { it.party() }
     ): BattleStartResult {
         val adjustLevel = battleFormat.adjustLevel
         val teams = players.mapIndexed { index, it ->
@@ -238,7 +238,7 @@ object BattleBuilder {
      */
     @JvmOverloads
     fun pve(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         pokemonEntity: PokemonEntity,
         leadingPokemon: UUID? = null,
         battleFormat: BattleFormat = BattleFormat.GEN_9_SINGLES,
@@ -310,7 +310,7 @@ object BattleBuilder {
      */
     @JvmOverloads
     fun pvn(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         npcEntity: NPCEntity,
         leadingPokemon: UUID? = null,
         battleFormat: BattleFormat = BattleFormat.GEN_9_SINGLES,
@@ -396,7 +396,7 @@ interface BattleStartError {
     fun getMessageFor(entity: Entity): MutableComponent
 
     companion object {
-        fun alreadyInBattle(player: ServerPlayer) = AlreadyInBattleError(player.uuid, player.effectiveName())
+        fun alreadyInBattle(player: ServerPlayerEntity) = AlreadyInBattleError(player.uuid, player.effectiveName())
         fun alreadyInBattle(pokemonEntity: PokemonEntity) = AlreadyInBattleError(pokemonEntity.uuid, pokemonEntity.effectiveName())
         fun alreadyInBattle(actor: BattleActor) = AlreadyInBattleError(actor.uuid, actor.getName())
         fun noParty(npcEntity: NPCEntity) = NoPartyError(npcEntity)
@@ -523,13 +523,13 @@ open class ErroredBattleStart(
     val isEmpty: Boolean
         get() = generalErrors.isEmpty() && participantErrors.values.all { it.isEmpty() }
 
-    fun isPlayerToBlame(player: ServerPlayer) = generalErrors.isEmpty()
+    fun isPlayerToBlame(player: ServerPlayerEntity) = generalErrors.isEmpty()
         && participantErrors.size == 1
         && participantErrors.entries.first().let { it.key.uuid == player.uuid }
 
     fun isSomePlayerToBlame() = generalErrors.isEmpty() && participantErrors.isNotEmpty()
 
-    val playersToBlame: Iterable<ServerPlayer>
+    val playersToBlame: Iterable<ServerPlayerEntity>
         get() = participantErrors.keys.mapNotNull { it.uuid.getPlayer() }
 
     val actorsToBlame: Iterable<BattleActor>

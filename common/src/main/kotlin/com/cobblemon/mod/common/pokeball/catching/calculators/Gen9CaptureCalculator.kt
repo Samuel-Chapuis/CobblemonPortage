@@ -45,7 +45,7 @@ object Gen9CaptureCalculator : CaptureCalculator, CriticalCaptureProvider, Poked
             return CaptureContext.successful()
         }
         // We don't have dark grass so we're just gonna pretend everything is that.
-        val darkGrass = if (thrower is ServerPlayer) this.caughtMultiplierFor(thrower).roundToInt() else 1
+        val darkGrass = if (thrower is ServerPlayerEntity) this.caughtMultiplierFor(thrower).roundToInt() else 1
         val catchRate = getCatchRate(thrower, pokeBallEntity, target, pokemon.form.catchRate.toFloat())
         val validModifier = pokeBall.catchRateModifier.isValid(thrower, pokemon)
         val bonusStatus = when (pokemon.status?.status) {
@@ -58,7 +58,7 @@ object Gen9CaptureCalculator : CaptureCalculator, CriticalCaptureProvider, Poked
         // ToDo implement bonusMisc when we have sandwich powers
         val ballBonus = if (validModifier) pokeBall.catchRateModifier.value(thrower, pokemon) else 1F
         val modifiedCatchRate = (pokeBall.catchRateModifier.behavior(thrower, pokemon).mutator((3F * pokemon.maxHealth - 2F * pokemon.currentHealth) * darkGrass * catchRate, ballBonus) / (3F * pokemon.maxHealth)) * bonusStatus * bonusLevel
-        val critical = if (thrower is ServerPlayer) this.shouldHaveCriticalCapture(thrower, modifiedCatchRate) else false
+        val critical = if (thrower is ServerPlayerEntity) this.shouldHaveCriticalCapture(thrower, modifiedCatchRate) else false
         val shakeProbability = (65536F / (255F / modifiedCatchRate).pow(0.1875F)).roundToInt()
         var shakes = 0
         repeat(4) {

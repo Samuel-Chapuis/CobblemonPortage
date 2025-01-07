@@ -30,7 +30,7 @@ class PartyCheckCriterion(
         ).apply(it, ::PartyCheckCriterion) }
     }
 
-    override fun matches(player: ServerPlayer, context: PlayerPartyStore): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: PlayerPartyStore): Boolean {
         val matches = mutableListOf<Identifier>()
         party.forEach {
             if (it == "any".asIdentifierDefaultingNamespace("minecraft") || it == "any".asIdentifierDefaultingNamespace()) {

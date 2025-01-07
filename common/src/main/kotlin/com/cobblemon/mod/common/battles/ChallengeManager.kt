@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.battles
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.interaction.RequestManager
-import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest
+import com.cobblemon.mod.common.api.interaction.ServerPlayerEntityActionRequest
 import com.cobblemon.mod.common.api.interaction.ServerTeamActionRequest
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.api.text.aqua
@@ -52,7 +52,7 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
      * @param battleFormat
      * @param expiryTime How long (in seconds) this request is active.
      */
-    abstract class BattleChallenge : ServerPlayerActionRequest {
+    abstract class BattleChallenge : ServerPlayerEntityActionRequest {
         abstract val selectedPokemonId: UUID
         abstract val battleFormat: BattleFormat
         override val requestID: UUID = UUID.randomUUID()
@@ -60,8 +60,8 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
 
     /** PLAYER-to-PLAYER BattleChallenge */
     data class SinglesBattleChallenge(
-        override val sender: ServerPlayer,
-        override val receiver: ServerPlayer,
+        override val sender: ServerPlayerEntity,
+        override val receiver: ServerPlayerEntity,
         override val selectedPokemonId: UUID,
         override val battleFormat: BattleFormat,
         override val expiryTime: Int = 20
@@ -71,8 +71,8 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
 
     /** TEAM-to-TEAM BattleChallenge */
     data class MultiBattleChallenge(
-        override val sender: ServerPlayer,
-        override val receiver: ServerPlayer,
+        override val sender: ServerPlayerEntity,
+        override val receiver: ServerPlayerEntity,
         override val selectedPokemonId: UUID,
         override val battleFormat: BattleFormat,    // TODO force this to be multi battletype
         override val expiryTime: Int = 20
@@ -122,7 +122,7 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
         }
     }
 
-    override fun isValidInteraction(player: ServerPlayer, target: ServerPlayer) = player.canInteractWith(target, Cobblemon.config.battlePvPMaxDistance)
+    override fun isValidInteraction(player: ServerPlayerEntity, target: ServerPlayerEntity) = player.canInteractWith(target, Cobblemon.config.battlePvPMaxDistance)
 
     override fun canAccept(request: BattleChallenge): Boolean {
         if (request is MultiBattleChallenge) {
@@ -176,13 +176,13 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
         return false
     }
 
-    private fun validateDimension(players: Collection<ServerPlayer>): Boolean {
+    private fun validateDimension(players: Collection<ServerPlayerEntity>): Boolean {
         val dimension = players.first().level().dimension()
         val playerInWrongDimension = players.firstOrNull { it.level().dimension() != dimension }
         return playerInWrongDimension != null
     }
 
-    private fun validateProximity(players: Collection<ServerPlayer>): ServerPlayer? {
+    private fun validateProximity(players: Collection<ServerPlayerEntity>): ServerPlayerEntity? {
         // Check if all players are nearby
         var averagePos = Vec3(0.0, 0.0, 0.0)
         players.forEach { averagePos = averagePos.add(it.position().multiply(1.0 / players.count(), 0.0, 1.0 / players.count())) }
@@ -190,5 +190,5 @@ object ChallengeManager : RequestManager<ChallengeManager.BattleChallenge>() {
         return farAwayPlayer
     }
 
-    fun setLead(player: ServerPlayer, lead: UUID) = this.selectedLead.put(player.uuid, lead)
+    fun setLead(player: ServerPlayerEntity, lead: UUID) = this.selectedLead.put(player.uuid, lead)
 }

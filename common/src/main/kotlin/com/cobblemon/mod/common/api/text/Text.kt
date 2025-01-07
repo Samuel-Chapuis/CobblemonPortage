@@ -75,9 +75,9 @@ class Text internal constructor() {
 
 fun text(vararg components: Any) = Text().parse(*components)
 
-val textClickHandlers = hashMapOf<UUID, (p: ServerPlayer) -> Unit>()
+val textClickHandlers = hashMapOf<UUID, (p: ServerPlayerEntity) -> Unit>()
 
-fun click(consumed: AtomicBoolean, action: (p: ServerPlayer) -> Unit): ClickEvent {
+fun click(consumed: AtomicBoolean, action: (p: ServerPlayerEntity) -> Unit): ClickEvent {
     val uuid = UUID.randomUUID()
     textClickHandlers[uuid] = {
         if (!consumed.get()) {
@@ -89,7 +89,7 @@ fun click(consumed: AtomicBoolean, action: (p: ServerPlayer) -> Unit): ClickEven
     return ClickEvent(ClickEvent.Action.RUN_COMMAND, "/cobblemonclicktext $uuid")
 }
 
-fun click(onlyOnce: Boolean = false, action: (p: ServerPlayer) -> Unit): ClickEvent {
+fun click(onlyOnce: Boolean = false, action: (p: ServerPlayerEntity) -> Unit): ClickEvent {
     val uuid = UUID.randomUUID()
     textClickHandlers[uuid] = if (onlyOnce) {
         {
@@ -151,8 +151,8 @@ fun MutableComponent.font(identifier: Identifier) = also { it.style = it.style.w
 fun String.text() = text(this)
 fun String.stripCodes(): String = this.replace("[&§][A-Ea-e0-9K-Ok-oRr]".toRegex(), "")
 
-fun MutableComponent.onClick(consumed: AtomicBoolean, action: (p: ServerPlayer) -> Unit) = also { it.style = it.style.withClickEvent(click(consumed, action)) }
-fun MutableComponent.onClick(onlyOnce: Boolean = false, action: (p: ServerPlayer) -> Unit) = also { it.style = it.style.withClickEvent(click(onlyOnce, action)) }
+fun MutableComponent.onClick(consumed: AtomicBoolean, action: (p: ServerPlayerEntity) -> Unit) = also { it.style = it.style.withClickEvent(click(consumed, action)) }
+fun MutableComponent.onClick(onlyOnce: Boolean = false, action: (p: ServerPlayerEntity) -> Unit) = also { it.style = it.style.withClickEvent(click(onlyOnce, action)) }
 fun MutableComponent.onHover(string: String) = also { it.style = it.style.withHoverEvent(hover(string)) }
 fun MutableComponent.onHover(text: Component) = also { it.style = it.style.withHoverEvent(hover(text)) }
 fun MutableComponent.onHover(text: MutableComponent) = also { it.style = it.style.withHoverEvent(hover(text)) }

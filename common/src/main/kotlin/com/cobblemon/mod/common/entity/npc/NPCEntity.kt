@@ -123,7 +123,7 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
 
     var allowProjectileHits: Boolean? = null
 
-    fun getPartyForChallenge(players: List<ServerPlayer>): NPCPartyStore? {
+    fun getPartyForChallenge(players: List<ServerPlayerEntity>): NPCPartyStore? {
         val party = this.party
         return if (party != null) {
             party
@@ -483,7 +483,7 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
     }
 
     override fun mobInteract(player: Player, hand: InteractionHand): InteractionResult {
-        if (player is ServerPlayer) {
+        if (player is ServerPlayerEntity) {
             if (player.isCreative && player.getItemInHand(hand).item.toString() == CobblemonItems.NPC_EDITOR.toString()) {
                 edit(player)
             } else if (hand == InteractionHand.MAIN_HAND) {
@@ -515,7 +515,7 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
             animation = setOf(animation),
             expressions = expressions
         )
-        packet.sendToPlayers(level().players().filterIsInstance<ServerPlayer>().filter { it.distanceTo(this) < 256 })
+        packet.sendToPlayers(level().players().filterIsInstance<ServerPlayerEntity>().filter { it.distanceTo(this) < 256 })
     }
 
     override fun recalling(pokemonEntity: PokemonEntity): CompletableFuture<Unit> {
@@ -544,7 +544,7 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
         }
     }
 
-    fun edit(player: ServerPlayer) {
+    fun edit(player: ServerPlayerEntity) {
         val lastEditing = editingPlayer?.getPlayer()
         if (lastEditing != null) {
             lastEditing.sendPacket(CloseNPCEditorPacket())

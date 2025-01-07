@@ -19,4 +19,4 @@ import net.minecraft.world.item.ItemStack
  * @author Hiroku
  * @since March 11th, 2023
  */
-class LeftoversCreatedEvent(val playerEntity: ServerPlayer, var leftovers: ItemStack) : Cancelable()
+class LeftoversCreatedEvent(val playerEntity: ServerPlayerEntity, var leftovers: ItemStack) : Cancelable()

@@ -18,7 +18,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 data class PokemonCapturedEvent (
     val pokemon: Pokemon,
-    val player: ServerPlayer,
+    val player: ServerPlayerEntity,
     val pokeBallEntity: EmptyPokeBallEntity
 ) {
     val context = mutableMapOf<String, MoValue>(

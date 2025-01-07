@@ -54,7 +54,7 @@ class RevivalHerbItem(block: RevivalHerbBlock) : ItemNameBlockItem(block, Proper
     }
 
     override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
-        if (user is ServerPlayer) {
+        if (user is ServerPlayerEntity) {
             val result = use(user, user.getItemInHand(hand))
             if (result.result != InteractionResult.PASS) {
                 return result
@@ -65,7 +65,7 @@ class RevivalHerbItem(block: RevivalHerbBlock) : ItemNameBlockItem(block, Proper
 
     override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.isFainted()
     override fun applyToPokemon(
-        player: ServerPlayer,
+        player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): InteractionResultHolder<ItemStack>? {
@@ -87,7 +87,7 @@ class RevivalHerbItem(block: RevivalHerbBlock) : ItemNameBlockItem(block, Proper
         }
     }
 
-    override fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon) {
+    override fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon) {
         super.applyToBattlePokemon(player, stack, battlePokemon)
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_HERB_USE, 1F, 1F)
     }

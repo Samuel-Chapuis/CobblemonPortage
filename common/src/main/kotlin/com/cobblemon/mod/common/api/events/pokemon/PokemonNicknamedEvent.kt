@@ -22,7 +22,7 @@ import net.minecraft.server.network.ServerPlayerEntity
  * @author Hiroku
  * @since April 22nd, 2023
  */
-class PokemonNicknamedEvent(val player: ServerPlayer, val pokemon: Pokemon, var nickname: MutableComponent?): Cancelable() {
+class PokemonNicknamedEvent(val player: ServerPlayerEntity, val pokemon: Pokemon, var nickname: MutableComponent?): Cancelable() {
     /** A shortcut to using [nickname].getString(). Learn how Text works! */
     val nicknameString: String?
         get() = nickname?.string

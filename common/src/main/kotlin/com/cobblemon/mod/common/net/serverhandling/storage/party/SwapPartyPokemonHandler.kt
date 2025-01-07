@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object SwapPartyPokemonHandler : ServerNetworkPacketHandler<SwapPartyPokemonPacket> {
-    override fun handle(packet: SwapPartyPokemonPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: SwapPartyPokemonPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         val party = player.party()
         val pokemon1 = party[packet.position1] ?: return
         val pokemon2 = party[packet.position2] ?: return

@@ -31,7 +31,7 @@ class CastPokeRodCriterionCondition(
         ).apply(it, { playerCtx, baitId -> CastPokeRodCriterionCondition(playerCtx, baitId.ifEmpty { "empty_bait" }) }) }
     }
 
-    override fun matches(player: ServerPlayer, context: CastPokeRodContext): Boolean {
+    override fun matches(player: ServerPlayerEntity, context: CastPokeRodContext): Boolean {
         return (context.baitId == this.baitId.asIdentifierDefaultingNamespace() || this.baitId.equals("empty_bait"))
     }
 }

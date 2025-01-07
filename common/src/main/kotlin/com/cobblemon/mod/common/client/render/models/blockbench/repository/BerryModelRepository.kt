@@ -38,7 +38,7 @@ object BerryModelRepository : JsonDataRegistry<TexturedModel> {
     private val rawModels = hashMapOf<Identifier, TexturedModel>()
     private val processedModels = hashMapOf<Identifier, ModelPart>()
 
-    override fun sync(player: ServerPlayer) {}
+    override fun sync(player: ServerPlayerEntity) {}
 
     override fun reload(data: Map<Identifier, TexturedModel>) {
         data.forEach { (identifier, model) ->

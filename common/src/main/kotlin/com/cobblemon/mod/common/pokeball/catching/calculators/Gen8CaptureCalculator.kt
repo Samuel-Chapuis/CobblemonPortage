@@ -54,7 +54,7 @@ object Gen8CaptureCalculator : CaptureCalculator, CriticalCaptureProvider {
         // ToDo implement difficulty when we have dynamax raids
         val ballBonus = if (validModifier) pokeBall.catchRateModifier.value(thrower, pokemon) else 1F
         val modifiedCatchRate = (pokeBall.catchRateModifier.behavior(thrower, pokemon).mutator((3F * pokemon.maxHealth - 2F * pokemon.currentHealth) * catchRate, ballBonus) / (3F * pokemon.maxHealth)) * bonusStatus * bonusLevel
-        val critical = if (thrower is ServerPlayer) this.shouldHaveCriticalCapture(thrower, modifiedCatchRate) else false
+        val critical = if (thrower is ServerPlayerEntity) this.shouldHaveCriticalCapture(thrower, modifiedCatchRate) else false
         val shakeProbability = (65536F / (255F / modifiedCatchRate).pow(0.1875F)).roundToInt()
         var shakes = 0
         repeat(4) {

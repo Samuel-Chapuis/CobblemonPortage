@@ -15,7 +15,7 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 
 object SelectStarterPacketHandler : ServerNetworkPacketHandler<SelectStarterPacket> {
-    override fun handle(packet: SelectStarterPacket, server: MinecraftServer, player: ServerPlayer) {
+    override fun handle(packet: SelectStarterPacket, server: MinecraftServer, player: ServerPlayerEntity) {
         Cobblemon.starterHandler.chooseStarter(player, packet.categoryName, packet.selected)
     }
 }

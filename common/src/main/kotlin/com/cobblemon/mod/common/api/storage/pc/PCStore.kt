@@ -58,7 +58,7 @@ open class PCStore(
 
     val struct = asMoLangValue()
 
-    fun addObserver(player: ServerPlayer) {
+    fun addObserver(player: ServerPlayerEntity) {
         observingUUIDs.add(player.uuid)
         sendTo(player)
     }
@@ -77,7 +77,7 @@ open class PCStore(
         return position.box in (0 until boxes.size) && position.slot in (0 until POKEMON_PER_BOX)
     }
 
-    override fun sendTo(player: ServerPlayer) {
+    override fun sendTo(player: ServerPlayerEntity) {
         InitializePCPacket(this).sendToPlayer(player)
         boxes.forEach { it.sendTo(player) }
     }

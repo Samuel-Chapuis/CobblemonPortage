@@ -38,7 +38,7 @@ import net.minecraft.world.phys.AABB
  * @since July 29th, 2023
  */
 interface PokemonAndMoveSelectingItem {
-    fun use(player: ServerPlayer, stack: ItemStack): InteractionResultHolder<ItemStack>? {
+    fun use(player: ServerPlayerEntity, stack: ItemStack): InteractionResultHolder<ItemStack>? {
         val entity = player.level()
             .getEntities(player, AABB.ofSize(player.position(), 16.0, 16.0, 16.0))
             .filter { player.isLookingAt(it, stepDistance = 0.1F) }
@@ -75,9 +75,9 @@ interface PokemonAndMoveSelectingItem {
     }
 
     val bagItem: BagItem?
-    fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon, move: Move)
+    fun applyToPokemon(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon, move: Move)
 
-    fun applyToBattlePokemon(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon, move: Move) {
+    fun applyToBattlePokemon(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon, move: Move) {
         val battle = battlePokemon.actor.battle
         val bagItem = bagItem
         if (!battlePokemon.actor.canFitForcedAction()) {
@@ -97,7 +97,7 @@ interface PokemonAndMoveSelectingItem {
     fun canUseOnMove(pokemon: Pokemon, move: Move): Boolean = canUseOnMove(move)
     fun canUseOnMove(move: Move): Boolean
 
-    fun interactWithSpecific(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon): InteractionResultHolder<ItemStack>? {
+    fun interactWithSpecific(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon): InteractionResultHolder<ItemStack>? {
 
         if (player.isShiftKeyDown) {
             return InteractionResultHolder.pass(stack)
@@ -112,7 +112,7 @@ interface PokemonAndMoveSelectingItem {
         return InteractionResultHolder.success(stack)
     }
 
-    fun interactWithSpecificBattle(player: ServerPlayer, stack: ItemStack, battlePokemon: BattlePokemon): InteractionResultHolder<ItemStack>? {
+    fun interactWithSpecificBattle(player: ServerPlayerEntity, stack: ItemStack, battlePokemon: BattlePokemon): InteractionResultHolder<ItemStack>? {
         return if (canUseOnBattlePokemon(battlePokemon)) {
             MoveSelectCallbacks.create(
                 player = player,
@@ -127,7 +127,7 @@ interface PokemonAndMoveSelectingItem {
         }
     }
 
-    fun interactGeneral(player: ServerPlayer, stack: ItemStack): InteractionResultHolder<ItemStack>? {
+    fun interactGeneral(player: ServerPlayerEntity, stack: ItemStack): InteractionResultHolder<ItemStack>? {
         PartyMoveSelectCallbacks.createFromPokemon(
             player = player,
             pokemon = player.party().toList(),
@@ -139,7 +139,7 @@ interface PokemonAndMoveSelectingItem {
         return InteractionResultHolder.success(stack)
     }
 
-    fun interactGeneralBattle(player: ServerPlayer, stack: ItemStack, actor: BattleActor): InteractionResultHolder<ItemStack>? {
+    fun interactGeneralBattle(player: ServerPlayerEntity, stack: ItemStack, actor: BattleActor): InteractionResultHolder<ItemStack>? {
         PartyMoveSelectCallbacks.createFromPokemon(
             player = player,
             pokemon = actor.pokemonList.map { it.effectedPokemon },

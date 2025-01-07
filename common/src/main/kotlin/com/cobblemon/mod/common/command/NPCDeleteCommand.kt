@@ -29,7 +29,7 @@ object NPCDeleteCommand {
                 .executes { execute(it, it.source.playerOrException) })
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayer) : Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
         val targetEntity = player.traceFirstEntityCollision(entityClass = NPCEntity::class.java)
         if (targetEntity == null) {
             player.sendSystemMessage(commandLang("npcedit.non_npc").red())

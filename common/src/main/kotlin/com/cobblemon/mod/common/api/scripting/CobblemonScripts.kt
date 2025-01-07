@@ -60,7 +60,7 @@ object CobblemonScripts : DataRegistry {
     }
 
 
-    override fun sync(player: ServerPlayer) {
+    override fun sync(player: ServerPlayerEntity) {
         player.sendPacket(ScriptRegistrySyncPacket(clientScripts.entries))
     }
 
