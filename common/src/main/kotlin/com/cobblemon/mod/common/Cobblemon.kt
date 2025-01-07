@@ -306,7 +306,7 @@ object Cobblemon {
 
             val mongoClient: MongoClient?
 
-            val pokemonStoreRoot = server.getWorldPath(WorldSavePath.ROOT).resolve("pokemon").toFile()
+            val pokemonStoreRoot = server.getSavePath(WorldSavePath.ROOT).resolve("pokemon").toFile()
             val storeAdapter = when (config.storageFormat) {
                 "nbt", "json" -> {
                     val generalJsonFactory = CachedPlayerDataStoreFactory(PlayerDataJsonBackend())
@@ -356,7 +356,7 @@ object Cobblemon {
 
                 else -> throw IllegalArgumentException("Unsupported storageFormat: ${config.storageFormat}")
             }
-                .with(ReforgedConversion(server.getWorldPath(WorldSavePath.ROOT))) as FileStoreAdapter<*>
+                .with(ReforgedConversion(server.getSavePath(WorldSavePath.ROOT))) as FileStoreAdapter<*>
 
             storage.registerFactory(
                 priority = Priority.LOWEST,

@@ -54,7 +54,7 @@ open class MongoDBStoreAdapter(
 
     override fun <E : StorePosition, T : PokemonStore<E>> provide(storeClass: Class<T>, uuid: UUID, registryAccess: RegistryAccess): T? {
         val server = server()!!
-        val pokemonStoreRoot = server.getWorldPath(WorldSavePath.ROOT).resolve("pokemon").toFile()
+        val pokemonStoreRoot = server.getSavePath(WorldSavePath.ROOT).resolve("pokemon").toFile()
         val jsonAdapter = JSONStoreAdapter(
             pokemonStoreRoot.absolutePath,
             useNestedFolders = true,
