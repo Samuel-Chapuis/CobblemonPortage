@@ -64,7 +64,7 @@ class PPRestoringBerryItem(block: BerryBlock, val amount: () -> ExpressionLike):
         player.playSound(CobblemonSounds.BERRY_EAT, 1F, 1F)
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (world is ServerLevel && user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand)) ?: InteractionResultHolder.pass(user.getItemInHand(hand))
         }

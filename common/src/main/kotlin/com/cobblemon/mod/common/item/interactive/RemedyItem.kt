@@ -75,7 +75,7 @@ class RemedyItem(val remedyStrength: String) : CobblemonItem(Properties()), Poke
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_HERB_USE, 1F, 1F)
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }

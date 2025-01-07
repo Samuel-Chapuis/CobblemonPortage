@@ -87,7 +87,7 @@ class DisplayCaseBlock(settings: Properties) : BaseEntityBlock(settings) {
         blockHitResult: BlockHitResult
     ): InteractionResult {
         val entity = world.getBlockEntity(pos) as DisplayCaseBlockEntity
-        val result = entity.updateItem(player, InteractionHand.MAIN_HAND)
+        val result = entity.updateItem(player, Hand.MAIN_HAND)
         if ((blockHitResult.direction != Direction.UP && blockHitResult.direction != Direction.DOWN) && result == InteractionResult.SUCCESS) {
             world.setBlockAndUpdate(pos, state.setValue(ITEM_DIRECTION, blockHitResult.direction.opposite))
         }

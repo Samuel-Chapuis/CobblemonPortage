@@ -61,7 +61,7 @@ class EtherItem(val max: Boolean): CobblemonItem(Properties()), PokemonAndMoveSe
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_LIQUID_USE, 1F, 1F)
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (world is ServerLevel && user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand)) ?: InteractionResultHolder.pass(user.getItemInHand(hand))
         }

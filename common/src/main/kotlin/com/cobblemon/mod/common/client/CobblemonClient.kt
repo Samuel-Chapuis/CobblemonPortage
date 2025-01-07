@@ -171,7 +171,7 @@ object CobblemonClient {
                     !(selectedItem.`is`(CobblemonItemTags.POKEDEX)) &&
                     !(player.offhandItem.`is`(CobblemonItemTags.POKEDEX) &&
                         player.isUsingItem == true &&
-                        player.usedItemHand == InteractionHand.OFF_HAND
+                        player.usedItemHand == Hand.OFF_HAND
                     )
                 ) {
                     // Stop using Pokédex in main hand if player switches to a different slot in hotbar

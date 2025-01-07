@@ -38,7 +38,7 @@ class PPUpItem(val amount: Int) : CobblemonItem(Properties()), PokemonAndMoveSel
         }
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
             use(user, user.getItemInHand(hand))?.let { return it }
         }

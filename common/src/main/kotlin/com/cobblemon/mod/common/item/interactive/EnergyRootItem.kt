@@ -74,7 +74,7 @@ class EnergyRootItem(block: EnergyRootBlock, settings: Properties) : ItemNameBlo
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_HERB_USE, 1F, 1F)
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }

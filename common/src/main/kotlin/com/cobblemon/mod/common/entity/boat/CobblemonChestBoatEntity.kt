@@ -52,7 +52,7 @@ class CobblemonChestBoatEntity(entityType: EntityType<CobblemonChestBoatEntity>,
         }
     }
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+    override fun interact(player: Player, hand: Hand): InteractionResult {
         if (!player.isSecondaryUseActive) {
             val interactionResult = super.interact(player, hand)
             if (interactionResult != InteractionResult.PASS) {

@@ -35,7 +35,7 @@ class PokedexItem(val type: PokedexType): CobblemonItem(Item.Properties().stacks
     override fun use(
         world: World,
         player: Player,
-        usedHand: InteractionHand
+        usedHand: Hand
     ): InteractionResultHolder<ItemStack> {
         val itemStack = player.getItemInHand(usedHand)
 

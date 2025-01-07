@@ -65,7 +65,7 @@ class StatusCureItem(val itemName: String, vararg val status: Status) : Cobblemo
         battlePokemon.entity?.playSound(CobblemonSounds.MEDICINE_SPRAY_USE, 1F, 1F)
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (user is ServerPlayerEntity) {
             return use(user, user.getItemInHand(hand))
         }

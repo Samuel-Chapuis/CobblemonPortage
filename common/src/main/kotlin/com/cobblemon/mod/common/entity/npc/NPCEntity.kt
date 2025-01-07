@@ -482,11 +482,11 @@ class NPCEntity(world: World) : AgeableMob(CobblemonEntities.NPC, world), Npc, P
         updateAspects()
     }
 
-    override fun mobInteract(player: Player, hand: InteractionHand): InteractionResult {
+    override fun mobInteract(player: Player, hand: Hand): InteractionResult {
         if (player is ServerPlayerEntity) {
             if (player.isCreative && player.getItemInHand(hand).item.toString() == CobblemonItems.NPC_EDITOR.toString()) {
                 edit(player)
-            } else if (hand == InteractionHand.MAIN_HAND) {
+            } else if (hand == Hand.MAIN_HAND) {
                 if (player.getBattleState()?.first?.getActor(this) != null) {
                     return InteractionResult.PASS
                 }

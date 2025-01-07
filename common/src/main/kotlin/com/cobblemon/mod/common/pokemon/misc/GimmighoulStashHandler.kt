@@ -33,7 +33,7 @@ object GimmighoulStashHandler {
     val SCRAP_VALUE = 1
     val INGOT_VALUE = SCRAP_VALUE * 4
     val BLOCK_VALUE = INGOT_VALUE * 9
-    fun interactMob(player: Player, hand: InteractionHand, pokemon:Pokemon) : Boolean {
+    fun interactMob(player: Player, hand: Hand, pokemon:Pokemon) : Boolean {
         val itemStack = player.getItemInHand(hand)
         var success = false
         if(player is ServerPlayerEntity && pokemon.getOwnerPlayer() == player) {

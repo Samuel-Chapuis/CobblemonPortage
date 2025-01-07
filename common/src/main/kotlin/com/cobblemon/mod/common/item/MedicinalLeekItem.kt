@@ -30,7 +30,7 @@ class MedicinalLeekItem(block: MedicinalLeekBlock, settings: Properties) : ItemN
 
     override fun useOn(context: UseOnContext): InteractionResult = InteractionResult.PASS
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         val blockHitResult = PlaceOnWaterBlockItem.getPlayerPOVHitResult(world, user, ClipContext.Fluid.SOURCE_ONLY)
         val blockHitResult2 = blockHitResult.withPosition(blockHitResult.blockPos.above())
         val placeResult = this.place(BlockPlaceContext(UseOnContext(user, hand, blockHitResult2)))

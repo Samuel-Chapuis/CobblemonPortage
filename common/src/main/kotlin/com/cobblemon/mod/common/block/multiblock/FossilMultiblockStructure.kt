@@ -104,7 +104,7 @@ class FossilMultiblockStructure (
         player: Player,
         blockHitResult: BlockHitResult
     ): InteractionResult {
-        val stack = player.getItemInHand(InteractionHand.MAIN_HAND)
+        val stack = player.getItemInHand(Hand.MAIN_HAND)
 
         if(stack.`is`(CobblemonItemTags.POKE_BALLS) || stack.item is PokeBallItem) {
             if (player !is ServerPlayerEntity) {
@@ -154,12 +154,12 @@ class FossilMultiblockStructure (
         }
 
         // Reclaim the last fossil from the machine if their hand is empty
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty) {
+        if (player.getItemInHand(Hand.MAIN_HAND).isEmpty) {
             if(!this.isRunning() && !this.hasCreatedPokemon) {
                 if (fossilInventory.isEmpty()) {
                     return InteractionResult.CONSUME
                 }
-                player.setItemInHand(InteractionHand.MAIN_HAND, fossilInventory.last())
+                player.setItemInHand(Hand.MAIN_HAND, fossilInventory.last())
 
                 // remove last fossil in the fossil machine stack when grabbed out of the machine
                 this.fossilInventory.removeAt(fossilInventory.size - 1)

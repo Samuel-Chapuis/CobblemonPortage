@@ -151,7 +151,7 @@ class PokemonClientDelegate : PosableState(), PokemonSideDelegate {
                                         newOffset = newOffset.scale((distance / 10.0) * 5)
                                         soundPos = currentEntity.position().add(newOffset)
                                     }
-                                    it.swing(it.usedItemHand ?: InteractionHand.MAIN_HAND)
+                                    it.swing(it.usedItemHand ?: Hand.MAIN_HAND)
                                 }
                             }
                             val client = MinecraftClient.getInstance()

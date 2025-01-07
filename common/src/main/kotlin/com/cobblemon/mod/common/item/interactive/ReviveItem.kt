@@ -50,7 +50,7 @@ class ReviveItem(val max: Boolean): CobblemonItem(Properties()), HealingSource {
         override fun getShowdownInput(actor: BattleActor, battlePokemon: BattlePokemon, data: String?) = "revive ${ if (max) "1" else "0.5" }"
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
         if (world !is ServerLevel) {
             return InteractionResultHolder.success(user.getItemInHand(hand))
         } else {

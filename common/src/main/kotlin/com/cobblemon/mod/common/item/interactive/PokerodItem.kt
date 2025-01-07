@@ -158,10 +158,10 @@ class PokerodItem(val pokeRodId: Identifier, settings: Properties) : FishingRodI
         return false
     }
 
-    override fun use(world: World, user: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, user: Player, hand: Hand): InteractionResultHolder<ItemStack> {
 
         val itemStack = user.getItemInHand(hand)
-        val offHandItem = user.getItemInHand(InteractionHand.OFF_HAND)
+        val offHandItem = user.getItemInHand(Hand.OFF_HAND)
         val offHandBait = FishingBaits.getFromBaitItemStack(offHandItem)
 
         var baitOnRod = getBaitOnRod(itemStack)

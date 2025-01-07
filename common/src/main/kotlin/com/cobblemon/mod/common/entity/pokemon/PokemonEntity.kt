@@ -807,7 +807,7 @@ open class PokemonEntity(
         return pokemon.form.shoulderMountable
     }
 
-    override fun mobInteract(player: Player, hand: InteractionHand): InteractionResult {
+    override fun mobInteract(player: Player, hand: Hand): InteractionResult {
         if (!this.isBattling && this.isBattleClone()) {
             return InteractionResult.FAIL
         }
@@ -926,7 +926,7 @@ open class PokemonEntity(
             }
         }
 
-        if (hand == InteractionHand.MAIN_HAND && player is ServerPlayerEntity && pokemon.getOwnerPlayer() == player) {
+        if (hand == Hand.MAIN_HAND && player is ServerPlayerEntity && pokemon.getOwnerPlayer() == player) {
             if (player.isShiftKeyDown) {
                 InteractPokemonUIPacket(this.getUUID(), canSitOnShoulder() && pokemon in player.party()).sendToPlayer(
                     player

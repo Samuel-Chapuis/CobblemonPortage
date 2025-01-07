@@ -611,7 +611,7 @@ open class Pokemon : ShowdownIdentifiable {
             sendOut(level, position, illusion) {
                 val owner = getOwnerEntity()
                 if (owner is LivingEntity) {
-                    owner.swing(InteractionHand.MAIN_HAND, true)
+                    owner.swing(Hand.MAIN_HAND, true)
                     val spawnDirection: Vec3
                     var spawnYaw: Double
                     if (battleId != null) {

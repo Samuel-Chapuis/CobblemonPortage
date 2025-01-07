@@ -177,14 +177,14 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Properties) 
         blockHitResult: BlockHitResult
     ): InteractionResult {
         val treeEntity = world.getBlockEntity(pos) as BerryBlockEntity
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).item is ShovelItem && getMulch(treeEntity) != MulchVariant.NONE) {
+        if (player.getItemInHand(Hand.MAIN_HAND).item is ShovelItem && getMulch(treeEntity) != MulchVariant.NONE) {
             treeEntity.setChanged()
             world.playSound(null, pos, CobblemonSounds.MULCH_REMOVE, SoundSource.BLOCKS, 0.6F, 1F)
             this.spawnDestroyParticles(world, player, pos, state.setValue(AGE, 0))
             return InteractionResult.SUCCESS
         }
 
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).`is`(Items.BONE_MEAL) && !this.isMaxAge(state)) {
+        if (player.getItemInHand(Hand.MAIN_HAND).`is`(Items.BONE_MEAL) && !this.isMaxAge(state)) {
             return InteractionResult.PASS
         } else if (this.isMaxAge(state)) {
             return if (harvestBerry(world, state, pos, player)) {

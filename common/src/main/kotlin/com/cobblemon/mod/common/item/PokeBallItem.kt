@@ -30,7 +30,7 @@ class PokeBallItem(
     }
 }) {
 
-    override fun use(world: World, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
+    override fun use(world: World, player: Player, usedHand: Hand): InteractionResultHolder<ItemStack> {
         val itemStack = player.getItemInHand(usedHand)
         if (world.isServerSide()) {
             throwPokeBall(world, player as ServerPlayerEntity)

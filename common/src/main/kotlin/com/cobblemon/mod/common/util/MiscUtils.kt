@@ -128,17 +128,17 @@ fun Screen.isInventoryKeyPressed(client: MinecraftClient?, keyCode: Int, scanCod
     return client?.options?.keyInventory?.matches(keyCode, scanCode) == true
 }
 
-fun InteractionHand.toEquipmentSlot(): EquipmentSlot {
+fun Hand.toEquipmentSlot(): EquipmentSlot {
     return when (this) {
-        InteractionHand.MAIN_HAND -> EquipmentSlot.MAINHAND
-        InteractionHand.OFF_HAND -> EquipmentSlot.OFFHAND
+        Hand.MAIN_HAND -> EquipmentSlot.MAINHAND
+        Hand.OFF_HAND -> EquipmentSlot.OFFHAND
     }
 }
 
-fun EquipmentSlot.toHand(): InteractionHand {
+fun EquipmentSlot.toHand(): Hand {
     return when (this) {
-        EquipmentSlot.MAINHAND -> InteractionHand.MAIN_HAND
-        EquipmentSlot.OFFHAND -> InteractionHand.OFF_HAND
+        EquipmentSlot.MAINHAND -> Hand.MAIN_HAND
+        EquipmentSlot.OFFHAND -> Hand.OFF_HAND
         else -> throw IllegalArgumentException("Invalid equipment slot: $this")
     }
 }

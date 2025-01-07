@@ -54,7 +54,7 @@ interface ServerPlayerEvent {
      * @property hand The [Hand] that hit the block.
      * @property face The [Direction] of the block if any.
      */
-    data class RightClickBlock(override val player: ServerPlayerEntity, val pos: BlockPos, val hand: InteractionHand, val face: Direction?) : ServerPlayerEvent, Cancelable()
+    data class RightClickBlock(override val player: ServerPlayerEntity, val pos: BlockPos, val hand: Hand, val face: Direction?) : ServerPlayerEvent, Cancelable()
 
     /**
      * Fired when the [player] right clicks an entity.
@@ -64,5 +64,5 @@ interface ServerPlayerEvent {
      * @property hand The [Hand] that clicked the [entity].
      * @property entity The [Entity] the [player] clicked.
      */
-    data class RightClickEntity(override val player: ServerPlayerEntity, val item: ItemStack, val hand: InteractionHand, val entity: Entity): ServerPlayerEvent, Cancelable()
+    data class RightClickEntity(override val player: ServerPlayerEntity, val item: ItemStack, val hand: Hand, val entity: Entity): ServerPlayerEvent, Cancelable()
 }

@@ -422,5 +422,5 @@ fun Player.isPartyBusy() =
         Cobblemon.storage.getParty(this.uuid, this.registryAccess()).find { it?.entity?.isBusy == true } != null
 
 fun Player.isUsingPokedex() = isUsingItem &&
-    ((mainHandItem.item is PokedexItem && usedItemHand == InteractionHand.MAIN_HAND) ||
-    (offhandItem.item is PokedexItem && usedItemHand == InteractionHand.OFF_HAND))
+    ((mainHandItem.item is PokedexItem && usedItemHand == Hand.MAIN_HAND) ||
+    (offhandItem.item is PokedexItem && usedItemHand == Hand.OFF_HAND))

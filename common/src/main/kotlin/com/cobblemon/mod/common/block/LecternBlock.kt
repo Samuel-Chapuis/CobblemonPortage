@@ -138,8 +138,8 @@ class LecternBlock(properties: Properties): BaseEntityBlock(properties) {
     override fun isPathfindable(blockState: BlockState?, pathComputationType: PathComputationType?) = false
 
     private fun takeStoredItem(blockEntity: LecternBlockEntity, blockState: BlockState, level: World, blockPos: BlockPos, player: Player) {
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty) {
-            player.setItemInHand(InteractionHand.MAIN_HAND, blockEntity.removeItemStack())
+        if (player.getItemInHand(Hand.MAIN_HAND).isEmpty) {
+            player.setItemInHand(Hand.MAIN_HAND, blockEntity.removeItemStack())
             blockEntity.setRemoved()
             val facing = blockState.getValue(HorizontalDirectionalBlock.FACING)
             val newBlockState = Blocks.LECTERN.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, facing)
