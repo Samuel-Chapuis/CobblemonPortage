@@ -34,7 +34,7 @@ object PokemonEditCommand {
     private const val ALIAS = "pokeedit"
     private const val ALIAS_OTHER = "${ALIAS}other"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val selfCommand = dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.POKEMON_EDIT_SELF)
             .then(argument(SLOT, PartySlotArgumentType.partySlot())
@@ -58,7 +58,7 @@ object PokemonEditCommand {
         dispatcher.register(otherCommand.alias(ALIAS_OTHER))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity): Int {
         val pokemon = PartySlotArgumentType.getPokemonOf(context, SLOT, player)
         val oldName = pokemon.species.translatedName
         val properties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)

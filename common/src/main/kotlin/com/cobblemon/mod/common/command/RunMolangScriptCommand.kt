@@ -39,7 +39,7 @@ object RunMolangScriptCommand {
     private const val NPC = "npc"
     private const val POKEMON = "pokemon"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.RUN_MOLANG_SCRIPT)
             .then(
@@ -70,7 +70,7 @@ object RunMolangScriptCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, scriptId: Identifier, player: ServerPlayerEntity?, npcId: UUID?, pokemonId: UUID? = null): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, scriptId: Identifier, player: ServerPlayerEntity?, npcId: UUID?, pokemonId: UUID? = null): Int {
         try {
             val runtime = MoLangRuntime().setup()
             val npc = npcId?.let { context.source.level.getEntity(it) as? NPCEntity }

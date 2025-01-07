@@ -22,14 +22,14 @@ import net.minecraft.commands.Commands
 import net.minecraft.server.network.ServerPlayerEntity
 
 object NPCDeleteCommand {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             Commands.literal("npcdelete")
                 .requiresWithPermission(CobblemonPermissions.NPC_DELETE) { it.player != null }
                 .executes { execute(it, it.source.playerOrException) })
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity) : Int {
         val targetEntity = player.traceFirstEntityCollision(entityClass = NPCEntity::class.java)
         if (targetEntity == null) {
             player.sendSystemMessage(commandLang("npcedit.non_npc").red())

@@ -21,7 +21,7 @@ import net.minecraft.commands.Commands
 import net.minecraft.entity.EntityDimensions
 
 object ChangeScaleAndSize {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("changescaleandsize")
             .permission(CobblemonPermissions.CHANGE_SCALE_AND_SIZE)
             .then(
@@ -37,7 +37,7 @@ object ChangeScaleAndSize {
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val pkm = SpeciesArgumentType.getPokemon(context, "pokemon")
         val scale = FloatArgumentType.getFloat(context, "scale")
         val width = FloatArgumentType.getFloat(context, "width")

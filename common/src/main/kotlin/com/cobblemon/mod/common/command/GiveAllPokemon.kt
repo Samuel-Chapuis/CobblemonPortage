@@ -20,7 +20,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.Commands
 
 object GiveAllPokemon {
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             Commands.literal("giveallpokemon")
                 .requiresWithPermission(CobblemonPermissions.GIVE_ALL_POKEMON) { it.player != null }
@@ -38,7 +38,7 @@ object GiveAllPokemon {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, range: IntRange) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, range: IntRange) : Int {
         val player = context.source.playerOrException
         val pc = player.party().getOverflowPC(player.registryAccess()) ?: return 0
 

@@ -21,7 +21,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.Commands
 
 object ChangeEyeHeight {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("changeeyeheight")
             .permission(CobblemonPermissions.CHANGE_EYE_HEIGHT)
             .then(
@@ -41,7 +41,7 @@ object ChangeEyeHeight {
         dispatcher.register(command)
     }
 
-    private fun setEyeHeight(context: CommandContext<CommandSourceStack>, applicator: (species: Species, height: Float) -> Unit) : Int {
+    private fun setEyeHeight(context: CommandContext<ServerCommandSource>, applicator: (species: Species, height: Float) -> Unit) : Int {
         val pkm = SpeciesArgumentType.getPokemon(context, "pokemon")
         val height = FloatArgumentType.getFloat(context, "height")
 

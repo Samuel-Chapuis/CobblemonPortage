@@ -29,9 +29,9 @@ object CobblemonInfoCommand {
     private val NEW_LINE: Component = Component.literal("\n")
     private val SPACE: Component = Component.literal(" ")
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(Commands.literal("cobblemon")
-            .then(LiteralArgumentBuilder.literal<CommandSourceStack?>("info")
+            .then(LiteralArgumentBuilder.literal<ServerCommandSource?>("info")
                 .executes { ctx ->
                     val message = Component.empty().append(
                         Component.literal("Cobblemon Build Details").withStyle { it.withColor(this.YELLOW) })

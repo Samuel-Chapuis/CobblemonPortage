@@ -25,7 +25,7 @@ object ClearPartyCommand {
     private const val NAME = "clearparty"
     private const val PLAYER = "player"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal(NAME)
              .permission(CobblemonPermissions.CLEAR_PARTY)
              .then( Commands.argument(PLAYER, EntityArgument.players()).executes(::execute)
@@ -33,7 +33,7 @@ object ClearPartyCommand {
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val target = EntityArgument.getPlayer(context, "player")
         val party = target.party()
 

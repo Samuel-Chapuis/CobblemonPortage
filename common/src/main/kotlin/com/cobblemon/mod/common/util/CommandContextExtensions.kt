@@ -13,7 +13,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.commands.arguments.ResourceLocationArgument
 
-fun CommandContext<CommandSourceStack>.player(argumentName: String = "player") = EntityArgument.getPlayer(this, argumentName)
-fun CommandContext<CommandSourceStack>.string(argumentName: String) = this.getArgument(argumentName, String::class.java)
-fun CommandContext<CommandSourceStack>.uuid(argumentName: String) = this.getArgument(argumentName, String::class.java).asUUID
-fun CommandContext<CommandSourceStack>.resourceLocation(argumentName: String) = ResourceLocationArgument.getId(this, argumentName)
+fun CommandContext<ServerCommandSource>.player(argumentName: String = "player") = EntityArgument.getPlayer(this, argumentName)
+fun CommandContext<ServerCommandSource>.string(argumentName: String) = this.getArgument(argumentName, String::class.java)
+fun CommandContext<ServerCommandSource>.uuid(argumentName: String) = this.getArgument(argumentName, String::class.java).asUUID
+fun CommandContext<ServerCommandSource>.resourceLocation(argumentName: String) = ResourceLocationArgument.getId(this, argumentName)

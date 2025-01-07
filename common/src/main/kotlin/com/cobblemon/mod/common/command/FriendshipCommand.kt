@@ -21,7 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 object FriendshipCommand {
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(Commands.literal("friendship")
             .permission(CobblemonPermissions.FRIENDSHIP)
             .then(
@@ -30,7 +30,7 @@ object FriendshipCommand {
             ))
     }
 
-    private fun execute(source: CommandSourceStack, target: ServerPlayerEntity, pokemon: Pokemon) : Int {
+    private fun execute(source: ServerCommandSource, target: ServerPlayerEntity, pokemon: Pokemon) : Int {
         source.sendSuccess({ commandLang("friendship", pokemon.getDisplayName(), pokemon.friendship) }, true)
         return Command.SINGLE_SUCCESS
     }

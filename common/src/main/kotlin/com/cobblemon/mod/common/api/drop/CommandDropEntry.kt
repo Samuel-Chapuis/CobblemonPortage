@@ -40,7 +40,7 @@ class CommandDropEntry : DropEntry {
         }
 
         world.server.commands.performPrefixedCommand(
-            world.server.createCommandSourceStack(),
+            world.server.createServerCommandSource(),
             command.substitute("player", player?.name?.string ?: "")
                 .substitute("world", world.dimension().location())
                 .substitute("x", pos.x)

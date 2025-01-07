@@ -31,7 +31,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.phys.Vec3
 
 object BedrockParticleCommand {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = dispatcher.register(Commands.literal("bedrockparticle")
             .permission(CobblemonPermissions.BEDROCK_PARTICLE)
             .then(
@@ -71,14 +71,14 @@ object BedrockParticleCommand {
         dispatcher.register(command.alias("bedrockparticle"))
     }
 
-    private fun execute(source: CommandSourceStack, effectId: Identifier, world: ServerLevel, target: Vec3): Int {
+    private fun execute(source: ServerCommandSource, effectId: Identifier, world: ServerLevel, target: Vec3): Int {
         val pos = target.toBlockPos()
         val nearbyPlayers = world.getPlayers { it.distanceTo(pos) < 1000 }
         nearbyPlayers.forEach { player -> player.sendPacket(SpawnSnowstormParticlePacket(effectId, target)) }
         return Command.SINGLE_SUCCESS
     }
 
-    private fun execute(source: CommandSourceStack, effectId: Identifier, world: ServerLevel, target: Entity, locator: List<String>): Int {
+    private fun execute(source: ServerCommandSource, effectId: Identifier, world: ServerLevel, target: Entity, locator: List<String>): Int {
         val pos = target.blockPosition()
         val nearbyPlayers = world.getPlayers { it.distanceTo(pos) < 1000 }
         nearbyPlayers.forEach { player -> player.sendPacket(SpawnSnowstormEntityParticlePacket(effectId, target.id, locator)) }

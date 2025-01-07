@@ -134,7 +134,7 @@ object MoLangFunctions {
         "run_command" to java.util.function.Function { params ->
             val command = params.getString(0)
             val server = server() ?: return@Function DoubleValue.ZERO
-            server.commands.performPrefixedCommand(server.createCommandSourceStack(), command)
+            server.commands.performPrefixedCommand(server.createServerCommandSource(), command)
         },
         "is_int" to java.util.function.Function { params -> DoubleValue(params.get<MoValue>(0).asString().isInt()) },
         "is_number" to java.util.function.Function { params -> DoubleValue(params.get<MoValue>(0).asString().toDoubleOrNull() != null) },
@@ -342,7 +342,7 @@ object MoLangFunctions {
             if (player is ServerPlayerEntity) {
                 map.put("run_command") { params ->
                     val command = params.getString(0)
-                    player.server.commands.performPrefixedCommand(player.createCommandSourceStack(), command)
+                    player.server.commands.performPrefixedCommand(player.createServerCommandSource(), command)
                 }
                 map.put("is_party_at_full_health") { _ ->
                     DoubleValue(player.party().none(Pokemon::canBeHealed)) }

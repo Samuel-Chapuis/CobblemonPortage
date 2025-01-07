@@ -37,7 +37,7 @@ open class CandyExperienceSource(
 ) : ExperienceSource
 
 open class CommandExperienceSource(
-    val source: CommandSourceStack
+    val source: ServerCommandSource
 ) : ExperienceSource
 
 open class BattleExperienceSource(

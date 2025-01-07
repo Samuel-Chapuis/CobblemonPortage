@@ -25,14 +25,14 @@ object ClearPCCommand {
     private const val NAME = "clearpc"
     private const val PLAYER = "player"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal(NAME)
             .permission(CobblemonPermissions.CLEAR_PC)
             .then(Commands.argument(PLAYER, EntityArgument.players()).executes(::execute))
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val target = EntityArgument.getPlayer(context, "player")
         val pc = target.pc()
         pc.toList().forEach(pc::remove)

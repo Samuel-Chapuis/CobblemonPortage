@@ -30,7 +30,7 @@ object TestPartySlotCommand {
     private const val PROPERTIES = "properties"
     private const val NO_SUCCESS = 0
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             Commands.literal(NAME)
                 .permission(CobblemonPermissions.TEST_PARTY_SLOT)
@@ -41,7 +41,7 @@ object TestPartySlotCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         val player = context.player(PLAYER)
         val slot = IntegerArgumentType.getInteger(context, SLOT)
         val properties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)

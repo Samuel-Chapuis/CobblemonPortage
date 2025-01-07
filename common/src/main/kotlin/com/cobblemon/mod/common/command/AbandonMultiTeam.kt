@@ -23,7 +23,7 @@ object AbandonMultiTeam {
 
     private const val ALIAS = "abandonmultibattleteam"
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val command = dispatcher.register(
                 Commands.literal("abandonmultiteam")
                         .permission(CobblemonPermissions.ABANDON_MULTITEAM)
@@ -32,7 +32,7 @@ object AbandonMultiTeam {
         dispatcher.register(command.alias(ALIAS))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
 
         val player = context.source.player
         if (player != null) {

@@ -22,7 +22,7 @@ import net.minecraft.commands.Commands
 
 object ChangeWalkSpeed {
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("changewalkspeed")
             .permission(CobblemonPermissions.CHANGE_WALK_SPEED)
             .then(
@@ -36,7 +36,7 @@ object ChangeWalkSpeed {
 
 
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val pkm = SpeciesArgumentType.getPokemon(context, "pokemon")
         val walkSpeed = FloatArgumentType.getFloat(context, "walkSpeed")
 

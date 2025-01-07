@@ -25,7 +25,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 object LevelUp {
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("levelup")
             .permission(CobblemonPermissions.LEVEL_UP_SELF)
             .then(
@@ -45,7 +45,7 @@ object LevelUp {
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity) : Int {
         val slot = IntegerArgumentType.getInteger(context, "slot")
         val party = player.party()
         if (slot > party.size()) {

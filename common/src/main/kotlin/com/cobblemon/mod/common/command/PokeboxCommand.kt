@@ -42,7 +42,7 @@ object PokeboxCommand {
     private val STORAGE_IS_FULL_EXCEPTION = commandLang("pokebox.storage_is_full")
     private val LAST_POKE_MESSAGE = commandLang("pokebox.last_pokemon")
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(literal("pokebox")
             .permission(CobblemonPermissions.POKEBOX)
             .then(Commands.argument("player", EntityArgument.player())
@@ -78,7 +78,7 @@ object PokeboxCommand {
     }
 
     private fun execute(
-        context: CommandContext<CommandSourceStack>,
+        context: CommandContext<ServerCommandSource>,
         player: ServerPlayerEntity,
         pokemons: Collection<Pokemon>,
         box: Int? = null,

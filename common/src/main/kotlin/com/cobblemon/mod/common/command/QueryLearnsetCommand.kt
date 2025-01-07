@@ -30,7 +30,7 @@ object QueryLearnsetCommand {
     private const val MOVE = "move"
     private const val NO_SUCCESS = 0
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             literal(NAME)
                 .permission(CobblemonPermissions.QUERY_LEARNSET)
@@ -41,7 +41,7 @@ object QueryLearnsetCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         val player = context.player(PLAYER)
         val pokemon = PartySlotArgumentType.getPokemonOf(context, SLOT, player)
         val move = MoveArgumentType.getMove(context, MOVE)

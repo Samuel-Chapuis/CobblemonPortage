@@ -27,7 +27,7 @@ import net.minecraft.commands.arguments.EntityArgument
 
 object OpenStarterScreenCommand {
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             literal("openstarterscreen")
                 .permission(CobblemonPermissions.OPEN_STARTER_SCREEN)
@@ -38,7 +38,7 @@ object OpenStarterScreenCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val player = EntityArgument.getPlayer(context, "player")
         val playerData = Cobblemon.playerDataManager.getGenericData(player)
         if (playerData.starterSelected) {

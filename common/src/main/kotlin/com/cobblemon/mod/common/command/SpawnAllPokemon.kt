@@ -21,7 +21,7 @@ import net.minecraft.commands.Commands
 import net.minecraft.server.level.ServerLevel
 
 object SpawnAllPokemon {
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             Commands.literal("spawnallpokemon")
                 .requiresWithPermission(CobblemonPermissions.SPAWN_ALL_POKEMON) { it.player != null }
@@ -39,7 +39,7 @@ object SpawnAllPokemon {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, range: IntRange) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, range: IntRange) : Int {
         val player = context.source.playerOrException
 
         for (species in PokemonSpecies.implemented) {

@@ -40,7 +40,7 @@ object SpawnPokemonFromPool {
 
     private val UNABLE_TO_SPAWN = commandLang("spawnpokemonfrompool.unable_to_spawn")
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val spawnPokemonFromPoolCommand = dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.SPAWN_POKEMON)
             .then(Commands.argument("amount", IntegerArgumentType.integer(1))
@@ -52,7 +52,7 @@ object SpawnPokemonFromPool {
         dispatcher.register(spawnPokemonFromPoolCommand.alias(ALIAS))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, amount: Int): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, amount: Int): Int {
         val player = context.source.playerOrException
         val spawner = CobblemonWorldSpawnerManager.spawnersForPlayers.getValue(player.uuid)
 

@@ -24,7 +24,7 @@ object HealPokemonCommand {
 
     private val IN_BATTLE_EXCEPTION = SimpleCommandExceptionType(commandLang("pokeheal.in_battle").red())
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = dispatcher.register(literal("healpokemon")
             .permission(CobblemonPermissions.HEAL_POKEMON_SELF)
             .executes { execute(it.source, it.source.playerOrException) }
@@ -36,7 +36,7 @@ object HealPokemonCommand {
         dispatcher.register(command.alias("pokeheal"))
     }
 
-    private fun execute(source: CommandSourceStack, target: ServerPlayerEntity) : Int {
+    private fun execute(source: ServerCommandSource, target: ServerPlayerEntity) : Int {
         if (target.isInBattle()) {
             throw IN_BATTLE_EXCEPTION.create()
         }

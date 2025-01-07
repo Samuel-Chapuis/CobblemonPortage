@@ -18,13 +18,13 @@ import net.minecraft.server.network.ServerPlayerEntity
 import java.util.*
 
 object ClickTextCommand {
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             Commands.literal("cobblemonclicktext")
                 .requires { src -> src.entity is ServerPlayerEntity }
                 .then(
                     RequiredArgumentBuilder
-                        .argument<CommandSourceStack, String>("callback", StringArgumentType.greedyString())
+                        .argument<ServerCommandSource, String>("callback", StringArgumentType.greedyString())
                         .executes { ctx ->
                             val player = ctx.source.entity as ServerPlayerEntity
                             textClickHandlers[UUID.fromString(ctx.getArgument("callback", String::class.java))]?.invoke(player)

@@ -41,7 +41,7 @@ object PokemonRestartCommand {
     private const val ALIAS = "pokerestart"
     private const val ALIAS_OTHER = "${ALIAS}other"
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val selfCommand = dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.POKEMON_EDIT_SELF)
             .then(argument(STARTERS, BoolArgumentType.bool())
@@ -75,7 +75,7 @@ object PokemonRestartCommand {
         dispatcher.register(otherCommandWithoutStarters.alias(ALIAS_OTHER))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity, resetStarters: Boolean): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity, resetStarters: Boolean): Int {
         resetPlayerPokemonData(player, resetStarters)
         context.source.sendSuccess({ commandLang(NAME, player.name) }, true)
         return Command.SINGLE_SUCCESS

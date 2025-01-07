@@ -41,7 +41,7 @@ object SpawnPokemon {
     private val INVALID_POS_EXCEPTION = SimpleCommandExceptionType(Component.literal("Invalid position").red())
     private val FAILED_SPAWN_EXCEPTION = SimpleCommandExceptionType(Component.literal("Unable to spawn at the given position").red())
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val contextPositionCommand = dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.SPAWN_POKEMON)
             .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
@@ -60,7 +60,7 @@ object SpawnPokemon {
         dispatcher.register(argumentPositionCommand.alias(AT_ALIAS))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, pos: Vec3): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, pos: Vec3): Int {
         val world = context.source.level
         val blockPos = pos.toBlockPos()
         if (!World.isInSpawnableBounds(blockPos)) {

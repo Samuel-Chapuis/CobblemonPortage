@@ -22,7 +22,7 @@ import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.server.network.ServerPlayerEntity
 
 object TakePokemon {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("takepokemon")
             .permission(CobblemonPermissions.TAKE_POKEMON)
             .then(
@@ -36,7 +36,7 @@ object TakePokemon {
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         try {
             val target = EntityArgument.getPlayer(context, "player")
             val slot = IntegerArgumentType.getInteger(context, "slot")

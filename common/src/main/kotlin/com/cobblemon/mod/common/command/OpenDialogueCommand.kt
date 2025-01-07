@@ -24,7 +24,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.server.network.ServerPlayerEntity
 
 object OpenDialogueCommand {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = dispatcher.register(Commands.literal("opendialogue")
             .permission(CobblemonPermissions.OPEN_DIALOGUE)
             .then(
@@ -46,7 +46,7 @@ object OpenDialogueCommand {
         dispatcher.register(command.alias("opendialogue"))
     }
 
-    private fun execute(source: CommandSourceStack, dialogueId: Identifier, player: ServerPlayerEntity): Int {
+    private fun execute(source: ServerCommandSource, dialogueId: Identifier, player: ServerPlayerEntity): Int {
         val dialogue = Dialogues.dialogues[dialogueId] ?: return run {
             source.sendSystemMessage("Invalid dialogue ID: $dialogueId".text())
             Command.SINGLE_SUCCESS

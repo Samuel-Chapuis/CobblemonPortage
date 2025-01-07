@@ -51,13 +51,13 @@ interface PermissionValidator {
      * @param permission The [Permission] being queried.
      * @return If the [source] has the [permission].
      */
-    fun hasPermission(source: CommandSourceStack, permission: Permission): Boolean
+    fun hasPermission(source: ServerCommandSource, permission: Permission): Boolean
     /**
-     * Validates a permission for [CommandSourceStack] based only on a permission string and a permission level.
+     * Validates a permission for [ServerCommandSource] based only on a permission string and a permission level.
      *
-     * @param source The target [CommandSourceStack].
+     * @param source The target [ServerCommandSource].
      * @param permission The permission string being queried such as cobblemon.command.giveallpokemon.
      * @param level The permission level being queried. 4 is generally used for cheats.
      */
-    fun hasPermission(source: CommandSourceStack, permission: String, level: Int): Boolean = hasPermission(source, CobblemonPermission(permission, PermissionLevel.byNumericValue(level)))
+    fun hasPermission(source: ServerCommandSource, permission: String, level: Int): Boolean = hasPermission(source, CobblemonPermission(permission, PermissionLevel.byNumericValue(level)))
 }

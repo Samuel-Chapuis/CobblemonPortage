@@ -22,7 +22,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 object StopBattleCommand {
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(Commands.literal("stopbattle")
             .permission(CobblemonPermissions.STOP_BATTLE)
             .then(
@@ -31,7 +31,7 @@ object StopBattleCommand {
             ))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val entity = context.source.entity
         val player = context.player("player") ?: (if (entity is ServerPlayerEntity) entity else return 0)
         if (!player.level().isClientSide) {

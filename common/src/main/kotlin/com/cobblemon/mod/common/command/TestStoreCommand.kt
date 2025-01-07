@@ -27,7 +27,7 @@ object TestStoreCommand {
     private const val STORE = "store"
     private const val PROPERTIES = "properties"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             literal(NAME)
             .permission(CobblemonPermissions.TEST_STORE)
@@ -38,7 +38,7 @@ object TestStoreCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         val player = context.player(PLAYER)
         val storeType = PokemonStoreArgumentType.pokemonStoreFrom(context, STORE)
         val properties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)

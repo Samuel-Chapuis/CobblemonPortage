@@ -41,7 +41,7 @@ object CheckSpawnsCommand {
     const val YELLOW_THRESHOLD = 5F
     val df = DecimalFormat("#.##")
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(Commands.literal("checkspawn")
             .permission(CobblemonPermissions.CHECKSPAWNS)
             .then(
@@ -51,7 +51,7 @@ object CheckSpawnsCommand {
             ))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity) : Int {
         if (!config.enableSpawning) {
             return 0
         }

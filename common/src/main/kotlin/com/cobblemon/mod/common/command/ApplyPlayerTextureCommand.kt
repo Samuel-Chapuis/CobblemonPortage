@@ -25,14 +25,14 @@ object ApplyPlayerTextureCommand {
     private const val NAME = "applyplayertexture"
     private const val PLAYER = "player"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal(NAME)
             .permission(CobblemonPermissions.APPLY_PLAYER_TEXTURE)
             .then(Commands.argument(PLAYER, StringArgumentType.word()).executes(::execute))
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>) : Int {
         val player = context.source.playerOrException
         val target = StringArgumentType.getString(context, "player")
         val targetEntity = player.traceFirstEntityCollision(entityClass = NPCEntity::class.java)

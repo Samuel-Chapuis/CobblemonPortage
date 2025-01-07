@@ -20,7 +20,7 @@ import net.minecraft.util.StringRepresentable
 class PokemonStoreArgumentType : StringRepresentableArgument<StoreType>(StoreType.CODEC, StoreType::values) {
     companion object {
         fun pokemonStore() = PokemonStoreArgumentType()
-        fun pokemonStoreFrom(context: CommandContext<CommandSourceStack>, id: String): StoreType = context.getArgument(id, StoreType::class.java)
+        fun pokemonStoreFrom(context: CommandContext<ServerCommandSource>, id: String): StoreType = context.getArgument(id, StoreType::class.java)
     }
 }
 

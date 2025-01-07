@@ -41,7 +41,7 @@ object PokedexCommand {
     private const val NAME = "pokedex"
     private const val GRANT_NAME = "grant"
     private const val REVOKE_NAME = "revoke"
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val commandArgumentBuilder = Commands.literal(NAME)
         val grantCommandBuilder = Commands.literal(GRANT_NAME).then(
             Commands.argument("player", EntityArgument.player())
@@ -81,7 +81,7 @@ object PokedexCommand {
         dispatcher.register(commandArgumentBuilder)
     }
 
-    private fun executeGrantOnly(context: CommandContext<CommandSourceStack>): Int {
+    private fun executeGrantOnly(context: CommandContext<ServerCommandSource>): Int {
         val players = context.getArgument("player", EntitySelector::class.java).findPlayers(context.source)
         val species = context.getArgument("species", Species::class.java)
         val form = context.getArgument("form", FormData::class.java)
@@ -105,7 +105,7 @@ object PokedexCommand {
         return Command.SINGLE_SUCCESS
     }
 
-    private fun executeRemoveOnly(context: CommandContext<CommandSourceStack>): Int {
+    private fun executeRemoveOnly(context: CommandContext<ServerCommandSource>): Int {
         val players = context.getArgument("player", EntitySelector::class.java).findPlayers(context.source)
         val species = context.getArgument("species", Species::class.java)
         val form = context.getArgument("form", FormData::class.java)
@@ -123,7 +123,7 @@ object PokedexCommand {
         return Command.SINGLE_SUCCESS
     }
 
-    private fun executeGrantAll(context: CommandContext<CommandSourceStack>): Int {
+    private fun executeGrantAll(context: CommandContext<ServerCommandSource>): Int {
         val players = context.getArgument("player", EntitySelector::class.java).findPlayers(context.source)
         val dexDef = context.getArgument("dex", PokedexDef::class.java)
         players.forEach { player ->
@@ -147,7 +147,7 @@ object PokedexCommand {
         return Command.SINGLE_SUCCESS
     }
 
-    private fun executeRemoveAll(context: CommandContext<CommandSourceStack>): Int {
+    private fun executeRemoveAll(context: CommandContext<ServerCommandSource>): Int {
         val players = context.getArgument("player", EntitySelector::class.java).findPlayers(context.source)
         val dexDef = context.getArgument("dex", PokedexDef::class.java)
         players.forEach {
@@ -166,7 +166,7 @@ object PokedexCommand {
         return Command.SINGLE_SUCCESS
     }
 
-    private fun printValuesGlobal(context: CommandContext<CommandSourceStack>): Int {
+    private fun printValuesGlobal(context: CommandContext<ServerCommandSource>): Int {
         val player = context.getArgument("player", EntitySelector::class.java).findSinglePlayer(context.source)
         val dex = Cobblemon.playerDataManager.getPokedexData(player)
         var calculators = listOf(SeenCount, CaughtCount, SeenPercent, CaughtPercent)
@@ -178,7 +178,7 @@ object PokedexCommand {
         return 1
     }
 
-    private fun printValues(context: CommandContext<CommandSourceStack>): Int {
+    private fun printValues(context: CommandContext<ServerCommandSource>): Int {
         val player = context.getArgument("player", EntitySelector::class.java).findSinglePlayer(context.source)
         val dex = Cobblemon.playerDataManager.getPokedexData(player)
         val dexDef = context.getArgument("dex", PokedexDef::class.java)

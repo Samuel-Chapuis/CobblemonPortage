@@ -51,7 +51,7 @@ import java.io.PrintWriter
 @Suppress("unused")
 object TestCommand {
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("testcommand")
             .requires { it.hasPermission(4) }
             .executes(::execute)
@@ -59,7 +59,7 @@ object TestCommand {
     }
 
     @Suppress("SameReturnValue")
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         if (context.source.entity !is ServerPlayerEntity) {
             return Command.SINGLE_SUCCESS
         }
@@ -135,7 +135,7 @@ object TestCommand {
     var trade: ActiveTrade? = null
     var lastDebugId = 0
 
-    private fun testClosestBattle(context: CommandContext<CommandSourceStack>) {
+    private fun testClosestBattle(context: CommandContext<ServerCommandSource>) {
         val player = context.source.playerOrException
         val cloneTeam = player.party().toBattleTeam(true)
         cloneTeam.forEach { it.effectedPokemon.level = 100 }
@@ -323,7 +323,7 @@ object TestCommand {
 //        }
 //    }
 
-    private fun testAbilitiesBetweenEvolution(context: CommandContext<CommandSourceStack>) {
+    private fun testAbilitiesBetweenEvolution(context: CommandContext<ServerCommandSource>) {
         val results = Component.literal("Ability test results (Assumed default assets)")
             .append(Component.literal("\n"))
             .append(this.testHiddenAbilityThroughoutEvolutions())
@@ -400,7 +400,7 @@ object TestCommand {
         return if (failed) result.red() else result.green()
     }
 
-    private fun testCodecOutput(context: CommandContext<CommandSourceStack>) {
+    private fun testCodecOutput(context: CommandContext<ServerCommandSource>) {
         val pokemon = context.source.playerOrException.party().get(0) ?: Pokemon()
         pokemon.nickname = pokemon.species.translatedName
             .withStyle {

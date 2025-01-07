@@ -27,14 +27,14 @@ object PcCommand {
     private const val NAME = "pc"
     private val IN_BATTLE_EXCEPTION = SimpleCommandExceptionType(lang("pc.inbattle").red())
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.PC)
             .executes(this::execute)
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         val player = context.source.playerOrException
         val pc = player.pc()
         if (player.isInBattle()) {

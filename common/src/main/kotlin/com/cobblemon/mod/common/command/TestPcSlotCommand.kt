@@ -34,7 +34,7 @@ object TestPcSlotCommand {
     private const val PROPERTIES = "properties"
     private const val NO_SUCCESS = 0
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             literal(NAME)
             .permission(CobblemonPermissions.TEST_PC_SLOT)
@@ -46,7 +46,7 @@ object TestPcSlotCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         val player = context.player(PLAYER)
         val boxNumber = IntegerArgumentType.getInteger(context, BOX)
         val slot = IntegerArgumentType.getInteger(context, SLOT)

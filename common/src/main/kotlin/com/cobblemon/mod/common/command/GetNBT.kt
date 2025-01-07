@@ -18,13 +18,13 @@ import net.minecraft.commands.Commands
 import net.minecraft.server.network.ServerPlayerEntity
 
 object GetNBT {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(Commands.literal("getnbt")
             .requiresWithPermission(CobblemonPermissions.GET_NBT) { it.player != null }
             .executes { execute(it, it.source.playerOrException) })
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity) : Int {
         /*
         val stack = player.getItemInHand(Hand.MAIN_HAND)
         try {

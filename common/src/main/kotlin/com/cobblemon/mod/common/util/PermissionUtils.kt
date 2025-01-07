@@ -22,8 +22,8 @@ import net.minecraft.server.command.ServerCommandSource
  * @param appendRequirement If the existing [ArgumentBuilder.requirement] should be appended to this permission as a single predicate. Defaults to true
  * @return the [ArgumentBuilder].
  */
-fun <T : ArgumentBuilder<CommandSourceStack, T>> ArgumentBuilder<CommandSourceStack, T>.permission(permission: Permission, appendRequirement: Boolean = true): T {
-    val permissionPredicate = { src: CommandSourceStack -> Cobblemon.permissionValidator.hasPermission(src, permission)  }
+fun <T : ArgumentBuilder<ServerCommandSource, T>> ArgumentBuilder<ServerCommandSource, T>.permission(permission: Permission, appendRequirement: Boolean = true): T {
+    val permissionPredicate = { src: ServerCommandSource -> Cobblemon.permissionValidator.hasPermission(src, permission)  }
     return if (appendRequirement) this.requires(this.requirement.and(permissionPredicate)) else this.requires(permissionPredicate)
 }
 
@@ -35,7 +35,7 @@ fun <T : ArgumentBuilder<CommandSourceStack, T>> ArgumentBuilder<CommandSourceSt
  * @param predicate The requirement for the command.
  * @return the [ArgumentBuilder].
  */
-fun <T : ArgumentBuilder<CommandSourceStack, T>> ArgumentBuilder<CommandSourceStack, T>.requiresWithPermission(permission: Permission, predicate: (src: CommandSourceStack) -> Boolean): T {
+fun <T : ArgumentBuilder<ServerCommandSource, T>> ArgumentBuilder<ServerCommandSource, T>.requiresWithPermission(permission: Permission, predicate: (src: ServerCommandSource) -> Boolean): T {
     this.requires(predicate)
     return this.permission(permission)
 }

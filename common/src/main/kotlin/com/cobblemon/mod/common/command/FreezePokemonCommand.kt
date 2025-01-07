@@ -23,7 +23,7 @@ import net.minecraft.commands.Commands
 import net.minecraft.server.network.ServerPlayerEntity
 
 object FreezePokemonCommand {
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             Commands.literal("freezepokemon")
                 .requiresWithPermission(CobblemonPermissions.FREEZE_POKEMON) { it.player != null }
@@ -36,7 +36,7 @@ object FreezePokemonCommand {
         )
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity, freezeFrame: Float = 0F) : Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity, freezeFrame: Float = 0F) : Int {
         val targetEntity = player.traceFirstEntityCollision(entityClass = PokemonEntity::class.java)
         if (targetEntity == null) {
             player.sendSystemMessage(commandLang("freezepokemon.non_pokemon").red())

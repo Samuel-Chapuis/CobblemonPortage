@@ -34,7 +34,7 @@ object GivePokemon {
     private const val PLAYER = "player"
     private const val PROPERTIES = "properties"
 
-    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val selfCommand = dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.GIVE_POKEMON_SELF)
             .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
@@ -49,7 +49,7 @@ object GivePokemon {
         dispatcher.register(otherCommand.alias(ALIAS_OTHER))
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>, player: ServerPlayerEntity): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity): Int {
         try {
             val pokemonProperties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)
             if (pokemonProperties.species == null) {

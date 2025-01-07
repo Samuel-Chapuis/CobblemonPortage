@@ -18,14 +18,14 @@ import net.minecraft.network.chat.Component
 
 object ReloadShowdownCommand {
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         val command = Commands.literal("reloadshowdown")
             .requires { it.hasPermission(4) }
             .executes(::execute)
         dispatcher.register(command)
     }
 
-    private fun execute(context: CommandContext<CommandSourceStack>): Int {
+    private fun execute(context: CommandContext<ServerCommandSource>): Int {
         try {
             ShowdownService.service.closeConnection()
             ShowdownService.service.openConnection()

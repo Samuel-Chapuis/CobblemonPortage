@@ -15,7 +15,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.commands.Commands
 
 object CobblemonCommands {
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>, registry: CommandBuildContext, selection: Commands.CommandSelection) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>, registry: CommandBuildContext, selection: Commands.CommandSelection) {
         SpawnPokemon.register(dispatcher)
         SpawnNPCCommand.register(dispatcher)
         GivePokemon.register(dispatcher)

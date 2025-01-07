@@ -29,7 +29,7 @@ object HeldItemCommand {
     private const val SLOT = "slot"
     private const val ITEM = "item"
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>, commandRegistryAccess: CommandBuildContext) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>, commandRegistryAccess: CommandBuildContext) {
         dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.HELD_ITEM)
             .then(argument(TARGET, EntityArgument.player())
@@ -42,7 +42,7 @@ object HeldItemCommand {
         )
     }
 
-    private fun execute(ctx: CommandContext<CommandSourceStack>): Int {
+    private fun execute(ctx: CommandContext<ServerCommandSource>): Int {
         val player = EntityArgument.getPlayer(ctx, TARGET)
         val pokemon = PartySlotArgumentType.getPokemonOf(ctx, SLOT, player)
         val stackArgument = ItemArgument.getItem(ctx, ITEM)
